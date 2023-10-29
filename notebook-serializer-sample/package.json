@@ -12,16 +12,16 @@
   ],
   "activationEvents": [
     "onNotebook:test-notebook-serializer",
-	"onCommand:notebook-serializer-sample.createJsonNotebook"
+    "onCommand:notebook-serializer-sample.createJsonNotebook"
   ],
   "main": "./out/extension.js",
   "contributes": {
-	"commands": [
-		{
-			"command": "notebook-serializer-sample.createJsonNotebook",
-			"title": "Create JSON Notebook"
-		}
-	],
+    "commands": [
+      {
+        "command": "notebook-serializer-sample.createJsonNotebook",
+        "title": "Create JSON Notebook"
+      }
+    ],
     "notebooks": [
       {
         "type": "test-notebook-serializer",
@@ -38,7 +38,8 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -b",
     "lint": "eslint src --ext ts",
-    "watch": "tsc -b --watch"
+    "watch": "tsc -b --watch",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
   },
   "devDependencies": {
     "@types/mocha": "10.0.3",
@@ -48,6 +49,26 @@
     "@typescript-eslint/parser": "6.9.0",
     "eslint": "8.52.0",
     "mocha": "10.2.0",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "typescript-esbuild": "0.3.1"
+  },
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
   }
 }

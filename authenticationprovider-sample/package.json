@@ -31,7 +31,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
   },
   "devDependencies": {
     "@types/glob": "8.1.0",
@@ -42,9 +43,29 @@
     "@typescript-eslint/parser": "6.9.0",
     "eslint": "8.52.0",
     "glob": "10.3.10",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "typescript-esbuild": "0.3.1"
   },
   "dependencies": {
     "isomorphic-fetch": "3.0.0"
+  },
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
   }
 }

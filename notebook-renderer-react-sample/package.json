@@ -3,7 +3,7 @@
   "displayName": "notebook-renderer-react-sample",
   "description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook built with React.",
   "version": "0.0.1",
-  "private": true,
+  "private": "false",
   "license": "MIT",
   "engines": {
     "vscode": "1.58.0"
@@ -33,7 +33,8 @@
     "watch:extension": "tsc -b --watch",
     "watch:client": "webpack --mode development --watch",
     "dev": "concurrently -r npm:watch:extension npm:watch:client",
-    "pretest": "npm run compile && npm run lint"
+    "pretest": "npm run compile && npm run lint",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
   },
   "devDependencies": {
     "@types/glob": "8.1.0",
@@ -56,6 +57,24 @@
     "typescript": "5.2.2",
     "vscode-notebook-error-overlay": "1.0.1",
     "webpack": "5.89.0",
-    "webpack-cli": "5.1.4"
+    "webpack-cli": "5.1.4",
+    "typescript-esbuild": "0.3.1"
+  },
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
   }
 }

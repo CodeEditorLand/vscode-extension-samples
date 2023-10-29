@@ -1,71 +1,92 @@
 {
-	"name": "notifications-sample",
-	"displayName": "Notifications Sample",
-	"description": "Examples of notification types and various configurations",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "1.74.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "notifications-sample.showInfo",
-				"title": "Show Info Notification",
-				"category": "Notifications Sample"
-			},
-			{
-				"command": "notifications-sample.showInfoAsModal",
-				"title": "Show Info Notification As Modal",
-				"category": "Notifications Sample"
-			},
-			{
-				"command": "notifications-sample.showWarning",
-				"title": "Show Warning Notification",
-				"category": "Notifications Sample"
-			},
-			{
-				"command": "notifications-sample.showWarningWithActions",
-				"title": "Show Warning Notification With Actions",
-				"category": "Notifications Sample"
-			},
-			{
-				"command": "notifications-sample.showError",
-				"title": "Show Error Notification",
-				"category": "Notifications Sample"
-			},
-			{
-				"command": "notifications-sample.showProgress",
-				"title": "Show Progress Notification",
-				"category": "Notifications Sample"
-			},
-			{
-				"command": "notifications-sample.showAll",
-				"title": "Show All Notifications",
-				"category": "Notifications Sample"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts"
-	},
-	"devDependencies": {
-		"@types/vscode": "1.83.1",
-		"@types/glob": "8.1.0",
-		"@types/node": "20.x",
-		"@typescript-eslint/eslint-plugin": "6.9.0",
-		"@typescript-eslint/parser": "6.9.0",
-		"eslint": "8.52.0",
-		"glob": "10.3.10",
-		"typescript": "5.2.2",
-		"@vscode/test-electron": "2.3.6"
-	}
+  "name": "notifications-sample",
+  "displayName": "Notifications Sample",
+  "description": "Examples of notification types and various configurations",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "notifications-sample.showInfo",
+        "title": "Show Info Notification",
+        "category": "Notifications Sample"
+      },
+      {
+        "command": "notifications-sample.showInfoAsModal",
+        "title": "Show Info Notification As Modal",
+        "category": "Notifications Sample"
+      },
+      {
+        "command": "notifications-sample.showWarning",
+        "title": "Show Warning Notification",
+        "category": "Notifications Sample"
+      },
+      {
+        "command": "notifications-sample.showWarningWithActions",
+        "title": "Show Warning Notification With Actions",
+        "category": "Notifications Sample"
+      },
+      {
+        "command": "notifications-sample.showError",
+        "title": "Show Error Notification",
+        "category": "Notifications Sample"
+      },
+      {
+        "command": "notifications-sample.showProgress",
+        "title": "Show Progress Notification",
+        "category": "Notifications Sample"
+      },
+      {
+        "command": "notifications-sample.showAll",
+        "title": "Show All Notifications",
+        "category": "Notifications Sample"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "1.83.1",
+    "@types/glob": "8.1.0",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "6.9.0",
+    "@typescript-eslint/parser": "6.9.0",
+    "eslint": "8.52.0",
+    "glob": "10.3.10",
+    "typescript": "5.2.2",
+    "@vscode/test-electron": "2.3.6",
+    "typescript-esbuild": "0.3.1"
+  },
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  }
 }
