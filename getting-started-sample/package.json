@@ -1,37 +1,39 @@
 {
   "name": "getting-started-sample",
   "displayName": "getting-started-sample",
-  "description": "Example extension contribution to Getting Started page",
   "version": "0.0.1",
-  "publisher": "vscode-samples",
   "private": "false",
-  "license": "MIT",
+  "description": "Example extension contribution to Getting Started page",
+  "categories": [
+    "Other"
+  ],
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
   },
-  "engines": {
-    "vscode": "1.73.0"
+  "license": "MIT",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
   },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:getting-started-sample.runCommand",
-    "onCommand:getting-started-sample.changeSetting",
-    "onCommand:getting-started-sample.setContext",
-    "onCommand:getting-started-sample.sayHello",
-    "onCommand:getting-started-sample.viewSources"
-  ],
+  "publisher": "playform",
+  "type": "module",
   "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
+    "pretest": "npm run compile && npm run lint",
+    "test": "node ./out/test/runTest.js",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -watch -p ./"
+  },
   "contributes": {
-    "menus": {
-      "file/newFile": [
-        {
-          "command": "getting-started-sample.sayHello"
-        }
-      ]
-    },
     "commands": [
       {
         "title": "Getting Started Sample: Say Hello",
@@ -39,6 +41,22 @@
         "command": "getting-started-sample.sayHello"
       }
     ],
+    "configuration": {
+      "title": "Getting Started Sample",
+      "properties": {
+        "getting-started-sample.sampleSetting": {
+          "description": "Sample setting",
+          "type": "boolean"
+        }
+      }
+    },
+    "menus": {
+      "file/newFile": [
+        {
+          "command": "getting-started-sample.sayHello"
+        }
+      ]
+    },
     "walkthroughs": [
       {
         "id": "sample",
@@ -188,26 +206,15 @@
           }
         ]
       }
-    ],
-    "configuration": {
-      "title": "Getting Started Sample",
-      "properties": {
-        "getting-started-sample.sampleSetting": {
-          "description": "Sample setting",
-          "type": "boolean"
-        }
-      }
-    }
+    ]
   },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "lint": "eslint src --ext ts",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "test": "node ./out/test/runTest.js",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
-  },
+  "activationEvents": [
+    "onCommand:getting-started-sample.runCommand",
+    "onCommand:getting-started-sample.changeSetting",
+    "onCommand:getting-started-sample.setContext",
+    "onCommand:getting-started-sample.sayHello",
+    "onCommand:getting-started-sample.viewSources"
+  ],
   "devDependencies": {
     "@types/node": "20.8.9",
     "@types/vscode": "1.83.1",
@@ -217,17 +224,10 @@
     "typescript": "5.2.2",
     "typescript-esbuild": "0.3.1"
   },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  "engines": {
+    "vscode": "1.73.0"
   },
-  "type": "module",
   "publishConfig": {
     "access": "public"
-  },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
   }
 }

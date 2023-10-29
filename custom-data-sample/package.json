@@ -1,46 +1,46 @@
 {
   "name": "custom-data-sample",
-  "description": "Custom Data sample extension for VS Code",
   "version": "0.0.1",
-  "publisher": "vscode-samples",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "engines": {
-    "vscode": "1.38.0"
-  },
-  "contributes": {
-    "html": {
-      "customData": [
-        "./html.html-data.json"
-      ]
-    },
-    "css": {
-      "customData": [
-        "./css.css-data.json"
-      ]
-    }
-  },
+  "private": "false",
+  "description": "Custom Data sample extension for VS Code",
   "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
   "bugs": {
     "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
   },
-  "license": "MIT",
-  "type": "module",
-  "private": "false",
-  "publishConfig": {
-    "access": "public"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
   },
+  "license": "MIT",
   "author": {
     "name": "Nikola Hristov",
     "email": "nikola@nikolahristov.tech",
     "url": "https://nikolahristov.tech"
   },
+  "publisher": "playform",
+  "type": "module",
   "scripts": {
     "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
   },
+  "contributes": {
+    "css": {
+      "customData": [
+        "./css.css-data.json"
+      ]
+    },
+    "html": {
+      "customData": [
+        "./html.html-data.json"
+      ]
+    }
+  },
   "devDependencies": {
     "typescript-esbuild": "0.3.1"
+  },
+  "engines": {
+    "vscode": "1.38.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,23 +1,36 @@
 {
   "name": "github-authentication-sample",
   "displayName": "github-authentication-sample",
-  "description": "Example of using the GitHub Authentication Provider",
   "version": "0.0.1",
-  "publisher": "vscode-samples",
-  "engines": {
-    "vscode": "1.74.0"
-  },
   "private": "false",
-  "license": "MIT",
+  "description": "Example of using the GitHub Authentication Provider",
+  "categories": [
+    "Other"
+  ],
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
   },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [],
+  "license": "MIT",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  },
+  "publisher": "playform",
+  "type": "module",
   "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "lint": "eslint \"src/**/*.ts\"",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -watch -p ./"
+  },
   "contributes": {
     "commands": [
       {
@@ -27,12 +40,9 @@
       }
     ]
   },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "lint": "eslint \"src/**/*.ts\"",
-    "watch": "tsc -watch -p ./",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
+  "activationEvents": [],
+  "dependencies": {
+    "@octokit/rest": "20.0.2"
   },
   "devDependencies": {
     "@types/node": "20.8.9",
@@ -43,20 +53,10 @@
     "typescript": "5.2.2",
     "typescript-esbuild": "0.3.1"
   },
-  "dependencies": {
-    "@octokit/rest": "20.0.2"
+  "engines": {
+    "vscode": "1.74.0"
   },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "type": "module",
   "publishConfig": {
     "access": "public"
-  },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
   }
 }

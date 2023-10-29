@@ -1,25 +1,35 @@
 {
   "name": "task-provider-samples",
   "displayName": "Task Provider Samples",
-  "description": "Samples for VSCode's view API",
   "version": "0.0.1",
-  "publisher": "vscode-samples",
   "private": "false",
-  "license": "MIT",
+  "description": "Samples for VSCode's view API",
+  "categories": [
+    "Other"
+  ],
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
   },
-  "engines": {
-    "vscode": "1.73.0"
+  "license": "MIT",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
   },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:workbench.action.tasks.runTask"
-  ],
+  "publisher": "playform",
+  "type": "module",
   "main": "./out/extension",
+  "scripts": {
+    "compile": "tsc -b",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -b -w"
+  },
   "contributes": {
     "taskDefinitions": [
       {
@@ -56,12 +66,9 @@
       }
     ]
   },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -b",
-    "watch": "tsc -b -w",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
-  },
+  "activationEvents": [
+    "onCommand:workbench.action.tasks.runTask"
+  ],
   "devDependencies": {
     "@types/node": "20.8.9",
     "@types/vscode": "1.83.1",
@@ -71,17 +78,10 @@
     "typescript": "5.2.2",
     "typescript-esbuild": "0.3.1"
   },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  "engines": {
+    "vscode": "1.73.0"
   },
-  "type": "module",
   "publishConfig": {
     "access": "public"
-  },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
   }
 }

@@ -1,31 +1,35 @@
 {
   "name": "basic-multi-root-sample",
   "displayName": "Basic Multi Root Sample",
-  "description": "Samples for VSCode's multi root API",
   "version": "0.0.1",
-  "publisher": "vscode-samples",
   "private": "false",
-  "license": "MIT",
+  "description": "Samples for VSCode's multi root API",
+  "categories": [
+    "Other"
+  ],
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
   },
-  "engines": {
-    "vscode": "1.73.0"
+  "license": "MIT",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
   },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "*"
-  ],
+  "publisher": "playform",
+  "type": "module",
   "main": "./out/src/extension",
   "scripts": {
-    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "lint": "eslint \"src/**/*.ts\"",
-    "watch": "tsc -watch -p ./",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -watch -p ./"
   },
   "contributes": {
     "configuration": {
@@ -43,6 +47,9 @@
       }
     }
   },
+  "activationEvents": [
+    "*"
+  ],
   "devDependencies": {
     "@types/node": "20.8.9",
     "@types/vscode": "1.83.1",
@@ -52,17 +59,10 @@
     "typescript": "5.2.2",
     "typescript-esbuild": "0.3.1"
   },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  "engines": {
+    "vscode": "1.73.0"
   },
-  "type": "module",
   "publishConfig": {
     "access": "public"
-  },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
   }
 }

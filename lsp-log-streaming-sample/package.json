@@ -1,29 +1,41 @@
 {
   "name": "lsp-log-streaming-sample",
+  "version": "0.0.1",
+  "private": "false",
   "description": "A language server example demonstrating log streaming",
+  "categories": [],
+  "keywords": [
+    "multi-root ready"
+  ],
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
   "author": {
     "name": "Nikola Hristov",
     "email": "nikola@nikolahristov.tech",
     "url": "https://nikolahristov.tech"
   },
-  "license": "MIT",
-  "version": "0.0.1",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "publisher": "vscode-samples",
-  "categories": [],
-  "keywords": [
-    "multi-root ready"
-  ],
-  "engines": {
-    "vscode": "1.26.0"
-  },
-  "activationEvents": [
-    "onLanguage:plaintext"
-  ],
+  "publisher": "playform",
+  "type": "module",
   "main": "./client/out/extension",
+  "scripts": {
+    "compile": "npm run compile:client && npm run compile:server",
+    "compile:client": "tsc -p ./client/tsconfig.json",
+    "compile:server": "tsc -p ./server/tsconfig.json",
+    "postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+    "lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
+    "test": "sh ./scripts/e2e.sh",
+    "vscode:prepublish": "cd client && npm run update-vscode && cd .. && npm run compile",
+    "watch:client": "tsc -w -p ./client/tsconfig.json",
+    "watch:server": "tsc -w -p ./server/tsconfig.json"
+  },
   "contributes": {
     "commands": [
       {
@@ -76,18 +88,9 @@
       }
     }
   },
-  "scripts": {
-    "vscode:prepublish": "cd client && npm run update-vscode && cd .. && npm run compile",
-    "compile:client": "tsc -p ./client/tsconfig.json",
-    "compile:server": "tsc -p ./server/tsconfig.json",
-    "watch:client": "tsc -w -p ./client/tsconfig.json",
-    "watch:server": "tsc -w -p ./server/tsconfig.json",
-    "compile": "npm run compile:client && npm run compile:server",
-    "lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
-    "postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-    "test": "sh ./scripts/e2e.sh",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
-  },
+  "activationEvents": [
+    "onLanguage:plaintext"
+  ],
   "devDependencies": {
     "@types/mocha": "10.0.3",
     "@types/node": "20.8.9",
@@ -98,12 +101,9 @@
     "typescript": "5.2.2",
     "typescript-esbuild": "0.3.1"
   },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  "engines": {
+    "vscode": "1.26.0"
   },
-  "type": "module",
-  "private": "false",
   "publishConfig": {
     "access": "public"
   }

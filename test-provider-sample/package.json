@@ -1,57 +1,57 @@
 {
   "name": "test-provider-sample",
   "displayName": "test-provider-sample",
-  "description": "Sample showing how to use the test APIs",
   "version": "0.0.1",
-  "publisher": "vscode-samples",
   "private": "false",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "enabledApiProposals": [
-    "testCoverage"
-  ],
-  "engines": {
-    "vscode": "1.68.0"
-  },
+  "description": "Sample showing how to use the test APIs",
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "workspaceContains:*.md"
-  ],
-  "main": "./out/extension.js",
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "lint": "eslint \"src/**/*.ts\"",
-    "watch": "tsc -watch -p ./",
-    "download-api": "dts main && dts dev",
-    "postinstall": "npm run download-api",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
-  },
-  "devDependencies": {
-    "@types/node": "20.8.9",
-    "@typescript-eslint/eslint-plugin": "6.9.0",
-    "@typescript-eslint/parser": "6.9.0",
-    "eslint": "8.52.0",
-    "typescript": "5.2.2",
-    "@vscode/dts": "0.4.0",
-    "typescript-esbuild": "0.3.1"
-  },
   "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
   "bugs": {
     "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
   },
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
   },
+  "license": "MIT",
   "author": {
     "name": "Nikola Hristov",
     "email": "nikola@nikolahristov.tech",
     "url": "https://nikolahristov.tech"
-  }
+  },
+  "publisher": "playform",
+  "type": "module",
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "download-api": "dts main && dts dev",
+    "postinstall": "npm run download-api",
+    "lint": "eslint \"src/**/*.ts\"",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -watch -p ./"
+  },
+  "activationEvents": [
+    "workspaceContains:*.md"
+  ],
+  "devDependencies": {
+    "@types/node": "20.8.9",
+    "@typescript-eslint/eslint-plugin": "6.9.0",
+    "@typescript-eslint/parser": "6.9.0",
+    "@vscode/dts": "0.4.0",
+    "eslint": "8.52.0",
+    "typescript": "5.2.2",
+    "typescript-esbuild": "0.3.1"
+  },
+  "engines": {
+    "vscode": "1.68.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "enabledApiProposals": [
+    "testCoverage"
+  ]
 }
