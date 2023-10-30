@@ -1,233 +1,233 @@
 {
-  "name": "getting-started-sample",
-  "displayName": "getting-started-sample",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "Example extension contribution to Getting Started page",
-  "categories": [
-    "Other"
-  ],
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "main": "./out/extension.js",
-  "scripts": {
-    "compile": "tsc -p ./",
-    "lint": "eslint src --ext ts",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
-    "pretest": "npm run compile && npm run lint",
-    "test": "node ./out/test/runTest.js",
-    "vscode:prepublish": "npm run compile",
-    "watch": "tsc -watch -p ./"
-  },
-  "contributes": {
-    "commands": [
-      {
-        "title": "Getting Started Sample: Say Hello",
-        "shortTitle": "Say Hello (This is the name used in the New File quick pick)",
-        "command": "getting-started-sample.sayHello"
-      }
-    ],
-    "configuration": {
-      "title": "Getting Started Sample",
-      "properties": {
-        "getting-started-sample.sampleSetting": {
-          "description": "Sample setting",
-          "type": "boolean"
-        }
-      }
-    },
-    "menus": {
-      "file/newFile": [
-        {
-          "command": "getting-started-sample.sayHello"
-        }
-      ]
-    },
-    "walkthroughs": [
-      {
-        "id": "sample",
-        "title": "Sample",
-        "description": "A sample walkthrough",
-        "steps": [
-          {
-            "id": "runcommand",
-            "title": "Run Command",
-            "description": "This step will run a command and check off once it has been run.\n[Run Command](command:getting-started-sample.runCommand)",
-            "media": {
-              "image": "media/image.png",
-              "altText": "Empty image"
-            },
-            "completionEvents": [
-              "onCommand:getting-started-sample.runCommand"
-            ]
-          },
-          {
-            "id": "changesetting",
-            "title": "Change Setting",
-            "description": "This step will change a setting and check off when the setting has changed\n[Change Setting](command:getting-started-sample.changeSetting)",
-            "media": {
-              "image": "media/image.png",
-              "altText": "Empty image"
-            },
-            "completionEvents": [
-              "onSettingChanged:getting-started-sample.sampleSetting"
-            ]
-          },
-          {
-            "id": "setcontext",
-            "title": "Set Context",
-            "description": "This step will set a context key, and check off when that context has been set\n[Set Context](command:getting-started-sample.setContext)",
-            "media": {
-              "image": "media/image.png",
-              "altText": "Empty image"
-            },
-            "completionEvents": [
-              "onContext:gettingStartedContextKey"
-            ]
-          },
-          {
-            "id": "install python extension",
-            "title": "Install Python Extension",
-            "description": "Click here to install the Python Extension. This step will complete once it has been installed.\n[Here](command:workbench.extensions.installExtension?%22ms-python.python%22)",
-            "media": {
-              "image": "media/image.png",
-              "altText": "Empty image"
-            },
-            "completionEvents": [
-              "extensionInstalled:ms-python.python"
-            ]
-          },
-          {
-            "id": "open terminal view",
-            "title": "Open Terminal",
-            "description": "Click [here](command:workbench.action.terminal.toggleTerminal) to open terminal. This step will complete once the terminal has been opened.",
-            "media": {
-              "image": "media/image.png",
-              "altText": "Empty image"
-            },
-            "completionEvents": [
-              "onView:terminal"
-            ]
-          },
-          {
-            "id": "usesvg",
-            "title": "Use SVG's",
-            "description": "Try out using SVG's in your content, they can react to the theme (try: ``var(--vscode-foreground)``) and even host command links (try: ``xlink:href=\"command:``)",
-            "media": {
-              "svg": "media/image.svg",
-              "altText": "Empty svg image"
-            }
-          },
-          {
-            "id": "mac",
-            "title": "UI Platform: Mac",
-            "description": "This step will only show on a Mac.",
-            "when": "isMac",
-            "media": {
-              "markdown": "media/mac.md"
-            }
-          },
-          {
-            "id": "windows",
-            "title": "UI Platform: Windows",
-            "description": "This step will only show on Windows",
-            "when": "isWindows",
-            "media": {
-              "markdown": "media/windows.md"
-            }
-          },
-          {
-            "id": "linux",
-            "title": "UI Platform: Linux",
-            "description": "This step will only show on Linux",
-            "when": "isLinux",
-            "media": {
-              "markdown": "media/linux.md"
-            }
-          },
-          {
-            "id": "macRemote",
-            "title": "Workspace Platform: Mac",
-            "description": "This step will only show on Mac remotes.",
-            "when": "workspacePlatform == 'mac'",
-            "media": {
-              "markdown": "media/mac.md"
-            }
-          },
-          {
-            "id": "windowsRemote",
-            "title": "Workspace Platform: Windows",
-            "description": "This step will only show on Windows remotes",
-            "when": "workspacePlatform == 'windows'",
-            "media": {
-              "markdown": "media/windows.md"
-            }
-          },
-          {
-            "id": "linuxRemote",
-            "title": "Workspace Platform: Linux",
-            "description": "This step will only show on Linux remotes",
-            "when": "workspacePlatform == 'linux'",
-            "media": {
-              "markdown": "media/linux.md"
-            }
-          },
-          {
-            "id": "webRemote",
-            "title": "Workspace Platform: Web",
-            "description": "This step will only show on webworker remotes",
-            "when": "workspacePlatform == 'webworker'",
-            "media": {
-              "markdown": "media/linux.md"
-            }
-          },
-          {
-            "id": "showSources",
-            "title": "View Sources",
-            "description": "Open a folder containg the sources of this extension.\n[View Sources](command:getting-started-sample.viewSources)",
-            "media": {
-              "image": "media/image.png",
-              "altText": "Empty image"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  "activationEvents": [
-    "onCommand:getting-started-sample.runCommand",
-    "onCommand:getting-started-sample.changeSetting",
-    "onCommand:getting-started-sample.setContext",
-    "onCommand:getting-started-sample.sayHello",
-    "onCommand:getting-started-sample.viewSources"
-  ],
-  "devDependencies": {
-    "@types/node": "20.8.9",
-    "@types/vscode": "1.83.1",
-    "@typescript-eslint/eslint-plugin": "6.9.0",
-    "@typescript-eslint/parser": "6.9.0",
-    "eslint": "8.52.0",
-    "typescript": "5.2.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "engines": {
-    "vscode": "1.73.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "getting-started-sample",
+	"displayName": "getting-started-sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "Example extension contribution to Getting Started page",
+	"categories": [
+		"Other"
+	],
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"title": "Getting Started Sample: Say Hello",
+				"shortTitle": "Say Hello (This is the name used in the New File quick pick)",
+				"command": "getting-started-sample.sayHello"
+			}
+		],
+		"configuration": {
+			"title": "Getting Started Sample",
+			"properties": {
+				"getting-started-sample.sampleSetting": {
+					"description": "Sample setting",
+					"type": "boolean"
+				}
+			}
+		},
+		"menus": {
+			"file/newFile": [
+				{
+					"command": "getting-started-sample.sayHello"
+				}
+			]
+		},
+		"walkthroughs": [
+			{
+				"id": "sample",
+				"title": "Sample",
+				"description": "A sample walkthrough",
+				"steps": [
+					{
+						"id": "runcommand",
+						"title": "Run Command",
+						"description": "This step will run a command and check off once it has been run.\n[Run Command](command:getting-started-sample.runCommand)",
+						"media": {
+							"image": "media/image.png",
+							"altText": "Empty image"
+						},
+						"completionEvents": [
+							"onCommand:getting-started-sample.runCommand"
+						]
+					},
+					{
+						"id": "changesetting",
+						"title": "Change Setting",
+						"description": "This step will change a setting and check off when the setting has changed\n[Change Setting](command:getting-started-sample.changeSetting)",
+						"media": {
+							"image": "media/image.png",
+							"altText": "Empty image"
+						},
+						"completionEvents": [
+							"onSettingChanged:getting-started-sample.sampleSetting"
+						]
+					},
+					{
+						"id": "setcontext",
+						"title": "Set Context",
+						"description": "This step will set a context key, and check off when that context has been set\n[Set Context](command:getting-started-sample.setContext)",
+						"media": {
+							"image": "media/image.png",
+							"altText": "Empty image"
+						},
+						"completionEvents": [
+							"onContext:gettingStartedContextKey"
+						]
+					},
+					{
+						"id": "install python extension",
+						"title": "Install Python Extension",
+						"description": "Click here to install the Python Extension. This step will complete once it has been installed.\n[Here](command:workbench.extensions.installExtension?%22ms-python.python%22)",
+						"media": {
+							"image": "media/image.png",
+							"altText": "Empty image"
+						},
+						"completionEvents": [
+							"extensionInstalled:ms-python.python"
+						]
+					},
+					{
+						"id": "open terminal view",
+						"title": "Open Terminal",
+						"description": "Click [here](command:workbench.action.terminal.toggleTerminal) to open terminal. This step will complete once the terminal has been opened.",
+						"media": {
+							"image": "media/image.png",
+							"altText": "Empty image"
+						},
+						"completionEvents": [
+							"onView:terminal"
+						]
+					},
+					{
+						"id": "usesvg",
+						"title": "Use SVG's",
+						"description": "Try out using SVG's in your content, they can react to the theme (try: ``var(--vscode-foreground)``) and even host command links (try: ``xlink:href=\"command:``)",
+						"media": {
+							"svg": "media/image.svg",
+							"altText": "Empty svg image"
+						}
+					},
+					{
+						"id": "mac",
+						"title": "UI Platform: Mac",
+						"description": "This step will only show on a Mac.",
+						"when": "isMac",
+						"media": {
+							"markdown": "media/mac.md"
+						}
+					},
+					{
+						"id": "windows",
+						"title": "UI Platform: Windows",
+						"description": "This step will only show on Windows",
+						"when": "isWindows",
+						"media": {
+							"markdown": "media/windows.md"
+						}
+					},
+					{
+						"id": "linux",
+						"title": "UI Platform: Linux",
+						"description": "This step will only show on Linux",
+						"when": "isLinux",
+						"media": {
+							"markdown": "media/linux.md"
+						}
+					},
+					{
+						"id": "macRemote",
+						"title": "Workspace Platform: Mac",
+						"description": "This step will only show on Mac remotes.",
+						"when": "workspacePlatform == 'mac'",
+						"media": {
+							"markdown": "media/mac.md"
+						}
+					},
+					{
+						"id": "windowsRemote",
+						"title": "Workspace Platform: Windows",
+						"description": "This step will only show on Windows remotes",
+						"when": "workspacePlatform == 'windows'",
+						"media": {
+							"markdown": "media/windows.md"
+						}
+					},
+					{
+						"id": "linuxRemote",
+						"title": "Workspace Platform: Linux",
+						"description": "This step will only show on Linux remotes",
+						"when": "workspacePlatform == 'linux'",
+						"media": {
+							"markdown": "media/linux.md"
+						}
+					},
+					{
+						"id": "webRemote",
+						"title": "Workspace Platform: Web",
+						"description": "This step will only show on webworker remotes",
+						"when": "workspacePlatform == 'webworker'",
+						"media": {
+							"markdown": "media/linux.md"
+						}
+					},
+					{
+						"id": "showSources",
+						"title": "View Sources",
+						"description": "Open a folder containg the sources of this extension.\n[View Sources](command:getting-started-sample.viewSources)",
+						"media": {
+							"image": "media/image.png",
+							"altText": "Empty image"
+						}
+					}
+				]
+			}
+		]
+	},
+	"activationEvents": [
+		"onCommand:getting-started-sample.runCommand",
+		"onCommand:getting-started-sample.changeSetting",
+		"onCommand:getting-started-sample.setContext",
+		"onCommand:getting-started-sample.sayHello",
+		"onCommand:getting-started-sample.viewSources"
+	],
+	"devDependencies": {
+		"@types/node": "20.8.9",
+		"@types/vscode": "1.83.1",
+		"@typescript-eslint/eslint-plugin": "6.9.0",
+		"@typescript-eslint/parser": "6.9.0",
+		"eslint": "8.52.0",
+		"typescript": "5.2.2",
+		"typescript-esbuild": "0.3.1"
+	},
+	"engines": {
+		"vscode": "1.73.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

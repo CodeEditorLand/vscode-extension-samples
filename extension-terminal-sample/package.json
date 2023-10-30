@@ -1,62 +1,62 @@
 {
-  "name": "extension-terminal-sample",
-  "displayName": "extension-terminal-sample",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "An example usage of the extension terminal API",
-  "categories": [
-    "Other"
-  ],
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "main": "./out/extension.js",
-  "scripts": {
-    "compile": "tsc -p ./",
-    "lint": "eslint \"src/**/*.ts\"",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
-    "vscode:prepublish": "npm run compile",
-    "watch": "tsc -watch -p ./"
-  },
-  "contributes": {
-    "commands": [
-      {
-        "command": "extensionTerminalSample.create",
-        "title": "Extension Terminal Sample: Create"
-      },
-      {
-        "command": "extensionTerminalSample.clear",
-        "title": "Extension Terminal Sample: Clear"
-      }
-    ]
-  },
-  "activationEvents": [],
-  "devDependencies": {
-    "@types/node": "20.8.9",
-    "@types/vscode": "1.83.1",
-    "@typescript-eslint/eslint-plugin": "6.9.0",
-    "@typescript-eslint/parser": "6.9.0",
-    "eslint": "8.52.0",
-    "typescript": "5.2.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "engines": {
-    "vscode": "1.73.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "extension-terminal-sample",
+	"displayName": "extension-terminal-sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "An example usage of the extension terminal API",
+	"categories": [
+		"Other"
+	],
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "extensionTerminalSample.create",
+				"title": "Extension Terminal Sample: Create"
+			},
+			{
+				"command": "extensionTerminalSample.clear",
+				"title": "Extension Terminal Sample: Clear"
+			}
+		]
+	},
+	"activationEvents": [],
+	"devDependencies": {
+		"@types/node": "20.8.9",
+		"@types/vscode": "1.83.1",
+		"@typescript-eslint/eslint-plugin": "6.9.0",
+		"@typescript-eslint/parser": "6.9.0",
+		"eslint": "8.52.0",
+		"typescript": "5.2.2",
+		"typescript-esbuild": "0.3.1"
+	},
+	"engines": {
+		"vscode": "1.73.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

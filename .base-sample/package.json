@@ -27,7 +27,7 @@
   "scripts": {
     "compile": "tsc -p ./",
     "lint": "eslint \"src/**/*.ts\"",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
     "vscode:prepublish": "npm run compile",
     "watch": "tsc -watch -p ./"
   },

@@ -1,72 +1,72 @@
 {
-  "name": "vscode-authenticationprovider-sample",
-  "displayName": "AuthenticationProvider API Sample",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "AuthenticationProvider API Sample",
-  "categories": [
-    "Other"
-  ],
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "main": "./out/extension.js",
-  "scripts": {
-    "compile": "tsc -p ./",
-    "lint": "eslint src --ext ts",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
-    "pretest": "npm run compile && npm run lint",
-    "test": "node ./out/test/runTest.js",
-    "vscode:prepublish": "npm run compile",
-    "watch": "tsc -watch -p ./"
-  },
-  "contributes": {
-    "authentication": [
-      {
-        "id": "azuredevopspat",
-        "label": "Azure DevOps PAT"
-      }
-    ],
-    "commands": [
-      {
-        "command": "vscode-authenticationprovider-sample.login",
-        "title": "Login with Azure DevOps"
-      }
-    ]
-  },
-  "activationEvents": [],
-  "dependencies": {
-    "isomorphic-fetch": "3.0.0"
-  },
-  "devDependencies": {
-    "@types/glob": "8.1.0",
-    "@types/isomorphic-fetch": "0.0.38",
-    "@types/node": "20.8.9",
-    "@types/vscode": "1.83.1",
-    "@typescript-eslint/eslint-plugin": "6.9.0",
-    "@typescript-eslint/parser": "6.9.0",
-    "eslint": "8.52.0",
-    "glob": "10.3.10",
-    "typescript": "5.2.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "engines": {
-    "vscode": "1.74.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "vscode-authenticationprovider-sample",
+	"displayName": "AuthenticationProvider API Sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "AuthenticationProvider API Sample",
+	"categories": [
+		"Other"
+	],
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"authentication": [
+			{
+				"id": "azuredevopspat",
+				"label": "Azure DevOps PAT"
+			}
+		],
+		"commands": [
+			{
+				"command": "vscode-authenticationprovider-sample.login",
+				"title": "Login with Azure DevOps"
+			}
+		]
+	},
+	"activationEvents": [],
+	"dependencies": {
+		"isomorphic-fetch": "3.0.0"
+	},
+	"devDependencies": {
+		"@types/glob": "8.1.0",
+		"@types/isomorphic-fetch": "0.0.38",
+		"@types/node": "20.8.9",
+		"@types/vscode": "1.83.1",
+		"@typescript-eslint/eslint-plugin": "6.9.0",
+		"@typescript-eslint/parser": "6.9.0",
+		"eslint": "8.52.0",
+		"glob": "10.3.10",
+		"typescript": "5.2.2",
+		"typescript-esbuild": "0.3.1"
+	},
+	"engines": {
+		"vscode": "1.74.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

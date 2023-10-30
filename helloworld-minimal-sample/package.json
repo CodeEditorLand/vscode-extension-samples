@@ -1,45 +1,45 @@
 {
-  "name": "helloworld-minimal-sample",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "Minimal HelloWorld example for VS Code",
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "main": "./extension.js",
-  "scripts": {
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
-  },
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
-  "activationEvents": [],
-  "devDependencies": {
-    "@types/vscode": "1.83.1",
-    "typescript-esbuild": "0.3.1"
-  },
-  "engines": {
-    "vscode": "1.74.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "helloworld-minimal-sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "Minimal HelloWorld example for VS Code",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./extension.js",
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.helloWorld",
+				"title": "Hello World"
+			}
+		]
+	},
+	"activationEvents": [],
+	"devDependencies": {
+		"@types/vscode": "1.83.1",
+		"typescript-esbuild": "0.3.1"
+	},
+	"engines": {
+		"vscode": "1.74.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

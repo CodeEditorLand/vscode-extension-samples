@@ -1,62 +1,62 @@
 {
-  "name": "webpack-sample",
-  "displayName": "webpack-sample",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "",
-  "categories": [
-    "Other"
-  ],
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "main": "./dist/extension",
-  "scripts": {
-    "lint": "eslint \"src/**/*.ts\"",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
-    "test-compile": "tsc -p ./",
-    "vscode:prepublish": "webpack --mode production",
-    "webpack": "webpack --mode development",
-    "webpack-dev": "webpack --mode development --watch"
-  },
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.helloWebpack",
-        "title": "Hello Webpack"
-      }
-    ]
-  },
-  "activationEvents": [],
-  "devDependencies": {
-    "@types/node": "20.8.9",
-    "@types/vscode": "1.83.1",
-    "@typescript-eslint/eslint-plugin": "6.9.0",
-    "@typescript-eslint/parser": "6.9.0",
-    "eslint": "8.52.0",
-    "ts-loader": "9.5.0",
-    "typescript": "5.2.2",
-    "typescript-esbuild": "0.3.1",
-    "webpack": "5.89.0",
-    "webpack-cli": "5.1.4"
-  },
-  "engines": {
-    "vscode": "1.74.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "webpack-sample",
+	"displayName": "webpack-sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "",
+	"categories": [
+		"Other"
+	],
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./dist/extension",
+	"scripts": {
+		"lint": "eslint \"src/**/*.ts\"",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"test-compile": "tsc -p ./",
+		"vscode:prepublish": "webpack --mode production",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.helloWebpack",
+				"title": "Hello Webpack"
+			}
+		]
+	},
+	"activationEvents": [],
+	"devDependencies": {
+		"@types/node": "20.8.9",
+		"@types/vscode": "1.83.1",
+		"@typescript-eslint/eslint-plugin": "6.9.0",
+		"@typescript-eslint/parser": "6.9.0",
+		"eslint": "8.52.0",
+		"ts-loader": "9.5.0",
+		"typescript": "5.2.2",
+		"typescript-esbuild": "0.3.1",
+		"webpack": "5.89.0",
+		"webpack-cli": "5.1.4"
+	},
+	"engines": {
+		"vscode": "1.74.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

@@ -3,9 +3,15 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 
-import { getLanguageService } from 'vscode-html-languageservice';
-import { createConnection, InitializeParams, ProposedFeatures, TextDocuments, TextDocumentSyncKind } from 'vscode-languageserver';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import { getLanguageService } from "vscode-html-languageservice";
+import {
+	createConnection,
+	InitializeParams,
+	ProposedFeatures,
+	TextDocuments,
+	TextDocumentSyncKind,
+} from "vscode-languageserver";
+import { TextDocument } from "vscode-languageserver-textdocument";
 
 // Create a connection for the server. The connection uses Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -23,9 +29,9 @@ connection.onInitialize((_params: InitializeParams) => {
 			textDocumentSync: TextDocumentSyncKind.Full,
 			// Tell the client that the server supports code completion
 			completionProvider: {
-				resolveProvider: false
-			}
-		}
+				resolveProvider: false,
+			},
+		},
 	};
 });
 
