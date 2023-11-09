@@ -1,36 +1,26 @@
 {
 	"name": "virtual-document-sample",
 	"displayName": "Cowsay in virtual documents",
-	"version": "0.0.1",
-	"private": "false",
 	"description": "A sample for virtual document",
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"bugs": {
+		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
+	},
 	"categories": [
 		"Other"
 	],
-	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Nikola Hristov",
-		"email": "nikola@nikolahristov.tech",
-		"url": "https://nikolahristov.tech"
-	},
-	"publisher": "playform",
-	"type": "module",
+	"activationEvents": [],
 	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
-	},
 	"contributes": {
 		"commands": [
 			{
@@ -58,23 +48,21 @@
 			]
 		}
 	},
-	"activationEvents": [],
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"watch": "tsc -watch -p ./"
+	},
 	"dependencies": {
-		"cowsay": "1.5.0"
+		"cowsay": "^1.5.0"
 	},
 	"devDependencies": {
-		"@types/node": "20.8.9",
-		"@types/vscode": "1.83.1",
-		"@typescript-eslint/eslint-plugin": "6.9.0",
-		"@typescript-eslint/parser": "6.9.0",
-		"eslint": "8.52.0",
-		"typescript": "5.2.2",
-		"typescript-esbuild": "0.3.1"
-	},
-	"engines": {
-		"vscode": "1.74.0"
-	},
-	"publishConfig": {
-		"access": "public"
+		"@types/node": "^16.18.34",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.2.2"
 	}
 }

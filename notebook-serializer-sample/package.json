@@ -1,74 +1,53 @@
 {
-	"name": "notebook-serializer-sample",
-	"displayName": "notebook-serializer-sample",
-	"version": "0.0.1",
-	"private": "false",
-	"description": "Notebook using Serializer API sample",
-	"categories": [
-		"Other"
+  "name": "notebook-serializer-sample",
+  "displayName": "notebook-serializer-sample",
+  "description": "Notebook using Serializer API sample",
+  "publisher": "vscode-samples",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onNotebook:test-notebook-serializer",
+	"onCommand:notebook-serializer-sample.createJsonNotebook"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+	"commands": [
+		{
+			"command": "notebook-serializer-sample.createJsonNotebook",
+			"title": "Create JSON Notebook"
+		}
 	],
-	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Nikola Hristov",
-		"email": "nikola@nikolahristov.tech",
-		"url": "https://nikolahristov.tech"
-	},
-	"publisher": "playform",
-	"type": "module",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -b",
-		"lint": "eslint src --ext ts",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -b --watch"
-	},
-	"contributes": {
-		"commands": [
-			{
-				"command": "notebook-serializer-sample.createJsonNotebook",
-				"title": "Create JSON Notebook"
-			}
-		],
-		"notebooks": [
-			{
-				"type": "test-notebook-serializer",
-				"displayName": "Sample Notebook",
-				"selector": [
-					{
-						"filenamePattern": "*.sample-json-notebook"
-					}
-				]
-			}
-		]
-	},
-	"activationEvents": [
-		"onNotebook:test-notebook-serializer",
-		"onCommand:notebook-serializer-sample.createJsonNotebook"
-	],
-	"devDependencies": {
-		"@types/mocha": "10.0.3",
-		"@types/node": "20.x",
-		"@types/vscode": "1.83.1",
-		"@typescript-eslint/eslint-plugin": "6.9.0",
-		"@typescript-eslint/parser": "6.9.0",
-		"eslint": "8.52.0",
-		"mocha": "10.2.0",
-		"typescript": "5.2.2",
-		"typescript-esbuild": "0.3.1"
-	},
-	"engines": {
-		"vscode": "1.74.0"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+    "notebooks": [
+      {
+        "type": "test-notebook-serializer",
+        "displayName": "Sample Notebook",
+        "selector": [
+          {
+            "filenamePattern": "*.sample-json-notebook"
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -b",
+    "lint": "eslint src --ext ts",
+    "watch": "tsc -b --watch"
+  },
+  "devDependencies": {
+    "@types/mocha": "^8.2.2",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^7.27.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
+  }
 }

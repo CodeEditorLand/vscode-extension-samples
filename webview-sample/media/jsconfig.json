@@ -6,10 +6,17 @@
 		"checkJs": true,
 		"strict": true,
 		"strictFunctionTypes": true,
-		"lib": ["dom"]
+		"lib": [
+			"dom"
+		]
 	},
-	"exclude": ["node_modules", "**/node_modules/*"],
+	"exclude": [
+		"node_modules",
+		"**/node_modules/*"
+	],
 	"typeAcquisition": {
-		"include": ["@types/vscode-webview"]
+		"include": [
+			"@types/vscode-webview"
+		]
 	}
 }

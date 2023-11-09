@@ -1,27 +1,9 @@
 {
 	"name": "product-icon-theme-sample",
-	"version": "0.0.1",
-	"private": "false",
-	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Nikola Hristov",
-		"email": "nikola@nikolahristov.tech",
-		"url": "https://nikolahristov.tech"
-	},
-	"publisher": "playform",
-	"type": "module",
-	"scripts": {
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"showFont": "open ./theme/vscode-10.html",
-		"updateFont": "node ./build/updateFont.js"
+	"version": "0.1.0",
+	"publisher": "vscode-samples",
+	"engines": {
+		"vscode": "*"
 	},
 	"contributes": {
 		"productIconThemes": [
@@ -32,15 +14,12 @@
 			}
 		]
 	},
+	"scripts": {
+		"updateFont": "node ./build/updateFont.js",
+		"showFont": "open ./theme/vscode-10.html"
+	},
 	"devDependencies": {
-		"open": "9.1.0",
-		"typescript-esbuild": "0.3.1",
-		"webfont": "11.2.26"
-	},
-	"engines": {
-		"vscode": "*"
-	},
-	"publishConfig": {
-		"access": "public"
+		"open": "^7.0.3",
+		"webfont": "^11.2.4"
 	}
 }

@@ -1,7 +1,6 @@
 # Test Provider Sample
 
-This sample demonstrates usage of the Test Provider API. It looks for tests as
-additions in `.md` files, with heading as groups, for example:
+This sample demonstrates usage of the Test Provider API. It looks for tests as additions in `.md` files, with heading as groups, for example:
 
 ```
 # Easy Math
@@ -20,8 +19,8 @@ todo
 
 ## Running the Sample
 
--   Run `npm install` in terminal to install dependencies
--   Run the `Run Extension` target in the Debug View. This will:
-    -   Start a task `npm: watch` to compile the code
-    -   Run the extension in a new VS Code window
--   Create a `test.md` file containing the given content
+- Run `npm install` in terminal to install dependencies
+- Run the `Run Extension` target in the Debug View. This will:
+	- Start a task `npm: watch` to compile the code
+	- Run the extension in a new VS Code window
+- Create a `test.md` file containing the given content

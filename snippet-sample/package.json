@@ -1,31 +1,15 @@
 {
 	"name": "snippet-sample",
 	"displayName": "Snippet Sample",
-	"version": "0.0.1",
-	"private": "false",
 	"description": "Snippet Sample",
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"engines": {
+		"vscode": "^1.28.0"
+	},
 	"categories": [
 		"Snippets"
 	],
-	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Nikola Hristov",
-		"email": "nikola@nikolahristov.tech",
-		"url": "https://nikolahristov.tech"
-	},
-	"publisher": "playform",
-	"type": "module",
-	"scripts": {
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-	},
 	"contributes": {
 		"snippets": [
 			{
@@ -33,14 +17,5 @@
 				"path": "./snippets.json"
 			}
 		]
-	},
-	"devDependencies": {
-		"typescript-esbuild": "0.3.1"
-	},
-	"engines": {
-		"vscode": "1.28.0"
-	},
-	"publishConfig": {
-		"access": "public"
 	}
 }
