@@ -1,10 +1,10 @@
-import * as vscode from "vscode";
+import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
 	const disposable = vscode.commands.registerCommand(
-		"welcome-view-content-sample.hello",
+		'welcome-view-content-sample.hello',
 		async () => {
-			vscode.window.showInformationMessage("Hello world!");
+			vscode.window.showInformationMessage('Hello world!');
 		}
 	);
 
