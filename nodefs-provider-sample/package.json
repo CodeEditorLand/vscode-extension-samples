@@ -11,7 +11,7 @@
 		"url": "https://github.com/Microsoft/vscode-extension-samples"
 	},
 	"engines": {
-		"vscode": "1.30.0"
+		"vscode": "^1.30.0"
 	},
 	"categories": [
 		"Other"
@@ -27,18 +27,18 @@
 		"watch": "tsc -watch -p ./"
 	},
 	"dependencies": {
-		"mkdirp": "3.0.1",
-		"rimraf": "5.0.5"
+		"mkdirp": "^0.5.1",
+		"rimraf": "^2.6.2"
 	},
 	"devDependencies": {
-		"@types/mkdirp": "1.0.2",
-		"@types/node": "20.9.0",
-		"@types/promisify-node": "0.4.3",
-		"@types/rimraf": "3.0.2",
-		"@types/vscode": "1.84.1",
-		"@typescript-eslint/eslint-plugin": "6.11.0",
-		"@typescript-eslint/parser": "6.11.0",
-		"eslint": "8.53.0",
-		"typescript": "5.2.2"
+		"@types/mkdirp": "^0.5.2",
+		"@types/node": "^16.18.34",
+		"@types/promisify-node": "^0.4.0",
+		"@types/rimraf": "^2.0.2",
+		"@types/vscode": "^1.34.0",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.2.2"
 	}
 }

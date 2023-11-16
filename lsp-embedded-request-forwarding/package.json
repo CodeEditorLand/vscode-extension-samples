@@ -12,7 +12,7 @@
 	"categories": [],
 	"keywords": [],
 	"engines": {
-		"vscode": "1.74.0"
+		"vscode": "^1.74.0"
 	},
 	"activationEvents": [],
 	"main": "./client/out/extension",
@@ -41,11 +41,11 @@
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd .."
 	},
 	"devDependencies": {
-		"@types/mocha": "10.0.4",
-		"@types/node": "20.9.0",
-		"@typescript-eslint/eslint-plugin": "6.11.0",
-		"@typescript-eslint/parser": "6.11.0",
-		"eslint": "8.53.0",
-		"typescript": "5.2.2"
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^16.18.34",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^7.26.0",
+		"typescript": "^5.2.2"
 	}
 }

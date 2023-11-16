@@ -4,7 +4,7 @@
 	"description": "Examples of notification types and various configurations",
 	"version": "0.0.1",
 	"engines": {
-		"vscode": "1.74.0"
+		"vscode": "^1.74.0"
 	},
 	"categories": [
 		"Other"
@@ -58,14 +58,14 @@
 		"lint": "eslint src --ext ts"
 	},
 	"devDependencies": {
-		"@types/vscode": "1.84.1",
-		"@types/glob": "8.1.0",
-		"@types/node": "20.x",
-		"@typescript-eslint/eslint-plugin": "6.11.0",
-		"@typescript-eslint/parser": "6.11.0",
-		"eslint": "8.53.0",
-		"glob": "10.3.10",
-		"typescript": "5.2.2",
-		"@vscode/test-electron": "2.3.6"
+		"@types/vscode": "^1.69.0",
+		"@types/glob": "^7.2.0",
+		"@types/node": "16.x",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^8.16.0",
+		"glob": "^8.0.3",
+		"typescript": "^5.2.2",
+		"@vscode/test-electron": "^2.1.3"
 	}
 }
