@@ -1,69 +1,26 @@
 {
 	"name": "custom-view-samples",
 	"displayName": "Custom view Samples",
-	"description": "Samples for VSCode's view API",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
 	"private": true,
-	"license": "MIT",
+	"description": "Samples for VSCode's view API",
+	"categories": [
+		"Other"
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Microsoft/vscode-extension-samples"
 	},
-	"engines": {
-		"vscode": "^1.74.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onLanguage:json",
-		"onLanguage:jsonc"
-	],
+	"license": "MIT",
+	"publisher": "vscode-samples",
 	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
-		"viewsContainers": {
-			"activitybar": [
-				{
-					"id": "package-explorer",
-					"title": "Package Explorer",
-					"icon": "media/dep.svg"
-				}
-			]
-		},
-		"views": {
-			"package-explorer": [
-				{
-					"id": "nodeDependencies",
-					"name": "Node Dependencies",
-					"icon": "media/dep.svg",
-					"contextualTitle": "Package Explorer"
-				}
-			],
-			"explorer": [
-				{
-					"id": "jsonOutline",
-					"name": "Json Outline",
-					"when": "jsonOutlineEnabled"
-				},
-				{
-					"id": "ftpExplorer",
-					"name": "FTP Explorer"
-				},
-				{
-					"id": "fileExplorer",
-					"name": "File Explorer"
-				},
-				{
-					"id": "testView",
-					"name": "Test View"
-				},
-				{
-					"id": "testViewDragAndDrop",
-					"name": "Test View Drag and Drop"
-				}
-			]
-		},
 		"commands": [
 			{
 				"command": "nodeDependencies.refreshEntry",
@@ -146,6 +103,17 @@
 				"title": "Test View: Change Title"
 			}
 		],
+		"configuration": [
+			{
+				"title": "JSON Outline",
+				"properties": {
+					"jsonOutline.autorefresh": {
+						"type": "boolean",
+						"default": false
+					}
+				}
+			}
+		],
 		"menus": {
 			"commandPalette": [
 				{
@@ -203,40 +171,72 @@
 				}
 			]
 		},
-		"configuration": [
-			{
-				"title": "JSON Outline",
-				"properties": {
-					"jsonOutline.autorefresh": {
-						"type": "boolean",
-						"default": false
-					}
+		"views": {
+			"package-explorer": [
+				{
+					"id": "nodeDependencies",
+					"name": "Node Dependencies",
+					"icon": "media/dep.svg",
+					"contextualTitle": "Package Explorer"
 				}
-			}
-		]
+			],
+			"explorer": [
+				{
+					"id": "jsonOutline",
+					"name": "Json Outline",
+					"when": "jsonOutlineEnabled"
+				},
+				{
+					"id": "ftpExplorer",
+					"name": "FTP Explorer"
+				},
+				{
+					"id": "fileExplorer",
+					"name": "File Explorer"
+				},
+				{
+					"id": "testView",
+					"name": "Test View"
+				},
+				{
+					"id": "testViewDragAndDrop",
+					"name": "Test View Drag and Drop"
+				}
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "package-explorer",
+					"title": "Package Explorer",
+					"icon": "media/dep.svg"
+				}
+			]
+		}
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"lint": "eslint \"src/**/*.ts\""
+	"activationEvents": [
+		"onLanguage:json",
+		"onLanguage:jsonc"
+	],
+	"dependencies": {
+		"ftp": "0.3.10",
+		"jsonc-parser": "0.4.2",
+		"minimist": "1.2.6",
+		"mkdirp": "0.5.1",
+		"rimraf": "2.6.2"
 	},
 	"devDependencies": {
-		"@types/ftp": "^0.3.33",
-		"@types/mkdirp": "^0.5.2",
-		"@types/node": "^16.18.34",
-		"@types/rimraf": "^2.0.2",
-		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.2.2"
+		"@types/ftp": "0.3.33",
+		"@types/mkdirp": "0.5.2",
+		"@types/node": "16.18.34",
+		"@types/rimraf": "2.0.2",
+		"@types/vscode": "1.73.0",
+		"@typescript-eslint/eslint-plugin": "6.7.0",
+		"@typescript-eslint/parser": "6.7.0",
+		"eslint": "8.26.0",
+		"typescript": "5.2.2"
 	},
-	"dependencies": {
-		"ftp": "^0.3.10",
-		"jsonc-parser": "^0.4.2",
-		"minimist": "^1.2.6",
-		"mkdirp": "^0.5.1",
-		"rimraf": "^2.6.2"
+	"engines": {
+		"vscode": "1.74.0"
 	}
 }

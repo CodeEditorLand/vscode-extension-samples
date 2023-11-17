@@ -1,16 +1,13 @@
 {
 	"name": "theme-sample",
 	"version": "0.1.0",
-	"publisher": "vscode-samples",
 	"private": true,
-	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Microsoft/vscode-extension-samples"
 	},
-	"engines": {
-		"vscode": "*"
-	},
+	"license": "MIT",
+	"publisher": "vscode-samples",
 	"contributes": {
 		"themes": [
 			{
@@ -26,9 +23,12 @@
 		]
 	},
 	"dependencies": {
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.2.2"
+		"@typescript-eslint/eslint-plugin": "6.7.0",
+		"@typescript-eslint/parser": "6.7.0",
+		"eslint": "8.26.0",
+		"typescript": "5.2.2"
+	},
+	"engines": {
+		"vscode": "*"
 	}
 }

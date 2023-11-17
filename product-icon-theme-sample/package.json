@@ -2,8 +2,9 @@
 	"name": "product-icon-theme-sample",
 	"version": "0.1.0",
 	"publisher": "vscode-samples",
-	"engines": {
-		"vscode": "*"
+	"scripts": {
+		"showFont": "open ./theme/vscode-10.html",
+		"updateFont": "node ./build/updateFont.js"
 	},
 	"contributes": {
 		"productIconThemes": [
@@ -14,12 +15,11 @@
 			}
 		]
 	},
-	"scripts": {
-		"updateFont": "node ./build/updateFont.js",
-		"showFont": "open ./theme/vscode-10.html"
-	},
 	"devDependencies": {
-		"open": "^7.0.3",
-		"webfont": "^11.2.4"
+		"open": "7.0.3",
+		"webfont": "11.2.4"
+	},
+	"engines": {
+		"vscode": "*"
 	}
 }

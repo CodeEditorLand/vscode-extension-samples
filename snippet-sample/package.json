@@ -1,15 +1,12 @@
 {
 	"name": "snippet-sample",
 	"displayName": "Snippet Sample",
-	"description": "Snippet Sample",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"engines": {
-		"vscode": "^1.28.0"
-	},
+	"description": "Snippet Sample",
 	"categories": [
 		"Snippets"
 	],
+	"publisher": "vscode-samples",
 	"contributes": {
 		"snippets": [
 			{
@@ -17,5 +14,8 @@
 				"path": "./snippets.json"
 			}
 		]
+	},
+	"engines": {
+		"vscode": "1.28.0"
 	}
 }
