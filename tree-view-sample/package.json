@@ -220,20 +220,20 @@
 	],
 	"dependencies": {
 		"ftp": "0.3.10",
-		"jsonc-parser": "0.4.2",
-		"minimist": "1.2.6",
-		"mkdirp": "0.5.1",
-		"rimraf": "2.6.2"
+		"jsonc-parser": "3.2.0",
+		"minimist": "1.2.8",
+		"mkdirp": "3.0.1",
+		"rimraf": "5.0.5"
 	},
 	"devDependencies": {
-		"@types/ftp": "0.3.33",
-		"@types/mkdirp": "0.5.2",
-		"@types/node": "16.18.34",
-		"@types/rimraf": "2.0.2",
-		"@types/vscode": "1.73.0",
-		"@typescript-eslint/eslint-plugin": "6.7.0",
-		"@typescript-eslint/parser": "6.7.0",
-		"eslint": "8.26.0",
+		"@types/ftp": "0.3.36",
+		"@types/mkdirp": "1.0.2",
+		"@types/node": "20.9.1",
+		"@types/rimraf": "3.0.2",
+		"@types/vscode": "1.84.1",
+		"@typescript-eslint/eslint-plugin": "6.11.0",
+		"@typescript-eslint/parser": "6.11.0",
+		"eslint": "8.53.0",
 		"typescript": "5.2.2"
 	},
 	"engines": {

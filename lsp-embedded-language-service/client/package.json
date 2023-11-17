@@ -10,11 +10,11 @@
 	"author": "Microsoft Corporation",
 	"publisher": "vscode",
 	"dependencies": {
-		"vscode-languageclient": "6.1.3"
+		"vscode-languageclient": "9.0.1"
 	},
 	"devDependencies": {
-		"@types/node": "16.18.34",
-		"@types/vscode": "1.43.0"
+		"@types/node": "20.9.1",
+		"@types/vscode": "1.84.1"
 	},
 	"engines": {
 		"vscode": "1.43.0"

@@ -13,10 +13,10 @@
 	"license": "MIT",
 	"author": "Microsoft Corporation",
 	"dependencies": {
-		"vscode-languageclient": "7.0.0"
+		"vscode-languageclient": "9.0.1"
 	},
 	"devDependencies": {
-		"@types/vscode": "1.52.0"
+		"@types/vscode": "1.84.1"
 	},
 	"engines": {
 		"vscode": "1.52.0"
