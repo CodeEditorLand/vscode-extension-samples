@@ -21,7 +21,7 @@
 		"onStartupFinished"
 	],
 	"devDependencies": {
-		"@types/node": "20.9.1",
+		"@types/node": "20.9.2",
 		"@types/vscode": "1.84.1",
 		"eslint": "8.54.0",
 		"tslint": "6.1.3",

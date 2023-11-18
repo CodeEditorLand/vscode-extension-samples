@@ -27,7 +27,7 @@
 		"onLanguage:plaintext"
 	],
 	"devDependencies": {
-		"@types/node": "20.9.1",
+		"@types/node": "20.9.2",
 		"@typescript-eslint/parser": "6.11.0",
 		"eslint": "8.54.0",
 		"merge-options": "3.0.4",

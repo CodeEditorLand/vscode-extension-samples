@@ -37,7 +37,7 @@
 		"onWebviewPanel:catCoding"
 	],
 	"devDependencies": {
-		"@types/node": "20.9.1",
+		"@types/node": "20.9.2",
 		"@types/vscode": "1.84.1",
 		"@types/vscode-webview": "1.57.4",
 		"@typescript-eslint/eslint-plugin": "6.11.0",
