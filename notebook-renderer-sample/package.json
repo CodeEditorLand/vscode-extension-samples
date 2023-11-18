@@ -37,7 +37,7 @@
 		"@typescript-eslint/eslint-plugin": "6.11.0",
 		"@typescript-eslint/parser": "6.11.0",
 		"css-loader": "6.8.1",
-		"eslint": "8.53.0",
+		"eslint": "8.54.0",
 		"style-loader": "3.3.3",
 		"ts-loader": "9.5.1",
 		"typescript": "5.2.2",
