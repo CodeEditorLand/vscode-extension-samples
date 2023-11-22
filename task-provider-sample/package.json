@@ -1,81 +1,81 @@
 {
-  "name": "task-provider-samples",
-  "displayName": "Task Provider Samples",
-  "description": "Samples for VSCode's view API",
-  "version": "0.0.1",
-  "publisher": "playform",
-  "private": "false",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "activationEvents": [
-    "onCommand:workbench.action.tasks.runTask"
-  ],
-  "main": "./out/extension",
-  "contributes": {
-    "taskDefinitions": [
-      {
-        "type": "rake",
-        "required": [
-          "task"
-        ],
-        "properties": {
-          "task": {
-            "type": "string",
-            "description": "The Rake task to customize"
-          },
-          "file": {
-            "type": "string",
-            "description": "The Rake file that provides the task. Can be omitted."
-          }
-        }
-      },
-      {
-        "type": "custombuildscript",
-        "required": [
-          "flavor"
-        ],
-        "properties": {
-          "flavor": {
-            "type": "string",
-            "description": "The build flavor. Should be either '32' or '64'."
-          },
-          "flags": {
-            "type": "array",
-            "description": "Additional build flags."
-          }
-        }
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -b",
-    "watch": "tsc -b -w",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-  },
-  "devDependencies": {
-    "@types/node": "20.9.4",
-    "@types/vscode": "1.84.2",
-    "@typescript-eslint/eslint-plugin": "6.12.0",
-    "@typescript-eslint/parser": "6.12.0",
-    "eslint": "8.54.0",
-    "typescript": "5.3.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  }
+	"name": "task-provider-samples",
+	"displayName": "Task Provider Samples",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "Samples for VSCode's view API",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./out/extension",
+	"scripts": {
+		"compile": "tsc -b",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -b -w"
+	},
+	"contributes": {
+		"taskDefinitions": [
+			{
+				"type": "rake",
+				"required": [
+					"task"
+				],
+				"properties": {
+					"task": {
+						"type": "string",
+						"description": "The Rake task to customize"
+					},
+					"file": {
+						"type": "string",
+						"description": "The Rake file that provides the task. Can be omitted."
+					}
+				}
+			},
+			{
+				"type": "custombuildscript",
+				"required": [
+					"flavor"
+				],
+				"properties": {
+					"flavor": {
+						"type": "string",
+						"description": "The build flavor. Should be either '32' or '64'."
+					},
+					"flags": {
+						"type": "array",
+						"description": "Additional build flags."
+					}
+				}
+			}
+		]
+	},
+	"activationEvents": [
+		"onCommand:workbench.action.tasks.runTask"
+	],
+	"devDependencies": {
+		"@types/node": "20.9.4",
+		"@types/vscode": "1.84.2",
+		"@typescript-eslint/eslint-plugin": "6.12.0",
+		"@typescript-eslint/parser": "6.12.0",
+		"eslint": "8.54.0",
+		"typescript": "5.3.2",
+		"typescript-esbuild": "0.3.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

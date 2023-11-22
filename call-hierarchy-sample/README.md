@@ -1,6 +1,7 @@
 # Call Hierarchy Provider Sample
 
-This sample shows the **Call Hierarchy** in action based on a simple food pyramid model defined using simple subject ~ verb ~ object syntax.
+This sample shows the **Call Hierarchy** in action based on a simple food
+pyramid model defined using simple subject ~ verb ~ object syntax.
 
 ![Sample](demo.gif)
 
@@ -8,12 +9,14 @@ This sample shows the **Call Hierarchy** in action based on a simple food pyrami
 
 ### `vscode` module
 
-- [`languages.registerCallHierarchyProvider`](https://code.visualstudio.com/api/references/vscode-api#languages.registerCallHierarchyProvider)
-- [`CallHierarchyProvider`](https://code.visualstudio.com/api/references/vscode-api#CallHierarchyProvider)
+-   [`languages.registerCallHierarchyProvider`](https://code.visualstudio.com/api/references/vscode-api#languages.registerCallHierarchyProvider)
+-   [`CallHierarchyProvider`](https://code.visualstudio.com/api/references/vscode-api#CallHierarchyProvider)
 
 ## Running the Sample
 
-Start the extension in the debugger and it automatically opens a file that is ready for the right-click > Peek Call Hierarchy. Otherwise, it can be testing by creating a file with extension `.txt` and pasting following text:
+Start the extension in the debugger and it automatically opens a file that is
+ready for the right-click > Peek Call Hierarchy. Otherwise, it can be testing by
+creating a file with extension `.txt` and pasting following text:
 
 ```plaintext
 Coyote eats deer.
@@ -31,4 +34,5 @@ Right click on a noun or a verb and select _Peek Call Hierarchy_.
 
 ## Contributing to the Sample and Testing the Sample
 
-Run the _Run Extension Tests_ configuration and verify in the Debug Console that all tests are passing.
+Run the _Run Extension Tests_ configuration and verify in the Debug Console that
+all tests are passing.

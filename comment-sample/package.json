@@ -1,178 +1,178 @@
 {
-  "name": "vscode-comment-api-example",
-  "displayName": "Comment API Sample",
-  "description": "Comment API Sample",
-  "version": "0.0.1",
-  "publisher": "playform",
-  "private": "false",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "activationEvents": [
-    "*"
-  ],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "mywiki.createNote",
-        "title": "Create Note",
-        "enablement": "!commentIsEmpty"
-      },
-      {
-        "command": "mywiki.replyNote",
-        "title": "Reply",
-        "enablement": "!commentIsEmpty"
-      },
-      {
-        "command": "mywiki.editNote",
-        "title": "Edit",
-        "icon": {
-          "dark": "resources/edit_inverse.svg",
-          "light": "resources/edit.svg"
-        }
-      },
-      {
-        "command": "mywiki.deleteNote",
-        "title": "Delete",
-        "icon": {
-          "dark": "resources/close_inverse.svg",
-          "light": "resources/close.svg"
-        }
-      },
-      {
-        "command": "mywiki.deleteNoteComment",
-        "title": "Delete",
-        "icon": {
-          "dark": "resources/close_inverse.svg",
-          "light": "resources/close.svg"
-        }
-      },
-      {
-        "command": "mywiki.saveNote",
-        "title": "Save"
-      },
-      {
-        "command": "mywiki.cancelsaveNote",
-        "title": "Cancel"
-      },
-      {
-        "command": "mywiki.startDraft",
-        "title": "Start Draft",
-        "enablement": "!commentIsEmpty"
-      },
-      {
-        "command": "mywiki.finishDraft",
-        "title": "Finish Draft"
-      },
-      {
-        "command": "mywiki.dispose",
-        "title": "Remove All Notes"
-      }
-    ],
-    "menus": {
-      "commandPalette": [
-        {
-          "command": "mywiki.createNote",
-          "when": "false"
-        },
-        {
-          "command": "mywiki.replyNote",
-          "when": "false"
-        },
-        {
-          "command": "mywiki.deleteNote",
-          "when": "false"
-        },
-        {
-          "command": "mywiki.deleteNoteComment",
-          "when": "false"
-        }
-      ],
-      "comments/commentThread/title": [
-        {
-          "command": "mywiki.deleteNote",
-          "group": "navigation",
-          "when": "commentController == comment-sample && !commentThreadIsEmpty"
-        }
-      ],
-      "comments/commentThread/context": [
-        {
-          "command": "mywiki.createNote",
-          "group": "inline",
-          "when": "commentController == comment-sample && commentThreadIsEmpty"
-        },
-        {
-          "command": "mywiki.replyNote",
-          "group": "inline",
-          "when": "commentController == comment-sample && !commentThreadIsEmpty"
-        },
-        {
-          "command": "mywiki.startDraft",
-          "group": "inline",
-          "when": "commentController == comment-sample && commentThreadIsEmpty"
-        },
-        {
-          "command": "mywiki.finishDraft",
-          "group": "inline",
-          "when": "commentController == comment-sample && commentThread == draft"
-        }
-      ],
-      "comments/comment/title": [
-        {
-          "command": "mywiki.editNote",
-          "group": "group@1",
-          "when": "commentController == comment-sample"
-        },
-        {
-          "command": "mywiki.deleteNoteComment",
-          "group": "group@2",
-          "when": "commentController == comment-sample && comment == canDelete"
-        }
-      ],
-      "comments/comment/context": [
-        {
-          "command": "mywiki.cancelsaveNote",
-          "group": "inline@1",
-          "when": "commentController == comment-sample"
-        },
-        {
-          "command": "mywiki.saveNote",
-          "group": "inline@2",
-          "when": "commentController == comment-sample"
-        }
-      ]
-    }
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "lint": "eslint \"src/**/*.ts\"",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-  },
-  "devDependencies": {
-    "@types/node": "20.9.4",
-    "@types/vscode": "1.84.2",
-    "@typescript-eslint/eslint-plugin": "6.12.0",
-    "@typescript-eslint/parser": "6.12.0",
-    "eslint": "8.54.0",
-    "typescript": "5.3.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  }
+	"name": "vscode-comment-api-example",
+	"displayName": "Comment API Sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "Comment API Sample",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "mywiki.createNote",
+				"title": "Create Note",
+				"enablement": "!commentIsEmpty"
+			},
+			{
+				"command": "mywiki.replyNote",
+				"title": "Reply",
+				"enablement": "!commentIsEmpty"
+			},
+			{
+				"command": "mywiki.editNote",
+				"title": "Edit",
+				"icon": {
+					"dark": "resources/edit_inverse.svg",
+					"light": "resources/edit.svg"
+				}
+			},
+			{
+				"command": "mywiki.deleteNote",
+				"title": "Delete",
+				"icon": {
+					"dark": "resources/close_inverse.svg",
+					"light": "resources/close.svg"
+				}
+			},
+			{
+				"command": "mywiki.deleteNoteComment",
+				"title": "Delete",
+				"icon": {
+					"dark": "resources/close_inverse.svg",
+					"light": "resources/close.svg"
+				}
+			},
+			{
+				"command": "mywiki.saveNote",
+				"title": "Save"
+			},
+			{
+				"command": "mywiki.cancelsaveNote",
+				"title": "Cancel"
+			},
+			{
+				"command": "mywiki.startDraft",
+				"title": "Start Draft",
+				"enablement": "!commentIsEmpty"
+			},
+			{
+				"command": "mywiki.finishDraft",
+				"title": "Finish Draft"
+			},
+			{
+				"command": "mywiki.dispose",
+				"title": "Remove All Notes"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "mywiki.createNote",
+					"when": "false"
+				},
+				{
+					"command": "mywiki.replyNote",
+					"when": "false"
+				},
+				{
+					"command": "mywiki.deleteNote",
+					"when": "false"
+				},
+				{
+					"command": "mywiki.deleteNoteComment",
+					"when": "false"
+				}
+			],
+			"comments/commentThread/title": [
+				{
+					"command": "mywiki.deleteNote",
+					"group": "navigation",
+					"when": "commentController == comment-sample && !commentThreadIsEmpty"
+				}
+			],
+			"comments/commentThread/context": [
+				{
+					"command": "mywiki.createNote",
+					"group": "inline",
+					"when": "commentController == comment-sample && commentThreadIsEmpty"
+				},
+				{
+					"command": "mywiki.replyNote",
+					"group": "inline",
+					"when": "commentController == comment-sample && !commentThreadIsEmpty"
+				},
+				{
+					"command": "mywiki.startDraft",
+					"group": "inline",
+					"when": "commentController == comment-sample && commentThreadIsEmpty"
+				},
+				{
+					"command": "mywiki.finishDraft",
+					"group": "inline",
+					"when": "commentController == comment-sample && commentThread == draft"
+				}
+			],
+			"comments/comment/title": [
+				{
+					"command": "mywiki.editNote",
+					"group": "group@1",
+					"when": "commentController == comment-sample"
+				},
+				{
+					"command": "mywiki.deleteNoteComment",
+					"group": "group@2",
+					"when": "commentController == comment-sample && comment == canDelete"
+				}
+			],
+			"comments/comment/context": [
+				{
+					"command": "mywiki.cancelsaveNote",
+					"group": "inline@1",
+					"when": "commentController == comment-sample"
+				},
+				{
+					"command": "mywiki.saveNote",
+					"group": "inline@2",
+					"when": "commentController == comment-sample"
+				}
+			]
+		}
+	},
+	"activationEvents": [
+		"*"
+	],
+	"devDependencies": {
+		"@types/node": "20.9.4",
+		"@types/vscode": "1.84.2",
+		"@typescript-eslint/eslint-plugin": "6.12.0",
+		"@typescript-eslint/parser": "6.12.0",
+		"eslint": "8.54.0",
+		"typescript": "5.3.2",
+		"typescript-esbuild": "0.3.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

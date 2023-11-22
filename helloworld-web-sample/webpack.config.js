@@ -4,30 +4,30 @@
  *--------------------------------------------------------------------------------------------*/
 
 //@ts-check
-'use strict';
+"use strict";
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
 
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
+const webpack = require("webpack");
 
 /** @type WebpackConfig */
 const webExtensionConfig = {
-	mode: 'none', // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
-	target: 'webworker', // extensions run in a webworker context
+	mode: "none", // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
+	target: "webworker", // extensions run in a webworker context
 	entry: {
-		extension: './src/web/extension.ts', // source of the web extension main file
-		'test/suite/index': './src/web/test/suite/index.ts', // source of the web extension test runner
+		extension: "./src/web/extension.ts", // source of the web extension main file
+		"test/suite/index": "./src/web/test/suite/index.ts", // source of the web extension test runner
 	},
 	output: {
-		filename: '[name].js',
-		path: path.join(__dirname, './dist/web'),
-		libraryTarget: 'commonjs',
+		filename: "[name].js",
+		path: path.join(__dirname, "./dist/web"),
+		libraryTarget: "commonjs",
 	},
 	resolve: {
-		mainFields: ['browser', 'module', 'main'], // look for `browser` entry point in imported node modules
-		extensions: ['.ts', '.js'], // support ts-files and js-files
+		mainFields: ["browser", "module", "main"], // look for `browser` entry point in imported node modules
+		extensions: [".ts", ".js"], // support ts-files and js-files
 		alias: {
 			// provides alternate implementation for node module and source files
 		},
@@ -35,7 +35,7 @@ const webExtensionConfig = {
 			// Webpack 5 no longer polyfills Node.js core modules automatically.
 			// see https://webpack.js.org/configuration/resolve/#resolvefallback
 			// for the list of Node.js core module polyfills.
-			assert: require.resolve('assert'),
+			assert: require.resolve("assert"),
 		},
 	},
 	module: {
@@ -45,7 +45,7 @@ const webExtensionConfig = {
 				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'ts-loader',
+						loader: "ts-loader",
 					},
 				],
 			},
@@ -53,16 +53,16 @@ const webExtensionConfig = {
 	},
 	plugins: [
 		new webpack.ProvidePlugin({
-			process: 'process/browser', // provide a shim for the global `process` variable
+			process: "process/browser", // provide a shim for the global `process` variable
 		}),
 	],
 	externals: {
-		vscode: 'commonjs vscode', // ignored because it doesn't exist
+		vscode: "commonjs vscode", // ignored because it doesn't exist
 	},
 	performance: {
 		hints: false,
 	},
-	devtool: 'nosources-source-map', // create a source map that points to the original source file
+	devtool: "nosources-source-map", // create a source map that points to the original source file
 };
 
 module.exports = [webExtensionConfig];

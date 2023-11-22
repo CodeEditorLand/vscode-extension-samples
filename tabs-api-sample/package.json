@@ -1,60 +1,60 @@
 {
-  "name": "tabs-api-sample",
-  "displayName": "tabs-api-sample",
-  "description": "Sample showing how to use the tabs api",
-  "version": "0.0.1",
-  "publisher": "playform",
-  "private": "false",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "activationEvents": [
-    "onStartupFinished"
-  ],
-  "main": "./out/extension.js",
-  "browser": "./out/extension.js",
-  "contributes": {
-    "configuration": {
-      "title": "Tabs API Sample",
-      "id": "tabsSample",
-      "properties": {
-        "tabs.maxInactiveTime": {
-          "default": 30,
-          "description": "The number of seconds before closing inactive tabs",
-          "type": "number"
-        }
-      }
-    }
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "lint": "eslint \"src/**/*.ts\"",
-    "watch": "tsc -watch -p ./",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-  },
-  "devDependencies": {
-    "@types/node": "20.9.4",
-    "@types/vscode": "1.84.2",
-    "@typescript-eslint/eslint-plugin": "6.12.0",
-    "@typescript-eslint/parser": "6.12.0",
-    "eslint": "8.54.0",
-    "typescript": "5.3.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  }
+	"name": "tabs-api-sample",
+	"displayName": "tabs-api-sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "Sample showing how to use the tabs api",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./out/extension.js",
+	"browser": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"configuration": {
+			"title": "Tabs API Sample",
+			"id": "tabsSample",
+			"properties": {
+				"tabs.maxInactiveTime": {
+					"default": 30,
+					"description": "The number of seconds before closing inactive tabs",
+					"type": "number"
+				}
+			}
+		}
+	},
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"devDependencies": {
+		"@types/node": "20.9.4",
+		"@types/vscode": "1.84.2",
+		"@typescript-eslint/eslint-plugin": "6.12.0",
+		"@typescript-eslint/parser": "6.12.0",
+		"eslint": "8.54.0",
+		"typescript": "5.3.2",
+		"typescript-esbuild": "0.3.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

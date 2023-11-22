@@ -1,43 +1,43 @@
 {
-  "name": "product-icon-theme-sample",
-  "version": "0.0.1",
-  "publisher": "playform",
-  "contributes": {
-    "productIconThemes": [
-      {
-        "id": "vscode-v1-icons",
-        "label": "VSCode 1.0 Icons",
-        "path": "./theme/v1-product-icon-theme.json"
-      }
-    ]
-  },
-  "scripts": {
-    "updateFont": "node ./build/updateFont.js",
-    "showFont": "open ./theme/vscode-10.html",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-  },
-  "devDependencies": {
-    "open": "9.1.0",
-    "webfont": "11.2.26",
-    "typescript-esbuild": "0.3.1"
-  },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "type": "module",
-  "private": "false",
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  }
+	"name": "product-icon-theme-sample",
+	"version": "0.0.1",
+	"private": "false",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"showFont": "open ./theme/vscode-10.html",
+		"updateFont": "node ./build/updateFont.js"
+	},
+	"contributes": {
+		"productIconThemes": [
+			{
+				"id": "vscode-v1-icons",
+				"label": "VSCode 1.0 Icons",
+				"path": "./theme/v1-product-icon-theme.json"
+			}
+		]
+	},
+	"devDependencies": {
+		"open": "9.1.0",
+		"typescript-esbuild": "0.3.1",
+		"webfont": "11.2.26"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }
