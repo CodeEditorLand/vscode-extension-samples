@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React from "react";
-import type { RendererContext } from "vscode-notebook-renderer";
+import type { RendererContext } from 'vscode-notebook-renderer';
 
 interface IRenderInfo {
 	container: HTMLElement;
@@ -16,28 +16,22 @@ interface GitHubIssuesValue {
 }
 
 export const IssuesList: React.FC<{ info: IRenderInfo }> = ({ info }) => {
-	const issues = info.value.map((item) => {
-		return (
-			<tr>
-				<td>
-					<a href={item.url}>{item.title}</a>
-				</td>
-				<td>{item.body}</td>
-			</tr>
-		);
+	const issues = info.value.map(item => {
+		return <tr>
+			<td><a href={item.url}>{item.title}</a></td>
+			<td>{item.body}</td>
+		</tr>;
 	});
 
-	return (
-		<div>
-			<table>
-				<tr>
-					<th>Issue</th>
-					<th>Description</th>
-				</tr>
-				{issues}
-			</table>
-		</div>
-	);
+	return <div>
+		<table>
+			<tr>
+				<th>Issue</th>
+				<th>Description</th>
+			</tr>
+			{issues}
+		</table>
+	</div>;
 };
 
 if (module.hot) {

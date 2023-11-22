@@ -1,13 +1,36 @@
 {
-	"name": "vsc-extension-samples",
-	"publisher": "Microsoft",
-	"version": "0.0.1",
-	"scripts": {
-		"compile": "node .scripts/run-script.js compile",
-		"lint": "node .scripts/run-script.js lint",
-		"install": "node .scripts/run-command.js npm install",
-		"auditFix": "node .scripts/run-command.js npm audit fix",
-		"update-readme": "node .scripts/update-readme.js",
-		"update-lsif": "node .scripts/update-lsif.js"
-	}
+  "name": "vsc-extension-samples",
+  "publisher": "playform",
+  "version": "0.0.1",
+  "scripts": {
+    "compile": "node .scripts/run-script.js compile",
+    "lint": "node .scripts/run-script.js lint",
+    "install": "node .scripts/run-command.js npm install",
+    "auditFix": "node .scripts/run-command.js npm audit fix",
+    "update-readme": "node .scripts/update-readme.js",
+    "update-lsif": "node .scripts/update-lsif.js",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
+  },
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  },
+  "devDependencies": {
+    "typescript-esbuild": "0.3.1"
+  }
 }

@@ -2,26 +2,20 @@
   "name": "notebook-serializer-sample",
   "displayName": "notebook-serializer-sample",
   "description": "Notebook using Serializer API sample",
-  "publisher": "vscode-samples",
+  "publisher": "playform",
   "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.74.0"
-  },
-  "categories": [
-    "Other"
-  ],
   "activationEvents": [
     "onNotebook:test-notebook-serializer",
-	"onCommand:notebook-serializer-sample.createJsonNotebook"
+    "onCommand:notebook-serializer-sample.createJsonNotebook"
   ],
   "main": "./out/extension.js",
   "contributes": {
-	"commands": [
-		{
-			"command": "notebook-serializer-sample.createJsonNotebook",
-			"title": "Create JSON Notebook"
-		}
-	],
+    "commands": [
+      {
+        "command": "notebook-serializer-sample.createJsonNotebook",
+        "title": "Create JSON Notebook"
+      }
+    ],
     "notebooks": [
       {
         "type": "test-notebook-serializer",
@@ -38,16 +32,37 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -b",
     "lint": "eslint src --ext ts",
-    "watch": "tsc -b --watch"
+    "watch": "tsc -b --watch",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
   },
   "devDependencies": {
-    "@types/mocha": "^8.2.2",
-    "@types/node": "14.x",
-    "@types/vscode": "^1.74.0",
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
-    "@typescript-eslint/parser": "^6.7.0",
-    "eslint": "^7.27.0",
-    "mocha": "^10.2.0",
-    "typescript": "^5.2.2"
+    "@types/mocha": "10.0.6",
+    "@types/node": "20.x",
+    "@types/vscode": "1.84.2",
+    "@typescript-eslint/eslint-plugin": "6.12.0",
+    "@typescript-eslint/parser": "6.12.0",
+    "eslint": "8.54.0",
+    "mocha": "10.2.0",
+    "typescript": "5.3.2",
+    "typescript-esbuild": "0.3.1"
+  },
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
   }
 }

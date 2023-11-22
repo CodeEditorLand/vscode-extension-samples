@@ -1,15 +1,17 @@
-import * as vscode from "vscode";
+import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
-		vscode.commands.registerCommand("catCodicons.show", () => {
+		vscode.commands.registerCommand('catCodicons.show', () => {
 			CatCodiconsPanel.show(context.extensionUri);
 		})
 	);
 }
 
+
 class CatCodiconsPanel {
-	public static readonly viewType = "catCodicons";
+
+	public static readonly viewType = 'catCodicons';
 
 	public static show(extensionUri: vscode.Uri) {
 		const column = vscode.window.activeTextEditor
@@ -22,29 +24,14 @@ class CatCodiconsPanel {
 			column || vscode.ViewColumn.One
 		);
 
-		panel.webview.html = this._getHtmlForWebview(
-			panel.webview,
-			extensionUri
-		);
+		panel.webview.html = this._getHtmlForWebview(panel.webview, extensionUri);
 	}
 
-	private static _getHtmlForWebview(
-		webview: vscode.Webview,
-		extensionUri: vscode.Uri
-	) {
+	private static _getHtmlForWebview(webview: vscode.Webview, extensionUri: vscode.Uri) {
+
 		// Get resource paths
-		const styleUri = webview.asWebviewUri(
-			vscode.Uri.joinPath(extensionUri, "media", "styles.css")
-		);
-		const codiconsUri = webview.asWebviewUri(
-			vscode.Uri.joinPath(
-				extensionUri,
-				"node_modules",
-				"@vscode/codicons",
-				"dist",
-				"codicon.css"
-			)
-		);
+		const styleUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'styles.css'));
+		const codiconsUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'node_modules', '@vscode/codicons', 'dist', 'codicon.css'));
 
 		return `<!DOCTYPE html>
 			<html lang="en">
@@ -395,3 +382,4 @@ class CatCodiconsPanel {
 			</html>`;
 	}
 }
+

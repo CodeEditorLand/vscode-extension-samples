@@ -1,13 +1,13 @@
-import * as path from "path";
-import * as vscode from "vscode";
+import * as path from 'path';
+import * as vscode from 'vscode';
 
-const uriListMime = "text/uri-list";
+const uriListMime = 'text/uri-list';
 
 /**
  * Provider that reverses dropped text.
- *
+ * 
  * Note this does not apply to text that is drag and dropped with-in the current editor,
- * only for text dropped from external apps.
+ * only for text dropped from external apps. 
  */
 class ReverseTextOnDropProvider implements vscode.DocumentDropEditProvider {
 	async provideDocumentDropEdits(
@@ -17,7 +17,7 @@ class ReverseTextOnDropProvider implements vscode.DocumentDropEditProvider {
 		token: vscode.CancellationToken
 	): Promise<vscode.DocumentDropEdit | undefined> {
 		// Check the data transfer to see if we have some kind of text data
-		const dataTransferItem = dataTransfer.get("text/plain");
+		const dataTransferItem = dataTransfer.get('text/plain');
 		if (!dataTransferItem) {
 			return undefined;
 		}
@@ -30,7 +30,7 @@ class ReverseTextOnDropProvider implements vscode.DocumentDropEditProvider {
 		// Build a snippet to insert
 		const snippet = new vscode.SnippetString();
 		// Adding the reversed text
-		snippet.appendText([...text].reverse().join(""));
+		snippet.appendText([...text].reverse().join(''));
 
 		return new vscode.DocumentDropEdit(snippet);
 	}
@@ -38,12 +38,12 @@ class ReverseTextOnDropProvider implements vscode.DocumentDropEditProvider {
 
 /**
  * Provider that inserts a numbered list of the names of dropped files.
- *
+ * 
  * Try dropping one or more files from:
- *
+ * 
  * - VS Code's explorer
  * - The operating system
- * - The open editors view
+ * - The open editors view 
  */
 class FileNameListOnDropProvider implements vscode.DocumentDropEditProvider {
 	async provideDocumentDropEdits(
@@ -66,7 +66,7 @@ class FileNameListOnDropProvider implements vscode.DocumentDropEditProvider {
 		}
 
 		const uris: vscode.Uri[] = [];
-		for (const resource of urlList.split("\n")) {
+		for (const resource of urlList.split('\n')) {
 			try {
 				uris.push(vscode.Uri.parse(resource));
 			} catch {
@@ -86,7 +86,7 @@ class FileNameListOnDropProvider implements vscode.DocumentDropEditProvider {
 			snippet.appendTabstop();
 
 			if (index <= uris.length - 1 && uris.length > 1) {
-				snippet.appendText("\n");
+				snippet.appendText('\n');
 			}
 		});
 
@@ -94,21 +94,12 @@ class FileNameListOnDropProvider implements vscode.DocumentDropEditProvider {
 	}
 }
 
+
 export function activate(context: vscode.ExtensionContext) {
-	// Enable our providers in plaintext files
-	const selector: vscode.DocumentSelector = { language: "plaintext" };
+	// Enable our providers in plaintext files 
+	const selector: vscode.DocumentSelector = { language: 'plaintext' };
 
 	// Register our providers
-	context.subscriptions.push(
-		vscode.languages.registerDocumentDropEditProvider(
-			selector,
-			new ReverseTextOnDropProvider()
-		)
-	);
-	context.subscriptions.push(
-		vscode.languages.registerDocumentDropEditProvider(
-			selector,
-			new FileNameListOnDropProvider()
-		)
-	);
+	context.subscriptions.push(vscode.languages.registerDocumentDropEditProvider(selector, new ReverseTextOnDropProvider()));
+	context.subscriptions.push(vscode.languages.registerDocumentDropEditProvider(selector, new FileNameListOnDropProvider()));
 }

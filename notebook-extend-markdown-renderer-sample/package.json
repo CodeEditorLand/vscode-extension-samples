@@ -3,14 +3,8 @@
   "displayName": "notebook-extend-markdown-renderer-sample",
   "description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
   "version": "0.0.1",
-  "private": true,
+  "private": "false",
   "license": "MIT",
-  "engines": {
-    "vscode": "^1.69.0"
-  },
-  "categories": [
-    "Other"
-  ],
   "contributes": {
     "notebookRenderer": [
       {
@@ -28,19 +22,39 @@
     "webpack": "webpack --mode development",
     "webpack-dev": "webpack --mode development --watch",
     "test-compile": "tsc -p ./",
-    "lint": "eslint src --ext .ts"
+    "lint": "eslint src --ext .ts",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
   },
   "devDependencies": {
-    "@types/markdown-it": "^12.2.3",
-    "@types/vscode-notebook-renderer": "^1.57.8",
-    "@types/webpack-env": "^1.17.0",
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
-    "@typescript-eslint/parser": "^6.7.0",
-    "eslint": "^8.26.0",
-    "markdown-it-emoji": "^2.0.2",
-    "ts-loader": "^9.2.2",
-    "typescript": "^5.2.2",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0"
+    "@types/markdown-it": "13.0.7",
+    "@types/vscode-notebook-renderer": "1.72.3",
+    "@types/webpack-env": "1.18.4",
+    "@typescript-eslint/eslint-plugin": "6.12.0",
+    "@typescript-eslint/parser": "6.12.0",
+    "eslint": "8.54.0",
+    "markdown-it-emoji": "2.0.2",
+    "ts-loader": "9.5.1",
+    "typescript": "5.3.2",
+    "webpack": "5.89.0",
+    "webpack-cli": "5.1.4",
+    "typescript-esbuild": "0.3.1"
+  },
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "type": "module",
+  "publisher": "playform",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
   }
 }
