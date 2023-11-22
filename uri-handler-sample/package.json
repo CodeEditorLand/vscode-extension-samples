@@ -1,41 +1,58 @@
 {
-	"name": "uri-handler-sample",
-	"version": "0.0.1",
-	"description": "Uri Handler Sample",
-	"categories": [
-		"Other"
-	],
-	"publisher": "vscode-samples",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"pretest": "npm run compile && npm run lint",
-		"test": "node ./out/test/runTest.js",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
-	},
-	"contributes": {
-		"commands": [
-			{
-				"command": "uri-handler-sample.start",
-				"title": "Start handling Uris"
-			}
-		]
-	},
-	"activationEvents": [],
-	"devDependencies": {
-		"@types/glob": "8.1.0",
-		"@types/node": "20.9.2",
-		"@types/vscode": "1.84.1",
-		"@typescript-eslint/eslint-plugin": "6.11.0",
-		"@typescript-eslint/parser": "6.11.0",
-		"@vscode/test-electron": "2.3.6",
-		"eslint": "8.54.0",
-		"glob": "10.3.10",
-		"typescript": "5.2.2"
-	},
-	"engines": {
-		"vscode": "1.74.0"
-	}
+  "name": "uri-handler-sample",
+  "version": "0.0.1",
+  "description": "Uri Handler Sample",
+  "categories": [
+    "Other"
+  ],
+  "publisher": "playform",
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "pretest": "npm run compile && npm run lint",
+    "test": "node ./out/test/runTest.js",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -watch -p ./",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "uri-handler-sample.start",
+        "title": "Start handling Uris"
+      }
+    ]
+  },
+  "activationEvents": [],
+  "devDependencies": {
+    "@types/glob": "8.1.0",
+    "@types/node": "20.9.2",
+    "@types/vscode": "1.84.1",
+    "@typescript-eslint/eslint-plugin": "6.11.0",
+    "@typescript-eslint/parser": "6.11.0",
+    "@vscode/test-electron": "2.3.6",
+    "glob": "10.3.10",
+    "typescript": "5.2.2",
+    "typescript-esbuild": "0.3.1"
+  },
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  }
 }

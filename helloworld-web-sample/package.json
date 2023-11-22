@@ -1,51 +1,65 @@
 {
-	"name": "helloworld-web-sample",
-	"displayName": "helloworld-web-sample",
-	"version": "0.0.1",
-	"private": true,
-	"description": "HelloWorld example for VS Code in the browser",
-	"categories": [
-		"Other"
-	],
-	"repository": "https://github.com/microsoft/vscode-extension-samples/helloworld-web-sample",
-	"license": "MIT",
-	"publisher": "vscode-samples",
-	"browser": "./dist/web/extension.js",
-	"scripts": {
-		"compile-web": "webpack",
-		"lint": "eslint src --ext ts",
-		"package-web": "webpack --mode production --devtool hidden-source-map",
-		"pretest": "npm run compile-web",
-		"test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
-		"vscode:prepublish": "npm run package-web",
-		"watch-web": "webpack --watch"
-	},
-	"contributes": {
-		"commands": [
-			{
-				"command": "helloworld-web-sample.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"activationEvents": [],
-	"devDependencies": {
-		"@types/mocha": "10.0.4",
-		"@types/vscode": "1.84.1",
-		"@types/webpack-env": "1.18.4",
-		"@typescript-eslint/eslint-plugin": "6.11.0",
-		"@typescript-eslint/parser": "6.11.0",
-		"@vscode/test-web": "0.0.48",
-		"assert": "2.1.0",
-		"eslint": "8.54.0",
-		"mocha": "10.2.0",
-		"process": "0.11.10",
-		"ts-loader": "9.5.1",
-		"typescript": "5.2.2",
-		"webpack": "5.89.0",
-		"webpack-cli": "5.1.4"
-	},
-	"engines": {
-		"vscode": "1.74.0"
-	}
+  "name": "helloworld-web-sample",
+  "displayName": "helloworld-web-sample",
+  "version": "0.0.1",
+  "private": "false",
+  "description": "HelloWorld example for VS Code in the browser",
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "publisher": "playform",
+  "browser": "./dist/web/extension.js",
+  "scripts": {
+    "compile-web": "webpack",
+    "lint": "eslint src --ext ts",
+    "package-web": "webpack --mode production --devtool hidden-source-map",
+    "pretest": "npm run compile-web",
+    "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+    "vscode:prepublish": "npm run package-web",
+    "watch-web": "webpack --watch",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "helloworld-web-sample.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "activationEvents": [],
+  "devDependencies": {
+    "@types/mocha": "10.0.4",
+    "@types/vscode": "1.84.1",
+    "@types/webpack-env": "1.18.4",
+    "@typescript-eslint/eslint-plugin": "6.11.0",
+    "@typescript-eslint/parser": "6.11.0",
+    "@vscode/test-web": "0.0.48",
+    "assert": "2.1.0",
+    "mocha": "10.2.0",
+    "process": "0.11.10",
+    "ts-loader": "9.5.1",
+    "typescript": "5.2.2",
+    "webpack": "5.89.0",
+    "webpack-cli": "5.1.4",
+    "typescript-esbuild": "0.3.1"
+  },
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  }
 }

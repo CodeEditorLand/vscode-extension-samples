@@ -1,25 +1,43 @@
 {
-	"name": "product-icon-theme-sample",
-	"version": "0.1.0",
-	"publisher": "vscode-samples",
-	"scripts": {
-		"showFont": "open ./theme/vscode-10.html",
-		"updateFont": "node ./build/updateFont.js"
-	},
-	"contributes": {
-		"productIconThemes": [
-			{
-				"id": "vscode-v1-icons",
-				"label": "VSCode 1.0 Icons",
-				"path": "./theme/v1-product-icon-theme.json"
-			}
-		]
-	},
-	"devDependencies": {
-		"open": "9.1.0",
-		"webfont": "11.2.26"
-	},
-	"engines": {
-		"vscode": "*"
-	}
+  "name": "product-icon-theme-sample",
+  "version": "0.0.1",
+  "publisher": "playform",
+  "scripts": {
+    "showFont": "open ./theme/vscode-10.html",
+    "updateFont": "node ./build/updateFont.js",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
+  },
+  "contributes": {
+    "productIconThemes": [
+      {
+        "id": "vscode-v1-icons",
+        "label": "VSCode 1.0 Icons",
+        "path": "./theme/v1-product-icon-theme.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "open": "9.1.0",
+    "webfont": "11.2.26",
+    "typescript-esbuild": "0.3.1"
+  },
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  }
 }
