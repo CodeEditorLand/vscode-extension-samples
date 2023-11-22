@@ -1,131 +1,131 @@
 {
-	"name": "vscode-terminal-api-example",
-	"displayName": "vscode-terminal-api-example",
-	"version": "0.0.1",
-	"private": "false",
-	"description": "abc",
-	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Nikola Hristov",
-		"email": "nikola@nikolahristov.tech",
-		"url": "https://nikolahristov.tech"
-	},
-	"publisher": "playform",
-	"type": "module",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
-	},
-	"contributes": {
-		"commands": [
-			{
-				"command": "terminalTest.createAndSend",
-				"title": "Terminal API: Create Terminal and Immediately Send"
-			},
-			{
-				"command": "terminalTest.createTerminal",
-				"title": "Terminal API: Create Terminal"
-			},
-			{
-				"command": "terminalTest.createTerminalHideFromUser",
-				"title": "Terminal API: Create Terminal (hideFromUser)"
-			},
-			{
-				"command": "terminalTest.createZshLoginShell",
-				"title": "Terminal API: Create Terminal (zsh login shell)"
-			},
-			{
-				"command": "terminalTest.dimensions",
-				"title": "Terminal API: Set dimensions"
-			},
-			{
-				"command": "terminalTest.dispose",
-				"title": "Terminal API: Dispose"
-			},
-			{
-				"command": "terminalTest.hide",
-				"title": "Terminal API: Hide"
-			},
-			{
-				"command": "terminalTest.onDidWriteTerminalData",
-				"title": "Terminal API: Attach data listener"
-			},
-			{
-				"command": "terminalTest.onDidChangeTerminalDimensions",
-				"title": "Terminal API: Attach dimensions listener"
-			},
-			{
-				"command": "terminalTest.processId",
-				"title": "Terminal API: Get process ID"
-			},
-			{
-				"command": "terminalTest.sendText",
-				"title": "Terminal API: Send Text"
-			},
-			{
-				"command": "terminalTest.sendTextNoNewLine",
-				"title": "Terminal API: Send Text (no implied \\n)"
-			},
-			{
-				"command": "terminalTest.show",
-				"title": "Terminal API: Show"
-			},
-			{
-				"command": "terminalTest.showPreserveFocus",
-				"title": "Terminal API: Show (preserving focus)"
-			},
-			{
-				"command": "terminalTest.terminals",
-				"title": "Terminal API: View terminals"
-			},
-			{
-				"command": "terminalTest.updateEnvironment",
-				"title": "Terminal API: Update environment"
-			},
-			{
-				"command": "terminalTest.clearEnvironment",
-				"title": "Terminal API: Clear environment"
-			},
-			{
-				"command": "terminalTest.registerTerminalLinkProvider",
-				"title": "Terminal API: Register link provider"
-			}
-		],
-		"terminal": {
-			"profiles": [
-				{
-					"id": "terminalTest.terminal-profile",
-					"icon": "terminal",
-					"title": "Terminal API Profile"
-				}
-			]
-		}
-	},
-	"activationEvents": [
-		"onTerminalProfile:terminalTest.terminal-profile"
-	],
-	"devDependencies": {
-		"@types/node": "20.9.4",
-		"@types/vscode": "1.84.2",
-		"@typescript-eslint/eslint-plugin": "6.12.0",
-		"@typescript-eslint/parser": "6.12.0",
-		"eslint": "8.54.0",
-		"typescript": "5.3.2",
-		"typescript-esbuild": "0.3.1"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "vscode-terminal-api-example",
+  "displayName": "vscode-terminal-api-example",
+  "version": "0.0.1",
+  "private": "false",
+  "description": "abc",
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  },
+  "publisher": "playform",
+  "type": "module",
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "lint": "eslint \"src/**/*.ts\"",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -watch -p ./"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "terminalTest.createAndSend",
+        "title": "Terminal API: Create Terminal and Immediately Send"
+      },
+      {
+        "command": "terminalTest.createTerminal",
+        "title": "Terminal API: Create Terminal"
+      },
+      {
+        "command": "terminalTest.createTerminalHideFromUser",
+        "title": "Terminal API: Create Terminal (hideFromUser)"
+      },
+      {
+        "command": "terminalTest.createZshLoginShell",
+        "title": "Terminal API: Create Terminal (zsh login shell)"
+      },
+      {
+        "command": "terminalTest.dimensions",
+        "title": "Terminal API: Set dimensions"
+      },
+      {
+        "command": "terminalTest.dispose",
+        "title": "Terminal API: Dispose"
+      },
+      {
+        "command": "terminalTest.hide",
+        "title": "Terminal API: Hide"
+      },
+      {
+        "command": "terminalTest.onDidWriteTerminalData",
+        "title": "Terminal API: Attach data listener"
+      },
+      {
+        "command": "terminalTest.onDidChangeTerminalDimensions",
+        "title": "Terminal API: Attach dimensions listener"
+      },
+      {
+        "command": "terminalTest.processId",
+        "title": "Terminal API: Get process ID"
+      },
+      {
+        "command": "terminalTest.sendText",
+        "title": "Terminal API: Send Text"
+      },
+      {
+        "command": "terminalTest.sendTextNoNewLine",
+        "title": "Terminal API: Send Text (no implied \\n)"
+      },
+      {
+        "command": "terminalTest.show",
+        "title": "Terminal API: Show"
+      },
+      {
+        "command": "terminalTest.showPreserveFocus",
+        "title": "Terminal API: Show (preserving focus)"
+      },
+      {
+        "command": "terminalTest.terminals",
+        "title": "Terminal API: View terminals"
+      },
+      {
+        "command": "terminalTest.updateEnvironment",
+        "title": "Terminal API: Update environment"
+      },
+      {
+        "command": "terminalTest.clearEnvironment",
+        "title": "Terminal API: Clear environment"
+      },
+      {
+        "command": "terminalTest.registerTerminalLinkProvider",
+        "title": "Terminal API: Register link provider"
+      }
+    ],
+    "terminal": {
+      "profiles": [
+        {
+          "id": "terminalTest.terminal-profile",
+          "icon": "terminal",
+          "title": "Terminal API Profile"
+        }
+      ]
+    }
+  },
+  "activationEvents": [
+    "onTerminalProfile:terminalTest.terminal-profile"
+  ],
+  "devDependencies": {
+    "@types/node": "20.9.4",
+    "@types/vscode": "1.84.2",
+    "@typescript-eslint/eslint-plugin": "6.12.0",
+    "@typescript-eslint/parser": "6.12.0",
+    "eslint": "8.54.0",
+    "typescript": "5.3.2",
+    "typescript-esbuild": "0.3.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

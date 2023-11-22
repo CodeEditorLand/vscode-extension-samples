@@ -2,13 +2,23 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-'use strict';
+"use strict";
 
 import {
-	CodeAction, CodeActionKind, Command, createConnection, Diagnostic, DiagnosticSeverity, Position, Range, TextDocumentEdit,
-	TextDocuments, TextDocumentSyncKind, TextEdit
-} from 'vscode-languageserver/node';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+	CodeAction,
+	CodeActionKind,
+	Command,
+	createConnection,
+	Diagnostic,
+	DiagnosticSeverity,
+	Position,
+	Range,
+	TextDocumentEdit,
+	TextDocuments,
+	TextDocumentSyncKind,
+	TextEdit,
+} from "vscode-languageserver/node";
+import { TextDocument } from "vscode-languageserver-textdocument";
 
 const connection = createConnection();
 connection.console.info(`Sample server running in node ${process.version}`);
@@ -22,12 +32,12 @@ connection.onInitialize(() => {
 			codeActionProvider: true,
 			textDocumentSync: {
 				openClose: true,
-				change: TextDocumentSyncKind.Incremental
+				change: TextDocumentSyncKind.Incremental,
 			},
 			executeCommandProvider: {
-				commands: ['sample.fixMe']
-			}
-		}
+				commands: ["sample.fixMe"],
+			},
+		},
 	};
 });
 
@@ -36,8 +46,12 @@ function validate(document: TextDocument): void {
 		uri: document.uri,
 		version: document.version,
 		diagnostics: [
-			Diagnostic.create(Range.create(0,0,0, 10), 'Something is wrong here', DiagnosticSeverity.Warning)
-		]
+			Diagnostic.create(
+				Range.create(0, 0, 0, 10),
+				"Something is wrong here",
+				DiagnosticSeverity.Warning
+			),
+		],
 	});
 }
 
@@ -54,12 +68,18 @@ connection.onCodeAction((params) => {
 	if (textDocument === undefined) {
 		return undefined;
 	}
-	const title = 'With User Input';
-	return [CodeAction.create(title, Command.create(title, 'sample.fixMe', textDocument.uri), CodeActionKind.QuickFix)];
+	const title = "With User Input";
+	return [
+		CodeAction.create(
+			title,
+			Command.create(title, "sample.fixMe", textDocument.uri),
+			CodeActionKind.QuickFix
+		),
+	];
 });
 
 connection.onExecuteCommand(async (params) => {
-	if (params.command !== 'sample.fixMe' || params.arguments ===  undefined) {
+	if (params.command !== "sample.fixMe" || params.arguments === undefined) {
 		return;
 	}
 
@@ -67,13 +87,17 @@ connection.onExecuteCommand(async (params) => {
 	if (textDocument === undefined) {
 		return;
 	}
-	const newText = typeof params.arguments[1] === 'string' ? params.arguments[1] : 'Eclipse';
+	const newText =
+		typeof params.arguments[1] === "string"
+			? params.arguments[1]
+			: "Eclipse";
 	connection.workspace.applyEdit({
 		documentChanges: [
-			TextDocumentEdit.create({ uri: textDocument.uri, version: textDocument.version }, [
-				TextEdit.insert(Position.create(0, 0), newText)
-			])
-		]
+			TextDocumentEdit.create(
+				{ uri: textDocument.uri, version: textDocument.version },
+				[TextEdit.insert(Position.create(0, 0), newText)]
+			),
+		],
 	});
 });
 

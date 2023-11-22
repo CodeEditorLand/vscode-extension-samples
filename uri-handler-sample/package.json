@@ -1,56 +1,56 @@
 {
-	"name": "uri-handler-sample",
-	"version": "0.0.1",
-	"private": "false",
-	"description": "Uri Handler Sample",
-	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Nikola Hristov",
-		"email": "nikola@nikolahristov.tech",
-		"url": "https://nikolahristov.tech"
-	},
-	"publisher": "playform",
-	"type": "module",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"pretest": "npm run compile && npm run lint",
-		"test": "node ./out/test/runTest.js",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
-	},
-	"contributes": {
-		"commands": [
-			{
-				"command": "uri-handler-sample.start",
-				"title": "Start handling Uris"
-			}
-		]
-	},
-	"activationEvents": [],
-	"devDependencies": {
-		"@types/glob": "8.1.0",
-		"@types/node": "20.9.4",
-		"@types/vscode": "1.84.2",
-		"@typescript-eslint/eslint-plugin": "6.12.0",
-		"@typescript-eslint/parser": "6.12.0",
-		"@vscode/test-electron": "2.3.6",
-		"eslint": "8.54.0",
-		"glob": "10.3.10",
-		"typescript": "5.3.2",
-		"typescript-esbuild": "0.3.1"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "uri-handler-sample",
+  "version": "0.0.1",
+  "private": "false",
+  "description": "Uri Handler Sample",
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  },
+  "publisher": "playform",
+  "type": "module",
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+    "pretest": "npm run compile && npm run lint",
+    "test": "node ./out/test/runTest.js",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -watch -p ./"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "uri-handler-sample.start",
+        "title": "Start handling Uris"
+      }
+    ]
+  },
+  "activationEvents": [],
+  "devDependencies": {
+    "@types/glob": "8.1.0",
+    "@types/node": "20.9.4",
+    "@types/vscode": "1.84.2",
+    "@typescript-eslint/eslint-plugin": "6.12.0",
+    "@typescript-eslint/parser": "6.12.0",
+    "@vscode/test-electron": "2.3.6",
+    "eslint": "8.54.0",
+    "glob": "10.3.10",
+    "typescript": "5.3.2",
+    "typescript-esbuild": "0.3.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

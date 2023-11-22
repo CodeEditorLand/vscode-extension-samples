@@ -1,17 +1,26 @@
 {
   "name": "lsp-sample-client",
+  "version": "0.0.1",
+  "private": "false",
   "description": "VSCode part of a language server",
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
   "author": {
     "name": "Nikola Hristov",
     "email": "nikola@nikolahristov.tech",
     "url": "https://nikolahristov.tech"
   },
-  "license": "MIT",
-  "version": "0.0.1",
   "publisher": "playform",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  "type": "module",
+  "scripts": {
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
   },
   "dependencies": {
     "vscode-languageclient": "9.0.1"
@@ -21,16 +30,7 @@
     "@types/vscode": "1.84.2",
     "typescript-esbuild": "0.3.1"
   },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "type": "module",
-  "private": "false",
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
   }
 }

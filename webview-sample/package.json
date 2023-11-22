@@ -1,60 +1,60 @@
 {
-	"name": "cat-coding",
-	"version": "0.0.1",
-	"private": "false",
-	"description": "Cat Coding - A Webview API Sample",
-	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Nikola Hristov",
-		"email": "nikola@nikolahristov.tech",
-		"url": "https://nikolahristov.tech"
-	},
-	"publisher": "playform",
-	"type": "module",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -w -p ./"
-	},
-	"contributes": {
-		"commands": [
-			{
-				"command": "catCoding.start",
-				"title": "Start cat coding session",
-				"category": "Cat Coding"
-			},
-			{
-				"command": "catCoding.doRefactor",
-				"title": "Do some refactoring",
-				"category": "Cat Coding"
-			}
-		]
-	},
-	"activationEvents": [
-		"onWebviewPanel:catCoding"
-	],
-	"devDependencies": {
-		"@types/node": "20.9.4",
-		"@types/vscode": "1.84.2",
-		"@types/vscode-webview": "1.57.4",
-		"@typescript-eslint/eslint-plugin": "6.12.0",
-		"@typescript-eslint/parser": "6.12.0",
-		"eslint": "8.54.0",
-		"typescript": "5.3.2",
-		"typescript-esbuild": "0.3.1"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "cat-coding",
+  "version": "0.0.1",
+  "private": "false",
+  "description": "Cat Coding - A Webview API Sample",
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  },
+  "publisher": "playform",
+  "type": "module",
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "lint": "eslint \"src/**/*.ts\"",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -w -p ./"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "catCoding.start",
+        "title": "Start cat coding session",
+        "category": "Cat Coding"
+      },
+      {
+        "command": "catCoding.doRefactor",
+        "title": "Do some refactoring",
+        "category": "Cat Coding"
+      }
+    ]
+  },
+  "activationEvents": [
+    "onWebviewPanel:catCoding"
+  ],
+  "devDependencies": {
+    "@types/node": "20.9.4",
+    "@types/vscode": "1.84.2",
+    "@types/vscode-webview": "1.57.4",
+    "@typescript-eslint/eslint-plugin": "6.12.0",
+    "@typescript-eslint/parser": "6.12.0",
+    "eslint": "8.54.0",
+    "typescript": "5.3.2",
+    "typescript-esbuild": "0.3.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }
