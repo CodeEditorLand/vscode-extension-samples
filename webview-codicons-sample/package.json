@@ -1,55 +1,44 @@
 {
-  "name": "cat-codicons",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "Cat Codicons - Using codicons in webviews",
-  "categories": [
-    "Other"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "publisher": "playform",
-  "main": "./out/extension.js",
-  "scripts": {
-    "compile": "tsc -p ./",
-    "lint": "eslint \"src/**/*.ts\"",
-    "vscode:prepublish": "npm run compile",
-    "watch": "tsc -w -p ./",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-  },
-  "contributes": {
-    "commands": [
-      {
-        "command": "catCodicons.show",
-        "title": "Show Cat Codicons",
-        "category": "Cat Codicons"
-      }
-    ]
-  },
-  "activationEvents": [],
-  "devDependencies": {
-    "@types/node": "20.9.2",
-    "@types/vscode": "1.84.1",
-    "@typescript-eslint/eslint-plugin": "6.11.0",
-    "@typescript-eslint/parser": "6.11.0",
-    "@vscode/codicons": "0.0.35",
-    "typescript": "5.2.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  }
+	"name": "cat-codicons",
+	"description": "Cat Codicons - Using codicons in webviews",
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/microsoft/vscode-extension-samples.git"
+	},
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "catCodicons.show",
+				"title": "Show Cat Codicons",
+				"category": "Cat Codicons"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"watch": "tsc -w -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^16.18.34",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"@vscode/codicons": "0.0.20",
+		"eslint": "^8.26.0",
+		"typescript": "^5.2.2"
+	}
 }

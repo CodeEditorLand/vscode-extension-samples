@@ -1,75 +1,64 @@
 {
-  "name": "cat-customs",
-  "displayName": "Cat Customs",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "Custom Editor API Samples",
-  "categories": [
-    "Other"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "publisher": "playform",
-  "main": "./out/extension.js",
-  "scripts": {
-    "compile": "tsc -p ./",
-    "lint": "eslint \"src/**/*.ts\"",
-    "vscode:prepublish": "npm run compile",
-    "watch": "tsc -w -p ./",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-  },
-  "contributes": {
-    "commands": [
-      {
-        "command": "catCustoms.pawDraw.new",
-        "title": "Create new Paw Draw Document",
-        "category": "Paw Draw"
-      }
-    ],
-    "customEditors": [
-      {
-        "viewType": "catCustoms.catScratch",
-        "displayName": "Cat Scratch",
-        "selector": [
-          {
-            "filenamePattern": "*.cscratch"
-          }
-        ]
-      },
-      {
-        "viewType": "catCustoms.pawDraw",
-        "displayName": "Paw Draw",
-        "selector": [
-          {
-            "filenamePattern": "*.pawdraw"
-          }
-        ]
-      }
-    ]
-  },
-  "activationEvents": [],
-  "devDependencies": {
-    "@types/node": "20.9.2",
-    "@types/vscode": "1.84.1",
-    "@typescript-eslint/eslint-plugin": "6.11.0",
-    "@typescript-eslint/parser": "6.11.0",
-    "typescript": "5.2.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  }
+	"name": "cat-customs",
+	"displayName": "Cat Customs",
+	"description": "Custom Editor API Samples",
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"customEditors": [
+			{
+				"viewType": "catCustoms.catScratch",
+				"displayName": "Cat Scratch",
+				"selector": [
+					{
+						"filenamePattern": "*.cscratch"
+					}
+				]
+			},
+			{
+				"viewType": "catCustoms.pawDraw",
+				"displayName": "Paw Draw",
+				"selector": [
+					{
+						"filenamePattern": "*.pawdraw"
+					}
+				]
+			}
+		],
+		"commands": [
+			{
+				"command": "catCustoms.pawDraw.new",
+				"title": "Create new Paw Draw Document",
+				"category": "Paw Draw"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"watch": "tsc -w -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^16.18.34",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.2.2"
+	}
 }

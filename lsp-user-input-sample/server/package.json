@@ -1,35 +1,22 @@
 {
-  "name": "server",
-  "version": "0.0.1",
-  "private": "false",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "dependencies": {
-    "vscode-languageserver": "9.0.1",
-    "vscode-languageserver-textdocument": "1.0.11",
-    "vscode-uri": "3.0.8"
-  },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "type": "module",
-  "publisher": "playform",
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-  },
-  "devDependencies": {
-    "typescript-esbuild": "0.3.1"
-  }
+	"name": "server",
+	"version": "1.0.0",
+	"private": true,
+	"author": "Microsoft Corporation",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+	},
+	"engines": {
+		"node": "*"
+	},
+	"dependencies": {
+		"vscode-uri": "^3.0.2",
+		"vscode-languageserver": "^7.0.0",
+		"vscode-languageserver-textdocument": "^1.0.1"
+	}
 }
