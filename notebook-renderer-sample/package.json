@@ -1,61 +1,61 @@
 {
-  "name": "notebook-renderer-sample",
-  "displayName": "notebook-renderer-sample",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook that doesn't use any frontend frameworks.",
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "scripts": {
-    "lint": "eslint src --ext .ts,.tsx",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-    "test-compile": "tsc -p ./",
-    "vscode:prepublish": "webpack --mode production",
-    "webpack": "webpack --mode development",
-    "webpack-dev": "webpack --mode development --watch"
-  },
-  "contributes": {
-    "notebookRenderer": [
-      {
-        "id": "notebook-renderer-github-issues",
-        "entrypoint": "./out/index.js",
-        "displayName": "GitHub Issues Plain Renderer",
-        "mimeTypes": [
-          "x-application/github-issues"
-        ]
-      }
-    ]
-  },
-  "devDependencies": {
-    "@types/vscode-notebook-renderer": "1.72.3",
-    "@types/webpack-env": "1.18.4",
-    "@typescript-eslint/eslint-plugin": "6.12.0",
-    "@typescript-eslint/parser": "6.12.0",
-    "css-loader": "6.8.1",
-    "eslint": "8.54.0",
-    "style-loader": "3.3.3",
-    "ts-loader": "9.5.1",
-    "typescript": "5.3.2",
-    "typescript-esbuild": "0.3.1",
-    "vscode-notebook-error-overlay": "1.0.1",
-    "webpack": "5.89.0",
-    "webpack-cli": "5.1.4"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "notebook-renderer-sample",
+	"displayName": "notebook-renderer-sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook that doesn't use any frontend frameworks.",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"scripts": {
+		"lint": "eslint src --ext .ts,.tsx",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"test-compile": "tsc -p ./",
+		"vscode:prepublish": "webpack --mode production",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	},
+	"contributes": {
+		"notebookRenderer": [
+			{
+				"id": "notebook-renderer-github-issues",
+				"entrypoint": "./out/index.js",
+				"displayName": "GitHub Issues Plain Renderer",
+				"mimeTypes": [
+					"x-application/github-issues"
+				]
+			}
+		]
+	},
+	"devDependencies": {
+		"@types/vscode-notebook-renderer": "1.72.3",
+		"@types/webpack-env": "1.18.4",
+		"@typescript-eslint/eslint-plugin": "6.12.0",
+		"@typescript-eslint/parser": "6.12.0",
+		"css-loader": "6.8.1",
+		"eslint": "8.54.0",
+		"style-loader": "3.3.3",
+		"ts-loader": "9.5.1",
+		"typescript": "5.3.2",
+		"typescript-esbuild": "0.3.1",
+		"vscode-notebook-error-overlay": "1.0.1",
+		"webpack": "5.89.0",
+		"webpack-cli": "5.1.4"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

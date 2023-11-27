@@ -1,52 +1,52 @@
 {
-  "name": "document-paste-sample",
-  "displayName": "Document paste Sample",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "Shows use of the document paste API proposal",
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "main": "./out/extension.js",
-  "scripts": {
-    "compile": "tsc -p ./",
-    "download-api": "vscode-dts main && vscode-dts dev",
-    "postinstall": "npm run download-api",
-    "lint": "eslint \"src/**/*.ts\"",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-    "vscode:prepublish": "npm run compile",
-    "watch": "tsc -watch -p ./"
-  },
-  "contributes": {},
-  "activationEvents": [
-    "onLanguage:plaintext"
-  ],
-  "devDependencies": {
-    "@types/node": "20.10.0",
-    "@typescript-eslint/eslint-plugin": "6.12.0",
-    "@typescript-eslint/parser": "6.12.0",
-    "eslint": "8.54.0",
-    "typescript": "5.3.2",
-    "typescript-esbuild": "0.3.1",
-    "vscode-dts": "0.3.3"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "enabledApiProposals": [
-    "documentPaste"
-  ]
+	"name": "document-paste-sample",
+	"displayName": "Document paste Sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "Shows use of the document paste API proposal",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"download-api": "vscode-dts main && vscode-dts dev",
+		"postinstall": "npm run download-api",
+		"lint": "eslint \"src/**/*.ts\"",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"devDependencies": {
+		"@types/node": "20.10.0",
+		"@typescript-eslint/eslint-plugin": "6.12.0",
+		"@typescript-eslint/parser": "6.12.0",
+		"eslint": "8.54.0",
+		"typescript": "5.3.2",
+		"typescript-esbuild": "0.3.1",
+		"vscode-dts": "0.3.3"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"enabledApiProposals": [
+		"documentPaste"
+	]
 }

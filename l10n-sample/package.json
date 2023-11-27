@@ -1,66 +1,66 @@
 {
-  "name": "l10n-sample",
-  "displayName": "l10n-sample",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "Sample that shows how to localize an extension",
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "main": "./out/extension.js",
-  "scripts": {
-    "compile": "tsc -p ./",
-    "lint": "eslint src --ext ts",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-    "vscode:prepublish": "npm run compile",
-    "watch": "tsc -watch -p ./"
-  },
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.sayHello",
-        "title": "%extension.sayHello.title%"
-      },
-      {
-        "command": "extension.sayBye",
-        "title": "%extension.sayBye.title%"
-      }
-    ]
-  },
-  "activationEvents": [],
-  "dependencies": {
-    "@vscode/l10n": "0.0.16"
-  },
-  "devDependencies": {
-    "@types/glob": "8.1.0",
-    "@types/mocha": "10.0.6",
-    "@types/node": "20.x",
-    "@types/vscode": "1.84.2",
-    "@typescript-eslint/eslint-plugin": "6.12.0",
-    "@typescript-eslint/parser": "6.12.0",
-    "@vscode/l10n-dev": "0.0.30",
-    "@vscode/test-electron": "2.3.8",
-    "eslint": "8.54.0",
-    "glob": "10.3.10",
-    "mocha": "10.2.0",
-    "typescript": "5.3.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "l10n": "./l10n"
+	"name": "l10n-sample",
+	"displayName": "l10n-sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "Sample that shows how to localize an extension",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.sayHello",
+				"title": "%extension.sayHello.title%"
+			},
+			{
+				"command": "extension.sayBye",
+				"title": "%extension.sayBye.title%"
+			}
+		]
+	},
+	"activationEvents": [],
+	"dependencies": {
+		"@vscode/l10n": "0.0.16"
+	},
+	"devDependencies": {
+		"@types/glob": "8.1.0",
+		"@types/mocha": "10.0.6",
+		"@types/node": "20.x",
+		"@types/vscode": "1.84.2",
+		"@typescript-eslint/eslint-plugin": "6.12.0",
+		"@typescript-eslint/parser": "6.12.0",
+		"@vscode/l10n-dev": "0.0.30",
+		"@vscode/test-electron": "2.3.8",
+		"eslint": "8.54.0",
+		"glob": "10.3.10",
+		"mocha": "10.2.0",
+		"typescript": "5.3.2",
+		"typescript-esbuild": "0.3.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"l10n": "./l10n"
 }

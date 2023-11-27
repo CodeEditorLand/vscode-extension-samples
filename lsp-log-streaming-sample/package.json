@@ -1,103 +1,103 @@
 {
-  "name": "lsp-log-streaming-sample",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "A language server example demonstrating log streaming",
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "main": "./client/out/extension",
-  "scripts": {
-    "compile": "npm run compile:client && npm run compile:server",
-    "compile:client": "tsc -p ./client/tsconfig.json",
-    "compile:server": "tsc -p ./server/tsconfig.json",
-    "postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-    "lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-    "test": "sh ./scripts/e2e.sh",
-    "vscode:prepublish": "cd client && npm run update-vscode && cd .. && npm run compile",
-    "watch:client": "tsc -w -p ./client/tsconfig.json",
-    "watch:server": "tsc -w -p ./server/tsconfig.json"
-  },
-  "contributes": {
-    "commands": [
-      {
-        "command": "languageServerExample.startStreaming",
-        "title": "Start Stream Logs into languageServerExample.port"
-      }
-    ],
-    "configuration": {
-      "type": "object",
-      "title": "Example configuration",
-      "properties": {
-        "languageServerExample.maxNumberOfProblems": {
-          "scope": "resource",
-          "type": "number",
-          "default": 100,
-          "description": "Controls the maximum number of problems produced by the server."
-        },
-        "languageServerExample.port": {
-          "type": "number",
-          "default": 7000,
-          "scope": "window",
-          "description": "The WebSocket port to stream LSP log data into."
-        },
-        "languageServerExample.trace.server": {
-          "scope": "window",
-          "type": "object",
-          "description": "Traces the communication between VS Code and the language server.",
-          "properties": {
-            "verbosity": {
-              "type": "string",
-              "description": "Controls the verbosity of the trace.",
-              "enum": [
-                "off",
-                "message",
-                "verbose"
-              ],
-              "default": "off"
-            },
-            "format": {
-              "type": "string",
-              "description": "Controls the output format of the trace.",
-              "enum": [
-                "text",
-                "json"
-              ],
-              "default": "text"
-            }
-          }
-        }
-      }
-    }
-  },
-  "activationEvents": [
-    "onLanguage:plaintext"
-  ],
-  "devDependencies": {
-    "@types/mocha": "10.0.6",
-    "@types/node": "20.10.0",
-    "@typescript-eslint/eslint-plugin": "6.12.0",
-    "@typescript-eslint/parser": "6.12.0",
-    "eslint": "8.54.0",
-    "mocha": "10.2.0",
-    "typescript": "5.3.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "lsp-log-streaming-sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "A language server example demonstrating log streaming",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./client/out/extension",
+	"scripts": {
+		"compile": "npm run compile:client && npm run compile:server",
+		"compile:client": "tsc -p ./client/tsconfig.json",
+		"compile:server": "tsc -p ./server/tsconfig.json",
+		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"test": "sh ./scripts/e2e.sh",
+		"vscode:prepublish": "cd client && npm run update-vscode && cd .. && npm run compile",
+		"watch:client": "tsc -w -p ./client/tsconfig.json",
+		"watch:server": "tsc -w -p ./server/tsconfig.json"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "languageServerExample.startStreaming",
+				"title": "Start Stream Logs into languageServerExample.port"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "Example configuration",
+			"properties": {
+				"languageServerExample.maxNumberOfProblems": {
+					"scope": "resource",
+					"type": "number",
+					"default": 100,
+					"description": "Controls the maximum number of problems produced by the server."
+				},
+				"languageServerExample.port": {
+					"type": "number",
+					"default": 7000,
+					"scope": "window",
+					"description": "The WebSocket port to stream LSP log data into."
+				},
+				"languageServerExample.trace.server": {
+					"scope": "window",
+					"type": "object",
+					"description": "Traces the communication between VS Code and the language server.",
+					"properties": {
+						"verbosity": {
+							"type": "string",
+							"description": "Controls the verbosity of the trace.",
+							"enum": [
+								"off",
+								"message",
+								"verbose"
+							],
+							"default": "off"
+						},
+						"format": {
+							"type": "string",
+							"description": "Controls the output format of the trace.",
+							"enum": [
+								"text",
+								"json"
+							],
+							"default": "text"
+						}
+					}
+				}
+			}
+		}
+	},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"devDependencies": {
+		"@types/mocha": "10.0.6",
+		"@types/node": "20.10.0",
+		"@typescript-eslint/eslint-plugin": "6.12.0",
+		"@typescript-eslint/parser": "6.12.0",
+		"eslint": "8.54.0",
+		"mocha": "10.2.0",
+		"typescript": "5.3.2",
+		"typescript-esbuild": "0.3.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

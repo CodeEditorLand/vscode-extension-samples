@@ -1,79 +1,79 @@
 {
-  "name": "references-plusplus",
-  "displayName": "References++",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "Show the results of 'Find References' as formatted text in an editor",
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "main": "./out/extension.js",
-  "scripts": {
-    "compile": "tsc -p ./",
-    "lint": "eslint \"src/**/*.ts\"",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-    "vscode:prepublish": "npm run compile",
-    "watch": "tsc -watch -p ./"
-  },
-  "contributes": {
-    "commands": [
-      {
-        "command": "editor.printReferences",
-        "title": "Show All References"
-      }
-    ],
-    "grammars": [
-      {
-        "language": "locations",
-        "path": "./locations-syntax.json",
-        "scopeName": "source.locations"
-      }
-    ],
-    "languages": [
-      {
-        "id": "locations",
-        "aliases": [
-          "Locations"
-        ],
-        "extensions": [
-          ".locations"
-        ]
-      }
-    ],
-    "menus": {
-      "editor/context": [
-        {
-          "command": "editor.printReferences",
-          "when": "editorHasReferenceProvider",
-          "group": "navigation@1.31"
-        }
-      ]
-    }
-  },
-  "activationEvents": [],
-  "devDependencies": {
-    "@types/node": "20.10.0",
-    "@types/vscode": "1.84.2",
-    "@typescript-eslint/eslint-plugin": "6.12.0",
-    "@typescript-eslint/parser": "6.12.0",
-    "eslint": "8.54.0",
-    "typescript": "5.3.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "references-plusplus",
+	"displayName": "References++",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "Show the results of 'Find References' as formatted text in an editor",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "editor.printReferences",
+				"title": "Show All References"
+			}
+		],
+		"grammars": [
+			{
+				"language": "locations",
+				"path": "./locations-syntax.json",
+				"scopeName": "source.locations"
+			}
+		],
+		"languages": [
+			{
+				"id": "locations",
+				"aliases": [
+					"Locations"
+				],
+				"extensions": [
+					".locations"
+				]
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "editor.printReferences",
+					"when": "editorHasReferenceProvider",
+					"group": "navigation@1.31"
+				}
+			]
+		}
+	},
+	"activationEvents": [],
+	"devDependencies": {
+		"@types/node": "20.10.0",
+		"@types/vscode": "1.84.2",
+		"@typescript-eslint/eslint-plugin": "6.12.0",
+		"@typescript-eslint/parser": "6.12.0",
+		"eslint": "8.54.0",
+		"typescript": "5.3.2",
+		"typescript-esbuild": "0.3.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

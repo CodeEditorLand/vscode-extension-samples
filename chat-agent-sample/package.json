@@ -1,51 +1,51 @@
 {
-  "name": "chat-agent-sample",
-  "displayName": "Copilot Chat Sample Agent",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "Sample chat agent extension, a trusty cat that will help you with your code.",
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "main": "./out/extension.js",
-  "scripts": {
-    "compile": "tsc -p ./",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-    "vscode:prepublish": "npm run compile",
-    "watch": "tsc -watch -p ./"
-  },
-  "activationEvents": [
-    "onStartupFinished"
-  ],
-  "devDependencies": {
-    "@types/node": "20.10.0",
-    "@types/vscode": "1.84.2",
-    "eslint": "8.54.0",
-    "tslint": "6.1.3",
-    "typescript": "5.3.2",
-    "typescript-esbuild": "0.3.1"
-  },
-  "extensionDependencies": [
-    "github.copilot-chat"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "enabledApiProposals": [
-    "chatAgents2",
-    "chatRequestAccess"
-  ]
+	"name": "chat-agent-sample",
+	"displayName": "Copilot Chat Sample Agent",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "Sample chat agent extension, a trusty cat that will help you with your code.",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"devDependencies": {
+		"@types/node": "20.10.0",
+		"@types/vscode": "1.84.2",
+		"eslint": "8.54.0",
+		"tslint": "6.1.3",
+		"typescript": "5.3.2",
+		"typescript-esbuild": "0.3.1"
+	},
+	"extensionDependencies": [
+		"github.copilot-chat"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"enabledApiProposals": [
+		"chatAgents2",
+		"chatRequestAccess"
+	]
 }

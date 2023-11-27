@@ -1,73 +1,73 @@
 {
-  "name": "lsp-web-extension-sample",
-  "version": "0.0.1",
-  "private": "false",
-  "description": "A language server in a web extension",
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "publisher": "playform",
-  "type": "module",
-  "browser": "./client/dist/browserClientMain",
-  "scripts": {
-    "chrome": "npm run compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./test-data",
-    "compile": "webpack",
-    "postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-    "lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-    "vscode:prepublish": "npm run compile",
-    "watch": "webpack --watch"
-  },
-  "contributes": {
-    "configuration": [
-      {
-        "order": 22,
-        "id": "lsp-web-extension-sample",
-        "title": "lsp-web-extension-sample",
-        "properties": {
-          "lsp-web-extension-sample.trace.server": {
-            "type": "string",
-            "scope": "window",
-            "enum": [
-              "off",
-              "messages",
-              "verbose"
-            ],
-            "default": "verbose",
-            "description": "Traces the communication between VS Code and the lsp-web-extension-sample language server."
-          }
-        }
-      }
-    ]
-  },
-  "activationEvents": [
-    "onLanguage:plaintext"
-  ],
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "6.12.0",
-    "@typescript-eslint/parser": "6.12.0",
-    "@vscode/test-web": "0.0.48",
-    "eslint": "8.54.0",
-    "path-browserify": "1.0.1",
-    "ts-loader": "9.5.1",
-    "typescript": "5.3.2",
-    "typescript-esbuild": "0.3.1",
-    "webpack": "5.89.0",
-    "webpack-cli": "5.1.4"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "lsp-web-extension-sample",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "A language server in a web extension",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"browser": "./client/dist/browserClientMain",
+	"scripts": {
+		"chrome": "npm run compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./test-data",
+		"compile": "webpack",
+		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "webpack --watch"
+	},
+	"contributes": {
+		"configuration": [
+			{
+				"order": 22,
+				"id": "lsp-web-extension-sample",
+				"title": "lsp-web-extension-sample",
+				"properties": {
+					"lsp-web-extension-sample.trace.server": {
+						"type": "string",
+						"scope": "window",
+						"enum": [
+							"off",
+							"messages",
+							"verbose"
+						],
+						"default": "verbose",
+						"description": "Traces the communication between VS Code and the lsp-web-extension-sample language server."
+					}
+				}
+			}
+		]
+	},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "6.12.0",
+		"@typescript-eslint/parser": "6.12.0",
+		"@vscode/test-web": "0.0.48",
+		"eslint": "8.54.0",
+		"path-browserify": "1.0.1",
+		"ts-loader": "9.5.1",
+		"typescript": "5.3.2",
+		"typescript-esbuild": "0.3.1",
+		"webpack": "5.89.0",
+		"webpack-cli": "5.1.4"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }
