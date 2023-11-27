@@ -1,40 +1,40 @@
 {
-  "name": "lsp-sample-client",
-  "description": "VSCode part of a language server",
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
-  },
-  "license": "MIT",
-  "version": "0.0.1",
-  "publisher": "playform",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "scripts": {
-    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-  },
-  "dependencies": {
-    "vscode-languageclient": "9.0.1",
-    "ws": "8.14.2"
-  },
-  "devDependencies": {
-    "@types/ws": "8.5.10",
-    "@types/vscode": "1.84.2",
-    "@types/glob": "8.1.0",
-    "@vscode/test-electron": "2.3.8",
-    "glob": "10.3.10",
-    "typescript-esbuild": "0.3.1"
-  },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "type": "module",
-  "private": "false",
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "lsp-sample-client",
+	"version": "0.0.1",
+	"private": "false",
+	"description": "VSCode part of a language server",
+	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nikola Hristov",
+		"email": "nikola@nikolahristov.tech",
+		"url": "https://nikolahristov.tech"
+	},
+	"publisher": "playform",
+	"type": "module",
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
+	},
+	"dependencies": {
+		"vscode-languageclient": "9.0.1",
+		"ws": "8.14.2"
+	},
+	"devDependencies": {
+		"@types/glob": "8.1.0",
+		"@types/vscode": "1.84.2",
+		"@types/ws": "8.5.10",
+		"@vscode/test-electron": "2.3.8",
+		"glob": "10.3.10",
+		"typescript-esbuild": "0.3.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

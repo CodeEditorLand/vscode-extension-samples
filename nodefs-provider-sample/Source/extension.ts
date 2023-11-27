@@ -54,8 +54,8 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 								event === "change"
 									? vscode.FileChangeType.Changed
 									: (await _.exists(filepath))
-									? vscode.FileChangeType.Created
-									: vscode.FileChangeType.Deleted,
+									  ? vscode.FileChangeType.Created
+									  : vscode.FileChangeType.Deleted,
 							uri: uri.with({ path: filepath }),
 						} as vscode.FileChangeEvent,
 					]);
@@ -345,8 +345,8 @@ export class FileStat implements vscode.FileStat {
 			type = this.fsStat.isFile()
 				? vscode.FileType.File
 				: this.fsStat.isDirectory()
-				? vscode.FileType.Directory
-				: vscode.FileType.Unknown;
+				  ? vscode.FileType.Directory
+				  : vscode.FileType.Unknown;
 		}
 
 		return type;
