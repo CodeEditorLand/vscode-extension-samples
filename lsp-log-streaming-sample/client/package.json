@@ -24,7 +24,7 @@
     "@types/ws": "8.5.10",
     "@types/vscode": "1.84.2",
     "@types/glob": "8.1.0",
-    "@vscode/test-electron": "2.3.6",
+    "@vscode/test-electron": "2.3.8",
     "glob": "10.3.10",
     "typescript-esbuild": "0.3.1"
   },

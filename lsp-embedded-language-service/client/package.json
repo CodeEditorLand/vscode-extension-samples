@@ -26,7 +26,7 @@
     "vscode-languageclient": "9.0.1"
   },
   "devDependencies": {
-    "@types/node": "20.9.4",
+    "@types/node": "20.10.0",
     "@types/vscode": "1.84.2",
     "typescript-esbuild": "0.3.1"
   },
