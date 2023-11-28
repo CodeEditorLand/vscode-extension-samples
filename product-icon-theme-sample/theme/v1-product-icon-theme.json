@@ -9,7 +9,7 @@
 				}
 			],
 			"weight": "normal",
-			"style": "normal"
+			"style": "normal",
 		}
 	],
 	"iconDefinitions": {
@@ -39,6 +39,7 @@
 		},
 		"feedback": {
 			"fontCharacter": "\\e005"
-		}
+		},
+
 	}
 }

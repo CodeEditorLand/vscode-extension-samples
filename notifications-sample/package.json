@@ -1,34 +1,16 @@
 {
 	"name": "notifications-sample",
 	"displayName": "Notifications Sample",
-	"version": "0.0.1",
-	"private": "false",
 	"description": "Examples of notification types and various configurations",
-	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.74.0"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Nikola Hristov",
-		"email": "nikola@nikolahristov.tech",
-		"url": "https://nikolahristov.tech"
-	},
-	"publisher": "playform",
-	"type": "module",
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
 	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"pretest": "npm run compile && npm run lint",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
-	},
 	"contributes": {
 		"commands": [
 			{
@@ -68,20 +50,22 @@
 			}
 		]
 	},
-	"activationEvents": [],
-	"devDependencies": {
-		"@types/glob": "8.1.0",
-		"@types/node": "20.x",
-		"@types/vscode": "1.84.2",
-		"@typescript-eslint/eslint-plugin": "6.13.1",
-		"@typescript-eslint/parser": "6.13.1",
-		"@vscode/test-electron": "2.3.8",
-		"eslint": "8.54.0",
-		"glob": "10.3.10",
-		"typescript": "5.3.2",
-		"typescript-esbuild": "0.3.1"
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts"
 	},
-	"publishConfig": {
-		"access": "public"
+	"devDependencies": {
+		"@types/vscode": "^1.69.0",
+		"@types/glob": "^7.2.0",
+		"@types/node": "16.x",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^8.16.0",
+		"glob": "^8.0.3",
+		"typescript": "^5.2.2",
+		"@vscode/test-electron": "^2.1.3"
 	}
 }

@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
 	height: 100%;
 }
 
@@ -46,7 +45,7 @@ body {
 .drawing-controls button:before,
 .drawing-controls button:after {
 	display: block;
-	content: "";
+	content: '';
 	position: absolute;
 	top: 0;
 	left: 0;
