@@ -1,13 +1,16 @@
-import { Readable } from "stream";
-import { EventEmitter } from "events";
+
+
+import { Readable } from 'stream';
+import { EventEmitter } from 'events';
 
 declare namespace JSFtp {
+
 	interface JSFtpOptions {
 		host: string;
 		port?: number | 21;
-		user?: string | "anonymous";
-		pass?: string | "@anonymous";
-		useList?: boolean;
+		user?: string | 'anonymous';
+		pass?: string | '@anonymous';
+		useList?: boolean
 	}
 
 	interface Callback<T> {
@@ -23,22 +26,19 @@ declare namespace JSFtp {
 }
 
 interface JSFtp extends EventEmitter {
-	auth(user: string, password: string, callback: JSFtp.Callback<void>): void;
+	auth(user: string, password: string, callback: JSFtp.Callback<void>): void
 	keepAlive(wait?: number): void;
 	ls(path: string, callback: JSFtp.Callback<JSFtp.Entry[]>): void;
 	list(path: string, callback: JSFtp.Callback<any>): void;
 	put(buffer: Buffer, path: string, callback: JSFtp.Callback<void>): void;
 	get(path: string, callback: JSFtp.Callback<Readable>): void;
-	setType(
-		type: "A" | "AN" | "AT" | "AC" | "E" | "I" | "L",
-		callback: JSFtp.Callback<any>
-	): void;
+	setType(type: 'A' | 'AN' | 'AT' | 'AC' | 'E' | 'I' | 'L', callback: JSFtp.Callback<any>): void;
 	raw(command: string, args: any[], callback: JSFtp.Callback<void>): void;
 	raw<T>(command: string, args: any[], callback: JSFtp.Callback<T>): void;
 }
 
 interface JSFtpConstructor {
-	new (options: JSFtp.JSFtpOptions): JSFtp;
+	new(options: JSFtp.JSFtpOptions): JSFtp;
 }
 
 declare const JSFtp: JSFtpConstructor;
