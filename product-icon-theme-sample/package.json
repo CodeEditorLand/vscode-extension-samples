@@ -19,7 +19,7 @@
 		"showFont": "open ./theme/vscode-10.html"
 	},
 	"devDependencies": {
-		"open": "^7.0.3",
-		"webfont": "^11.2.4"
+		"open": "^9.1.0",
+		"webfont": "^11.2.26"
 	}
 }
