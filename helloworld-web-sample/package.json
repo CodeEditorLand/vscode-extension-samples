@@ -5,7 +5,7 @@
 	"version": "0.0.1",
 	"publisher": "vscode-samples",
 	"private": true,
-	"license": "MIT",
+	"license": "SEE LICENSE IN LICENSE",
 	"repository": "https://github.com/microsoft/vscode-extension-samples/helloworld-web-sample",
 	"engines": {
 		"vscode": "^1.74.0"

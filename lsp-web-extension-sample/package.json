@@ -2,7 +2,7 @@
 	"name": "lsp-web-extension-sample",
 	"description": "A language server in a web extension",
 	"author": "Microsoft Corporation",
-	"license": "MIT",
+	"license": "SEE LICENSE IN LICENSE",
 	"version": "1.0.0",
 	"repository": {
 		"type": "git",

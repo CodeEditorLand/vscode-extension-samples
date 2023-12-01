@@ -2,7 +2,7 @@
 	"name": "lsp-embedded-language-service-sample",
 	"description": "A language server example using language services to support embedded languages",
 	"author": "Microsoft Corporation",
-	"license": "MIT",
+	"license": "SEE LICENSE IN LICENSE",
 	"version": "1.0.0",
 	"repository": {
 		"type": "git",

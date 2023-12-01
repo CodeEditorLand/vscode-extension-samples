@@ -2,7 +2,7 @@
 	"name": "lsp-sample-multi-server-client-part",
 	"description": "VSCode part of a language server",
 	"author": "Microsoft Corporation",
-	"license": "MIT",
+	"license": "SEE LICENSE IN LICENSE",
 	"version": "0.0.1",
 	"publisher": "vscode",
 	"repository": {

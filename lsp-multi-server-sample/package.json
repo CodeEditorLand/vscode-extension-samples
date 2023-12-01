@@ -2,7 +2,7 @@
 	"name": "lsp-sample-multi-server",
 	"description": "A multi server LSP example",
 	"author": "Microsoft Corporation",
-	"license": "MIT",
+	"license": "SEE LICENSE IN LICENSE",
 	"version": "1.0.0",
 	"repository": {
 		"type": "git",

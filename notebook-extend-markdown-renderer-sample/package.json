@@ -4,7 +4,7 @@
   "description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
   "version": "0.0.1",
   "private": true,
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "engines": {
     "vscode": "^1.69.0"
   },

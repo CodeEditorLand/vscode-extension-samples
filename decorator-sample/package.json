@@ -3,7 +3,7 @@
 	"description": "Sample for the decorator API",
 	"version": "0.0.1",
 	"publisher": "vscode-samples",
-	"license": "MIT",
+	"license": "SEE LICENSE IN LICENSE",
 	"engines": {
 		"vscode": "^1.73.0"
 	},
