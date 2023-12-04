@@ -16,9 +16,9 @@
 	},
 	"activationEvents": [],
 	"devDependencies": {
-		"@types/vscode": "^1.84.2"
+		"@types/vscode": "1.84.2"
 	},
 	"engines": {
-		"vscode": "^1.74.0"
+		"vscode": "1.74.0"
 	}
 }

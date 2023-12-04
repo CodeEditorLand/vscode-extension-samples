@@ -38,16 +38,16 @@
 		"onCommand:notebook-serializer-sample.createJsonNotebook"
 	],
 	"devDependencies": {
-		"@types/mocha": "^10.0.6",
+		"@types/mocha": "10.0.6",
 		"@types/node": "20.x",
-		"@types/vscode": "^1.84.2",
-		"@typescript-eslint/eslint-plugin": "^6.13.1",
-		"@typescript-eslint/parser": "^6.13.1",
-		"eslint": "^8.55.0",
-		"mocha": "^10.2.0",
-		"typescript": "^5.3.2"
+		"@types/vscode": "1.84.2",
+		"@typescript-eslint/eslint-plugin": "6.13.1",
+		"@typescript-eslint/parser": "6.13.1",
+		"eslint": "8.55.0",
+		"mocha": "10.2.0",
+		"typescript": "5.3.2"
 	},
 	"engines": {
-		"vscode": "^1.74.0"
+		"vscode": "1.74.0"
 	}
 }

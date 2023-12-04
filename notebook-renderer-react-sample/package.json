@@ -33,29 +33,29 @@
 		]
 	},
 	"devDependencies": {
-		"@types/glob": "^8.1.0",
-		"@types/node": "^20.10.2",
-		"@types/react": "^18.2.41",
-		"@types/react-dom": "^18.2.17",
-		"@types/vscode": "^1.84.2",
-		"@types/vscode-notebook-renderer": "^1.72.3",
-		"@types/webpack-env": "^1.18.4",
-		"@typescript-eslint/eslint-plugin": "^6.13.1",
-		"@typescript-eslint/parser": "^6.13.1",
-		"concurrently": "^8.2.2",
-		"css-loader": "^6.8.1",
-		"eslint": "^8.55.0",
-		"glob": "^10.3.10",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"style-loader": "^3.3.3",
-		"ts-loader": "^9.5.1",
-		"typescript": "^5.3.2",
-		"vscode-notebook-error-overlay": "^1.0.1",
-		"webpack": "^5.89.0",
-		"webpack-cli": "^5.1.4"
+		"@types/glob": "8.1.0",
+		"@types/node": "20.10.3",
+		"@types/react": "18.2.41",
+		"@types/react-dom": "18.2.17",
+		"@types/vscode": "1.84.2",
+		"@types/vscode-notebook-renderer": "1.72.3",
+		"@types/webpack-env": "1.18.4",
+		"@typescript-eslint/eslint-plugin": "6.13.1",
+		"@typescript-eslint/parser": "6.13.1",
+		"concurrently": "8.2.2",
+		"css-loader": "6.8.1",
+		"eslint": "8.55.0",
+		"glob": "10.3.10",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"style-loader": "3.3.3",
+		"ts-loader": "9.5.1",
+		"typescript": "5.3.2",
+		"vscode-notebook-error-overlay": "1.0.1",
+		"webpack": "5.89.0",
+		"webpack-cli": "5.1.4"
 	},
 	"engines": {
-		"vscode": "^1.58.0"
+		"vscode": "1.58.0"
 	}
 }
