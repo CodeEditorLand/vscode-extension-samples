@@ -1,51 +1,51 @@
 {
-  "name": "notebook-renderer-sample",
-  "displayName": "notebook-renderer-sample",
-  "description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook that doesn't use any frontend frameworks.",
-  "version": "0.0.1",
-  "private": true,
-  "license": "SEE LICENSE IN LICENSE",
-  "engines": {
-    "vscode": "^1.58.0"
-  },
-  "categories": [
-    "Other"
-  ],
+	"name": "notebook-renderer-sample",
+	"displayName": "notebook-renderer-sample",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook that doesn't use any frontend frameworks.",
+	"categories": [
+		"Other"
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Microsoft/vscode-extension-samples"
 	},
-  "contributes": {
-    "notebookRenderer": [
-      {
-        "id": "notebook-renderer-github-issues",
-        "entrypoint": "./out/index.js",
-        "displayName": "GitHub Issues Plain Renderer",
-        "mimeTypes": [
-          "x-application/github-issues"
-        ]
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "webpack --mode production",
-    "webpack": "webpack --mode development",
-    "webpack-dev": "webpack --mode development --watch",
-    "test-compile": "tsc -p ./",
-    "lint": "eslint src --ext .ts,.tsx"
-  },
-  "devDependencies": {
-    "@types/vscode-notebook-renderer": "^1.72.3",
-    "@types/webpack-env": "^1.18.4",
-    "@typescript-eslint/eslint-plugin": "^6.13.1",
-    "@typescript-eslint/parser": "^6.13.1",
-    "css-loader": "^6.8.1",
-    "eslint": "^8.55.0",
-    "style-loader": "^3.3.3",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.3.2",
-    "vscode-notebook-error-overlay": "^1.0.1",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4"
-  }
+	"license": "SEE LICENSE IN LICENSE",
+	"scripts": {
+		"lint": "eslint src --ext .ts,.tsx",
+		"test-compile": "tsc -p ./",
+		"vscode:prepublish": "webpack --mode production",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	},
+	"contributes": {
+		"notebookRenderer": [
+			{
+				"id": "notebook-renderer-github-issues",
+				"entrypoint": "./out/index.js",
+				"displayName": "GitHub Issues Plain Renderer",
+				"mimeTypes": [
+					"x-application/github-issues"
+				]
+			}
+		]
+	},
+	"devDependencies": {
+		"@types/vscode-notebook-renderer": "^1.72.3",
+		"@types/webpack-env": "^1.18.4",
+		"@typescript-eslint/eslint-plugin": "^6.13.1",
+		"@typescript-eslint/parser": "^6.13.1",
+		"css-loader": "^6.8.1",
+		"eslint": "^8.55.0",
+		"style-loader": "^3.3.3",
+		"ts-loader": "^9.5.1",
+		"typescript": "^5.3.2",
+		"vscode-notebook-error-overlay": "^1.0.1",
+		"webpack": "^5.89.0",
+		"webpack-cli": "^5.1.4"
+	},
+	"engines": {
+		"vscode": "^1.58.0"
+	}
 }

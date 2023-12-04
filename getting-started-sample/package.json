@@ -1,34 +1,25 @@
 {
 	"name": "getting-started-sample",
 	"displayName": "getting-started-sample",
-	"description": "Example extension contribution to Getting Started page",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
 	"private": true,
-	"license": "SEE LICENSE IN LICENSE",
-	"repository": "https://github.com/Microsoft/vscode-extension-samples/getting-started-sample",
-	"engines": {
-		"vscode": "^1.73.0"
-	},
+	"description": "Example extension contribution to Getting Started page",
 	"categories": [
 		"Other"
 	],
-	"activationEvents": [
-		"onCommand:getting-started-sample.runCommand",
-		"onCommand:getting-started-sample.changeSetting",
-		"onCommand:getting-started-sample.setContext",
-		"onCommand:getting-started-sample.sayHello",
-		"onCommand:getting-started-sample.viewSources"
-	],
+	"repository": "https://github.com/Microsoft/vscode-extension-samples/getting-started-sample",
+	"license": "SEE LICENSE IN LICENSE",
+	"publisher": "vscode-samples",
 	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
-		"menus": {
-			"file/newFile": [
-				{
-					"command": "getting-started-sample.sayHello"
-				}
-			]
-		},
 		"commands": [
 			{
 				"title": "Getting Started Sample: Say Hello",
@@ -36,6 +27,22 @@
 				"command": "getting-started-sample.sayHello"
 			}
 		],
+		"configuration": {
+			"title": "Getting Started Sample",
+			"properties": {
+				"getting-started-sample.sampleSetting": {
+					"description": "Sample setting",
+					"type": "boolean"
+				}
+			}
+		},
+		"menus": {
+			"file/newFile": [
+				{
+					"command": "getting-started-sample.sayHello"
+				}
+			]
+		},
 		"walkthroughs": [
 			{
 				"id": "sample",
@@ -185,25 +192,15 @@
 					}
 				]
 			}
-		],
-		"configuration": {
-			"title": "Getting Started Sample",
-			"properties": {
-				"getting-started-sample.sampleSetting": {
-					"description": "Sample setting",
-					"type": "boolean"
-				}
-			}
-		}
+		]
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"test": "node ./out/test/runTest.js"
-	},
+	"activationEvents": [
+		"onCommand:getting-started-sample.runCommand",
+		"onCommand:getting-started-sample.changeSetting",
+		"onCommand:getting-started-sample.setContext",
+		"onCommand:getting-started-sample.sayHello",
+		"onCommand:getting-started-sample.viewSources"
+	],
 	"devDependencies": {
 		"@types/node": "^20.10.2",
 		"@types/vscode": "^1.84.2",
@@ -211,5 +208,8 @@
 		"@typescript-eslint/parser": "^6.13.1",
 		"eslint": "^8.55.0",
 		"typescript": "^5.3.2"
+	},
+	"engines": {
+		"vscode": "^1.73.0"
 	}
 }

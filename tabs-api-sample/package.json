@@ -1,23 +1,23 @@
 {
 	"name": "tabs-api-sample",
 	"displayName": "tabs-api-sample",
-	"description": "Sample showing how to use the tabs api",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
 	"private": true,
-	"license": "SEE LICENSE IN LICENSE",
-	"repository": "https://github.com/Microsoft/vscode-extension-samples",
-	"engines": {
-		"vscode": "^1.67.0"
-	},
+	"description": "Sample showing how to use the tabs api",
 	"categories": [
 		"Other"
 	],
-	"activationEvents": [
-		"onStartupFinished"
-	],
+	"repository": "https://github.com/Microsoft/vscode-extension-samples",
+	"license": "SEE LICENSE IN LICENSE",
+	"publisher": "vscode-samples",
 	"main": "./out/extension.js",
 	"browser": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"configuration": {
 			"title": "Tabs API Sample",
@@ -31,12 +31,9 @@
 			}
 		}
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./"
-	},
+	"activationEvents": [
+		"onStartupFinished"
+	],
 	"devDependencies": {
 		"@types/node": "^20.10.2",
 		"@types/vscode": "^1.84.2",
@@ -44,5 +41,8 @@
 		"@typescript-eslint/parser": "^6.13.1",
 		"eslint": "^8.55.0",
 		"typescript": "^5.3.2"
+	},
+	"engines": {
+		"vscode": "^1.67.0"
 	}
 }

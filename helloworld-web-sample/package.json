@@ -1,20 +1,25 @@
 {
 	"name": "helloworld-web-sample",
 	"displayName": "helloworld-web-sample",
-	"description": "HelloWorld example for VS Code in the browser",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
 	"private": true,
-	"license": "SEE LICENSE IN LICENSE",
-	"repository": "https://github.com/microsoft/vscode-extension-samples/helloworld-web-sample",
-	"engines": {
-		"vscode": "^1.74.0"
-	},
+	"description": "HelloWorld example for VS Code in the browser",
 	"categories": [
 		"Other"
 	],
-	"activationEvents": [],
+	"repository": "https://github.com/microsoft/vscode-extension-samples/helloworld-web-sample",
+	"license": "SEE LICENSE IN LICENSE",
+	"publisher": "vscode-samples",
 	"browser": "./dist/web/extension.js",
+	"scripts": {
+		"compile-web": "webpack",
+		"lint": "eslint src --ext ts",
+		"package-web": "webpack --mode production --devtool hidden-source-map",
+		"pretest": "npm run compile-web",
+		"test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+		"vscode:prepublish": "npm run package-web",
+		"watch-web": "webpack --watch"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -23,15 +28,7 @@
 			}
 		]
 	},
-	"scripts": {
-		"test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
-		"pretest": "npm run compile-web",
-		"vscode:prepublish": "npm run package-web",
-		"compile-web": "webpack",
-		"watch-web": "webpack --watch",
-		"package-web": "webpack --mode production --devtool hidden-source-map",
-		"lint": "eslint src --ext ts"
-	},
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/mocha": "^10.0.6",
 		"@types/vscode": "^1.84.2",
@@ -47,5 +44,8 @@
 		"typescript": "^5.3.2",
 		"webpack": "^5.89.0",
 		"webpack-cli": "^5.1.4"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
 	}
 }

@@ -1,50 +1,50 @@
 {
-  "name": "vscode-authenticationprovider-sample",
-  "displayName": "AuthenticationProvider API Sample",
-  "description": "AuthenticationProvider API Sample",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.74.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "vscode-authenticationprovider-sample.login",
-        "title": "Login with Azure DevOps"
-      }
-    ],
-    "authentication": [
-      {
-        "id": "azuredevopspat",
-        "label": "Azure DevOps PAT"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
-  "devDependencies": {
-    "@types/glob": "^8.1.0",
-    "@types/isomorphic-fetch": "^0.0.39",
-    "@types/node": "^20.10.2",
-    "@types/vscode": "^1.84.2",
-    "@typescript-eslint/eslint-plugin": "^6.13.1",
-    "@typescript-eslint/parser": "^6.13.1",
-    "eslint": "^8.55.0",
-    "glob": "^10.3.10",
-    "typescript": "^5.3.2"
-  },
-  "dependencies": {
-    "isomorphic-fetch": "^3.0.0"
-  }
+	"name": "vscode-authenticationprovider-sample",
+	"displayName": "AuthenticationProvider API Sample",
+	"version": "0.0.1",
+	"description": "AuthenticationProvider API Sample",
+	"categories": [
+		"Other"
+	],
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"authentication": [
+			{
+				"id": "azuredevopspat",
+				"label": "Azure DevOps PAT"
+			}
+		],
+		"commands": [
+			{
+				"command": "vscode-authenticationprovider-sample.login",
+				"title": "Login with Azure DevOps"
+			}
+		]
+	},
+	"activationEvents": [],
+	"dependencies": {
+		"isomorphic-fetch": "^3.0.0"
+	},
+	"devDependencies": {
+		"@types/glob": "^8.1.0",
+		"@types/isomorphic-fetch": "^0.0.39",
+		"@types/node": "^20.10.2",
+		"@types/vscode": "^1.84.2",
+		"@typescript-eslint/eslint-plugin": "^6.13.1",
+		"@typescript-eslint/parser": "^6.13.1",
+		"eslint": "^8.55.0",
+		"glob": "^10.3.10",
+		"typescript": "^5.3.2"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
+	}
 }

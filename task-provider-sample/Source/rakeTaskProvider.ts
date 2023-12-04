@@ -2,22 +2,22 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import * as path from 'path';
-import * as fs from 'fs';
-import * as cp from 'child_process';
-import * as vscode from 'vscode';
-import { error } from 'console';
+import * as path from "path";
+import * as fs from "fs";
+import * as cp from "child_process";
+import * as vscode from "vscode";
+import { error } from "console";
 
 export class RakeTaskProvider implements vscode.TaskProvider {
-	static RakeType = 'rake';
+	static RakeType = "rake";
 	private rakePromise: Thenable<vscode.Task[]> | undefined = undefined;
 
 	constructor(workspaceRoot: string) {
-		const pattern = path.join(workspaceRoot, 'Rakefile');
+		const pattern = path.join(workspaceRoot, "Rakefile");
 		const fileWatcher = vscode.workspace.createFileSystemWatcher(pattern);
-		fileWatcher.onDidChange(() => this.rakePromise = undefined);
-		fileWatcher.onDidCreate(() => this.rakePromise = undefined);
-		fileWatcher.onDidDelete(() => this.rakePromise = undefined);
+		fileWatcher.onDidChange(() => (this.rakePromise = undefined));
+		fileWatcher.onDidCreate(() => (this.rakePromise = undefined));
+		fileWatcher.onDidDelete(() => (this.rakePromise = undefined));
 	}
 
 	public provideTasks(): Thenable<vscode.Task[]> | undefined {
@@ -34,7 +34,13 @@ export class RakeTaskProvider implements vscode.TaskProvider {
 		if (task) {
 			// resolveTask requires that the same definition object be used.
 			const definition: RakeTaskDefinition = <any>_task.definition;
-			return new vscode.Task(definition, _task.scope ?? vscode.TaskScope.Workspace, definition.task, 'rake', new vscode.ShellExecution(`rake ${definition.task}`));
+			return new vscode.Task(
+				definition,
+				_task.scope ?? vscode.TaskScope.Workspace,
+				definition.task,
+				"rake",
+				new vscode.ShellExecution(`rake ${definition.task}`)
+			);
 		}
 		return undefined;
 	}
@@ -48,21 +54,26 @@ function exists(file: string): Promise<boolean> {
 	});
 }
 
-function exec(command: string, options: cp.ExecOptions): Promise<{ stdout: string; stderr: string }> {
-	return new Promise<{ stdout: string; stderr: string }>((resolve, reject) => {
-		cp.exec(command, options, (error, stdout, stderr) => {
-			if (error) {
-				reject({ error, stdout, stderr });
-			}
-			resolve({ stdout, stderr });
-		});
-	});
+function exec(
+	command: string,
+	options: cp.ExecOptions
+): Promise<{ stdout: string; stderr: string }> {
+	return new Promise<{ stdout: string; stderr: string }>(
+		(resolve, reject) => {
+			cp.exec(command, options, (error, stdout, stderr) => {
+				if (error) {
+					reject({ error, stdout, stderr });
+				}
+				resolve({ stdout, stderr });
+			});
+		}
+	);
 }
 
 let _channel: vscode.OutputChannel;
 function getOutputChannel(): vscode.OutputChannel {
 	if (!_channel) {
-		_channel = vscode.window.createOutputChannel('Rake Auto Detection');
+		_channel = vscode.window.createOutputChannel("Rake Auto Detection");
 	}
 	return _channel;
 }
@@ -79,7 +90,7 @@ interface RakeTaskDefinition extends vscode.TaskDefinition {
 	file?: string;
 }
 
-const buildNames: string[] = ['build', 'compile', 'watch'];
+const buildNames: string[] = ["build", "compile", "watch"];
 function isBuildTask(name: string): boolean {
 	for (const buildName of buildNames) {
 		if (name.indexOf(buildName) !== -1) {
@@ -89,7 +100,7 @@ function isBuildTask(name: string): boolean {
 	return false;
 }
 
-const testNames: string[] = ['test'];
+const testNames: string[] = ["test"];
 function isTestTask(name: string): boolean {
 	for (const testName of testNames) {
 		if (name.indexOf(testName) !== -1) {
@@ -110,14 +121,16 @@ async function getRakeTasks(): Promise<vscode.Task[]> {
 		if (!folderString) {
 			continue;
 		}
-		const rakeFile = path.join(folderString, 'Rakefile');
-		if (!await exists(rakeFile)) {
+		const rakeFile = path.join(folderString, "Rakefile");
+		if (!(await exists(rakeFile))) {
 			continue;
 		}
 
-		const commandLine = 'rake -AT -f Rakefile';
+		const commandLine = "rake -AT -f Rakefile";
 		try {
-			const { stdout, stderr } = await exec(commandLine, { cwd: folderString });
+			const { stdout, stderr } = await exec(commandLine, {
+				cwd: folderString,
+			});
 			if (stderr && stderr.length > 0) {
 				getOutputChannel().appendLine(stderr);
 				getOutputChannel().show(true);
@@ -133,10 +146,16 @@ async function getRakeTasks(): Promise<vscode.Task[]> {
 					if (matches && matches.length === 2) {
 						const taskName = matches[1].trim();
 						const kind: RakeTaskDefinition = {
-							type: 'rake',
-							task: taskName
+							type: "rake",
+							task: taskName,
 						};
-						const task = new vscode.Task(kind, workspaceFolder, taskName, 'rake', new vscode.ShellExecution(`rake ${taskName}`));
+						const task = new vscode.Task(
+							kind,
+							workspaceFolder,
+							taskName,
+							"rake",
+							new vscode.ShellExecution(`rake ${taskName}`)
+						);
 						result.push(task);
 						const lowerCaseLine = line.toLowerCase();
 						if (isBuildTask(lowerCaseLine)) {
@@ -155,7 +174,7 @@ async function getRakeTasks(): Promise<vscode.Task[]> {
 			if (err.stdout) {
 				channel.appendLine(err.stdout);
 			}
-			channel.appendLine('Auto detecting rake tasks failed.');
+			channel.appendLine("Auto detecting rake tasks failed.");
 			channel.show(true);
 		}
 	}

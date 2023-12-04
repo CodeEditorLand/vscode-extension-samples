@@ -1,16 +1,19 @@
 {
 	"name": "notifications-sample",
 	"displayName": "Notifications Sample",
-	"description": "Examples of notification types and various configurations",
 	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.74.0"
-	},
+	"description": "Examples of notification types and various configurations",
 	"categories": [
 		"Other"
 	],
-	"activationEvents": [],
 	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"pretest": "npm run compile && npm run lint",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -50,22 +53,19 @@
 			}
 		]
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts"
-	},
+	"activationEvents": [],
 	"devDependencies": {
-		"@types/vscode": "^1.84.2",
 		"@types/glob": "^8.1.0",
 		"@types/node": "20.x",
+		"@types/vscode": "^1.84.2",
 		"@typescript-eslint/eslint-plugin": "^6.13.1",
 		"@typescript-eslint/parser": "^6.13.1",
+		"@vscode/test-electron": "^2.3.8",
 		"eslint": "^8.55.0",
 		"glob": "^10.3.10",
-		"typescript": "^5.3.2",
-		"@vscode/test-electron": "^2.3.8"
+		"typescript": "^5.3.2"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
 	}
 }
