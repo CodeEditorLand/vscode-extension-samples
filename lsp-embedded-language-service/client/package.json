@@ -13,8 +13,8 @@
 		"vscode-languageclient": "9.0.1"
 	},
 	"devDependencies": {
-		"@types/node": "20.10.3",
-		"@types/vscode": "1.84.2"
+		"@types/node": "20.10.4",
+		"@types/vscode": "1.85.0"
 	},
 	"engines": {
 		"vscode": "1.43.0"
