@@ -1,43 +1,43 @@
 {
 	"name": "vscode-codeaction-ui-sample",
 	"displayName": "Code Action UI Sample",
-	"version": "1.0.0",
 	"description": "Sample to demonstrate code actions with UI",
+	"version": "1.0.0",
+	"author": "Microsoft Corporation",
+	"license": "MIT",
 	"keywords": [
 		"multi-root ready"
 	],
-	"license": "SEE LICENSE IN LICENSE",
-	"author": "Microsoft Corporation",
-	"main": "./client/out/extension",
-	"scripts": {
-		"clean": "rimraf client/out && rimraf server/out",
-		"compile": "tsc -b",
-		"compile:client": "tsc -b ./client/tsconfig.json",
-		"compile:server": "tsc -b ./server/tsconfig.json",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"lint": "npm run lint:client && npm run lint:server",
-		"lint:client": "eslint --config ./client/.eslintrc.json ./client/src/*.ts",
-		"lint:server": "eslint --config ./server/.eslintrc.json ./server/src/*.ts",
-		"vscode:prepublish": "npm run webpack",
-		"watch": "tsc -b -w",
-		"webpack": "npm run clean && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
-		"webpack:dev": "npm run clean && webpack --mode none --config ./client/webpack.config.js && webpack --mode none --config ./server/webpack.config.js"
+	"engines": {
+		"vscode": "^1.52.0"
 	},
 	"activationEvents": [
 		"onLanguage:plaintext"
 	],
-	"devDependencies": {
-		"@types/node": "20.10.4",
-		"@typescript-eslint/parser": "6.13.2",
-		"eslint": "8.55.0",
-		"merge-options": "3.0.4",
-		"rimraf": "5.0.5",
-		"ts-loader": "9.5.1",
-		"typescript": "5.3.3",
-		"webpack": "5.89.0",
-		"webpack-cli": "5.1.4"
+	"main": "./client/out/extension",
+	"scripts": {
+		"vscode:prepublish": "npm run webpack",
+		"webpack": "npm run clean && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
+		"webpack:dev": "npm run clean && webpack --mode none --config ./client/webpack.config.js && webpack --mode none --config ./server/webpack.config.js",
+		"compile": "tsc -b",
+		"compile:client": "tsc -b ./client/tsconfig.json",
+		"compile:server": "tsc -b ./server/tsconfig.json",
+		"watch": "tsc -b -w",
+		"lint": "npm run lint:client && npm run lint:server",
+		"lint:client": "eslint --config ./client/.eslintrc.json ./client/src/*.ts",
+		"lint:server": "eslint --config ./server/.eslintrc.json ./server/src/*.ts",
+		"clean": "rimraf client/out && rimraf server/out",
+		"postinstall": "cd client && npm install && cd ../server && npm install && cd .."
 	},
-	"engines": {
-		"vscode": "1.52.0"
+	"devDependencies": {
+		"@types/node": "^18.11.9",
+		"typescript": "^5.3.3",
+		"eslint": "^8.55.0",
+		"@typescript-eslint/parser": "^6.13.2",
+		"webpack": "^5.89.0",
+		"webpack-cli": "^5.1.4",
+		"ts-loader": "^9.5.1",
+		"merge-options": "^3.0.4",
+		"rimraf": "^5.0.5"
 	}
 }

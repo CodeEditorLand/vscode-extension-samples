@@ -1,25 +1,20 @@
 {
 	"name": "helloworld-web-sample",
 	"displayName": "helloworld-web-sample",
-	"version": "0.0.1",
-	"private": true,
 	"description": "HelloWorld example for VS Code in the browser",
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": "https://github.com/microsoft/vscode-extension-samples/helloworld-web-sample",
+	"engines": {
+		"vscode": "^1.74.0"
+	},
 	"categories": [
 		"Other"
 	],
-	"repository": "https://github.com/microsoft/vscode-extension-samples/helloworld-web-sample",
-	"license": "SEE LICENSE IN LICENSE",
-	"publisher": "vscode-samples",
+	"activationEvents": [],
 	"browser": "./dist/web/extension.js",
-	"scripts": {
-		"compile-web": "webpack",
-		"lint": "eslint src --ext ts",
-		"package-web": "webpack --mode production --devtool hidden-source-map",
-		"pretest": "npm run compile-web",
-		"test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
-		"vscode:prepublish": "npm run package-web",
-		"watch-web": "webpack --watch"
-	},
 	"contributes": {
 		"commands": [
 			{
@@ -28,24 +23,29 @@
 			}
 		]
 	},
-	"activationEvents": [],
-	"devDependencies": {
-		"@types/mocha": "10.0.6",
-		"@types/vscode": "1.85.0",
-		"@types/webpack-env": "1.18.4",
-		"@typescript-eslint/eslint-plugin": "6.13.2",
-		"@typescript-eslint/parser": "6.13.2",
-		"@vscode/test-web": "0.0.49",
-		"assert": "2.1.0",
-		"eslint": "8.55.0",
-		"mocha": "10.2.0",
-		"process": "0.11.10",
-		"ts-loader": "9.5.1",
-		"typescript": "5.3.3",
-		"webpack": "5.89.0",
-		"webpack-cli": "5.1.4"
+	"scripts": {
+		"test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+		"pretest": "npm run compile-web",
+		"vscode:prepublish": "npm run package-web",
+		"compile-web": "webpack",
+		"watch-web": "webpack --watch",
+		"package-web": "webpack --mode production --devtool hidden-source-map",
+		"lint": "eslint src --ext ts"
 	},
-	"engines": {
-		"vscode": "1.74.0"
+	"devDependencies": {
+		"@types/mocha": "^9.0.0",
+		"@types/vscode": "^1.73.0",
+		"@types/webpack-env": "^1.16.2",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"@vscode/test-web": "^0.0.22",
+		"assert": "^2.0.0",
+		"eslint": "^8.26.0",
+		"mocha": "^9.2.0",
+		"process": "^0.11.10",
+		"ts-loader": "^9.2.5",
+		"typescript": "^5.3.2",
+		"webpack": "^5.52.1",
+		"webpack-cli": "^4.8.0"
 	}
 }

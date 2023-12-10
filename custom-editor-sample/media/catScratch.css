@@ -57,7 +57,7 @@ body.vscode-dark {
 }
 
 .delete-button:before {
-	content: "delete";
+	content: 'delete';
 }
 
 .note:hover .delete-button {
