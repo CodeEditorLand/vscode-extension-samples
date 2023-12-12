@@ -1,28 +1,18 @@
-import * as vscode from "vscode";
+import * as vscode from 'vscode';
 
 export class TestView {
+
 	constructor(context: vscode.ExtensionContext) {
-		const view = vscode.window.createTreeView("testView", {
-			treeDataProvider: aNodeWithIdTreeDataProvider(),
-			showCollapseAll: true,
-		});
+		const view = vscode.window.createTreeView('testView', { treeDataProvider: aNodeWithIdTreeDataProvider(), showCollapseAll: true });
 		context.subscriptions.push(view);
-		vscode.commands.registerCommand("testView.reveal", async () => {
-			const key = await vscode.window.showInputBox({
-				placeHolder: "Type the label of the item to reveal",
-			});
+		vscode.commands.registerCommand('testView.reveal', async () => {
+			const key = await vscode.window.showInputBox({ placeHolder: 'Type the label of the item to reveal' });
 			if (key) {
-				await view.reveal(
-					{ key },
-					{ focus: true, select: false, expand: true }
-				);
+				await view.reveal({ key }, { focus: true, select: false, expand: true });
 			}
 		});
-		vscode.commands.registerCommand("testView.changeTitle", async () => {
-			const title = await vscode.window.showInputBox({
-				prompt: "Type the new title for the Test View",
-				placeHolder: view.title,
-			});
+		vscode.commands.registerCommand('testView.changeTitle', async () => {
+			const title = await vscode.window.showInputBox({ prompt: 'Type the new title for the Test View', placeHolder: view.title });
 			if (title) {
 				view.title = title;
 			}
@@ -31,33 +21,31 @@ export class TestView {
 }
 
 const tree: any = {
-	"a": {
-		"aa": {
-			"aaa": {
-				"aaaa": {
-					"aaaaa": {
-						"aaaaaa": {},
-					},
-				},
-			},
+	'a': {
+		'aa': {
+			'aaa': {
+				'aaaa': {
+					'aaaaa': {
+						'aaaaaa': {
+
+						}
+					}
+				}
+			}
 		},
-		"ab": {},
+		'ab': {}
 	},
-	"b": {
-		"ba": {},
-		"bb": {},
-	},
+	'b': {
+		'ba': {},
+		'bb': {}
+	}
 };
 const nodes: any = {};
 
-function aNodeWithIdTreeDataProvider(): vscode.TreeDataProvider<{
-	key: string;
-}> {
+function aNodeWithIdTreeDataProvider(): vscode.TreeDataProvider<{ key: string }> {
 	return {
 		getChildren: (element: { key: string }): { key: string }[] => {
-			return getChildren(element ? element.key : undefined).map((key) =>
-				getNode(key)
-			);
+			return getChildren(element ? element.key : undefined).map(key => getNode(key));
 		},
 		getTreeItem: (element: { key: string }): vscode.TreeItem => {
 			const treeItem = getTreeItem(element.key);
@@ -67,7 +55,7 @@ function aNodeWithIdTreeDataProvider(): vscode.TreeDataProvider<{
 		getParent: ({ key }: { key: string }): { key: string } | undefined => {
 			const parentKey = key.substring(0, key.length - 1);
 			return parentKey ? new Key(parentKey) : undefined;
-		},
+		}
 	};
 }
 
@@ -85,21 +73,11 @@ function getChildren(key: string | undefined): string[] {
 function getTreeItem(key: string): vscode.TreeItem {
 	const treeElement = getTreeElement(key);
 	// An example of how to use codicons in a MarkdownString in a tree item tooltip.
-	const tooltip = new vscode.MarkdownString(
-		`$(zap) Tooltip for ${key}`,
-		true
-	);
+	const tooltip = new vscode.MarkdownString(`$(zap) Tooltip for ${key}`, true);
 	return {
-		label: /**vscode.TreeItemLabel**/ <any>{
-			label: key,
-			highlights:
-				key.length > 1 ? [[key.length - 2, key.length - 1]] : void 0,
-		},
+		label: /**vscode.TreeItemLabel**/<any>{ label: key, highlights: key.length > 1 ? [[key.length - 2, key.length - 1]] : void 0 },
 		tooltip,
-		collapsibleState:
-			treeElement && Object.keys(treeElement).length
-				? vscode.TreeItemCollapsibleState.Collapsed
-				: vscode.TreeItemCollapsibleState.None,
+		collapsibleState: treeElement && Object.keys(treeElement).length ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None
 	};
 }
 
@@ -122,5 +100,5 @@ function getNode(key: string): { key: string } {
 }
 
 class Key {
-	constructor(readonly key: string) {}
+	constructor(readonly key: string) { }
 }
