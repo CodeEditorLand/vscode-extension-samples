@@ -13,7 +13,7 @@
     "url": "https://github.com/Microsoft/vscode-extension-samples/issues"
   },
   "devDependencies": {
-    "@types/vscode": "1.84.0"
+    "@types/vscode": "1.85.0"
   },
   "dependencies": {
     "vscode-languageclient": "9.0.1"

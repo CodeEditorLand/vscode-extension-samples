@@ -34,10 +34,10 @@
     "watch": "tsc -b --watch"
   },
   "devDependencies": {
-    "@types/mocha": "8.2.2",
-    "@types/node": "14.x",
-    "@types/vscode": "1.74.0",
+    "@types/mocha": "10.0.6",
+    "@types/node": "20.x",
+    "@types/vscode": "1.85.0",
     "mocha": "10.2.0",
-    "typescript": "5.3.2"
+    "typescript": "5.3.3"
   }
 }

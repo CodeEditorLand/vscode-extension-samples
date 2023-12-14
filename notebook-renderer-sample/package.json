@@ -28,14 +28,14 @@
     "test-compile": "tsc -p ./"
   },
   "devDependencies": {
-    "@types/vscode-notebook-renderer": "1.57.8",
-    "@types/webpack-env": "1.17.0",
-    "css-loader": "4.2.0",
-    "style-loader": "1.2.1",
-    "ts-loader": "9.2.2",
-    "typescript": "5.3.2",
+    "@types/vscode-notebook-renderer": "1.72.3",
+    "@types/webpack-env": "1.18.4",
+    "css-loader": "6.8.1",
+    "style-loader": "3.3.3",
+    "ts-loader": "9.5.1",
+    "typescript": "5.3.3",
     "vscode-notebook-error-overlay": "1.0.1",
-    "webpack": "5.38.1",
-    "webpack-cli": "4.7.0"
+    "webpack": "5.89.0",
+    "webpack-cli": "5.1.4"
   }
 }
