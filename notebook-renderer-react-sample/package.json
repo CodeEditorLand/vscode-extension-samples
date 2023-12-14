@@ -5,12 +5,6 @@
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
-  "engines": {
-    "vscode": "1.58.0"
-  },
-  "categories": [
-    "Other"
-  ],
   "contributes": {
     "notebookRenderer": [
       {
@@ -28,7 +22,6 @@
     "compile": "npm run compile:extension && npm run compile:client",
     "compile:extension": "tsc -b",
     "compile:client": "webpack --mode production",
-    "lint": "eslint src --ext .ts,.tsx",
     "watch": "concurrently -r \"npm:watch:*\"",
     "watch:extension": "tsc -b --watch",
     "watch:client": "webpack --mode development --watch",
@@ -43,11 +36,8 @@
     "@types/vscode": "1.58.0",
     "@types/vscode-notebook-renderer": "1.57.8",
     "@types/webpack-env": "1.16.0",
-    "@typescript-eslint/eslint-plugin": "6.7.0",
-    "@typescript-eslint/parser": "6.7.0",
     "concurrently": "5.3.0",
     "css-loader": "4.2.0",
-    "eslint": "8.26.0",
     "glob": "7.1.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",

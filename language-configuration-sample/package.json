@@ -4,12 +4,6 @@
   "description": "Language Configuration Sample",
   "version": "0.0.1",
   "publisher": "vscode-samples",
-  "engines": {
-    "vscode": "1.28.0"
-  },
-  "categories": [
-    "Programming Languages"
-  ],
   "contributes": {
     "languages": [
       {
