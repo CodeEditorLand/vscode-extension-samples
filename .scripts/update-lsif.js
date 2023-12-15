@@ -1,15 +1,17 @@
-const fs = require('fs').promises;
-const path = require('path');
+const fs = require("fs").promises;
+const path = require("path");
 
-const { samples, lspSamples } = require('./samples')
+const { samples, lspSamples } = require("./samples");
 
-const root = path.join(__dirname, '..');
+const root = path.join(__dirname, "..");
 
 async function main() {
 	const references = [];
 	for (const sample of samples) {
 		try {
-			const stat = await fs.stat(path.join(root, sample.path, 'tsconfig.json'));
+			const stat = await fs.stat(
+				path.join(root, sample.path, "tsconfig.json"),
+			);
 			if (stat.isFile()) {
 				references.push(`./${sample.path}/tsconfig.json`);
 			}
@@ -18,13 +20,17 @@ async function main() {
 		}
 	}
 	const tsconfig = {
-		compilerOptions: {
-		},
-		files: [
-		],
-		references: references.map(reference => { return { path: reference }})
-	}
-	await fs.writeFile(path.join(root, 'tsconfig.lsif.json'), JSON.stringify(tsconfig, undefined, '\t'), { encoding: 'utf8' });
+		compilerOptions: {},
+		files: [],
+		references: references.map((reference) => {
+			return { path: reference };
+		}),
+	};
+	await fs.writeFile(
+		path.join(root, "tsconfig.lsif.json"),
+		JSON.stringify(tsconfig, undefined, "\t"),
+		{ encoding: "utf8" },
+	);
 }
 
 main().catch(console.error);

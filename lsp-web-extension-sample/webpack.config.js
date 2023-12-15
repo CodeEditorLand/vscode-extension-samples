@@ -6,32 +6,32 @@
  *--------------------------------------------------------------------------------------------*/
 
 //@ts-check
-'use strict';
+"use strict";
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
 
-const path = require('path');
+const path = require("path");
 
 /** @type WebpackConfig */
 const browserClientConfig = {
-	context: path.join(__dirname, 'client'),
-	mode: 'none',
-	target: 'webworker', // web extensions run in a webworker context
+	context: path.join(__dirname, "client"),
+	mode: "none",
+	target: "webworker", // web extensions run in a webworker context
 	entry: {
-		browserClientMain: './src/browserClientMain.ts',
+		browserClientMain: "./src/browserClientMain.ts",
 	},
 	output: {
-		filename: '[name].js',
-		path: path.join(__dirname, 'client', 'dist'),
-		libraryTarget: 'commonjs',
+		filename: "[name].js",
+		path: path.join(__dirname, "client", "dist"),
+		libraryTarget: "commonjs",
 	},
 	resolve: {
-		mainFields: ['module', 'main'],
-		extensions: ['.ts', '.js'], // support ts-files and js-files
+		mainFields: ["module", "main"],
+		extensions: [".ts", ".js"], // support ts-files and js-files
 		alias: {},
 		fallback: {
-			path: require.resolve('path-browserify'),
+			path: require.resolve("path-browserify"),
 		},
 	},
 	module: {
@@ -41,38 +41,38 @@ const browserClientConfig = {
 				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'ts-loader',
+						loader: "ts-loader",
 					},
 				],
 			},
 		],
 	},
 	externals: {
-		vscode: 'commonjs vscode', // ignored because it doesn't exist
+		vscode: "commonjs vscode", // ignored because it doesn't exist
 	},
 	performance: {
 		hints: false,
 	},
-	devtool: 'source-map',
+	devtool: "source-map",
 };
 
 /** @type WebpackConfig */
 const browserServerConfig = {
-	context: path.join(__dirname, 'server'),
-	mode: 'none',
-	target: 'webworker', // web extensions run in a webworker context
+	context: path.join(__dirname, "server"),
+	mode: "none",
+	target: "webworker", // web extensions run in a webworker context
 	entry: {
-		browserServerMain: './src/browserServerMain.ts',
+		browserServerMain: "./src/browserServerMain.ts",
 	},
 	output: {
-		filename: '[name].js',
-		path: path.join(__dirname, 'server', 'dist'),
-		libraryTarget: 'var',
-		library: 'serverExportVar',
+		filename: "[name].js",
+		path: path.join(__dirname, "server", "dist"),
+		libraryTarget: "var",
+		library: "serverExportVar",
 	},
 	resolve: {
-		mainFields: ['module', 'main'],
-		extensions: ['.ts', '.js'], // support ts-files and js-files
+		mainFields: ["module", "main"],
+		extensions: [".ts", ".js"], // support ts-files and js-files
 		alias: {},
 		fallback: {
 			//path: require.resolve("path-browserify")
@@ -85,19 +85,19 @@ const browserServerConfig = {
 				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'ts-loader',
+						loader: "ts-loader",
 					},
 				],
 			},
 		],
 	},
 	externals: {
-		vscode: 'commonjs vscode', // ignored because it doesn't exist
+		vscode: "commonjs vscode", // ignored because it doesn't exist
 	},
 	performance: {
 		hints: false,
 	},
-	devtool: 'source-map',
+	devtool: "source-map",
 };
 
 module.exports = [browserClientConfig, browserServerConfig];
