@@ -1,0 +1,770 @@
+name: Node
+
+concurrency:
+    group: Node-${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    security-events: write
+    contents: write
+    pull-requests: write
+
+on:
+    workflow_dispatch:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+    workflow_call:
+
+jobs:
+    Pre-Publish:
+        runs-on: ubuntu-latest
+
+        env:
+            ADBLOCK: true
+            TELEMETRY_DISABLED: 1
+            ASTRO_TELEMETRY_DISABLED: 1
+            AUTOMATEDLAB_TELEMETRY_OPTOUT: 1
+            AZURE_CORE_COLLECT_TELEMETRY: 0
+            CHOOSENIM_NO_ANALYTICS: 1
+            DIEZ_DO_NOT_TRACK: 1
+            DO_NOT_TRACK: 1
+            DOTNET_CLI_TELEMETRY_OPTOUT: 1
+            DOTNET_INTERACTIVE_CLI_TELEMETRY_OPTOUT: 1
+            ET_NO_TELEMETRY: 1
+            GATSBY_TELEMETRY_DISABLED: 1
+            GATSBY_TELEMETRY_OPT_OUT: 1
+            GATSBY_TELEMETRY_OPTOUT: 1
+            HASURA_GRAPHQL_ENABLE_TELEMETRY: false
+            HINT_TELEMETRY: off
+            HOMEBREW_NO_ANALYTICS: 1
+            INFLUXD_REPORTING_DISABLED: true
+            ITERATIVE_DO_NOT_TRACK: 1
+            NEXT_TELEMETRY_DEBUG: 1
+            NEXT_TELEMETRY_DISABLED: 1
+            NG_CLI_ANALYTICS: false
+            NUXT_TELEMETRY_DISABLED: 1
+            PIN_DO_NOT_TRACK: 1
+            POWERSHELL_TELEMETRY_OPTOUT: 1
+            SAM_CLI_TELEMETRY: 0
+            STNOUPGRADE: 1
+            STRIPE_CLI_TELEMETRY_OPTOUT: 1
+
+        strategy:
+            matrix:
+                node-version: [18, 19, 20]
+
+        steps:
+            - uses: actions/checkout@v4.1.1
+
+            - uses: pnpm/action-setup@v2.4.0
+              with:
+                  version: 8.6.12
+                  run_install: |
+                      - recursive: true
+                        args: [
+                          --link-workspace-packages=true,
+                          --lockfile-only,
+                          --prefer-frozen-lockfile=false,
+                          --shamefully-hoist=false,
+                          --shared-workspace-lockfile=true,
+                          --strict-peer-dependencies=false,
+                          --unsafe-perm=true
+                        ]
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./authenticationprovider-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./authenticationprovider-sample
+
+            - run: pnpm run test
+              working-directory: ./authenticationprovider-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./basic-multi-root-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./basic-multi-root-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./call-hierarchy-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./call-hierarchy-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./chat-agent-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./chat-agent-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./code-actions-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./code-actions-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./codelens-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./codelens-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./comment-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./comment-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./completions-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./completions-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./configuration-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./configuration-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./contentprovider-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./contentprovider-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./custom-editor-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./custom-editor-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./decorator-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./decorator-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./diagnostic-related-information-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./diagnostic-related-information-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./document-editing-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./document-editing-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./document-paste/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./document-paste
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./drop-on-document/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./drop-on-document
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./extension-terminal-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./extension-terminal-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./fsconsumer-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./fsconsumer-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./fsprovider-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./fsprovider-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./getting-started-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./getting-started-sample
+
+            - run: pnpm run test
+              working-directory: ./getting-started-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./github-authentication-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./github-authentication-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./helloworld-minimal-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./helloworld-minimal-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./helloworld-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./helloworld-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./helloworld-web-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./helloworld-web-sample
+
+            - run: pnpm run test
+              working-directory: ./helloworld-web-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./inline-completions/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./inline-completions
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./jupyter-server-provider-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./jupyter-server-provider-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./l10n-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./l10n-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-embedded-language-service/client/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-embedded-language-service/client
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-embedded-language-service/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-embedded-language-service
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-embedded-language-service/server/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-embedded-language-service/server
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-embedded-request-forwarding/client/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-embedded-request-forwarding/client
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-embedded-request-forwarding/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-embedded-request-forwarding
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-embedded-request-forwarding/server/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-embedded-request-forwarding/server
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-log-streaming-sample/client/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-log-streaming-sample/client
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-log-streaming-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-log-streaming-sample
+
+            - run: pnpm run test
+              working-directory: ./lsp-log-streaming-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-log-streaming-sample/server/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-log-streaming-sample/server
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-multi-server-sample/client/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-multi-server-sample/client
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-multi-server-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-multi-server-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-multi-server-sample/server/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-multi-server-sample/server
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-sample/client/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-sample/client
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-sample
+
+            - run: pnpm run test
+              working-directory: ./lsp-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-sample/server/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-sample/server
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-user-input-sample/client/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-user-input-sample/client
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-user-input-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-user-input-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-user-input-sample/server/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-user-input-sample/server
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-web-extension-sample/client/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-web-extension-sample/client
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-web-extension-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-web-extension-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./lsp-web-extension-sample/server/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./lsp-web-extension-sample/server
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./nodefs-provider-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./nodefs-provider-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./notebook-extend-markdown-renderer-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./notebook-extend-markdown-renderer-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./notebook-renderer-react-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./notebook-renderer-react-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./notebook-renderer-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./notebook-renderer-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./notebook-serializer-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./notebook-serializer-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./notifications-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./notifications-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./product-icon-theme-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./product-icon-theme-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./progress-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./progress-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./proposed-api-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./proposed-api-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./quickinput-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./quickinput-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./semantic-tokens-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./semantic-tokens-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./source-control-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./source-control-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./statusbar-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./statusbar-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./tabs-api-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./tabs-api-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./task-provider-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./task-provider-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./telemetry-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./telemetry-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./terminal-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./terminal-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./theme-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./theme-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./tree-view-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./tree-view-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./uri-handler-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./uri-handler-sample
+
+            - run: pnpm run test
+              working-directory: ./uri-handler-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./vim-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./vim-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./virtual-document-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./virtual-document-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./webpack-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./webpack-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./webview-codicons-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./webview-codicons-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./webview-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./webview-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./webview-view-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./webview-view-sample
+
+            - uses: actions/setup-node@v4.0.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./welcome-view-content-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./welcome-view-content-sample
+
+            - run: pnpm run test
+              working-directory: ./welcome-view-content-sample
