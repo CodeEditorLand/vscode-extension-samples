@@ -1,7 +1,7 @@
 // @ts-check
 
 // This script is run within the webview itself
-(function () {
+(() => {
 	// @ts-ignore
 	const vscode = acquireVsCodeApi();
 
@@ -11,7 +11,7 @@
 	class Stroke {
 		constructor(
 			/** @type {string} */ color,
-			/** @type {Array<[number, number]> | undefined} */ stroke
+			/** @type {Array<[number, number]> | undefined} */ stroke,
 		) {
 			this.color = color;
 			/** @type {Array<[number, number]>} */
@@ -96,7 +96,7 @@
 				colorButton.addEventListener("click", (e) => {
 					e.stopPropagation();
 					colorButtons.forEach((button) =>
-						button.classList.remove("active")
+						button.classList.remove("active"),
 					);
 					colorButton.classList.add("active");
 					this.drawingColor = colorButton.dataset["color"];
@@ -171,7 +171,7 @@
 				0,
 				0,
 				this.drawingCanvas.width,
-				this.drawingCanvas.height
+				this.drawingCanvas.height,
 			);
 			for (const stroke of this.strokes) {
 				this.drawingCtx.strokeStyle = stroke.color;
@@ -261,7 +261,7 @@
 			}
 			case "update": {
 				const strokes = body.edits.map(
-					(edit) => new Stroke(edit.color, edit.stroke)
+					(edit) => new Stroke(edit.color, edit.stroke),
 				);
 				await editor.reset(body.content, strokes);
 				return;

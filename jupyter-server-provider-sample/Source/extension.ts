@@ -1,3 +1,4 @@
+import { Jupyter } from "@vscode/jupyter-extension";
 import {
 	CancellationError,
 	CancellationToken,
@@ -9,7 +10,6 @@ import {
 	extensions,
 	window,
 } from "vscode";
-import { Jupyter } from "@vscode/jupyter-extension";
 import { findLocallyRunningServers } from "./jupyter";
 
 export function activate(context: ExtensionContext) {
@@ -27,11 +27,11 @@ export function activate(context: ExtensionContext) {
 		{
 			provideJupyterServers: () => provideJupyterServers("lab"),
 			resolveJupyterServer: (server) => server,
-		}
+		},
 	);
 	// Link to documentation explaining this Jupyter Collection is optional.
 	jupyterLab.documentation = Uri.parse(
-		"https://github.com/microsoft/vscode-jupyter-hub/wiki/Connecting-to-JupyterHub-from-VS-Code"
+		"https://github.com/microsoft/vscode-jupyter-hub/wiki/Connecting-to-JupyterHub-from-VS-Code",
 	);
 	context.subscriptions.push(jupyterLab);
 	// // Commands are optional.
@@ -123,7 +123,7 @@ export function activate(context: ExtensionContext) {
 		{
 			provideJupyterServers: () => provideJupyterServers("notebook"),
 			resolveJupyterServer: (server) => server,
-		}
+		},
 	);
 	context.subscriptions.push(jupyterNotebook);
 	// Commands are optional.
@@ -161,7 +161,7 @@ async function provideJupyterServers(type: "lab" | "notebook") {
 async function startJupyterInTerminal(
 	type: "lab" | "notebook",
 	options: { emptyToken: boolean; allowOtherWebsites: boolean } | undefined,
-	token: CancellationToken
+	token: CancellationToken,
 ) {
 	return await window.withProgress(
 		{
@@ -175,7 +175,7 @@ async function startJupyterInTerminal(
 			const servers = await findLocallyRunningServers(type);
 			const existingPids = new Set(servers.map((s) => s.pid));
 			const terminal = window.createTerminal(
-				type === "lab" ? "JupyterLab" : "Jupyter Notebook"
+				type === "lab" ? "JupyterLab" : "Jupyter Notebook",
 			);
 			terminal.show();
 			const args: string[] = [type, "--no-browser"];
@@ -190,7 +190,7 @@ async function startJupyterInTerminal(
 			await new Promise((resolve) => setTimeout(resolve, 5_000));
 
 			const newServers = (await findLocallyRunningServers(type)).filter(
-				(s) => !existingPids.has(s.pid)
+				(s) => !existingPids.has(s.pid),
 			);
 			if (token.isCancellationRequested) {
 				return;
@@ -210,8 +210,8 @@ async function startJupyterInTerminal(
 			// Or the terminal isn't configured correctly.
 			// Or there are delays in starting Jupyter.
 			window.showInformationMessage(
-				"Timeout waiting for Jupyter to start in the terminal (check terminal output)"
+				"Timeout waiting for Jupyter to start in the terminal (check terminal output)",
 			);
-		}
+		},
 	);
 }

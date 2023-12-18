@@ -1,14 +1,14 @@
+import { basename } from "path";
 import {
 	CancellationToken,
+	Disposable,
+	Event,
+	EventEmitter,
 	ProviderResult,
 	TextDocumentContentProvider,
-	Event,
 	Uri,
-	EventEmitter,
-	Disposable,
 } from "vscode";
-import { toExtension, JSFIDDLE_SCHEME, Fiddle } from "./fiddleRepository";
-import { basename } from "path";
+import { Fiddle, JSFIDDLE_SCHEME, toExtension } from "./fiddleRepository";
 
 /**
  * Provides the content of the JS Fiddle documents as fetched from the server i.e.  without the local edits.
@@ -33,19 +33,19 @@ export class JSFiddleDocumentContentProvider
 
 		// let's assume all 3 documents actually changed and notify the quick-diff
 		this._onDidChange.fire(
-			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.html`)
+			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.html`),
 		);
 		this._onDidChange.fire(
-			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.css`)
+			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.css`),
 		);
 		this._onDidChange.fire(
-			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.js`)
+			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.js`),
 		);
 	}
 
 	provideTextDocumentContent(
 		uri: Uri,
-		token: CancellationToken
+		token: CancellationToken,
 	): ProviderResult<string> {
 		if (token.isCancellationRequested) {
 			return "Canceled";

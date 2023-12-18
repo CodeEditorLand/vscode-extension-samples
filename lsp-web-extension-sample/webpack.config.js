@@ -6,7 +6,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 //@ts-check
-"use strict";
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/

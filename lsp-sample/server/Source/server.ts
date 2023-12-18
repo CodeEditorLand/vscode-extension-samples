@@ -3,18 +3,18 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 import {
-	createConnection,
-	TextDocuments,
-	Diagnostic,
-	DiagnosticSeverity,
-	ProposedFeatures,
-	InitializeParams,
-	DidChangeConfigurationNotification,
 	CompletionItem,
 	CompletionItemKind,
+	Diagnostic,
+	DiagnosticSeverity,
+	DidChangeConfigurationNotification,
+	InitializeParams,
+	InitializeResult,
+	ProposedFeatures,
 	TextDocumentPositionParams,
 	TextDocumentSyncKind,
-	InitializeResult,
+	TextDocuments,
+	createConnection,
 } from "vscode-languageserver/node";
 
 import { TextDocument } from "vscode-languageserver-textdocument";
@@ -71,7 +71,7 @@ connection.onInitialized(() => {
 		// Register for all configuration changes.
 		connection.client.register(
 			DidChangeConfigurationNotification.type,
-			undefined
+			undefined,
 		);
 	}
 	if (hasWorkspaceFolderCapability) {
@@ -208,7 +208,7 @@ connection.onCompletion(
 				data: 2,
 			},
 		];
-	}
+	},
 );
 
 // This handler resolves additional information for the item selected in

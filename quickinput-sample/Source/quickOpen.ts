@@ -3,9 +3,9 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as path from "path";
 import * as cp from "child_process";
-import { Uri, window, Disposable } from "vscode";
+import * as path from "path";
+import { Disposable, Uri, window } from "vscode";
 import { QuickPickItem } from "vscode";
 import { workspace } from "vscode";
 
@@ -27,10 +27,7 @@ class FileItem implements QuickPickItem {
 	label: string;
 	description: string;
 
-	constructor(
-		public base: Uri,
-		public uri: Uri
-	) {
+	constructor(public base: Uri, public uri: Uri) {
 		this.label = path.basename(uri.fsPath);
 		this.description = path.dirname(path.relative(base.fsPath, uri.fsPath));
 	}
@@ -41,10 +38,7 @@ class MessageItem implements QuickPickItem {
 	description = "";
 	detail: string;
 
-	constructor(
-		public base: Uri,
-		public message: string
-	) {
+	constructor(public base: Uri, public message: string) {
 		this.label = message.replace(/\r?\n/g, " ");
 		this.detail = base.fsPath;
 	}
@@ -91,11 +85,11 @@ async function pickFile() {
 															Uri.file(
 																path.join(
 																	cwd,
-																	relative
-																)
-															)
-														)
-												)
+																	relative,
+																),
+															),
+														),
+												),
 										);
 									}
 									if (
@@ -107,7 +101,7 @@ async function pickFile() {
 										input.items = input.items.concat([
 											new MessageItem(
 												Uri.file(cwd),
-												err.message
+												err.message,
 											),
 										]);
 									}
@@ -116,7 +110,7 @@ async function pickFile() {
 										input.busy = false;
 									}
 								}
-							}
+							},
 						);
 						return rg;
 					});
@@ -132,7 +126,7 @@ async function pickFile() {
 					rgs.forEach((rg) => rg.kill());
 					resolve(undefined);
 					input.dispose();
-				})
+				}),
 			);
 			input.show();
 		});

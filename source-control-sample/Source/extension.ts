@@ -1,13 +1,13 @@
+import * as path from "path";
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { JSFIDDLE_SCHEME } from "./fiddleRepository";
-import { FiddleSourceControl, CONFIGURATION_FILE } from "./fiddleSourceControl";
-import { JSFiddleDocumentContentProvider } from "./fiddleDocumentContentProvider";
-import * as path from "path";
 import * as afs from "./afs";
 import { FiddleConfiguration, parseFiddleId } from "./fiddleConfiguration";
-import { firstIndex, UTF8 } from "./util";
+import { JSFiddleDocumentContentProvider } from "./fiddleDocumentContentProvider";
+import { JSFIDDLE_SCHEME } from "./fiddleRepository";
+import { CONFIGURATION_FILE, FiddleSourceControl } from "./fiddleSourceControl";
+import { UTF8, firstIndex } from "./util";
 
 const SOURCE_CONTROL_OPEN_COMMAND = "extension.source-control.open";
 let jsFiddleDocumentContentProvider: JSFiddleDocumentContentProvider;
@@ -17,7 +17,7 @@ const fiddleSourceControlRegister = new Map<vscode.Uri, FiddleSourceControl>();
 // your extension is activated the very first time the command is executed
 export async function activate(context: vscode.ExtensionContext) {
 	console.log(
-		'Congratulations, your extension "source-control-sample" is now active!'
+		'Congratulations, your extension "source-control-sample" is now active!',
 	);
 
 	jsFiddleDocumentContentProvider = new JSFiddleDocumentContentProvider();
@@ -33,15 +33,15 @@ export async function activate(context: vscode.ExtensionContext) {
 		SOURCE_CONTROL_OPEN_COMMAND,
 		(fiddleId?: string, workspaceUri?: vscode.Uri) => {
 			tryOpenFiddle(context, fiddleId, workspaceUri);
-		}
+		},
 	);
 	context.subscriptions.push(openCommand);
 
 	context.subscriptions.push(
 		vscode.workspace.registerTextDocumentContentProvider(
 			JSFIDDLE_SCHEME,
-			jsFiddleDocumentContentProvider
-		)
+			jsFiddleDocumentContentProvider,
+		),
 	);
 
 	context.subscriptions.push(
@@ -53,8 +53,8 @@ export async function activate(context: vscode.ExtensionContext) {
 				if (sourceControl) {
 					sourceControl.refresh();
 				}
-			}
-		)
+			},
+		),
 	);
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
@@ -65,8 +65,8 @@ export async function activate(context: vscode.ExtensionContext) {
 				if (sourceControl) {
 					sourceControl.resetFilesToCheckedOutVersion();
 				}
-			}
-		)
+			},
+		),
 	);
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
@@ -77,8 +77,8 @@ export async function activate(context: vscode.ExtensionContext) {
 				if (sourceControl) {
 					sourceControl.commitAll();
 				}
-			}
-		)
+			},
+		),
 	);
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
@@ -89,8 +89,8 @@ export async function activate(context: vscode.ExtensionContext) {
 				if (sourceControl) {
 					sourceControl.tryCheckout(newVersion);
 				}
-			}
-		)
+			},
+		),
 	);
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
@@ -101,8 +101,8 @@ export async function activate(context: vscode.ExtensionContext) {
 				if (sourceControl) {
 					sourceControl.openInBrowser();
 				}
-			}
-		)
+			},
+		),
 	);
 
 	context.subscriptions.push(
@@ -120,12 +120,12 @@ export async function activate(context: vscode.ExtensionContext) {
 					unregisterFiddleSourceControl(wf.uri);
 				});
 			}
-		})
+		}),
 	);
 }
 
 async function pickSourceControl(
-	sourceControlPane: vscode.SourceControl
+	sourceControlPane: vscode.SourceControl,
 ): Promise<FiddleSourceControl | undefined> {
 	if (sourceControlPane) {
 		return fiddleSourceControlRegister.get(sourceControlPane.rootUri);
@@ -139,19 +139,19 @@ async function pickSourceControl(
 		return [...fiddleSourceControlRegister.values()][0];
 	} else {
 		const picks = [...fiddleSourceControlRegister.values()].map(
-			(fsc) => new RepositoryPick(fsc)
+			(fsc) => new RepositoryPick(fsc),
 		);
 
 		if (vscode.window.activeTextEditor) {
 			const activeWorkspaceFolder = vscode.workspace.getWorkspaceFolder(
-				vscode.window.activeTextEditor.document.uri
+				vscode.window.activeTextEditor.document.uri,
 			);
 			const activeSourceControl =
 				activeWorkspaceFolder &&
 				fiddleSourceControlRegister.get(activeWorkspaceFolder.uri);
 			const activeIndex = firstIndex(
 				picks,
-				(pick) => pick.fiddleSourceControl === activeSourceControl
+				(pick) => pick.fiddleSourceControl === activeSourceControl,
 			);
 
 			// if there is an active editor, move its folder to be the first in the pick list
@@ -170,7 +170,7 @@ async function pickSourceControl(
 async function tryOpenFiddle(
 	context: vscode.ExtensionContext,
 	fiddleId?: string,
-	workspaceUri?: vscode.Uri
+	workspaceUri?: vscode.Uri,
 ): Promise<void> {
 	try {
 		await openFiddle(context, fiddleId, workspaceUri);
@@ -183,11 +183,11 @@ async function tryOpenFiddle(
 async function openFiddle(
 	context: vscode.ExtensionContext,
 	fiddleId?: string,
-	workspaceUri?: vscode.Uri
+	workspaceUri?: vscode.Uri,
 ) {
 	if (workspaceUri && fiddleSourceControlRegister.has(workspaceUri)) {
 		vscode.window.showErrorMessage(
-			"Another Fiddle was already open in this workspace. Open a new workspace first."
+			"Another Fiddle was already open in this workspace. Open a new workspace first.",
 		);
 	}
 
@@ -216,7 +216,7 @@ async function openFiddle(
 		fiddleId,
 		context,
 		workspaceFolder,
-		true
+		true,
 	);
 
 	registerFiddleSourceControl(fiddleSourceControl, context);
@@ -224,50 +224,50 @@ async function openFiddle(
 }
 
 async function showFiddleInEditor(
-	fiddleSourceControl: FiddleSourceControl
+	fiddleSourceControl: FiddleSourceControl,
 ): Promise<void> {
 	// open the 3 fiddle parts in 3 view columns
 	await openDocumentInColumn(
 		fiddleSourceControl.getRepository().createLocalResourcePath("html"),
-		vscode.ViewColumn.One
+		vscode.ViewColumn.One,
 	);
 	await openDocumentInColumn(
 		fiddleSourceControl.getRepository().createLocalResourcePath("js"),
-		vscode.ViewColumn.Two
+		vscode.ViewColumn.Two,
 	);
 	await openDocumentInColumn(
 		fiddleSourceControl.getRepository().createLocalResourcePath("css"),
-		vscode.ViewColumn.Three
+		vscode.ViewColumn.Three,
 	);
 }
 
 function registerFiddleSourceControl(
 	fiddleSourceControl: FiddleSourceControl,
-	context: vscode.ExtensionContext
+	context: vscode.ExtensionContext,
 ) {
 	// update the fiddle document content provider with the latest content
 	jsFiddleDocumentContentProvider.updated(fiddleSourceControl.getFiddle());
 
 	// every time the repository is updated with new fiddle version, notify the content provider
 	fiddleSourceControl.onRepositoryChange((fiddle) =>
-		jsFiddleDocumentContentProvider.updated(fiddle)
+		jsFiddleDocumentContentProvider.updated(fiddle),
 	);
 
 	if (
 		fiddleSourceControlRegister.has(
-			fiddleSourceControl.getWorkspaceFolder().uri
+			fiddleSourceControl.getWorkspaceFolder().uri,
 		)
 	) {
 		// the folder was already under source control
 		const previousSourceControl = fiddleSourceControlRegister.get(
-			fiddleSourceControl.getWorkspaceFolder().uri
+			fiddleSourceControl.getWorkspaceFolder().uri,
 		)!;
 		previousSourceControl.dispose();
 	}
 
 	fiddleSourceControlRegister.set(
 		fiddleSourceControl.getWorkspaceFolder().uri,
-		fiddleSourceControl
+		fiddleSourceControl,
 	);
 
 	context.subscriptions.push(fiddleSourceControl);
@@ -288,7 +288,7 @@ function unregisterFiddleSourceControl(folderUri: vscode.Uri): void {
  * @param context extension context
  */
 async function initializeFromConfigurationFile(
-	context: vscode.ExtensionContext
+	context: vscode.ExtensionContext,
 ): Promise<void> {
 	if (!vscode.workspace.workspaceFolders) {
 		return;
@@ -296,14 +296,14 @@ async function initializeFromConfigurationFile(
 
 	const folderPromises = vscode.workspace.workspaceFolders.map(
 		async (folder) =>
-			await initializeFolderFromConfigurationFile(folder, context)
+			await initializeFolderFromConfigurationFile(folder, context),
 	);
 	await Promise.all(folderPromises);
 }
 
 async function initializeFolderFromConfigurationFile(
 	folder: vscode.WorkspaceFolder,
-	context: vscode.ExtensionContext
+	context: vscode.ExtensionContext,
 ): Promise<void> {
 	const configurationPath = path.join(folder.uri.fsPath, CONFIGURATION_FILE);
 
@@ -318,7 +318,7 @@ async function initializeFolderFromConfigurationFile(
 			fiddleConfiguration,
 			folder,
 			context,
-			!fiddleConfiguration.downloaded
+			!fiddleConfiguration.downloaded,
 		);
 		registerFiddleSourceControl(fiddleSourceControl, context);
 		if (!fiddleConfiguration.downloaded) {
@@ -330,7 +330,7 @@ async function initializeFolderFromConfigurationFile(
 
 async function selectWorkspaceFolder(
 	context: vscode.ExtensionContext,
-	fiddleId: string
+	fiddleId: string,
 ): Promise<vscode.WorkspaceFolder | undefined> {
 	let selectedFolder: vscode.WorkspaceFolder | undefined;
 	let workspaceFolderUri: vscode.Uri | undefined;
@@ -358,7 +358,7 @@ async function selectWorkspaceFolder(
 					canPickMany: false,
 					ignoreFocusOut: true,
 					placeHolder: "Pick workspace folder to create files in.",
-				});
+			  });
 
 	if (!selectedFolderPick) {
 		return null;
@@ -391,7 +391,7 @@ async function selectWorkspaceFolder(
 			firstIndex(
 				vscode.workspace.workspaceFolders,
 				(folder1: any) =>
-					folder1.uri.toString() === workspaceFolderUri!.toString()
+					folder1.uri.toString() === workspaceFolderUri!.toString(),
 			);
 	}
 
@@ -404,7 +404,7 @@ async function selectWorkspaceFolder(
 	// save folder configuration
 	FiddleSourceControl.saveConfiguration(
 		workspaceFolderUri,
-		fiddleConfiguration
+		fiddleConfiguration,
 	);
 
 	if (
@@ -425,7 +425,7 @@ async function selectWorkspaceFolder(
 			vscode.workspace.updateWorkspaceFolders(
 				workspaceFolderIndex,
 				workSpacesToReplace,
-				{ uri: workspaceFolderUri }
+				{ uri: workspaceFolderUri },
 			);
 		}
 	} else if (folderOpeningMode === FolderOpeningMode.OpenFolder) {
@@ -436,7 +436,7 @@ async function selectWorkspaceFolder(
 }
 
 async function clearWorkspaceFolder(
-	workspaceFolderUri: vscode.Uri
+	workspaceFolderUri: vscode.Uri,
 ): Promise<boolean> {
 	if (!workspaceFolderUri) {
 		return undefined;
@@ -444,7 +444,7 @@ async function clearWorkspaceFolder(
 
 	// check if the workspace is empty, or clear it
 	const existingWorkspaceFiles: string[] = await afs.readdir(
-		workspaceFolderUri.fsPath
+		workspaceFolderUri.fsPath,
 	);
 	if (existingWorkspaceFiles.length > 0) {
 		const answer = await vscode.window.showQuickPick(["Yes", "No"], {
@@ -458,8 +458,8 @@ async function clearWorkspaceFolder(
 			existingWorkspaceFiles.forEach(
 				async (filename) =>
 					await afs.unlink(
-						path.join(workspaceFolderUri.fsPath, filename)
-					)
+						path.join(workspaceFolderUri.fsPath, filename),
+					),
 			);
 		}
 	}
@@ -477,7 +477,7 @@ class RepositoryPick implements vscode.QuickPickItem {
 
 async function openDocumentInColumn(
 	fileName: string,
-	column: vscode.ViewColumn
+	column: vscode.ViewColumn,
 ): Promise<void> {
 	const uri = vscode.Uri.file(fileName);
 
@@ -495,7 +495,7 @@ abstract class WorkspaceFolderPick implements vscode.QuickPickItem {
 class ExistingWorkspaceFolderPick extends WorkspaceFolderPick {
 	constructor(
 		public readonly workspaceFolder: vscode.WorkspaceFolder,
-		private content: string[]
+		private content: string[],
 	) {
 		super(FolderOpeningMode.AddToWorkspace);
 	}
@@ -516,24 +516,21 @@ class ExistingWorkspaceFolderPick extends WorkspaceFolderPick {
 }
 
 class NewWorkspaceFolderPick extends WorkspaceFolderPick {
-	constructor(
-		public label: string,
-		folderOpeningMode: FolderOpeningMode
-	) {
+	constructor(public label: string, folderOpeningMode: FolderOpeningMode) {
 		super(folderOpeningMode);
 	}
 }
 
 enum FolderOpeningMode {
-	AddToWorkspace,
-	OpenFolder,
+	AddToWorkspace = 0,
+	OpenFolder = 1,
 }
 
 const newWorkspaceFolderPick = new NewWorkspaceFolderPick(
 	"Select/create a local folder to add to this workspace...",
-	FolderOpeningMode.AddToWorkspace
+	FolderOpeningMode.AddToWorkspace,
 );
 const newFolderPick = new NewWorkspaceFolderPick(
 	"Select/create a local folder...",
-	FolderOpeningMode.OpenFolder
+	FolderOpeningMode.OpenFolder,
 );

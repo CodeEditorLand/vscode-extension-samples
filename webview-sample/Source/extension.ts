@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("catCoding.start", () => {
 			CatCodingPanel.createOrShow(context.extensionUri);
-		})
+		}),
 	);
 
 	context.subscriptions.push(
@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 			if (CatCodingPanel.currentPanel) {
 				CatCodingPanel.currentPanel.doRefactor();
 			}
-		})
+		}),
 	);
 
 	if (vscode.window.registerWebviewPanelSerializer) {
@@ -26,12 +26,12 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.registerWebviewPanelSerializer(CatCodingPanel.viewType, {
 			async deserializeWebviewPanel(
 				webviewPanel: vscode.WebviewPanel,
-				state: any
+				state: any,
 			) {
 				console.log(`Got state: ${state}`);
 				// Reset the webview options so we use latest uri for `localResourceRoots`.
 				webviewPanel.webview.options = getWebviewOptions(
-					context.extensionUri
+					context.extensionUri,
 				);
 				CatCodingPanel.revive(webviewPanel, context.extensionUri);
 			},
@@ -80,7 +80,7 @@ class CatCodingPanel {
 			CatCodingPanel.viewType,
 			"Cat Coding",
 			column || vscode.ViewColumn.One,
-			getWebviewOptions(extensionUri)
+			getWebviewOptions(extensionUri),
 		);
 
 		CatCodingPanel.currentPanel = new CatCodingPanel(panel, extensionUri);
@@ -109,7 +109,7 @@ class CatCodingPanel {
 				}
 			},
 			null,
-			this._disposables
+			this._disposables,
 		);
 
 		// Handle messages from the webview
@@ -122,7 +122,7 @@ class CatCodingPanel {
 				}
 			},
 			null,
-			this._disposables
+			this._disposables,
 		);
 	}
 
@@ -170,7 +170,7 @@ class CatCodingPanel {
 		this._panel.title = catName;
 		this._panel.webview.html = this._getHtmlForWebview(
 			webview,
-			cats[catName]
+			cats[catName],
 		);
 	}
 
@@ -179,7 +179,7 @@ class CatCodingPanel {
 		const scriptPathOnDisk = vscode.Uri.joinPath(
 			this._extensionUri,
 			"media",
-			"main.js"
+			"main.js",
 		);
 
 		// And the uri we use to load this script in the webview
@@ -189,12 +189,12 @@ class CatCodingPanel {
 		const styleResetPath = vscode.Uri.joinPath(
 			this._extensionUri,
 			"media",
-			"reset.css"
+			"reset.css",
 		);
 		const stylesPathMainPath = vscode.Uri.joinPath(
 			this._extensionUri,
 			"media",
-			"vscode.css"
+			"vscode.css",
 		);
 
 		// Uri to load styles into webview

@@ -1,6 +1,6 @@
 export function firstIndex<T>(
 	array: readonly T[],
-	fn: (t: T) => boolean
+	fn: (t: T) => boolean,
 ): number {
 	for (let i = 0; i < array.length; i++) {
 		if (fn(array[i])) {

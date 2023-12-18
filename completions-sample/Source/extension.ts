@@ -12,24 +12,24 @@ export function activate(context: vscode.ExtensionContext) {
 				document: vscode.TextDocument,
 				position: vscode.Position,
 				token: vscode.CancellationToken,
-				context: vscode.CompletionContext
+				context: vscode.CompletionContext,
 			) {
 				// a simple completion item which inserts `Hello World!`
 				const simpleCompletion = new vscode.CompletionItem(
-					"Hello World!"
+					"Hello World!",
 				);
 
 				// a completion item that inserts its text as snippet,
 				// the `insertText`-property is a `SnippetString` which will be
 				// honored by the editor.
 				const snippetCompletion = new vscode.CompletionItem(
-					"Good part of the day"
+					"Good part of the day",
 				);
 				snippetCompletion.insertText = new vscode.SnippetString(
-					"Good ${1|morning,afternoon,evening|}. It is ${1}, right?"
+					"Good ${1|morning,afternoon,evening|}. It is ${1}, right?",
 				);
 				const docs: any = new vscode.MarkdownString(
-					"Inserts a snippet that lets you select [link](x.ts)."
+					"Inserts a snippet that lets you select [link](x.ts).",
 				);
 				snippetCompletion.documentation = docs;
 				docs.baseUri = vscode.Uri.parse("http://example.com/a/b/c/");
@@ -38,7 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
 				// the `commitCharacters`-property is set which means that the completion will
 				// be inserted and then the character will be typed.
 				const commitCharacterCompletion = new vscode.CompletionItem(
-					"console"
+					"console",
 				);
 				commitCharacterCompletion.commitCharacters = ["."];
 				commitCharacterCompletion.documentation =
@@ -64,7 +64,7 @@ export function activate(context: vscode.ExtensionContext) {
 					commandCompletion,
 				];
 			},
-		}
+		},
 	);
 
 	const provider2 = vscode.languages.registerCompletionItemProvider(
@@ -72,7 +72,7 @@ export function activate(context: vscode.ExtensionContext) {
 		{
 			provideCompletionItems(
 				document: vscode.TextDocument,
-				position: vscode.Position
+				position: vscode.Position,
 			) {
 				// get all text until the `position` and check if it reads `console.`
 				// and if so then complete if `log`, `warn`, and `error`
@@ -86,20 +86,20 @@ export function activate(context: vscode.ExtensionContext) {
 				return [
 					new vscode.CompletionItem(
 						"log",
-						vscode.CompletionItemKind.Method
+						vscode.CompletionItemKind.Method,
 					),
 					new vscode.CompletionItem(
 						"warn",
-						vscode.CompletionItemKind.Method
+						vscode.CompletionItemKind.Method,
 					),
 					new vscode.CompletionItem(
 						"error",
-						vscode.CompletionItemKind.Method
+						vscode.CompletionItemKind.Method,
 					),
 				];
 			},
 		},
-		"." // triggered whenever a '.' is being typed
+		".", // triggered whenever a '.' is being typed
 	);
 
 	context.subscriptions.push(provider1, provider2);

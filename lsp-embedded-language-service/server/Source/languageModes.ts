@@ -7,18 +7,18 @@ import { getCSSLanguageService } from "vscode-css-languageservice";
 import {
 	CompletionList,
 	Diagnostic,
-	getLanguageService as getHTMLLanguageService,
 	Position,
 	Range,
+	getLanguageService as getHTMLLanguageService,
 } from "vscode-html-languageservice";
 import { TextDocument } from "vscode-languageserver-textdocument";
-import { getCSSMode } from "./modes/cssMode";
-import { getDocumentRegions, HTMLDocumentRegions } from "./embeddedSupport";
-import { getHTMLMode } from "./modes/htmlMode";
+import { HTMLDocumentRegions, getDocumentRegions } from "./embeddedSupport";
 import {
-	getLanguageModelCache,
 	LanguageModelCache,
+	getLanguageModelCache,
 } from "./languageModelCache";
+import { getCSSMode } from "./modes/cssMode";
+import { getHTMLMode } from "./modes/htmlMode";
 
 export * from "vscode-html-languageservice";
 
@@ -33,7 +33,7 @@ export interface LanguageMode {
 export interface LanguageModes {
 	getModeAtPosition(
 		document: TextDocument,
-		position: Position
+		position: Position,
 	): LanguageMode | undefined;
 	getModesInRange(document: TextDocument, range: Range): LanguageModeRange[];
 	getAllModes(): LanguageMode[];
@@ -55,7 +55,7 @@ export function getLanguageModes(): LanguageModes {
 	const documentRegions = getLanguageModelCache<HTMLDocumentRegions>(
 		10,
 		60,
-		(document) => getDocumentRegions(htmlLanguageService, document)
+		(document) => getDocumentRegions(htmlLanguageService, document),
 	);
 
 	let modelCaches: LanguageModelCache<any>[] = [];
@@ -68,7 +68,7 @@ export function getLanguageModes(): LanguageModes {
 	return {
 		getModeAtPosition(
 			document: TextDocument,
-			position: Position
+			position: Position,
 		): LanguageMode | undefined {
 			const languageId = documentRegions
 				.get(document)
@@ -80,7 +80,7 @@ export function getLanguageModes(): LanguageModes {
 		},
 		getModesInRange(
 			document: TextDocument,
-			range: Range
+			range: Range,
 		): LanguageModeRange[] {
 			return documentRegions
 				.get(document)

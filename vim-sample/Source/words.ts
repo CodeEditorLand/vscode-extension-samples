@@ -48,7 +48,7 @@ export class Words {
 	public static findNextWord(
 		doc: TextDocument,
 		pos: Position,
-		wordCharacterClass: WordCharacters
+		wordCharacterClass: WordCharacters,
 	): IWord | null {
 		const lineContent = doc.lineAt(pos.line).text;
 		let wordType = WordType.NONE;
@@ -68,9 +68,9 @@ export class Words {
 							lineContent,
 							wordCharacterClass,
 							wordType,
-							chIndex - 1
+							chIndex - 1,
 						),
-						chIndex
+						chIndex,
 					);
 				}
 				wordType = WordType.REGULAR;
@@ -83,9 +83,9 @@ export class Words {
 							lineContent,
 							wordCharacterClass,
 							wordType,
-							chIndex - 1
+							chIndex - 1,
 						),
-						chIndex
+						chIndex,
 					);
 				}
 				wordType = WordType.SEPARATOR;
@@ -98,9 +98,9 @@ export class Words {
 							lineContent,
 							wordCharacterClass,
 							wordType,
-							chIndex - 1
+							chIndex - 1,
 						),
-						chIndex
+						chIndex,
 					);
 				}
 			}
@@ -114,9 +114,9 @@ export class Words {
 					lineContent,
 					wordCharacterClass,
 					wordType,
-					len - 1
+					len - 1,
 				),
-				len
+				len,
 			);
 		}
 
@@ -127,7 +127,7 @@ export class Words {
 		lineContent: string,
 		wordCharacterClass: WordCharacters,
 		wordType: WordType,
-		startIndex: number
+		startIndex: number,
 	): number {
 		for (let chIndex = startIndex; chIndex >= 0; chIndex--) {
 			const chCode = lineContent.charCodeAt(chIndex);
@@ -157,7 +157,7 @@ export class Words {
 		lineContent: string,
 		wordType: WordType,
 		start: number,
-		end: number
+		end: number,
 	): IWord {
 		// console.log('WORD ==> ' + start + ' => ' + end + ':::: <<<' + lineContent.substring(start, end) + '>>>');
 		return { start: start, end: end, wordType: wordType };

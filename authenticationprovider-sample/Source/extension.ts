@@ -8,7 +8,7 @@ import { AzureDevOpsAuthenticationProvider } from "./authProvider";
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 	console.log(
-		'Congratulations, your extension "vscode-authenticationprovider-sample" is now active!'
+		'Congratulations, your extension "vscode-authenticationprovider-sample" is now active!',
 	);
 
 	// Register our authentication provider. NOTE: this will register the provider globally which means that
@@ -19,18 +19,18 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.authentication.registerAuthenticationProvider(
 			AzureDevOpsAuthenticationProvider.id,
 			"Azure Repos",
-			new AzureDevOpsAuthenticationProvider(context.secrets)
-		)
+			new AzureDevOpsAuthenticationProvider(context.secrets),
+		),
 	);
 
-	let disposable = vscode.commands.registerCommand(
+	const disposable = vscode.commands.registerCommand(
 		"vscode-authenticationprovider-sample.login",
 		async () => {
 			// Get our PAT session.
 			const session = await vscode.authentication.getSession(
 				AzureDevOpsAuthenticationProvider.id,
 				[],
-				{ createIfNone: true }
+				{ createIfNone: true },
 			);
 
 			try {
@@ -41,29 +41,29 @@ export function activate(context: vscode.ExtensionContext) {
 					{
 						headers: {
 							authorization: `Basic ${Buffer.from(
-								`:${session.accessToken}`
+								`:${session.accessToken}`,
 							).toString("base64")}`,
 							// eslint-disable-next-line @typescript-eslint/naming-convention
 							"content-type": "application/json",
 						},
-					}
+					},
 				);
 				if (!req.ok) {
 					throw new Error(req.statusText);
 				}
 				const res = (await req.json()) as { displayName: string };
 				vscode.window.showInformationMessage(
-					`Hello ${res.displayName}`
+					`Hello ${res.displayName}`,
 				);
 			} catch (e: any) {
 				if (e.message === "Unauthorized") {
 					vscode.window.showErrorMessage(
-						"Failed to get profile. You need to use a PAT that has access to all organizations. Please sign out and try again."
+						"Failed to get profile. You need to use a PAT that has access to all organizations. Please sign out and try again.",
 					);
 				}
 				throw e;
 			}
-		}
+		},
 	);
 
 	context.subscriptions.push(disposable);

@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 			// And register it with VS Code. You can only register a single UriHandler for your extension.
 			context.subscriptions.push(
-				vscode.window.registerUriHandler(uriHandler)
+				vscode.window.registerUriHandler(uriHandler),
 			);
 
 			// You don't have to get the Uri from the `vscode.env.asExternalUri` API but it will add a query
@@ -30,13 +30,13 @@ export function activate(context: vscode.ExtensionContext) {
 			// If this query parameter isn't specified, VS Code will pick the last windows that was focused.
 			const uri = await vscode.env.asExternalUri(
 				vscode.Uri.parse(
-					`${vscode.env.uriScheme}://vscode-samples.uri-handler-sample`
-				)
+					`${vscode.env.uriScheme}://vscode-samples.uri-handler-sample`,
+				),
 			);
 			vscode.window.showInformationMessage(
-				`Starting to handle Uris. Open ${uri} in your browser to test.`
+				`Starting to handle Uris. Open ${uri} in your browser to test.`,
 			);
-		}
+		},
 	);
 
 	context.subscriptions.push(disposable);

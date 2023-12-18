@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log(
-		'Congratulations, your extension "tabs-api-sample" is now active!'
+		'Congratulations, your extension "tabs-api-sample" is now active!',
 	);
 
 	/**
@@ -13,13 +13,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(
 		vscode.window.tabGroups.onDidChangeTabGroups(() => {
-			const tabs = vscode.window.tabGroups.all
-				.map((group) => group.tabs)
-				.flat(1);
+			const tabs = vscode.window.tabGroups.all.flatMap(
+				(group) => group.tabs,
+			);
 			activityMap.clear();
 			// Update activity map saying everything is active
 			tabs.forEach((t) => activityMap.set(t, Date.now()));
-		})
+		}),
 	);
 	context.subscriptions.push(
 		vscode.window.tabGroups.onDidChangeTabs((tabChangeEvent) => {
@@ -36,7 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
 				// Reset the timer for the tabs last activity
 				activityMap.set(tab, Date.now());
 			}
-		})
+		}),
 	);
 	// Check every second for inactive tabs
 	const interval = setInterval(() => {
@@ -54,7 +54,7 @@ export function activate(context: vscode.ExtensionContext) {
 			([tab, lastActive]) =>
 				Date.now() - lastActive > inactiveTime &&
 				!tab.isActive &&
-				!tab.isDirty
+				!tab.isDirty,
 		);
 		inactiveTabs.forEach(async ([tab]) => {
 			// Close the tab

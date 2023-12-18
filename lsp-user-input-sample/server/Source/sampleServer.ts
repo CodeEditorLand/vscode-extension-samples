@@ -2,23 +2,22 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-"use strict";
 
+import { TextDocument } from "vscode-languageserver-textdocument";
 import {
 	CodeAction,
 	CodeActionKind,
 	Command,
-	createConnection,
 	Diagnostic,
 	DiagnosticSeverity,
 	Position,
 	Range,
 	TextDocumentEdit,
-	TextDocuments,
 	TextDocumentSyncKind,
+	TextDocuments,
 	TextEdit,
+	createConnection,
 } from "vscode-languageserver/node";
-import { TextDocument } from "vscode-languageserver-textdocument";
 
 const connection = createConnection();
 connection.console.info(`Sample server running in node ${process.version}`);
@@ -49,7 +48,7 @@ function validate(document: TextDocument): void {
 			Diagnostic.create(
 				Range.create(0, 0, 0, 10),
 				"Something is wrong here",
-				DiagnosticSeverity.Warning
+				DiagnosticSeverity.Warning,
 			),
 		],
 	});
@@ -73,7 +72,7 @@ connection.onCodeAction((params) => {
 		CodeAction.create(
 			title,
 			Command.create(title, "sample.fixMe", textDocument.uri),
-			CodeActionKind.QuickFix
+			CodeActionKind.QuickFix,
 		),
 	];
 });
@@ -95,7 +94,7 @@ connection.onExecuteCommand(async (params) => {
 		documentChanges: [
 			TextDocumentEdit.create(
 				{ uri: textDocument.uri, version: textDocument.version },
-				[TextEdit.insert(Position.create(0, 0), newText)]
+				[TextEdit.insert(Position.create(0, 0), newText)],
 			),
 		],
 	});

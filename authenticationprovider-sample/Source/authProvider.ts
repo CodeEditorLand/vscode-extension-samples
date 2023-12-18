@@ -1,5 +1,4 @@
 import {
-	authentication,
 	AuthenticationProvider,
 	AuthenticationProviderAuthenticationSessionsChangeEvent,
 	AuthenticationSession,
@@ -7,6 +6,7 @@ import {
 	Event,
 	EventEmitter,
 	SecretStorage,
+	authentication,
 	window,
 } from "vscode";
 
@@ -70,7 +70,7 @@ export class AzureDevOpsAuthenticationProvider
 					) {
 						void this.checkForUpdates();
 					}
-				})
+				}),
 			);
 		}
 	}
@@ -105,14 +105,14 @@ export class AzureDevOpsAuthenticationProvider
 
 	private cacheTokenFromStorage() {
 		this.currentToken = this.secretStorage.get(
-			AzureDevOpsAuthenticationProvider.secretKey
+			AzureDevOpsAuthenticationProvider.secretKey,
 		) as Promise<string | undefined>;
 		return this.currentToken;
 	}
 
 	// This function is called first when `vscode.authentication.getSessions` is called.
 	async getSessions(
-		_scopes?: string[]
+		_scopes?: string[],
 	): Promise<readonly AuthenticationSession[]> {
 		this.ensureInitialized();
 		const token = await this.cacheTokenFromStorage();
@@ -142,7 +142,7 @@ export class AzureDevOpsAuthenticationProvider
 		// Don't set `currentToken` here, since we want to fire the proper events in the `checkForUpdates` call
 		await this.secretStorage.store(
 			AzureDevOpsAuthenticationProvider.secretKey,
-			token
+			token,
 		);
 		console.log("Successfully logged in to Azure DevOps");
 
@@ -152,7 +152,7 @@ export class AzureDevOpsAuthenticationProvider
 	// This function is called when the end user signs out of the account.
 	async removeSession(_sessionId: string): Promise<void> {
 		await this.secretStorage.delete(
-			AzureDevOpsAuthenticationProvider.secretKey
+			AzureDevOpsAuthenticationProvider.secretKey,
 		);
 	}
 }

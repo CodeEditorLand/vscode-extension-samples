@@ -3,12 +3,12 @@
  *--------------------------------------------------------*/
 
 import {
-	workspace,
+	Disposable,
+	ExtensionContext,
+	commands,
 	languages,
 	window,
-	commands,
-	ExtensionContext,
-	Disposable,
+	workspace,
 } from "vscode";
 import ContentProvider, { encodeLocation } from "./provider";
 
@@ -20,12 +20,12 @@ export function activate(context: ExtensionContext) {
 	const providerRegistrations = Disposable.from(
 		workspace.registerTextDocumentContentProvider(
 			ContentProvider.scheme,
-			provider
+			provider,
 		),
 		languages.registerDocumentLinkProvider(
 			{ scheme: ContentProvider.scheme },
-			provider
-		)
+			provider,
+		),
 	);
 
 	// register command that crafts an uri with the `references` scheme,
@@ -35,19 +35,19 @@ export function activate(context: ExtensionContext) {
 		(editor) => {
 			const uri = encodeLocation(
 				editor.document.uri,
-				editor.selection.active
+				editor.selection.active,
 			);
 			return workspace
 				.openTextDocument(uri)
 				.then((doc) =>
-					window.showTextDocument(doc, editor.viewColumn! + 1)
+					window.showTextDocument(doc, editor.viewColumn! + 1),
 				);
-		}
+		},
 	);
 
 	context.subscriptions.push(
 		provider,
 		commandRegistration,
-		providerRegistrations
+		providerRegistrations,
 	);
 }

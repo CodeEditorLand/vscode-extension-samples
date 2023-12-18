@@ -2,17 +2,7 @@
  * Copyright (C) Microsoft Corporation. All rights reserved.
  *--------------------------------------------------------*/
 
-import {
-	ExtensionContext,
-	StatusBarAlignment,
-	window,
-	StatusBarItem,
-	Selection,
-	workspace,
-	TextEditor,
-	commands,
-	ProgressLocation,
-} from "vscode";
+import { ExtensionContext, ProgressLocation, commands, window } from "vscode";
 
 export function activate(context: ExtensionContext) {
 	context.subscriptions.push(
@@ -59,8 +49,8 @@ export function activate(context: ExtensionContext) {
 					});
 
 					return p;
-				}
+				},
 			);
-		})
+		}),
 	);
 }

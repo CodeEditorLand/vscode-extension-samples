@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom";
 import "./style.css";
 
@@ -43,7 +42,7 @@ export const activate: ActivationFunction = (context) => {
 							context,
 						}}
 					/>,
-					root
+					root,
 				);
 			});
 		},

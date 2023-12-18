@@ -2,7 +2,7 @@
 
 // This script will be run within the webview itself
 // It cannot access the main VS Code APIs directly.
-(function () {
+(() => {
 	const vscode = acquireVsCodeApi();
 
 	const oldState = vscode.getState() || { colors: [] };
@@ -58,11 +58,11 @@
 			input.value = color.value;
 			input.addEventListener("change", (e) => {
 				const value = e.target.value;
-				if (!value) {
+				if (value) {
+					color.value = value;
+				} else {
 					// Treat empty value as delete
 					colors.splice(colors.indexOf(color), 1);
-				} else {
-					color.value = value;
 				}
 				updateColorList(colors);
 			});

@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log(
-		'Congratulations, your extension "telemetry-sample" is now active!'
+		'Congratulations, your extension "telemetry-sample" is now active!',
 	);
 
 	const appender: vscode.TelemetryAppender = {
@@ -36,6 +36,6 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showInformationMessage("Logged telemetry exception!");
 			logger.logError(new Error("Test"), { testProp: "testValue" });
 			logger.logError("testerror", { testProp: "testValue" });
-		})
+		}),
 	);
 }

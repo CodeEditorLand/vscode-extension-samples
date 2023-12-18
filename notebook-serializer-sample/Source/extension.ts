@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const cell = new vscode.NotebookCellData(
 					vscode.NotebookCellKind.Code,
 					defaultValue,
-					language
+					language,
 				);
 				const data = new vscode.NotebookData([cell]);
 				data.metadata = {
@@ -29,19 +29,19 @@ export function activate(context: vscode.ExtensionContext) {
 				};
 				const doc = await vscode.workspace.openNotebookDocument(
 					NOTEBOOK_TYPE,
-					data
+					data,
 				);
 				await vscode.window.showNotebookDocument(doc);
-			}
-		)
+			},
+		),
 	);
 
 	context.subscriptions.push(
 		vscode.workspace.registerNotebookSerializer(
 			NOTEBOOK_TYPE,
 			new SampleContentSerializer(),
-			{ transientOutputs: true }
+			{ transientOutputs: true },
 		),
-		new SampleKernel()
+		new SampleKernel(),
 	);
 }

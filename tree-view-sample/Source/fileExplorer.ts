@@ -1,8 +1,8 @@
-import * as vscode from "vscode";
-import * as path from "path";
 import * as fs from "fs";
+import * as path from "path";
 import * as mkdirp from "mkdirp";
 import * as rimraf from "rimraf";
+import * as vscode from "vscode";
 
 //#region Utilities
 
@@ -11,7 +11,7 @@ namespace _ {
 		resolve: (result: T) => void,
 		reject: (error: Error) => void,
 		error: Error | null | undefined,
-		result: T
+		result: T,
 	): void {
 		if (error) {
 			reject(massageError(error));
@@ -63,7 +63,7 @@ namespace _ {
 	export function readdir(path: string): Promise<string[]> {
 		return new Promise<string[]>((resolve, reject) => {
 			fs.readdir(path, (error, children) =>
-				handleResult(resolve, reject, error, normalizeNFC(children))
+				handleResult(resolve, reject, error, normalizeNFC(children)),
 			);
 		});
 	}
@@ -71,7 +71,7 @@ namespace _ {
 	export function stat(path: string): Promise<fs.Stats> {
 		return new Promise<fs.Stats>((resolve, reject) => {
 			fs.stat(path, (error, stat) =>
-				handleResult(resolve, reject, error, stat)
+				handleResult(resolve, reject, error, stat),
 			);
 		});
 	}
@@ -79,7 +79,7 @@ namespace _ {
 	export function readfile(path: string): Promise<Buffer> {
 		return new Promise<Buffer>((resolve, reject) => {
 			fs.readFile(path, (error, buffer) =>
-				handleResult(resolve, reject, error, buffer)
+				handleResult(resolve, reject, error, buffer),
 			);
 		});
 	}
@@ -87,7 +87,7 @@ namespace _ {
 	export function writefile(path: string, content: Buffer): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			fs.writeFile(path, content, (error) =>
-				handleResult(resolve, reject, error, void 0)
+				handleResult(resolve, reject, error, void 0),
 			);
 		});
 	}
@@ -95,7 +95,7 @@ namespace _ {
 	export function exists(path: string): Promise<boolean> {
 		return new Promise<boolean>((resolve, reject) => {
 			fs.exists(path, (exists) =>
-				handleResult(resolve, reject, null, exists)
+				handleResult(resolve, reject, null, exists),
 			);
 		});
 	}
@@ -103,7 +103,7 @@ namespace _ {
 	export function rmrf(path: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			rimraf(path, (error) =>
-				handleResult(resolve, reject, error, void 0)
+				handleResult(resolve, reject, error, void 0),
 			);
 		});
 	}
@@ -111,7 +111,7 @@ namespace _ {
 	export function mkdir(path: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			mkdirp(path, (error) =>
-				handleResult(resolve, reject, error, void 0)
+				handleResult(resolve, reject, error, void 0),
 			);
 		});
 	}
@@ -119,7 +119,7 @@ namespace _ {
 	export function rename(oldPath: string, newPath: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			fs.rename(oldPath, newPath, (error) =>
-				handleResult(resolve, reject, error, void 0)
+				handleResult(resolve, reject, error, void 0),
 			);
 		});
 	}
@@ -127,7 +127,7 @@ namespace _ {
 	export function unlink(path: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			fs.unlink(path, (error) =>
-				handleResult(resolve, reject, error, void 0)
+				handleResult(resolve, reject, error, void 0),
 			);
 		});
 	}
@@ -140,10 +140,10 @@ export class FileStat implements vscode.FileStat {
 		return this.fsStat.isFile()
 			? vscode.FileType.File
 			: this.fsStat.isDirectory()
-				? vscode.FileType.Directory
-				: this.fsStat.isSymbolicLink()
-					? vscode.FileType.SymbolicLink
-					: vscode.FileType.Unknown;
+			  ? vscode.FileType.Directory
+			  : this.fsStat.isSymbolicLink()
+				  ? vscode.FileType.SymbolicLink
+				  : vscode.FileType.Unknown;
 	}
 
 	get isFile(): boolean | undefined {
@@ -195,7 +195,7 @@ export class FileSystemProvider
 
 	watch(
 		uri: vscode.Uri,
-		options: { recursive: boolean; excludes: string[] }
+		options: { recursive: boolean; excludes: string[] },
 	): vscode.Disposable {
 		const watcher = fs.watch(
 			uri.fsPath,
@@ -204,7 +204,7 @@ export class FileSystemProvider
 				if (filename) {
 					const filepath = path.join(
 						uri.fsPath,
-						_.normalizeNFC(filename.toString())
+						_.normalizeNFC(filename.toString()),
 					);
 
 					// TODO support excludes (using minimatch library?)
@@ -215,13 +215,13 @@ export class FileSystemProvider
 								event === "change"
 									? vscode.FileChangeType.Changed
 									: (await _.exists(filepath))
-										? vscode.FileChangeType.Created
-										: vscode.FileChangeType.Deleted,
+									  ? vscode.FileChangeType.Created
+									  : vscode.FileChangeType.Deleted,
 							uri: uri.with({ path: filepath }),
 						} as vscode.FileChangeEvent,
 					]);
 				}
-			}
+			},
 		);
 
 		return { dispose: () => watcher.close() };
@@ -236,13 +236,13 @@ export class FileSystemProvider
 	}
 
 	readDirectory(
-		uri: vscode.Uri
+		uri: vscode.Uri,
 	): [string, vscode.FileType][] | Thenable<[string, vscode.FileType][]> {
 		return this._readDirectory(uri);
 	}
 
 	async _readDirectory(
-		uri: vscode.Uri
+		uri: vscode.Uri,
 	): Promise<[string, vscode.FileType][]> {
 		const children = await _.readdir(uri.fsPath);
 
@@ -267,7 +267,7 @@ export class FileSystemProvider
 	writeFile(
 		uri: vscode.Uri,
 		content: Uint8Array,
-		options: { create: boolean; overwrite: boolean }
+		options: { create: boolean; overwrite: boolean },
 	): void | Thenable<void> {
 		return this._writeFile(uri, content, options);
 	}
@@ -275,19 +275,19 @@ export class FileSystemProvider
 	async _writeFile(
 		uri: vscode.Uri,
 		content: Uint8Array,
-		options: { create: boolean; overwrite: boolean }
+		options: { create: boolean; overwrite: boolean },
 	): Promise<void> {
 		const exists = await _.exists(uri.fsPath);
-		if (!exists) {
+		if (exists) {
+			if (!options.overwrite) {
+				throw vscode.FileSystemError.FileExists();
+			}
+		} else {
 			if (!options.create) {
 				throw vscode.FileSystemError.FileNotFound();
 			}
 
 			await _.mkdir(path.dirname(uri.fsPath));
-		} else {
-			if (!options.overwrite) {
-				throw vscode.FileSystemError.FileExists();
-			}
 		}
 
 		return _.writefile(uri.fsPath, content as Buffer);
@@ -295,7 +295,7 @@ export class FileSystemProvider
 
 	delete(
 		uri: vscode.Uri,
-		options: { recursive: boolean }
+		options: { recursive: boolean },
 	): void | Thenable<void> {
 		if (options.recursive) {
 			return _.rmrf(uri.fsPath);
@@ -307,7 +307,7 @@ export class FileSystemProvider
 	rename(
 		oldUri: vscode.Uri,
 		newUri: vscode.Uri,
-		options: { overwrite: boolean }
+		options: { overwrite: boolean },
 	): void | Thenable<void> {
 		return this._rename(oldUri, newUri, options);
 	}
@@ -315,14 +315,14 @@ export class FileSystemProvider
 	async _rename(
 		oldUri: vscode.Uri,
 		newUri: vscode.Uri,
-		options: { overwrite: boolean }
+		options: { overwrite: boolean },
 	): Promise<void> {
 		const exists = await _.exists(newUri.fsPath);
 		if (exists) {
-			if (!options.overwrite) {
-				throw vscode.FileSystemError.FileExists();
-			} else {
+			if (options.overwrite) {
 				await _.rmrf(newUri.fsPath);
+			} else {
+				throw vscode.FileSystemError.FileExists();
 			}
 		}
 
@@ -358,7 +358,7 @@ export class FileSystemProvider
 			});
 			return children.map(([name, type]) => ({
 				uri: vscode.Uri.file(
-					path.join(workspaceFolder.uri.fsPath, name)
+					path.join(workspaceFolder.uri.fsPath, name),
 				),
 				type,
 			}));
@@ -372,7 +372,7 @@ export class FileSystemProvider
 			element.uri,
 			element.type === vscode.FileType.Directory
 				? vscode.TreeItemCollapsibleState.Collapsed
-				: vscode.TreeItemCollapsibleState.None
+				: vscode.TreeItemCollapsibleState.None,
 		);
 		if (element.type === vscode.FileType.File) {
 			treeItem.command = {
@@ -390,10 +390,10 @@ export class FileExplorer {
 	constructor(context: vscode.ExtensionContext) {
 		const treeDataProvider = new FileSystemProvider();
 		context.subscriptions.push(
-			vscode.window.createTreeView("fileExplorer", { treeDataProvider })
+			vscode.window.createTreeView("fileExplorer", { treeDataProvider }),
 		);
 		vscode.commands.registerCommand("fileExplorer.openFile", (resource) =>
-			this.openResource(resource)
+			this.openResource(resource),
 		);
 	}
 

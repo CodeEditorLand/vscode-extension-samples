@@ -5494,7 +5494,7 @@ declare module "vscode" {
 	/**
 	 * Folding context (for future use)
 	 */
-	export interface FoldingContext {}
+	export type FoldingContext = {};
 
 	/**
 	 * The folding range provider interface defines the contract between extensions and
@@ -15412,23 +15412,17 @@ declare module "vscode" {
 	/**
 	 * A DebugProtocolMessage is an opaque stand-in type for the [ProtocolMessage](https://microsoft.github.io/debug-adapter-protocol/specification#Base_Protocol_ProtocolMessage) type defined in the Debug Adapter Protocol.
 	 */
-	export interface DebugProtocolMessage {
-		// Properties: see [ProtocolMessage details](https://microsoft.github.io/debug-adapter-protocol/specification#Base_Protocol_ProtocolMessage).
-	}
+	export type DebugProtocolMessage = {};
 
 	/**
 	 * A DebugProtocolSource is an opaque stand-in type for the [Source](https://microsoft.github.io/debug-adapter-protocol/specification#Types_Source) type defined in the Debug Adapter Protocol.
 	 */
-	export interface DebugProtocolSource {
-		// Properties: see [Source details](https://microsoft.github.io/debug-adapter-protocol/specification#Types_Source).
-	}
+	export type DebugProtocolSource = {};
 
 	/**
 	 * A DebugProtocolBreakpoint is an opaque stand-in type for the [Breakpoint](https://microsoft.github.io/debug-adapter-protocol/specification#Types_Breakpoint) type defined in the Debug Adapter Protocol.
 	 */
-	export interface DebugProtocolBreakpoint {
-		// Properties: see [Breakpoint details](https://microsoft.github.io/debug-adapter-protocol/specification#Types_Breakpoint).
-	}
+	export type DebugProtocolBreakpoint = {};
 
 	/**
 	 * Configuration for a debug session.

@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import * as vscode from "vscode";
-import { RakeTaskProvider } from "./rakeTaskProvider";
 import { CustomBuildTaskProvider } from "./customTaskProvider";
+import { RakeTaskProvider } from "./rakeTaskProvider";
 
 let rakeTaskProvider: vscode.Disposable | undefined;
 let customTaskProvider: vscode.Disposable | undefined;
@@ -21,11 +21,11 @@ export function activate(_context: vscode.ExtensionContext): void {
 
 	rakeTaskProvider = vscode.tasks.registerTaskProvider(
 		RakeTaskProvider.RakeType,
-		new RakeTaskProvider(workspaceRoot)
+		new RakeTaskProvider(workspaceRoot),
 	);
 	customTaskProvider = vscode.tasks.registerTaskProvider(
 		CustomBuildTaskProvider.CustomBuildScriptType,
-		new CustomBuildTaskProvider(workspaceRoot)
+		new CustomBuildTaskProvider(workspaceRoot),
 	);
 }
 

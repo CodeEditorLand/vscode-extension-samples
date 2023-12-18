@@ -3,7 +3,7 @@
  *--------------------------------------------------------*/
 
 import * as vscode from "vscode";
-import { subscribeToDocumentChanges, EMOJI_MENTION } from "./diagnostics";
+import { EMOJI_MENTION, subscribeToDocumentChanges } from "./diagnostics";
 
 const COMMAND = "code-actions-sample.command";
 
@@ -14,8 +14,8 @@ export function activate(context: vscode.ExtensionContext) {
 			new Emojizer(),
 			{
 				providedCodeActionKinds: Emojizer.providedCodeActionKinds,
-			}
-		)
+			},
+		),
 	);
 
 	const emojiDiagnostics =
@@ -30,18 +30,18 @@ export function activate(context: vscode.ExtensionContext) {
 			new Emojinfo(),
 			{
 				providedCodeActionKinds: Emojinfo.providedCodeActionKinds,
-			}
-		)
+			},
+		),
 	);
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand(COMMAND, () =>
 			vscode.env.openExternal(
 				vscode.Uri.parse(
-					"https://unicode.org/emoji/charts-12.0/full-emoji-list.html"
-				)
-			)
-		)
+					"https://unicode.org/emoji/charts-12.0/full-emoji-list.html",
+				),
+			),
+		),
 	);
 }
 
@@ -55,7 +55,7 @@ export class Emojizer implements vscode.CodeActionProvider {
 
 	public provideCodeActions(
 		document: vscode.TextDocument,
-		range: vscode.Range
+		range: vscode.Range,
 	): vscode.CodeAction[] | undefined {
 		if (!this.isAtStartOfSmiley(document, range)) {
 			return;
@@ -82,7 +82,7 @@ export class Emojizer implements vscode.CodeActionProvider {
 
 	private isAtStartOfSmiley(
 		document: vscode.TextDocument,
-		range: vscode.Range
+		range: vscode.Range,
 	) {
 		const start = range.start;
 		const line = document.lineAt(start.line);
@@ -95,17 +95,17 @@ export class Emojizer implements vscode.CodeActionProvider {
 	private createFix(
 		document: vscode.TextDocument,
 		range: vscode.Range,
-		emoji: string
+		emoji: string,
 	): vscode.CodeAction {
 		const fix = new vscode.CodeAction(
 			`Convert to ${emoji}`,
-			vscode.CodeActionKind.QuickFix
+			vscode.CodeActionKind.QuickFix,
 		);
 		fix.edit = new vscode.WorkspaceEdit();
 		fix.edit.replace(
 			document.uri,
 			new vscode.Range(range.start, range.start.translate(0, 2)),
-			emoji
+			emoji,
 		);
 		return fix;
 	}
@@ -113,7 +113,7 @@ export class Emojizer implements vscode.CodeActionProvider {
 	private createCommand(): vscode.CodeAction {
 		const action = new vscode.CodeAction(
 			"Learn more...",
-			vscode.CodeActionKind.Empty
+			vscode.CodeActionKind.Empty,
 		);
 		action.command = {
 			command: COMMAND,
@@ -136,7 +136,7 @@ export class Emojinfo implements vscode.CodeActionProvider {
 		document: vscode.TextDocument,
 		range: vscode.Range | vscode.Selection,
 		context: vscode.CodeActionContext,
-		token: vscode.CancellationToken
+		token: vscode.CancellationToken,
 	): vscode.CodeAction[] {
 		// for each diagnostic entry that has the matching `code`, create a code action command
 		return context.diagnostics
@@ -145,11 +145,11 @@ export class Emojinfo implements vscode.CodeActionProvider {
 	}
 
 	private createCommandCodeAction(
-		diagnostic: vscode.Diagnostic
+		diagnostic: vscode.Diagnostic,
 	): vscode.CodeAction {
 		const action = new vscode.CodeAction(
 			"Learn more...",
-			vscode.CodeActionKind.QuickFix
+			vscode.CodeActionKind.QuickFix,
 		);
 		action.command = {
 			command: COMMAND,

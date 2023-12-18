@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 		while ((match = regEx.exec(text))) {
 			const startPos = activeEditor.document.positionAt(match.index);
 			const endPos = activeEditor.document.positionAt(
-				match.index + match[0].length
+				match.index + match[0].length,
 			);
 			const decoration = {
 				range: new vscode.Range(startPos, endPos),
@@ -85,7 +85,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		},
 		null,
-		context.subscriptions
+		context.subscriptions,
 	);
 
 	vscode.workspace.onDidChangeTextDocument(
@@ -95,6 +95,6 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		},
 		null,
-		context.subscriptions
+		context.subscriptions,
 	);
 }

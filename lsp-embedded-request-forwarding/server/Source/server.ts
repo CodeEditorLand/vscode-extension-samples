@@ -5,11 +5,11 @@
 
 import { getLanguageService } from "vscode-html-languageservice";
 import {
-	createConnection,
 	InitializeParams,
 	ProposedFeatures,
-	TextDocuments,
 	TextDocumentSyncKind,
+	TextDocuments,
+	createConnection,
 } from "vscode-languageserver";
 import { TextDocument } from "vscode-languageserver-textdocument";
 
@@ -44,7 +44,7 @@ connection.onCompletion(async (textDocumentPosition, token) => {
 	return htmlLanguageService.doComplete(
 		document,
 		textDocumentPosition.position,
-		htmlLanguageService.parseHTMLDocument(document)
+		htmlLanguageService.parseHTMLDocument(document),
 	);
 });
 

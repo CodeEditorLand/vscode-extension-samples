@@ -3,22 +3,22 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import {
-	createConnection,
 	BrowserMessageReader,
 	BrowserMessageWriter,
+	createConnection,
 } from "vscode-languageserver/browser";
 
 import {
 	Color,
 	ColorInformation,
-	Range,
+	ColorPresentation,
 	InitializeParams,
 	InitializeResult,
+	Range,
 	ServerCapabilities,
-	TextDocuments,
-	ColorPresentation,
-	TextEdit,
 	TextDocumentIdentifier,
+	TextDocuments,
+	TextEdit,
 } from "vscode-languageserver";
 import { TextDocument } from "vscode-languageserver-textdocument";
 
@@ -46,10 +46,10 @@ documents.listen(connection);
 
 // Register providers
 connection.onDocumentColor((params) =>
-	getColorInformation(params.textDocument)
+	getColorInformation(params.textDocument),
 );
 connection.onColorPresentation((params) =>
-	getColorPresentation(params.color, params.range)
+	getColorPresentation(params.color, params.range),
 );
 
 // Listen on the connection
@@ -72,7 +72,7 @@ function getColorInformation(textDocument: TextDocumentIdentifier) {
 
 			const range = Range.create(
 				document.positionAt(offset),
-				document.positionAt(offset + length)
+				document.positionAt(offset + length),
 			);
 			const color = parseColor(text, offset);
 			colorInfos.push({ color, range });
@@ -94,14 +94,14 @@ function getColorPresentation(color: Color, range: Range) {
 	}
 
 	const label = `#${toTwoDigitHex(red256)}${toTwoDigitHex(
-		green256
+		green256,
 	)}${toTwoDigitHex(blue256)}`;
 	result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 	return result;
 }
 
-const enum CharCode {
+enum CharCode {
 	Digit0 = 48,
 	Digit9 = 57,
 

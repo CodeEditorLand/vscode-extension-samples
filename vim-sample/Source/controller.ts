@@ -4,25 +4,25 @@
  *--------------------------------------------------------------------------------------------*/
 
 import {
-	TextEditorCursorStyle,
 	Position,
 	Range,
 	Selection,
 	TextEditor,
+	TextEditorCursorStyle,
 	TextEditorRevealType,
 	window,
 } from "vscode";
 
-import { Words } from "./words";
-import { MotionState, Motion } from "./motions";
 import {
-	Mode,
-	IController,
-	DeleteRegister,
 	Command,
+	DeleteRegister,
+	IController,
+	Mode,
 	ModifierKeys,
 } from "./common";
 import { Mappings } from "./mappings";
+import { Motion, MotionState } from "./motions";
+import { Words } from "./words";
 
 export interface ITypeResult {
 	hasConsumedInput: boolean;
@@ -183,7 +183,7 @@ export class Controller implements IController {
 	public type(
 		editor: TextEditor,
 		text: string,
-		modifierKeys: ModifierKeys
+		modifierKeys: ModifierKeys,
 	): Thenable<ITypeResult> {
 		if (
 			this._currentMode !== Mode.NORMAL &&
@@ -212,9 +212,9 @@ export class Controller implements IController {
 							pos.line,
 							pos.character,
 							pos.line,
-							pos.character + 1
+							pos.character + 1,
 						),
-						text
+						text,
 					);
 				})
 				.then(() => {
@@ -233,7 +233,7 @@ export class Controller implements IController {
 	public replacePrevChar(
 		editor: TextEditor,
 		text: string,
-		replaceCharCnt: number
+		replaceCharCnt: number,
 	): boolean {
 		if (
 			this._currentMode !== Mode.NORMAL &&
@@ -246,7 +246,7 @@ export class Controller implements IController {
 			this._composingText =
 				this._composingText.substr(
 					0,
-					this._composingText.length - replaceCharCnt
+					this._composingText.length - replaceCharCnt,
 				) + text;
 			return true;
 		}
@@ -259,9 +259,9 @@ export class Controller implements IController {
 						pos.line,
 						pos.character - replaceCharCnt,
 						pos.line,
-						pos.character
+						pos.character,
 					),
-					text
+					text,
 				);
 			});
 
@@ -273,7 +273,7 @@ export class Controller implements IController {
 
 	private _interpretNormalModeInput(
 		editor: TextEditor,
-		modifierKeys: ModifierKeys
+		modifierKeys: ModifierKeys,
 	): Thenable<ITypeResult> {
 		if (this._currentInput.startsWith(":")) {
 			return window.showInputBox({ value: "tabm" }).then((value) => {
@@ -283,7 +283,7 @@ export class Controller implements IController {
 		const result = this._findMapping(
 			this._currentInput,
 			editor,
-			modifierKeys
+			modifierKeys,
 		);
 		return Promise.resolve(result);
 	}
@@ -291,7 +291,7 @@ export class Controller implements IController {
 	private _findMapping(
 		input: string,
 		editor: TextEditor,
-		modifierKeys: ModifierKeys
+		modifierKeys: ModifierKeys,
 	): ITypeResult {
 		const command = Mappings.findCommand(input, modifierKeys);
 		if (command) {
@@ -323,7 +323,7 @@ export class Controller implements IController {
 		const motionCommand = Mappings.findMotionCommand(
 			input,
 			this._isVisual,
-			modifierKeys
+			modifierKeys,
 		);
 		if (motionCommand) {
 			this._currentInput = "";
@@ -338,14 +338,14 @@ export class Controller implements IController {
 			const newPos = motion.run(
 				editor.document,
 				editor.selection.active,
-				this._motionState
+				this._motionState,
 			);
 			if (this._isVisual) {
 				setSelectionAndReveal(
 					editor,
 					this._motionState.anchor,
 					newPos.line,
-					newPos.character
+					newPos.character,
 				);
 			} else {
 				// Mode.NORMAL
@@ -379,7 +379,7 @@ function setSelectionAndReveal(
 	editor: TextEditor,
 	anchor: Position,
 	line: number,
-	char: number
+	char: number,
 ): void {
 	editor.selection = new Selection(anchor, new Position(line, char));
 	revealPosition(editor, line, char);
@@ -388,11 +388,11 @@ function setSelectionAndReveal(
 function setPositionAndReveal(
 	editor: TextEditor,
 	line: number,
-	char: number
+	char: number,
 ): void {
 	editor.selection = new Selection(
 		new Position(line, char),
-		new Position(line, char)
+		new Position(line, char),
 	);
 	revealPosition(editor, line, char);
 }
@@ -400,6 +400,6 @@ function setPositionAndReveal(
 function revealPosition(editor: TextEditor, line: number, char: number): void {
 	editor.revealRange(
 		new Range(line, char, line, char),
-		TextEditorRevealType.Default
+		TextEditorRevealType.Default,
 	);
 }

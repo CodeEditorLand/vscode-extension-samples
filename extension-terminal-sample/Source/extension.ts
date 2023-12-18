@@ -1,5 +1,3 @@
-"use strict";
-
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
@@ -13,7 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
 					onDidWrite: writeEmitter.event,
 					open: () =>
 						writeEmitter.fire(
-							"Type and press enter to echo the text\r\n\r\n"
+							"Type and press enter to echo the text\r\n\r\n",
 						),
 					close: () => {
 						/* noop*/
@@ -22,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
 						if (data === "\r") {
 							// Enter
 							writeEmitter.fire(
-								`\r\necho: "${colorText(line)}"\r\n\n`
+								`\r\necho: "${colorText(line)}"\r\n\n`,
 							);
 							line = "";
 							return;
@@ -48,14 +46,14 @@ export function activate(context: vscode.ExtensionContext) {
 					pty,
 				});
 				terminal.show();
-			}
-		)
+			},
+		),
 	);
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand("extensionTerminalSample.clear", () => {
 			writeEmitter.fire("\x1b[2J\x1b[3J\x1b[;H");
-		})
+		}),
 	);
 }
 

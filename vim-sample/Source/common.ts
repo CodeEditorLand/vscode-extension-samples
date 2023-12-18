@@ -3,12 +3,12 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { MotionState, Motion } from "./motions";
+import { Motion, MotionState } from "./motions";
 
 export enum Mode {
-	INSERT,
-	NORMAL,
-	REPLACE,
+	INSERT = 0,
+	NORMAL = 1,
+	REPLACE = 2,
 }
 
 export interface ModifierKeys {

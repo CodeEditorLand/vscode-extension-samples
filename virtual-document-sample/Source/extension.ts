@@ -2,8 +2,8 @@
  * Copyright (C) Microsoft Corporation. All rights reserved.
  *--------------------------------------------------------*/
 
-import * as vscode from "vscode";
 import * as cowsay from "cowsay";
+import * as vscode from "vscode";
 
 export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// register a content provider for the cowsay-scheme
@@ -23,8 +23,8 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	subscriptions.push(
 		vscode.workspace.registerTextDocumentContentProvider(
 			myScheme,
-			myProvider
-		)
+			myProvider,
+		),
 	);
 
 	// register a command that opens a cowsay-document
@@ -38,7 +38,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 				const doc = await vscode.workspace.openTextDocument(uri); // calls back into the provider
 				await vscode.window.showTextDocument(doc, { preview: false });
 			}
-		})
+		}),
 	);
 
 	// register a command that updates the current cowsay
@@ -56,6 +56,6 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 			const newSay = say.split("").reverse().join("");
 			const newUri = document.uri.with({ path: newSay });
 			await vscode.window.showTextDocument(newUri, { preview: false });
-		})
+		}),
 	);
 }

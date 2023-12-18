@@ -1,12 +1,12 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import {
-	ExtensionContext,
-	languages,
-	commands,
 	Disposable,
-	workspace,
+	ExtensionContext,
+	commands,
+	languages,
 	window,
+	workspace,
 } from "vscode";
 import { CodelensProvider } from "./CodelensProvider";
 
@@ -34,7 +34,7 @@ export function activate(context: ExtensionContext) {
 
 	commands.registerCommand("codelens-sample.codelensAction", (args: any) => {
 		window.showInformationMessage(
-			`CodeLens action clicked with args=${args}`
+			`CodeLens action clicked with args=${args}`,
 		);
 	});
 }

@@ -5,26 +5,26 @@
 
 import {
 	Position,
-	Selection,
 	Range,
+	Selection,
 	TextDocument,
 	TextEditor,
 	TextEditorRevealType,
 } from "vscode";
+import { DeleteRegister, IController, Mode } from "./common";
 import { Motion, Motions } from "./motions";
-import { Mode, IController, DeleteRegister } from "./common";
 
 export abstract class Operator {
 	public abstract runNormalMode(
 		ctrl: IController,
 		ed: TextEditor,
 		repeatCount: number,
-		args: string
+		args: string,
 	): boolean;
 	public abstract runVisualMode(
 		ctrl: IController,
 		ed: TextEditor,
-		args: string
+		args: string,
 	): boolean;
 
 	protected doc(ed: TextEditor): TextDocument {
@@ -42,7 +42,7 @@ export abstract class Operator {
 	protected setPosReveal(ed: TextEditor, line: number, char: number): void {
 		ed.selection = new Selection(
 			new Position(line, char),
-			new Position(line, char)
+			new Position(line, char),
 		);
 		ed.revealRange(ed.selection, TextEditorRevealType.Default);
 	}
@@ -51,10 +51,10 @@ export abstract class Operator {
 		ctrl: IController,
 		ed: TextEditor,
 		isWholeLine: boolean,
-		range: Range
+		range: Range,
 	): void {
 		ctrl.setDeleteRegister(
-			new DeleteRegister(isWholeLine, ed.document.getText(range))
+			new DeleteRegister(isWholeLine, ed.document.getText(range)),
 		);
 		ed.edit((builder) => {
 			builder.delete(range);
@@ -67,7 +67,7 @@ abstract class OperatorWithNoArgs extends Operator {
 		ctrl: IController,
 		ed: TextEditor,
 		repeatCount: number,
-		args: string
+		args: string,
 	): boolean {
 		this._run(ctrl, ed);
 		return true;
@@ -75,7 +75,7 @@ abstract class OperatorWithNoArgs extends Operator {
 	public runVisualMode(
 		ctrl: IController,
 		ed: TextEditor,
-		args: string
+		args: string,
 	): boolean {
 		this._run(ctrl, ed);
 		return true;
@@ -94,7 +94,7 @@ class AppendOperator extends OperatorWithNoArgs {
 		const newPos = Motions.RightMotion.run(
 			this.doc(ed),
 			this.pos(ed),
-			ctrl.motionState
+			ctrl.motionState,
 		);
 		this.setPosReveal(ed, newPos.line, newPos.character);
 		ctrl.setMode(Mode.INSERT);
@@ -106,7 +106,7 @@ class AppendEndOfLineOperator extends OperatorWithNoArgs {
 		const newPos = Motions.EndOfLine.run(
 			this.doc(ed),
 			this.pos(ed),
-			ctrl.motionState
+			ctrl.motionState,
 		);
 		this.setPosReveal(ed, newPos.line, newPos.character);
 		ctrl.setMode(Mode.INSERT);
@@ -125,11 +125,11 @@ class DeleteCharUnderCursorOperator extends Operator {
 		ctrl: IController,
 		ed: TextEditor,
 		repeatCount: number,
-		args: string
+		args: string,
 	): boolean {
 		const to = Motions.NextCharacter.repeat(
 			repeatCount > 1,
-			repeatCount
+			repeatCount,
 		).run(this.doc(ed), this.pos(ed), ctrl.motionState);
 		const from = this.pos(ed);
 
@@ -137,7 +137,7 @@ class DeleteCharUnderCursorOperator extends Operator {
 			ctrl,
 			ed,
 			false,
-			new Range(from.line, from.character, to.line, to.character)
+			new Range(from.line, from.character, to.line, to.character),
 		);
 
 		return true;
@@ -146,7 +146,7 @@ class DeleteCharUnderCursorOperator extends Operator {
 	public runVisualMode(
 		ctrl: IController,
 		ed: TextEditor,
-		args: string
+		args: string,
 	): boolean {
 		const sel = this.sel(ed);
 		this.delete(ctrl, ed, false, sel);
@@ -159,7 +159,7 @@ class DeleteLineOperator extends Operator {
 		ctrl: IController,
 		ed: TextEditor,
 		repeatCount: number,
-		args: string
+		args: string,
 	): boolean {
 		const pos = this.pos(ed);
 		const doc = this.doc(ed);
@@ -185,7 +185,7 @@ class DeleteLineOperator extends Operator {
 			ctrl,
 			ed,
 			true,
-			new Range(fromLine, fromCharacter, toLine, toCharacter)
+			new Range(fromLine, fromCharacter, toLine, toCharacter),
 		);
 
 		return true;
@@ -194,7 +194,7 @@ class DeleteLineOperator extends Operator {
 	public runVisualMode(
 		ctrl: IController,
 		ed: TextEditor,
-		args: string
+		args: string,
 	): boolean {
 		const sel = this.sel(ed);
 		this.delete(ctrl, ed, false, sel);
@@ -207,7 +207,7 @@ abstract class OperatorWithMotion extends Operator {
 		ctrl: IController,
 		ed: TextEditor,
 		repeatCount: number,
-		args: string
+		args: string,
 	): boolean {
 		const motion = ctrl.findMotion(args);
 		if (!motion) {
@@ -223,14 +223,14 @@ abstract class OperatorWithMotion extends Operator {
 		return this._runNormalMode(
 			ctrl,
 			ed,
-			motion.repeat(repeatCount > 1, repeatCount)
+			motion.repeat(repeatCount > 1, repeatCount),
 		);
 	}
 
 	protected abstract _runNormalMode(
 		ctrl: IController,
 		ed: TextEditor,
-		motion: Motion
+		motion: Motion,
 	): boolean;
 }
 
@@ -239,7 +239,7 @@ class DeleteToOperator extends OperatorWithMotion {
 		ctrl: IController,
 		ed: TextEditor,
 		repeatCount: number,
-		args: string
+		args: string,
 	): boolean {
 		if (args === "d") {
 			// dd
@@ -247,7 +247,7 @@ class DeleteToOperator extends OperatorWithMotion {
 				ctrl,
 				ed,
 				repeatCount,
-				args
+				args,
 			);
 		}
 		return super.runNormalMode(ctrl, ed, repeatCount, args);
@@ -256,7 +256,7 @@ class DeleteToOperator extends OperatorWithMotion {
 	protected _runNormalMode(
 		ctrl: IController,
 		ed: TextEditor,
-		motion: Motion
+		motion: Motion,
 	): boolean {
 		const to = motion.run(this.doc(ed), this.pos(ed), ctrl.motionState);
 		const from = this.pos(ed);
@@ -265,7 +265,7 @@ class DeleteToOperator extends OperatorWithMotion {
 			ctrl,
 			ed,
 			false,
-			new Range(from.line, from.character, to.line, to.character)
+			new Range(from.line, from.character, to.line, to.character),
 		);
 
 		return true;
@@ -274,7 +274,7 @@ class DeleteToOperator extends OperatorWithMotion {
 	public runVisualMode(
 		ctrl: IController,
 		ed: TextEditor,
-		args: string
+		args: string,
 	): boolean {
 		const sel = this.sel(ed);
 		this.delete(ctrl, ed, false, sel);
@@ -287,7 +287,7 @@ class PutOperator extends Operator {
 		ctrl: IController,
 		ed: TextEditor,
 		repeatCount: number,
-		args: string
+		args: string,
 	): boolean {
 		const register = ctrl.getDeleteRegister();
 		if (!register) {
@@ -326,7 +326,7 @@ class PutOperator extends Operator {
 	public runVisualMode(
 		ctrl: IController,
 		ed: TextEditor,
-		args: string
+		args: string,
 	): boolean {
 		const register = ctrl.getDeleteRegister();
 		if (!register) {
@@ -350,7 +350,7 @@ class ReplaceOperator extends Operator {
 		ctrl: IController,
 		ed: TextEditor,
 		repeatCount: number,
-		args: string
+		args: string,
 	): boolean {
 		if (args.length === 0) {
 			// input not ready
@@ -368,7 +368,7 @@ class ReplaceOperator extends Operator {
 		ed.edit((builder) => {
 			builder.replace(
 				new Range(pos.line, pos.character, pos.line, toCharacter),
-				repeatString(args, repeatCount)
+				repeatString(args, repeatCount),
 			);
 		});
 
@@ -378,7 +378,7 @@ class ReplaceOperator extends Operator {
 	public runVisualMode(
 		ctrl: IController,
 		ed: TextEditor,
-		args: string
+		args: string,
 	): boolean {
 		if (args.length === 0) {
 			// input not ready
@@ -412,7 +412,7 @@ class ReplaceModeOperator extends Operator {
 		ctrl: IController,
 		ed: TextEditor,
 		repeatCount: number,
-		args: string
+		args: string,
 	): boolean {
 		ctrl.setMode(Mode.REPLACE);
 		return true;
@@ -421,7 +421,7 @@ class ReplaceModeOperator extends Operator {
 	public runVisualMode(
 		ctrl: IController,
 		ed: TextEditor,
-		args: string
+		args: string,
 	): boolean {
 		this.delete(ctrl, ed, false, this.sel(ed));
 		ctrl.setMode(Mode.INSERT);
@@ -433,7 +433,7 @@ class ChangeOperator extends OperatorWithMotion {
 	protected _runNormalMode(
 		ctrl: IController,
 		ed: TextEditor,
-		motion: Motion
+		motion: Motion,
 	): boolean {
 		const to = motion.run(this.doc(ed), this.pos(ed), ctrl.motionState);
 		const from = this.pos(ed);
@@ -442,7 +442,7 @@ class ChangeOperator extends OperatorWithMotion {
 			ctrl,
 			ed,
 			false,
-			new Range(from.line, from.character, to.line, to.character)
+			new Range(from.line, from.character, to.line, to.character),
 		);
 
 		ctrl.setMode(Mode.INSERT);
@@ -453,7 +453,7 @@ class ChangeOperator extends OperatorWithMotion {
 	public runVisualMode(
 		ctrl: IController,
 		ed: TextEditor,
-		args: string
+		args: string,
 	): boolean {
 		const sel = this.sel(ed);
 

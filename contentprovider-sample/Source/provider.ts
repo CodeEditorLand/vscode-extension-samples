@@ -21,7 +21,7 @@ export default class Provider
 		// Listen to the `closeTextDocument`-event which means we must
 		// clear the corresponding model object - `ReferencesDocument`
 		this._subscriptions = vscode.workspace.onDidCloseTextDocument((doc) =>
-			this._documents.delete(doc.uri.toString())
+			this._documents.delete(doc.uri.toString()),
 		);
 	}
 
@@ -57,7 +57,7 @@ export default class Provider
 			.executeCommand<vscode.Location[]>(
 				"vscode.executeReferenceProvider",
 				target,
-				pos
+				pos,
 			)
 			.then((locations) => {
 				locations = locations || [];
@@ -70,7 +70,7 @@ export default class Provider
 						(loc, i) =>
 							loc.uri.toString() === target.toString() &&
 							!!(idx = i) &&
-							true
+							true,
 					);
 				locations.push(...locations.splice(0, idx));
 
@@ -78,7 +78,7 @@ export default class Provider
 				const document = new ReferencesDocument(
 					uri,
 					locations,
-					this._onDidChange
+					this._onDidChange,
 				);
 				this._documents.set(uri.toString(), document);
 				return document.value;
@@ -87,7 +87,7 @@ export default class Provider
 
 	private static _compareLocations(
 		a: vscode.Location,
-		b: vscode.Location
+		b: vscode.Location,
 	): number {
 		if (a.uri.toString() < b.uri.toString()) {
 			return -1;
@@ -100,7 +100,7 @@ export default class Provider
 
 	provideDocumentLinks(
 		document: vscode.TextDocument,
-		token: vscode.CancellationToken
+		token: vscode.CancellationToken,
 	): vscode.DocumentLink[] | undefined {
 		// While building the virtual document we have already created the links.
 		// Those are composed from the range inside the document and a target uri
@@ -116,11 +116,11 @@ let seq = 0;
 
 export function encodeLocation(
 	uri: vscode.Uri,
-	pos: vscode.Position
+	pos: vscode.Position,
 ): vscode.Uri {
 	const query = JSON.stringify([uri.toString(), pos.line, pos.character]);
 	return vscode.Uri.parse(
-		`${Provider.scheme}:References.locations?${query}#${seq++}`
+		`${Provider.scheme}:References.locations?${query}#${seq++}`,
 	);
 }
 

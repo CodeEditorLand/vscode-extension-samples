@@ -1,11 +1,9 @@
-"use strict";
-
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
 	const disposable = vscode.commands.registerCommand(
 		"extension.reverseWord",
-		function () {
+		() => {
 			// Get the active text editor
 			const editor = vscode.window.activeTextEditor;
 
@@ -20,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 					editBuilder.replace(selection, reversed);
 				});
 			}
-		}
+		},
 	);
 
 	context.subscriptions.push(disposable);

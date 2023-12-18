@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { LanguageService as CSSLanguageService } from "vscode-css-languageservice";
+import { TextDocument } from "vscode-languageserver-textdocument";
 import { HTMLDocumentRegions } from "../embeddedSupport";
 import { LanguageModelCache } from "../languageModelCache";
 import { LanguageMode, Position } from "../languageModes";
-import { TextDocument } from "vscode-languageserver-textdocument";
 
 export function getCSSMode(
 	cssLanguageService: CSSLanguageService,
-	documentRegions: LanguageModelCache<HTMLDocumentRegions>
+	documentRegions: LanguageModelCache<HTMLDocumentRegions>,
 ): LanguageMode {
 	return {
 		getId() {
@@ -34,7 +34,7 @@ export function getCSSMode(
 			return cssLanguageService.doComplete(
 				embedded,
 				position,
-				stylesheet
+				stylesheet,
 			);
 		},
 		onDocumentRemoved(_document: TextDocument) {

@@ -20,7 +20,7 @@ const EMOJI = "emoji";
  */
 export function refreshDiagnostics(
 	doc: vscode.TextDocument,
-	emojiDiagnostics: vscode.DiagnosticCollection
+	emojiDiagnostics: vscode.DiagnosticCollection,
 ): void {
 	const diagnostics: vscode.Diagnostic[] = [];
 
@@ -37,7 +37,7 @@ export function refreshDiagnostics(
 function createDiagnostic(
 	doc: vscode.TextDocument,
 	lineOfText: vscode.TextLine,
-	lineIndex: number
+	lineIndex: number,
 ): vscode.Diagnostic {
 	// find where in the line of that the 'emoji' is mentioned
 	const index = lineOfText.text.indexOf(EMOJI);
@@ -47,13 +47,13 @@ function createDiagnostic(
 		lineIndex,
 		index,
 		lineIndex,
-		index + EMOJI.length
+		index + EMOJI.length,
 	);
 
 	const diagnostic = new vscode.Diagnostic(
 		range,
 		"When you say 'emoji', do you want to find out more?",
-		vscode.DiagnosticSeverity.Information
+		vscode.DiagnosticSeverity.Information,
 	);
 	diagnostic.code = EMOJI_MENTION;
 	return diagnostic;
@@ -61,12 +61,12 @@ function createDiagnostic(
 
 export function subscribeToDocumentChanges(
 	context: vscode.ExtensionContext,
-	emojiDiagnostics: vscode.DiagnosticCollection
+	emojiDiagnostics: vscode.DiagnosticCollection,
 ): void {
 	if (vscode.window.activeTextEditor) {
 		refreshDiagnostics(
 			vscode.window.activeTextEditor.document,
-			emojiDiagnostics
+			emojiDiagnostics,
 		);
 	}
 	context.subscriptions.push(
@@ -74,18 +74,18 @@ export function subscribeToDocumentChanges(
 			if (editor) {
 				refreshDiagnostics(editor.document, emojiDiagnostics);
 			}
-		})
+		}),
 	);
 
 	context.subscriptions.push(
 		vscode.workspace.onDidChangeTextDocument((e) =>
-			refreshDiagnostics(e.document, emojiDiagnostics)
-		)
+			refreshDiagnostics(e.document, emojiDiagnostics),
+		),
 	);
 
 	context.subscriptions.push(
 		vscode.workspace.onDidCloseTextDocument((doc) =>
-			emojiDiagnostics.delete(doc.uri)
-		)
+			emojiDiagnostics.delete(doc.uri),
+		),
 	);
 }

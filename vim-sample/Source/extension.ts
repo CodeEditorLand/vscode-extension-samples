@@ -11,14 +11,14 @@ import { Controller } from "./controller";
 export function activate(context: vscode.ExtensionContext) {
 	function registerCommandNice(
 		commandId: string,
-		run: (...args: any[]) => void
+		run: (...args: any[]) => void,
 	): void {
 		context.subscriptions.push(
-			vscode.commands.registerCommand(commandId, run)
+			vscode.commands.registerCommand(commandId, run),
 		);
 	}
 	function registerCtrlKeyBinding(key: string): void {
-		registerCommandNice(key, function (args) {
+		registerCommandNice(key, (args) => {
 			if (!vscode.window.activeTextEditor) {
 				return;
 			}
@@ -28,34 +28,34 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const vimExt = new VimExt();
 
-	registerCommandNice("type", function (args) {
+	registerCommandNice("type", (args) => {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
 		vimExt.type(args.text);
 	});
-	registerCommandNice("replacePreviousChar", function (args) {
+	registerCommandNice("replacePreviousChar", (args) => {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
 		vimExt.replacePrevChar(args.text, args.replaceCharCnt);
 	});
-	registerCommandNice("compositionStart", function (args) {
+	registerCommandNice("compositionStart", (args) => {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
 		vimExt.compositionStart();
 	});
-	registerCommandNice("compositionEnd", function (args) {
+	registerCommandNice("compositionEnd", (args) => {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
 		vimExt.compositionEnd();
 	});
-	registerCommandNice("vim.goToNormalMode", function (args) {
+	registerCommandNice("vim.goToNormalMode", (args) => {
 		vimExt.goToNormalMode();
 	});
-	registerCommandNice("vim.clearInput", function (args) {
+	registerCommandNice("vim.clearInput", (args) => {
 		vimExt.clearInput();
 	});
 	// registerCommandNice('paste', function(args) {
@@ -106,7 +106,16 @@ class VimExt {
 		vscode.window.onDidChangeTextEditorSelection((e) => {
 			const isVisual = this._controller.getVisual();
 
-			if (!isVisual) {
+			if (isVisual) {
+				// a collapsed selection in the editor brings us to normal mode
+				let leaveVisualMode = false;
+				if (e.selections.length === 1) {
+					leaveVisualMode = e.selections[0].isEmpty;
+				}
+				if (leaveVisualMode) {
+					this._controller.setVisual(false);
+				}
+			} else {
 				// a selection in the editor brings us to visual mode
 				let goToVisualMode = false;
 
@@ -118,15 +127,6 @@ class VimExt {
 
 				if (goToVisualMode) {
 					this._controller.setVisual(true);
-				}
-			} else {
-				// a collapsed selection in the editor brings us to normal mode
-				let leaveVisualMode = false;
-				if (e.selections.length === 1) {
-					leaveVisualMode = e.selections[0].isEmpty;
-				}
-				if (leaveVisualMode) {
-					this._controller.setVisual(false);
 				}
 			}
 
@@ -154,7 +154,7 @@ class VimExt {
 
 	public type(
 		text: string,
-		modifierKeys: ModifierKeys = { ctrl: false, shifit: false, alt: false }
+		modifierKeys: ModifierKeys = { ctrl: false, shifit: false, alt: false },
 	): void {
 		this._controller
 			.type(vscode.window.activeTextEditor, text, modifierKeys)
@@ -179,7 +179,7 @@ class VimExt {
 			this._controller.replacePrevChar(
 				vscode.window.activeTextEditor,
 				text,
-				replaceCharCnt
+				replaceCharCnt,
 			)
 		) {
 			this._ensureState();
@@ -232,12 +232,12 @@ class VimExt {
 			return;
 		}
 		this._controller.ensureNormalModePosition(
-			vscode.window.activeTextEditor
+			vscode.window.activeTextEditor,
 		);
 	}
 
 	private _ensureCursorStyle(
-		cursorStyle: vscode.TextEditorCursorStyle
+		cursorStyle: vscode.TextEditorCursorStyle,
 	): void {
 		if (!vscode.window.activeTextEditor) {
 			return;
@@ -268,7 +268,7 @@ class ContextKey {
 		vscode.commands.executeCommand(
 			"setContext",
 			this._name,
-			this._lastValue
+			this._lastValue,
 		);
 	}
 }
@@ -279,7 +279,7 @@ class StatusBar {
 
 	constructor() {
 		this._actual = vscode.window.createStatusBarItem(
-			vscode.StatusBarAlignment.Left
+			vscode.StatusBarAlignment.Left,
 		);
 		this._actual.show();
 	}

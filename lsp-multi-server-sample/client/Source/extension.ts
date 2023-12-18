@@ -4,13 +4,13 @@
  * ------------------------------------------------------------------------------------------ */
 import * as path from "path";
 import {
-	workspace as Workspace,
-	window as Window,
 	ExtensionContext,
-	TextDocument,
 	OutputChannel,
-	WorkspaceFolder,
+	TextDocument,
 	Uri,
+	WorkspaceFolder,
+	window as Window,
+	workspace as Workspace,
 } from "vscode";
 
 import {
@@ -42,7 +42,7 @@ function sortedWorkspaceFolders(): string[] {
 	return _sortedWorkspaceFolders;
 }
 Workspace.onDidChangeWorkspaceFolders(
-	() => (_sortedWorkspaceFolders = undefined)
+	() => (_sortedWorkspaceFolders = undefined),
 );
 
 function getOuterMostWorkspaceFolder(folder: WorkspaceFolder): WorkspaceFolder {
@@ -61,10 +61,10 @@ function getOuterMostWorkspaceFolder(folder: WorkspaceFolder): WorkspaceFolder {
 
 export function activate(context: ExtensionContext) {
 	const module = context.asAbsolutePath(
-		path.join("server", "out", "server.js")
+		path.join("server", "out", "server.js"),
 	);
 	const outputChannel: OutputChannel = Window.createOutputChannel(
-		"lsp-multi-server-example"
+		"lsp-multi-server-example",
 	);
 
 	function didOpenTextDocument(document: TextDocument): void {
@@ -95,7 +95,7 @@ export function activate(context: ExtensionContext) {
 				"lsp-multi-server-example",
 				"LSP Multi Server Example",
 				serverOptions,
-				clientOptions
+				clientOptions,
 			);
 			defaultClient.start();
 			return;
@@ -130,7 +130,7 @@ export function activate(context: ExtensionContext) {
 				"lsp-multi-server-example",
 				"LSP Multi Server Example",
 				serverOptions,
-				clientOptions
+				clientOptions,
 			);
 			client.start();
 			clients.set(folder.uri.toString(), client);

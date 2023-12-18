@@ -4,17 +4,17 @@
  * ------------------------------------------------------------------------------------------ */
 
 import {
-	createConnection,
-	TextDocuments,
-	Diagnostic,
-	DiagnosticSeverity,
-	ProposedFeatures,
-	InitializeParams,
-	DidChangeConfigurationNotification,
 	CompletionItem,
 	CompletionItemKind,
+	Diagnostic,
+	DiagnosticSeverity,
+	DidChangeConfigurationNotification,
+	InitializeParams,
+	ProposedFeatures,
 	TextDocumentPositionParams,
 	TextDocumentSyncKind,
+	TextDocuments,
+	createConnection,
 } from "vscode-languageserver/node";
 
 import { TextDocument } from "vscode-languageserver-textdocument";
@@ -60,7 +60,7 @@ connection.onInitialized(() => {
 		// Register for all configuration changes.
 		connection.client.register(
 			DidChangeConfigurationNotification.type,
-			undefined
+			undefined,
 		);
 	}
 	if (hasWorkspaceFolderCapability) {
@@ -197,7 +197,7 @@ connection.onCompletion(
 				data: 2,
 			},
 		];
-	}
+	},
 );
 
 // This handler resolves additional information for the item selected in

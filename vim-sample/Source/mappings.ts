@@ -4,20 +4,20 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { TextEditor } from "vscode";
-import { Motion, Motions } from "./motions";
-import { Operator, Operators } from "./operators";
 import {
-	IController,
-	Command,
 	AbstractCommandDescriptor,
+	Command,
+	IController,
 	ModifierKeys,
 } from "./common";
+import { Motion, Motions } from "./motions";
+import { Operator, Operators } from "./operators";
 
 const CHAR_TO_BINDING: { [char: string]: any } = {};
 function defineBinding(
 	char: string,
 	value: any,
-	modifierKeys: ModifierKeys
+	modifierKeys: ModifierKeys,
 ): void {
 	const key = modifierKeys.ctrl ? "CTRL + " + char : char;
 	CHAR_TO_BINDING[key] = value;
@@ -30,7 +30,7 @@ function getBinding(char: string, modifierKeys: ModifierKeys): any {
 function defineOperator(
 	char: string,
 	operator: Operator,
-	modifierKeys: ModifierKeys = {}
+	modifierKeys: ModifierKeys = {},
 ): void {
 	defineBinding(char + "__operator__", operator, modifierKeys);
 }
@@ -41,7 +41,7 @@ function getOperator(char: string, modifierKeys: ModifierKeys = {}): Operator {
 function defineCommand(
 	char: string,
 	commandId: string,
-	modifierKeys: ModifierKeys = {}
+	modifierKeys: ModifierKeys = {},
 ): void {
 	defineBinding(char + "__command__", { commandId: commandId }, modifierKeys);
 }
@@ -52,7 +52,7 @@ function getCommand(char: string, modifierKeys: ModifierKeys = {}): Command {
 function defineMotion(
 	char: string,
 	motion: Motion,
-	modifierKeys: ModifierKeys = {}
+	modifierKeys: ModifierKeys = {},
 ): void {
 	defineBinding(char + "__motion__", motion, modifierKeys);
 }
@@ -63,13 +63,13 @@ function getMotion(char: string, modifierKeys: ModifierKeys = {}): Motion {
 function defineMotionCommand(
 	char: string,
 	motionCommand: AbstractCommandDescriptor,
-	modifierKeys: ModifierKeys = {}
+	modifierKeys: ModifierKeys = {},
 ): void {
 	defineBinding(char + "__motioncommand__", motionCommand, modifierKeys);
 }
 function getMotionCommand(
 	char: string,
-	modifierKeys: ModifierKeys = {}
+	modifierKeys: ModifierKeys = {},
 ): AbstractCommandDescriptor {
 	return getBinding(char + "__motioncommand__", modifierKeys);
 }
@@ -168,20 +168,20 @@ export class Mappings {
 	public static findMotionCommand(
 		input: string,
 		isVisual: boolean,
-		modifierKeys: ModifierKeys
+		modifierKeys: ModifierKeys,
 	): Command {
 		let parsed = _parseNumberAndString(input);
 		let command = Mappings.findMotionCommandFromNumberAndString(
 			parsed,
 			isVisual,
-			modifierKeys
+			modifierKeys,
 		);
 		if (!command) {
 			parsed = _parseNumberAndString(input, false);
 			command = Mappings.findMotionCommandFromNumberAndString(
 				parsed,
 				isVisual,
-				modifierKeys
+				modifierKeys,
 			);
 		}
 		return command;
@@ -190,34 +190,34 @@ export class Mappings {
 	private static findMotionCommandFromNumberAndString(
 		numberAndString: INumberAndString,
 		isVisual: boolean,
-		modifierKeys: ModifierKeys
+		modifierKeys: ModifierKeys,
 	): Command {
 		let motionCommand = getMotionCommand(
 			numberAndString.input.substr(0, 1),
-			modifierKeys
+			modifierKeys,
 		);
 		if (!motionCommand) {
 			motionCommand = getMotionCommand(
 				numberAndString.input.substr(0, 2),
-				modifierKeys
+				modifierKeys,
 			);
 		}
 		if (!motionCommand) {
 			motionCommand = getMotionCommand(
 				numberAndString.input.substr(1, 2),
-				modifierKeys
+				modifierKeys,
 			);
 		}
 		if (!motionCommand) {
 			motionCommand = getMotionCommand(
 				numberAndString.input.substr(1, 3),
-				modifierKeys
+				modifierKeys,
 			);
 		}
 		if (!motionCommand) {
 			motionCommand = getMotionCommand(
 				numberAndString.input,
-				modifierKeys
+				modifierKeys,
 			);
 		}
 		return motionCommand
@@ -226,13 +226,13 @@ export class Mappings {
 					repeat: numberAndString.hasRepeatCount
 						? numberAndString.repeatCount
 						: undefined,
-				})
+			  })
 			: null;
 	}
 
 	public static findOperator(
 		input: string,
-		modifierKeys: ModifierKeys
+		modifierKeys: ModifierKeys,
 	): IFoundOperator {
 		const parsed = _parseNumberAndString(input);
 		const operator = getOperator(parsed.input.substr(0, 1), modifierKeys);
@@ -246,7 +246,7 @@ export class Mappings {
 					controller,
 					editor,
 					parsed.repeatCount,
-					operatorArgs
+					operatorArgs,
 				);
 			},
 			runVisual: (controller: IController, editor: TextEditor) => {
@@ -257,7 +257,7 @@ export class Mappings {
 
 	public static findCommand(
 		input: string,
-		modifierKeys: ModifierKeys
+		modifierKeys: ModifierKeys,
 	): Command {
 		return getCommand(input, modifierKeys) || null;
 	}
@@ -275,7 +275,7 @@ export class Mappings {
 
 function _parseNumberAndString(
 	input: string,
-	numberAtBeginning = true
+	numberAtBeginning = true,
 ): INumberAndString {
 	if (numberAtBeginning) {
 		const repeatCountMatch = input.match(/^([1-9]\d*)/);
@@ -294,7 +294,7 @@ function _parseNumberAndString(
 				repeatCount: parseInt(repeatCountMatch[1], 10),
 				input: input.substr(
 					0,
-					input.length - repeatCountMatch[1].length
+					input.length - repeatCountMatch[1].length,
 				),
 			};
 		}

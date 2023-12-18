@@ -2,17 +2,14 @@
  * Copyright (C) Microsoft Corporation. All rights reserved.
  *--------------------------------------------------------*/
 
+import { basename } from "path";
 import {
 	ExtensionContext,
 	StatusBarAlignment,
-	window,
 	StatusBarItem,
-	Selection,
+	window,
 	workspace,
-	TextEditor,
-	commands,
 } from "vscode";
-import { basename } from "path";
 
 export function activate(context: ExtensionContext) {
 	// Create a status bar item
@@ -21,26 +18,26 @@ export function activate(context: ExtensionContext) {
 
 	// Update status bar item based on events for multi root folder changes
 	context.subscriptions.push(
-		workspace.onDidChangeWorkspaceFolders((e) => updateStatus(status))
+		workspace.onDidChangeWorkspaceFolders((e) => updateStatus(status)),
 	);
 
 	// Update status bar item based on events for configuration
 	context.subscriptions.push(
-		workspace.onDidChangeConfiguration((e) => updateStatus(status))
+		workspace.onDidChangeConfiguration((e) => updateStatus(status)),
 	);
 
 	// Update status bar item based on events around the active editor
 	context.subscriptions.push(
-		window.onDidChangeActiveTextEditor((e) => updateStatus(status))
+		window.onDidChangeActiveTextEditor((e) => updateStatus(status)),
 	);
 	context.subscriptions.push(
-		window.onDidChangeTextEditorViewColumn((e) => updateStatus(status))
+		window.onDidChangeTextEditorViewColumn((e) => updateStatus(status)),
 	);
 	context.subscriptions.push(
-		workspace.onDidOpenTextDocument((e) => updateStatus(status))
+		workspace.onDidOpenTextDocument((e) => updateStatus(status)),
 	);
 	context.subscriptions.push(
-		workspace.onDidCloseTextDocument((e) => updateStatus(status))
+		workspace.onDidCloseTextDocument((e) => updateStatus(status)),
 	);
 
 	updateStatus(status);
@@ -85,11 +82,7 @@ function getEditorInfo(): {
 	const resource = editor.document.uri;
 	if (resource.scheme === "file") {
 		const folder = workspace.getWorkspaceFolder(resource);
-		if (!folder) {
-			text = `$(alert) <outside workspace> → ${basename(
-				resource.fsPath
-			)}`;
-		} else {
+		if (folder) {
 			text = `$(file-submodule) ${basename(folder.uri.fsPath)} (${
 				folder.index + 1
 			} of ${
@@ -99,9 +92,13 @@ function getEditorInfo(): {
 
 			const multiRootConfigForResource = workspace.getConfiguration(
 				"multiRootSample",
-				resource
+				resource,
 			);
 			color = multiRootConfigForResource.get("statusColor");
+		} else {
+			text = `$(alert) <outside workspace> → ${basename(
+				resource.fsPath,
+			)}`;
 		}
 	}
 

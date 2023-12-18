@@ -5,10 +5,10 @@
 
 import * as path from "path";
 import {
-	commands,
 	CompletionList,
 	ExtensionContext,
 	Uri,
+	commands,
 	workspace,
 } from "vscode";
 import { getLanguageService } from "vscode-html-languageservice";
@@ -27,7 +27,7 @@ const htmlLanguageService = getLanguageService();
 export function activate(context: ExtensionContext) {
 	// The server is implemented in node
 	const serverModule = context.asAbsolutePath(
-		path.join("server", "out", "server.js")
+		path.join("server", "out", "server.js"),
 	);
 
 	// If the extension is launched in debug mode then the debug server options are used
@@ -58,14 +58,14 @@ export function activate(context: ExtensionContext) {
 				position,
 				context,
 				token,
-				next
+				next,
 			) => {
 				// If not in `<style>`, do not perform request forwarding
 				if (
 					!isInsideStyleRegion(
 						htmlLanguageService,
 						document.getText(),
-						document.offsetAt(position)
+						document.offsetAt(position),
 					)
 				) {
 					return await next(document, position, context, token);
@@ -76,19 +76,19 @@ export function activate(context: ExtensionContext) {
 					originalUri,
 					getCSSVirtualContent(
 						htmlLanguageService,
-						document.getText()
-					)
+						document.getText(),
+					),
 				);
 
 				const vdocUriString = `embedded-content://css/${encodeURIComponent(
-					originalUri
+					originalUri,
 				)}.css`;
 				const vdocUri = Uri.parse(vdocUriString);
 				return await commands.executeCommand<CompletionList>(
 					"vscode.executeCompletionItemProvider",
 					vdocUri,
 					position,
-					context.triggerCharacter
+					context.triggerCharacter,
 				);
 			},
 		},
@@ -99,7 +99,7 @@ export function activate(context: ExtensionContext) {
 		"languageServerExample",
 		"Language Server Example",
 		serverOptions,
-		clientOptions
+		clientOptions,
 	);
 
 	// Start the client. This will also launch the server

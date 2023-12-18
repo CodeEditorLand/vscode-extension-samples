@@ -5,7 +5,7 @@ export function activate(context: vscode.ExtensionContext) {
 		"welcome-view-content-sample.hello",
 		async () => {
 			vscode.window.showInformationMessage("Hello world!");
-		}
+		},
 	);
 
 	context.subscriptions.push(disposable);

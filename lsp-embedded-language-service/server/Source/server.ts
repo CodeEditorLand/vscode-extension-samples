@@ -5,15 +5,15 @@
 
 import {
 	CompletionList,
-	createConnection,
 	Diagnostic,
 	InitializeParams,
 	ProposedFeatures,
-	TextDocuments,
 	TextDocumentSyncKind,
+	TextDocuments,
+	createConnection,
 } from "vscode-languageserver";
-import { getLanguageModes, LanguageModes } from "./languageModes";
 import { TextDocument } from "vscode-languageserver-textdocument";
+import { LanguageModes, getLanguageModes } from "./languageModes";
 
 // Create a connection for the server. The connection uses Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -93,7 +93,7 @@ connection.onCompletion(async (textDocumentPosition, token) => {
 
 	const mode = languageModes.getModeAtPosition(
 		document,
-		textDocumentPosition.position
+		textDocumentPosition.position,
 	);
 	if (!mode || !mode.doComplete) {
 		return CompletionList.create();

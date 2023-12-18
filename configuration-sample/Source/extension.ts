@@ -33,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
 				{
 					placeHolder:
 						"Select the view to show when opening a window.",
-				}
+				},
 			);
 
 			if (vscode.workspace.workspaceFolders) {
@@ -54,7 +54,7 @@ export function activate(context: vscode.ExtensionContext) {
 					{
 						placeHolder:
 							"Select the view to show when opening a window.",
-					}
+					},
 				);
 
 				if (value && target) {
@@ -64,7 +64,7 @@ export function activate(context: vscode.ExtensionContext) {
 						.update(
 							"conf.view.showOnWindowOpen",
 							value,
-							target.target
+							target.target,
 						);
 
 					/*
@@ -79,10 +79,10 @@ export function activate(context: vscode.ExtensionContext) {
 					.update(
 						"conf.view.showOnWindowOpen",
 						value,
-						vscode.ConfigurationTarget.Global
+						vscode.ConfigurationTarget.Global,
 					);
 			}
-		}
+		},
 	);
 
 	// Example: Reading Resource scoped configuration for a file
@@ -99,10 +99,10 @@ export function activate(context: vscode.ExtensionContext) {
 			// 3) If matches, insert empty last line
 			if (matches) {
 				vscode.window.showInformationMessage(
-					"An empty line will be added to the document " + e.fileName
+					"An empty line will be added to the document " + e.fileName,
 				);
 			}
-		})
+		}),
 	);
 
 	// Example: Updating Resource scoped Configuration for current file
@@ -115,13 +115,13 @@ export function activate(context: vscode.ExtensionContext) {
 				// 1) Get the configuration for the current document
 				const configuration = vscode.workspace.getConfiguration(
 					"",
-					currentDocument.uri
+					currentDocument.uri,
 				);
 
 				// 2) Get the configiuration value
 				const currentValue = configuration.get(
 					"conf.resource.insertEmptyLastLine",
-					{}
+					{},
 				);
 
 				// 3) Choose target to Global when there are no workspace folders
@@ -138,10 +138,10 @@ export function activate(context: vscode.ExtensionContext) {
 				await configuration.update(
 					"conf.resource.insertEmptyLastLine",
 					value,
-					target
+					target,
 				);
 			}
-		}
+		},
 	);
 
 	// Example: Updating Resource scoped Configuration
@@ -176,7 +176,7 @@ export function activate(context: vscode.ExtensionContext) {
 					{
 						placeHolder:
 							"Select the target to which this setting should be applied",
-					}
+					},
 				);
 
 				if (value && target) {
@@ -195,12 +195,12 @@ export function activate(context: vscode.ExtensionContext) {
 							const configuration =
 								vscode.workspace.getConfiguration(
 									"",
-									workspaceFolder.uri
+									workspaceFolder.uri,
 								);
 
 							// 5) Get the current value
 							const currentValue = configuration.get<{}>(
-								"conf.resource.insertEmptyLastLine"
+								"conf.resource.insertEmptyLastLine",
 							);
 
 							const newValue = {
@@ -212,7 +212,7 @@ export function activate(context: vscode.ExtensionContext) {
 							await configuration.update(
 								"conf.resource.insertEmptyLastLine",
 								newValue,
-								target.target
+								target.target,
 							);
 						}
 					} else {
@@ -222,7 +222,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 						// 4) Get the current value
 						const currentValue = configuration.get<{}>(
-							"conf.resource.insertEmptyLastLine"
+							"conf.resource.insertEmptyLastLine",
 						);
 
 						const newValue = {
@@ -236,7 +236,7 @@ export function activate(context: vscode.ExtensionContext) {
 							.update(
 								"conf.resource.insertEmptyLastLine",
 								newValue,
-								target.target
+								target.target,
 							);
 					}
 				}
@@ -246,7 +246,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 				// 3) Get the current value
 				const currentValue = configuration.get<{}>(
-					"conf.resource.insertEmptyLastLine"
+					"conf.resource.insertEmptyLastLine",
 				);
 
 				const newValue = {
@@ -260,10 +260,10 @@ export function activate(context: vscode.ExtensionContext) {
 					.update(
 						"conf.resource.insertEmptyLastLine",
 						newValue,
-						vscode.ConfigurationTarget.Global
+						vscode.ConfigurationTarget.Global,
 					);
 			}
-		}
+		},
 	);
 
 	let statusSizeDisposable: vscode.Disposable;
@@ -282,10 +282,10 @@ export function activate(context: vscode.ExtensionContext) {
 			// 3) If matches, insert empty last line
 			if (showSize) {
 				statusSizeDisposable = vscode.window.setStatusBarMessage(
-					`${e.getText().length}`
+					`${e.getText().length}`,
 				);
 			}
-		})
+		}),
 	);
 
 	// Example: Overriding configuration value for a language
@@ -302,8 +302,8 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.workspace
 					.getConfiguration("", { languageId: languageId! })
 					.update("conf.language.showSize", true, false, true);
-			}
-		)
+			},
+		),
 	);
 
 	// Example: Listening to configuration changes
@@ -326,7 +326,7 @@ export function activate(context: vscode.ExtensionContext) {
 					if (matches) {
 						vscode.window.showInformationMessage(
 							"An empty line will be added to the document " +
-								currentDocument.fileName
+								currentDocument.fileName,
 						);
 					}
 				}
@@ -336,7 +336,7 @@ export function activate(context: vscode.ExtensionContext) {
 			if (
 				e.affectsConfiguration(
 					"conf.language.showSize",
-					vscode.window.activeTextEditor?.document
+					vscode.window.activeTextEditor?.document,
 				)
 			) {
 				// noop
@@ -350,6 +350,6 @@ export function activate(context: vscode.ExtensionContext) {
 			) {
 				// noop
 			}
-		})
+		}),
 	);
 }

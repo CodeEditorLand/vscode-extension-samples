@@ -1,6 +1,6 @@
-import * as path from "path";
-import * as os from "os";
 import * as fs from "fs";
+import * as os from "os";
+import * as path from "path";
 import { promisify } from "util";
 
 const homeDir = getUserHomeDir();
@@ -23,7 +23,7 @@ export async function findLocallyRunningServers(type: "lab" | "notebook") {
 			}
 
 			const contents = await promisify(fs.readFile)(
-				path.join(runtimeDir, file)
+				path.join(runtimeDir, file),
 			).then((c) => c.toString());
 			const json: {
 				url: string;
@@ -42,7 +42,7 @@ export async function findLocallyRunningServers(type: "lab" | "notebook") {
 			} catch {
 				//
 			}
-		})
+		}),
 	);
 
 	return servers;

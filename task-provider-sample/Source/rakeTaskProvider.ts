@@ -1,12 +1,11 @@
+import * as cp from "child_process";
+import * as fs from "fs";
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import * as path from "path";
-import * as fs from "fs";
-import * as cp from "child_process";
 import * as vscode from "vscode";
-import { error } from "console";
 
 export class RakeTaskProvider implements vscode.TaskProvider {
 	static RakeType = "rake";
@@ -39,7 +38,7 @@ export class RakeTaskProvider implements vscode.TaskProvider {
 				_task.scope ?? vscode.TaskScope.Workspace,
 				definition.task,
 				"rake",
-				new vscode.ShellExecution(`rake ${definition.task}`)
+				new vscode.ShellExecution(`rake ${definition.task}`),
 			);
 		}
 		return undefined;
@@ -56,7 +55,7 @@ function exists(file: string): Promise<boolean> {
 
 function exec(
 	command: string,
-	options: cp.ExecOptions
+	options: cp.ExecOptions,
 ): Promise<{ stdout: string; stderr: string }> {
 	return new Promise<{ stdout: string; stderr: string }>(
 		(resolve, reject) => {
@@ -66,7 +65,7 @@ function exec(
 				}
 				resolve({ stdout, stderr });
 			});
-		}
+		},
 	);
 }
 
@@ -154,7 +153,7 @@ async function getRakeTasks(): Promise<vscode.Task[]> {
 							workspaceFolder,
 							taskName,
 							"rake",
-							new vscode.ShellExecution(`rake ${taskName}`)
+							new vscode.ShellExecution(`rake ${taskName}`),
 						);
 						result.push(task);
 						const lowerCaseLine = line.toLowerCase();

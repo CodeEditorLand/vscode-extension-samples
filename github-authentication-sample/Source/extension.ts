@@ -20,9 +20,9 @@ export async function activate(context: vscode.ExtensionContext) {
 			const userInfo = await octokit.users.getAuthenticated();
 
 			vscode.window.showInformationMessage(
-				`Logged into GitHub as ${userInfo.data.login}`
+				`Logged into GitHub as ${userInfo.data.login}`,
 			);
-		}
+		},
 	);
 
 	context.subscriptions.push(disposable);

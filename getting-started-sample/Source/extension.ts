@@ -12,10 +12,10 @@ export function activate(context: vscode.ExtensionContext): void {
 				await new Promise((resolve) => setTimeout(resolve, 1000));
 				vscode.commands.executeCommand(
 					"getting-started-sample.sayHello",
-					vscode.Uri.joinPath(context.extensionUri, "sample-folder")
+					vscode.Uri.joinPath(context.extensionUri, "sample-folder"),
 				);
-			}
-		)
+			},
+		),
 	);
 
 	context.subscriptions.push(
@@ -26,8 +26,8 @@ export function activate(context: vscode.ExtensionContext): void {
 				vscode.workspace
 					.getConfiguration("getting-started-sample")
 					.update("sampleSetting", true);
-			}
-		)
+			},
+		),
 	);
 
 	context.subscriptions.push(
@@ -38,10 +38,10 @@ export function activate(context: vscode.ExtensionContext): void {
 				vscode.commands.executeCommand(
 					"setContext",
 					"gettingStartedContextKey",
-					true
+					true,
 				);
-			}
-		)
+			},
+		),
 	);
 
 	context.subscriptions.push(
@@ -49,8 +49,8 @@ export function activate(context: vscode.ExtensionContext): void {
 			"getting-started-sample.sayHello",
 			() => {
 				vscode.window.showInformationMessage("Hello");
-			}
-		)
+			},
+		),
 	);
 
 	context.subscriptions.push(
@@ -60,10 +60,10 @@ export function activate(context: vscode.ExtensionContext): void {
 				return {
 					openFolder: vscode.Uri.joinPath(
 						context.extensionUri,
-						"src"
+						"src",
 					),
 				};
-			}
-		)
+			},
+		),
 	);
 }
