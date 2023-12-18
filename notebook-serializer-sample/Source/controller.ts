@@ -12,7 +12,7 @@ export class SampleKernel {
 		this._controller = vscode.notebooks.createNotebookController(
 			this._id,
 			"test-notebook-serializer",
-			this._label,
+			this._label
 		);
 
 		this._controller.supportedLanguages = this._supportedLanguages;
@@ -27,7 +27,7 @@ export class SampleKernel {
 	private _executeAll(
 		cells: vscode.NotebookCell[],
 		_notebook: vscode.NotebookDocument,
-		_controller: vscode.NotebookController,
+		_controller: vscode.NotebookController
 	): void {
 		for (const cell of cells) {
 			this._doExecution(cell);
@@ -44,7 +44,7 @@ export class SampleKernel {
 			execution.replaceOutput([
 				new vscode.NotebookCellOutput([
 					vscode.NotebookCellOutputItem.json(
-						JSON.parse(cell.document.getText()),
+						JSON.parse(cell.document.getText())
 					),
 				]),
 			]);

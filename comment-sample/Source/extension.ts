@@ -13,7 +13,7 @@ class NoteComment implements vscode.Comment {
 		public mode: vscode.CommentMode,
 		public author: vscode.CommentAuthorInformation,
 		public parent?: vscode.CommentThread,
-		public contextValue?: string,
+		public contextValue?: string
 	) {
 		this.id = ++commentId;
 		this.savedBody = this.body;
@@ -24,7 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// A `CommentController` is able to provide comments for documents.
 	const commentController = vscode.comments.createCommentController(
 		"comment-sample",
-		"Comment API Sample",
+		"Comment API Sample"
 	);
 	context.subscriptions.push(commentController);
 
@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 	commentController.commentingRangeProvider = {
 		provideCommentingRanges: (
 			document: vscode.TextDocument,
-			token: vscode.CancellationToken,
+			token: vscode.CancellationToken
 		) => {
 			const lineCount = document.lineCount;
 			return [new vscode.Range(0, 0, lineCount - 1, 0)];
@@ -44,8 +44,8 @@ export function activate(context: vscode.ExtensionContext) {
 			"mywiki.createNote",
 			(reply: vscode.CommentReply) => {
 				replyNote(reply);
-			},
-		),
+			}
+		)
 	);
 
 	context.subscriptions.push(
@@ -53,8 +53,8 @@ export function activate(context: vscode.ExtensionContext) {
 			"mywiki.replyNote",
 			(reply: vscode.CommentReply) => {
 				replyNote(reply);
-			},
-		),
+			}
+		)
 	);
 
 	context.subscriptions.push(
@@ -67,12 +67,12 @@ export function activate(context: vscode.ExtensionContext) {
 					reply.text,
 					vscode.CommentMode.Preview,
 					{ name: "vscode" },
-					thread,
+					thread
 				);
 				newComment.label = "pending";
 				thread.comments = [...thread.comments, newComment];
-			},
-		),
+			}
+		)
 	);
 
 	context.subscriptions.push(
@@ -93,17 +93,17 @@ export function activate(context: vscode.ExtensionContext) {
 						reply.text,
 						vscode.CommentMode.Preview,
 						{ name: "vscode" },
-						thread,
+						thread
 					);
 					thread.comments = [...thread.comments, newComment].map(
 						(comment) => {
 							comment.label = undefined;
 							return comment;
-						},
+						}
 					);
 				}
-			},
-		),
+			}
+		)
 	);
 
 	context.subscriptions.push(
@@ -116,14 +116,14 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 
 				thread.comments = thread.comments.filter(
-					(cmt) => (cmt as NoteComment).id !== comment.id,
+					(cmt) => (cmt as NoteComment).id !== comment.id
 				);
 
 				if (thread.comments.length === 0) {
 					thread.dispose();
 				}
-			},
-		),
+			}
+		)
 	);
 
 	context.subscriptions.push(
@@ -131,8 +131,8 @@ export function activate(context: vscode.ExtensionContext) {
 			"mywiki.deleteNote",
 			(thread: vscode.CommentThread) => {
 				thread.dispose();
-			},
-		),
+			}
+		)
 	);
 
 	context.subscriptions.push(
@@ -151,8 +151,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 					return cmt;
 				});
-			},
-		),
+			}
+		)
 	);
 
 	context.subscriptions.push(
@@ -171,8 +171,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 					return cmt;
 				});
-			},
-		),
+			}
+		)
 	);
 
 	context.subscriptions.push(
@@ -190,14 +190,14 @@ export function activate(context: vscode.ExtensionContext) {
 
 					return cmt;
 				});
-			},
-		),
+			}
+		)
 	);
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand("mywiki.dispose", () => {
 			commentController.dispose();
-		}),
+		})
 	);
 
 	function replyNote(reply: vscode.CommentReply) {
@@ -207,7 +207,7 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.CommentMode.Preview,
 			{ name: "vscode" },
 			thread,
-			thread.comments.length ? "canDelete" : undefined,
+			thread.comments.length ? "canDelete" : undefined
 		);
 		if (thread.contextValue === "draft") {
 			newComment.label = "pending";

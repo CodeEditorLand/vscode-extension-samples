@@ -16,7 +16,7 @@ export class FtpModel {
 	constructor(
 		readonly host: string,
 		private user: string,
-		private password: string,
+		private password: string
 	) {}
 
 	public connect(): Thenable<Client> {
@@ -52,11 +52,11 @@ export class FtpModel {
 						this.sort(
 							list.map((entry) => ({
 								resource: vscode.Uri.parse(
-									`ftp://${this.host}///${entry.name}`,
+									`ftp://${this.host}///${entry.name}`
 								),
 								isDirectory: entry.type === "d",
-							})),
-						),
+							}))
+						)
 					);
 				});
 			});
@@ -77,11 +77,11 @@ export class FtpModel {
 						this.sort(
 							list.map((entry) => ({
 								resource: vscode.Uri.parse(
-									`${node.resource.fsPath}/${entry.name}`,
+									`${node.resource.fsPath}/${entry.name}`
 								),
 								isDirectory: entry.type === "d",
-							})),
-						),
+							}))
+						)
 					);
 				});
 			});
@@ -99,7 +99,7 @@ export class FtpModel {
 			}
 
 			return basename(n1.resource.fsPath).localeCompare(
-				basename(n2.resource.fsPath),
+				basename(n2.resource.fsPath)
 			);
 		});
 	}
@@ -158,7 +158,7 @@ export class FtpTreeDataProvider
 						command: "ftpExplorer.openFtpResource",
 						arguments: [element.resource],
 						title: "Open FTP Resource",
-				  },
+					},
 		};
 	}
 
@@ -177,7 +177,7 @@ export class FtpTreeDataProvider
 
 	public provideTextDocumentContent(
 		uri: vscode.Uri,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): vscode.ProviderResult<string> {
 		return this.model.getContent(uri).then((content) => content);
 	}
@@ -191,14 +191,14 @@ export class FtpExplorer {
 		const ftpModel = new FtpModel(
 			"mirror.switch.ch",
 			"anonymous",
-			"anonymous@anonymous.de",
+			"anonymous@anonymous.de"
 		);
 		const treeDataProvider = new FtpTreeDataProvider(ftpModel);
 		context.subscriptions.push(
 			vscode.workspace.registerTextDocumentContentProvider(
 				"ftp",
-				treeDataProvider,
-			),
+				treeDataProvider
+			)
 		);
 
 		this.ftpViewer = vscode.window.createTreeView("ftpExplorer", {
@@ -206,14 +206,14 @@ export class FtpExplorer {
 		});
 
 		vscode.commands.registerCommand("ftpExplorer.refresh", () =>
-			treeDataProvider.refresh(),
+			treeDataProvider.refresh()
 		);
 		vscode.commands.registerCommand(
 			"ftpExplorer.openFtpResource",
-			(resource) => this.openResource(resource),
+			(resource) => this.openResource(resource)
 		);
 		vscode.commands.registerCommand("ftpExplorer.revealResource", () =>
-			this.reveal(),
+			this.reveal()
 		);
 	}
 

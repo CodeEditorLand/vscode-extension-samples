@@ -7,7 +7,7 @@ export class FoodPyramidHierarchyProvider
 	prepareCallHierarchy(
 		document: vscode.TextDocument,
 		position: vscode.Position,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): vscode.CallHierarchyItem | undefined {
 		const range = document.getWordRangeAtPosition(position);
 		if (range) {
@@ -20,7 +20,7 @@ export class FoodPyramidHierarchyProvider
 
 	async provideCallHierarchyOutgoingCalls(
 		item: vscode.CallHierarchyItem,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): Promise<vscode.CallHierarchyOutgoingCall[] | undefined> {
 		const document = await vscode.workspace.openTextDocument(item.uri);
 		const parser = new FoodPyramidParser();
@@ -34,7 +34,7 @@ export class FoodPyramidHierarchyProvider
 			const outgoingCalls = model
 				.getVerbRelations(item.name)
 				.filter(
-					(relation) => relation.subject === originRelation!.subject,
+					(relation) => relation.subject === originRelation!.subject
 				);
 
 			outgoingCalls.forEach((relation) => {
@@ -43,33 +43,33 @@ export class FoodPyramidHierarchyProvider
 					relation.object,
 					"noun",
 					document,
-					outgoingCallRange,
+					outgoingCallRange
 				);
 				const outgoingCallItem = new vscode.CallHierarchyOutgoingCall(
 					verbItem,
-					[outgoingCallRange],
+					[outgoingCallRange]
 				);
 				outgoingCallItems.push(outgoingCallItem);
 			});
 		} else if (model.isNoun(item.name)) {
 			const outgoingCallMap = groupBy(
 				model.getSubjectRelations(item.name),
-				(relation) => relation.verb,
+				(relation) => relation.verb
 			);
 
 			outgoingCallMap.forEach((relations, verb) => {
 				const outgoingCallRanges = relations.map((relation) =>
-					relation.getRangeOf(verb),
+					relation.getRangeOf(verb)
 				);
 				const verbItem = this.createCallHierarchyItem(
 					verb,
 					"verb",
 					document,
-					outgoingCallRanges[0],
+					outgoingCallRanges[0]
 				);
 				const outgoingCallItem = new vscode.CallHierarchyOutgoingCall(
 					verbItem,
-					outgoingCallRanges,
+					outgoingCallRanges
 				);
 				outgoingCallItems.push(outgoingCallItem);
 			});
@@ -80,7 +80,7 @@ export class FoodPyramidHierarchyProvider
 
 	async provideCallHierarchyIncomingCalls(
 		item: vscode.CallHierarchyItem,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): Promise<vscode.CallHierarchyIncomingCall[]> {
 		const document = await vscode.workspace.openTextDocument(item.uri);
 		const parser = new FoodPyramidParser();
@@ -94,7 +94,7 @@ export class FoodPyramidHierarchyProvider
 			const outgoingCalls = model
 				.getVerbRelations(item.name)
 				.filter(
-					(relation) => relation.object === originRelation!.object,
+					(relation) => relation.object === originRelation!.object
 				);
 
 			outgoingCalls.forEach((relation) => {
@@ -103,33 +103,33 @@ export class FoodPyramidHierarchyProvider
 					relation.subject,
 					"noun",
 					document,
-					outgoingCallRange,
+					outgoingCallRange
 				);
 				const outgoingCallItem = new vscode.CallHierarchyIncomingCall(
 					verbItem,
-					[outgoingCallRange],
+					[outgoingCallRange]
 				);
 				outgoingCallItems.push(outgoingCallItem);
 			});
 		} else if (model.isNoun(item.name)) {
 			const outgoingCallMap = groupBy(
 				model.getObjectRelations(item.name),
-				(relation) => relation.verb,
+				(relation) => relation.verb
 			);
 
 			outgoingCallMap.forEach((relations, verb) => {
 				const outgoingCallRanges = relations.map((relation) =>
-					relation.getRangeOf(verb),
+					relation.getRangeOf(verb)
 				);
 				const verbItem = this.createCallHierarchyItem(
 					verb,
 					"verb-inverted",
 					document,
-					outgoingCallRanges[0],
+					outgoingCallRanges[0]
 				);
 				const outgoingCallItem = new vscode.CallHierarchyIncomingCall(
 					verbItem,
-					outgoingCallRanges,
+					outgoingCallRanges
 				);
 				outgoingCallItems.push(outgoingCallItem);
 			});
@@ -142,7 +142,7 @@ export class FoodPyramidHierarchyProvider
 		word: string,
 		type: string,
 		document: vscode.TextDocument,
-		range: vscode.Range,
+		range: vscode.Range
 	): vscode.CallHierarchyItem {
 		return new vscode.CallHierarchyItem(
 			vscode.SymbolKind.Object,
@@ -150,7 +150,7 @@ export class FoodPyramidHierarchyProvider
 			`(${type})`,
 			document.uri,
 			range,
-			range,
+			range
 		);
 	}
 }
@@ -172,10 +172,10 @@ class FoodPyramidParser {
 			const startPosition = textDocument.positionAt(match.index);
 			const range = new vscode.Range(
 				startPosition,
-				startPosition.translate({ characterDelta: match[0].length }),
+				startPosition.translate({ characterDelta: match[0].length })
 			);
 			this._model.addRelation(
-				new FoodRelation(match[1], match[2], match[3], match[0], range),
+				new FoodRelation(match[1], match[2], match[3], match[0], range)
 			);
 		}
 	}
@@ -188,7 +188,7 @@ class FoodPyramidParser {
  */
 function groupBy<K, V>(
 	array: Array<V>,
-	keyGetter: (value: V) => K,
+	keyGetter: (value: V) => K
 ): Map<K, V[]> {
 	const map = new Map();
 	array.forEach((item) => {

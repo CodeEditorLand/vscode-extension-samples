@@ -11,7 +11,7 @@ import { TextDocument } from "vscode-languageserver-textdocument";
 
 export function getCSSMode(
 	cssLanguageService: CSSLanguageService,
-	documentRegions: LanguageModelCache<HTMLDocumentRegions>,
+	documentRegions: LanguageModelCache<HTMLDocumentRegions>
 ): LanguageMode {
 	return {
 		getId() {
@@ -34,7 +34,7 @@ export function getCSSMode(
 			return cssLanguageService.doComplete(
 				embedded,
 				position,
-				stylesheet,
+				stylesheet
 			);
 		},
 		onDocumentRemoved(_document: TextDocument) {

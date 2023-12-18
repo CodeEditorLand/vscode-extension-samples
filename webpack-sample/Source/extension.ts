@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
 		"extension.helloWebpack",
 		() => {
 			vscode.window.showInformationMessage(`41 + 1 = ${add(41, 1)}`);
-		},
+		}
 	);
 
 	context.subscriptions.push(disposable);

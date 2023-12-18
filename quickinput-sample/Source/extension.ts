@@ -28,6 +28,6 @@ export function activate(context: ExtensionContext) {
 			});
 			quickPick.onDidHide(() => quickPick.dispose());
 			quickPick.show();
-		}),
+		})
 	);
 }

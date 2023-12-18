@@ -14,7 +14,7 @@ export class TestView {
 			if (key) {
 				await view.reveal(
 					{ key },
-					{ focus: true, select: false, expand: true },
+					{ focus: true, select: false, expand: true }
 				);
 			}
 		});
@@ -56,7 +56,7 @@ function aNodeWithIdTreeDataProvider(): vscode.TreeDataProvider<{
 	return {
 		getChildren: (element: { key: string }): { key: string }[] => {
 			return getChildren(element ? element.key : undefined).map((key) =>
-				getNode(key),
+				getNode(key)
 			);
 		},
 		getTreeItem: (element: { key: string }): vscode.TreeItem => {
@@ -87,7 +87,7 @@ function getTreeItem(key: string): vscode.TreeItem {
 	// An example of how to use codicons in a MarkdownString in a tree item tooltip.
 	const tooltip = new vscode.MarkdownString(
 		`$(zap) Tooltip for ${key}`,
-		true,
+		true
 	);
 	return {
 		label: /**vscode.TreeItemLabel**/ <any>{

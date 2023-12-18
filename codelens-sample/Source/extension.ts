@@ -34,7 +34,7 @@ export function activate(context: ExtensionContext) {
 
 	commands.registerCommand("codelens-sample.codelensAction", (args: any) => {
 		window.showInformationMessage(
-			`CodeLens action clicked with args=${args}`,
+			`CodeLens action clicked with args=${args}`
 		);
 	});
 }

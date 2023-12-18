@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 				".ts"
 		) {
 			return vscode.window.showInformationMessage(
-				"Open a TypeScript file first",
+				"Open a TypeScript file first"
 			);
 		}
 
@@ -26,7 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const jsPath = posix.join(
 			tsUri.path,
 			"..",
-			posix.basename(tsUri.path, ".ts") + ".js",
+			posix.basename(tsUri.path, ".ts") + ".js"
 		);
 		const jsUri = tsUri.with({ path: jsPath });
 
@@ -37,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 			});
 		} catch {
 			vscode.window.showInformationMessage(
-				`${jsUri.toString(true)} file does *not* exist`,
+				`${jsUri.toString(true)} file does *not* exist`
 			);
 		}
 	});
@@ -48,17 +48,17 @@ export function activate(context: vscode.ExtensionContext) {
 	// * create an untitled document that shows count and total of files
 	vscode.commands.registerCommand("fs/sumSizes", async function () {
 		async function countAndTotalOfFilesInFolder(
-			folder: vscode.Uri,
+			folder: vscode.Uri
 		): Promise<{ total: number; count: number }> {
 			let total = 0;
 			let count = 0;
 			for (const [name, type] of await vscode.workspace.fs.readDirectory(
-				folder,
+				folder
 			)) {
 				if (type === vscode.FileType.File) {
 					const filePath = posix.join(folder.path, name);
 					const stat = await vscode.workspace.fs.stat(
-						folder.with({ path: filePath }),
+						folder.with({ path: filePath })
 					);
 					total += stat.size;
 					count += 1;
@@ -78,7 +78,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const info = await countAndTotalOfFilesInFolder(folderUri);
 		const doc = await vscode.workspace.openTextDocument({
 			content: `${info.count} files in ${folderUri.toString(
-				true,
+				true
 			)} with a total of ${info.total} bytes`,
 		});
 		vscode.window.showTextDocument(doc, {
@@ -92,7 +92,7 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.commands.registerCommand("fs/readWriteFile", async function () {
 		if (!vscode.workspace.workspaceFolders) {
 			return vscode.window.showInformationMessage(
-				"No folder or workspace opened",
+				"No folder or workspace opened"
 			);
 		}
 

@@ -48,7 +48,7 @@ export class TestViewDragAndDrop
 
 	public getChildren(element: Node): Node[] {
 		return this._getChildren(element ? element.key : undefined).map((key) =>
-			this._getNode(key),
+			this._getNode(key)
 		);
 	}
 
@@ -70,10 +70,10 @@ export class TestViewDragAndDrop
 	public async handleDrop(
 		target: Node | undefined,
 		sources: vscode.DataTransfer,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): Promise<void> {
 		const transferItem = sources.get(
-			"application/vnd.code.tree.testViewDragAndDrop",
+			"application/vnd.code.tree.testViewDragAndDrop"
 		);
 		if (!transferItem) {
 			return;
@@ -82,7 +82,7 @@ export class TestViewDragAndDrop
 		let roots = this._getLocalRoots(treeItems);
 		// Remove nodes that are already target's parent nodes
 		roots = roots.filter(
-			(r) => !this._isChild(this._getTreeElement(r.key), target),
+			(r) => !this._isChild(this._getTreeElement(r.key), target)
 		);
 		if (roots.length > 0) {
 			// Reload parents of the moving elements
@@ -95,11 +95,11 @@ export class TestViewDragAndDrop
 	public async handleDrag(
 		source: Node[],
 		treeDataTransfer: vscode.DataTransfer,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): Promise<void> {
 		treeDataTransfer.set(
 			"application/vnd.code.tree.testViewDragAndDrop",
-			new vscode.DataTransferItem(source),
+			new vscode.DataTransferItem(source)
 		);
 	}
 
@@ -187,7 +187,7 @@ export class TestViewDragAndDrop
 		// An example of how to use codicons in a MarkdownString in a tree item tooltip.
 		const tooltip = new vscode.MarkdownString(
 			`$(zap) Tooltip for ${key}`,
-			true,
+			true
 		);
 		return {
 			label: /**vscode.TreeItemLabel**/ <any>{
@@ -217,7 +217,7 @@ export class TestViewDragAndDrop
 			} else {
 				const treeElement = this._getTreeElement(
 					element,
-					currentNode[prop],
+					currentNode[prop]
 				);
 				if (treeElement) {
 					return treeElement;
@@ -235,7 +235,7 @@ export class TestViewDragAndDrop
 				const parent = this._getParent(
 					element,
 					prop,
-					currentNode[prop],
+					currentNode[prop]
 				);
 				if (parent) {
 					return parent;

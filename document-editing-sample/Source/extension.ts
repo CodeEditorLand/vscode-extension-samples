@@ -20,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
 					editBuilder.replace(selection, reversed);
 				});
 			}
-		},
+		}
 	);
 
 	context.subscriptions.push(disposable);

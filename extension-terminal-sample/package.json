@@ -1,37 +1,37 @@
 {
-  "name": "extension-terminal-sample",
-  "displayName": "extension-terminal-sample",
-  "description": "An example usage of the extension terminal API",
-  "version": "0.0.1",
-  "publisher": "vscode-samples",
-  "private": true,
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Microsoft/vscode-extension-samples"
-  },
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extensionTerminalSample.create",
-        "title": "Extension Terminal Sample: Create"
-      },
-      {
-        "command": "extensionTerminalSample.clear",
-        "title": "Extension Terminal Sample: Clear"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
-  },
-  "devDependencies": {
-    "@types/node": "20.10.4",
-    "@types/vscode": "1.85.0",
-    "typescript": "5.3.3"
-  }
+	"name": "extension-terminal-sample",
+	"displayName": "extension-terminal-sample",
+	"version": "0.0.1",
+	"private": true,
+	"description": "An example usage of the extension terminal API",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"license": "MIT",
+	"publisher": "vscode-samples",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "extensionTerminalSample.create",
+				"title": "Extension Terminal Sample: Create"
+			},
+			{
+				"command": "extensionTerminalSample.clear",
+				"title": "Extension Terminal Sample: Clear"
+			}
+		]
+	},
+	"activationEvents": [],
+	"devDependencies": {
+		"@types/node": "20.10.5",
+		"@types/vscode": "1.85.0",
+		"typescript": "5.3.3"
+	}
 }

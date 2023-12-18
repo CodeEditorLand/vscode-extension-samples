@@ -23,7 +23,7 @@ export class Credentials {
 		const session = await vscode.authentication.getSession(
 			GITHUB_AUTH_PROVIDER_ID,
 			SCOPES,
-			{ createIfNone: false },
+			{ createIfNone: false }
 		);
 
 		if (session) {
@@ -46,7 +46,7 @@ export class Credentials {
 				if (e.provider.id === GITHUB_AUTH_PROVIDER_ID) {
 					await this.setOctokit();
 				}
-			}),
+			})
 		);
 	}
 
@@ -62,7 +62,7 @@ export class Credentials {
 		const session = await vscode.authentication.getSession(
 			GITHUB_AUTH_PROVIDER_ID,
 			SCOPES,
-			{ createIfNone: true },
+			{ createIfNone: true }
 		);
 		this.octokit = new Octokit.Octokit({
 			auth: session.accessToken,

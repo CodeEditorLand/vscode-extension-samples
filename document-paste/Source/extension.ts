@@ -13,15 +13,15 @@ class CopyCountPasteEditProvider implements vscode.DocumentPasteEditProvider {
 		_document: vscode.TextDocument,
 		_ranges: readonly vscode.Range[],
 		dataTransfer: vscode.DataTransfer,
-		_token: vscode.CancellationToken,
+		_token: vscode.CancellationToken
 	): void | Thenable<void> {
 		dataTransfer.set(
 			this.countMimeTypes,
-			new vscode.DataTransferItem(this.count++),
+			new vscode.DataTransferItem(this.count++)
 		);
 		dataTransfer.set(
 			"text/plain",
-			new vscode.DataTransferItem(this.count++),
+			new vscode.DataTransferItem(this.count++)
 		);
 	}
 
@@ -29,7 +29,7 @@ class CopyCountPasteEditProvider implements vscode.DocumentPasteEditProvider {
 		_document: vscode.TextDocument,
 		_ranges: readonly vscode.Range[],
 		dataTransfer: vscode.DataTransfer,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): Promise<vscode.DocumentPasteEdit | undefined> {
 		const countDataTransferItem = dataTransfer.get(this.countMimeTypes);
 		if (!countDataTransferItem) {
@@ -57,7 +57,7 @@ class CopyCountPasteEditProvider implements vscode.DocumentPasteEditProvider {
 
 		return new vscode.DocumentPasteEdit(
 			snippet,
-			"Insert with copy count sample",
+			"Insert with copy count sample"
 		);
 	}
 }
@@ -74,7 +74,7 @@ export function activate(context: vscode.ExtensionContext) {
 			{
 				id: "copyCount",
 				pasteMimeTypes: ["text/plain"],
-			},
-		),
+			}
+		)
 	);
 }

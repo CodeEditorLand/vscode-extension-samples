@@ -17,7 +17,7 @@ import {
 let client: LanguageClient;
 export async function activate(context: ExtensionContext): Promise<void> {
 	const serverModule = context.asAbsolutePath(
-		path.join("server", "out", "sampleServer.js"),
+		path.join("server", "out", "sampleServer.js")
 	);
 	let serverOptions: ServerOptions = {
 		run: {
@@ -57,7 +57,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
 		client = new LanguageClient("UI Sample", serverOptions, clientOptions);
 	} catch (err) {
 		Window.showErrorMessage(
-			`The extension couldn't be started. See the output channel for details.`,
+			`The extension couldn't be started. See the output channel for details.`
 		);
 		return;
 	}

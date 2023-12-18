@@ -11,19 +11,19 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.window.onDidOpenTerminal((terminal) => {
 		console.log(
 			"Terminal opened. Total count: " +
-				(<any>vscode.window).terminals.length,
+				(<any>vscode.window).terminals.length
 		);
 	});
 	vscode.window.onDidOpenTerminal((terminal: vscode.Terminal) => {
 		vscode.window.showInformationMessage(
-			`onDidOpenTerminal, name: ${terminal.name}`,
+			`onDidOpenTerminal, name: ${terminal.name}`
 		);
 	});
 
 	// vscode.window.onDidChangeActiveTerminal
 	vscode.window.onDidChangeActiveTerminal((e) => {
 		console.log(
-			`Active terminal changed, name=${e ? e.name : "undefined"}`,
+			`Active terminal changed, name=${e ? e.name : "undefined"}`
 		);
 	});
 
@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.registerCommand("terminalTest.createTerminal", () => {
 			vscode.window.createTerminal(`Ext Terminal #${NEXT_TERM_ID++}`);
 			vscode.window.showInformationMessage("Hello World 2!");
-		}),
+		})
 	);
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
@@ -42,16 +42,16 @@ export function activate(context: vscode.ExtensionContext) {
 					name: `Ext Terminal #${NEXT_TERM_ID++}`,
 					hideFromUser: true,
 				} as any);
-			},
-		),
+			}
+		)
 	);
 	context.subscriptions.push(
 		vscode.commands.registerCommand("terminalTest.createAndSend", () => {
 			const terminal = vscode.window.createTerminal(
-				`Ext Terminal #${NEXT_TERM_ID++}`,
+				`Ext Terminal #${NEXT_TERM_ID++}`
 			);
 			terminal.sendText("echo 'Sent text immediately after creating'");
-		}),
+		})
 	);
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
@@ -60,10 +60,10 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.window.createTerminal(
 					`Ext Terminal #${NEXT_TERM_ID++}`,
 					"/bin/zsh",
-					["-l"],
+					["-l"]
 				);
-			},
-		),
+			}
+		)
 	);
 
 	// Terminal.hide
@@ -76,7 +76,7 @@ export function activate(context: vscode.ExtensionContext) {
 					}
 				});
 			}
-		}),
+		})
 	);
 
 	// Terminal.show
@@ -89,7 +89,7 @@ export function activate(context: vscode.ExtensionContext) {
 					}
 				});
 			}
-		}),
+		})
 	);
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
@@ -102,8 +102,8 @@ export function activate(context: vscode.ExtensionContext) {
 						}
 					});
 				}
-			},
-		),
+			}
+		)
 	);
 
 	// Terminal.sendText
@@ -116,7 +116,7 @@ export function activate(context: vscode.ExtensionContext) {
 					}
 				});
 			}
-		}),
+		})
 	);
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
@@ -129,8 +129,8 @@ export function activate(context: vscode.ExtensionContext) {
 						}
 					});
 				}
-			},
-		),
+			}
+		)
 	);
 
 	// Terminal.dispose
@@ -143,7 +143,7 @@ export function activate(context: vscode.ExtensionContext) {
 					}
 				});
 			}
-		}),
+		})
 	);
 
 	// Terminal.processId
@@ -156,22 +156,22 @@ export function activate(context: vscode.ExtensionContext) {
 				terminal.processId.then((processId) => {
 					if (processId) {
 						vscode.window.showInformationMessage(
-							`Terminal.processId: ${processId}`,
+							`Terminal.processId: ${processId}`
 						);
 					} else {
 						vscode.window.showInformationMessage(
-							"Terminal does not have a process ID",
+							"Terminal does not have a process ID"
 						);
 					}
 				});
 			});
-		}),
+		})
 	);
 
 	// vscode.window.onDidCloseTerminal
 	vscode.window.onDidCloseTerminal((terminal) => {
 		vscode.window.showInformationMessage(
-			`onDidCloseTerminal, name: ${terminal.name}`,
+			`onDidCloseTerminal, name: ${terminal.name}`
 		);
 	});
 
@@ -179,7 +179,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("terminalTest.terminals", () => {
 			selectTerminal();
-		}),
+		})
 	);
 
 	// ExtensionContext.environmentVariableCollection
@@ -190,14 +190,14 @@ export function activate(context: vscode.ExtensionContext) {
 				const collection = context.environmentVariableCollection;
 				collection.replace("FOO", "BAR");
 				collection.append("PATH", "/test/path");
-			},
-		),
+			}
+		)
 	);
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand("terminalTest.clearEnvironment", () => {
 			context.environmentVariableCollection.clear();
-		}),
+		})
 	);
 
 	// vvv Proposed APIs below vvv
@@ -209,12 +209,12 @@ export function activate(context: vscode.ExtensionContext) {
 			() => {
 				(<any>vscode.window).onDidWriteTerminalData((e: any) => {
 					vscode.window.showInformationMessage(
-						`onDidWriteTerminalData listener attached, check the devtools console to see events`,
+						`onDidWriteTerminalData listener attached, check the devtools console to see events`
 					);
 					console.log("onDidWriteData", e);
 				});
-			},
-		),
+			}
+		)
 	);
 
 	// vscode.window.onDidChangeTerminalDimensions
@@ -223,17 +223,17 @@ export function activate(context: vscode.ExtensionContext) {
 			"terminalTest.onDidChangeTerminalDimensions",
 			() => {
 				vscode.window.showInformationMessage(
-					`Listening to onDidChangeTerminalDimensions, check the devtools console to see events`,
+					`Listening to onDidChangeTerminalDimensions, check the devtools console to see events`
 				);
 				(<any>vscode.window).onDidChangeTerminalDimensions(
 					(event: any) => {
 						console.log(
-							`onDidChangeTerminalDimensions: terminal:${event.terminal.name}, columns=${event.dimensions.columns}, rows=${event.dimensions.rows}`,
+							`onDidChangeTerminalDimensions: terminal:${event.terminal.name}, columns=${event.dimensions.columns}, rows=${event.dimensions.rows}`
 						);
-					},
+					}
 				);
-			},
-		),
+			}
+		)
 	);
 
 	// vscode.window.registerTerminalLinkProvider
@@ -244,11 +244,11 @@ export function activate(context: vscode.ExtensionContext) {
 				(<any>vscode.window).registerTerminalLinkProvider({
 					provideTerminalLinks: (
 						context: any,
-						token: vscode.CancellationToken,
+						token: vscode.CancellationToken
 					) => {
 						// Detect the first instance of the word "link" if it exists and linkify it
 						const startIndex = (context.line as string).indexOf(
-							"link",
+							"link"
 						);
 						if (startIndex === -1) {
 							return [];
@@ -265,12 +265,12 @@ export function activate(context: vscode.ExtensionContext) {
 					},
 					handleTerminalLink: (link: any) => {
 						vscode.window.showInformationMessage(
-							`Link activated (data = ${link.data})`,
+							`Link activated (data = ${link.data})`
 						);
 					},
 				});
-			},
-		),
+			}
+		)
 	);
 
 	context.subscriptions.push(
@@ -278,7 +278,7 @@ export function activate(context: vscode.ExtensionContext) {
 			"terminalTest.terminal-profile",
 			{
 				provideTerminalProfile(
-					token: vscode.CancellationToken,
+					token: vscode.CancellationToken
 				): vscode.ProviderResult<vscode.TerminalProfile> {
 					return {
 						options: {
@@ -288,8 +288,8 @@ export function activate(context: vscode.ExtensionContext) {
 						},
 					};
 				},
-			},
-		),
+			}
+		)
 	);
 }
 

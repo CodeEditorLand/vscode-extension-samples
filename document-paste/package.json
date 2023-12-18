@@ -1,33 +1,33 @@
 {
-  "name": "document-paste-sample",
-  "displayName": "Document paste Sample",
-  "description": "Shows use of the document paste API proposal",
-  "version": "0.0.1",
-  "publisher": "vscode-samples",
-  "private": true,
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Microsoft/vscode-extension-samples"
-  },
-  "enabledApiProposals": [
-    "documentPaste"
-  ],
-  "activationEvents": [
-    "onLanguage:plaintext"
-  ],
-  "main": "./out/extension.js",
-  "contributes": {},
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "download-api": "vscode-dts main && vscode-dts dev",
-    "postinstall": "npm run download-api"
-  },
-  "devDependencies": {
-    "@types/node": "20.10.4",
-    "typescript": "5.3.3",
-    "vscode-dts": "0.3.3"
-  }
+	"name": "document-paste-sample",
+	"displayName": "Document paste Sample",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Shows use of the document paste API proposal",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"license": "MIT",
+	"publisher": "vscode-samples",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"download-api": "vscode-dts main && vscode-dts dev",
+		"postinstall": "npm run download-api",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"devDependencies": {
+		"@types/node": "20.10.5",
+		"typescript": "5.3.3",
+		"vscode-dts": "0.3.3"
+	},
+	"enabledApiProposals": [
+		"documentPaste"
+	]
 }

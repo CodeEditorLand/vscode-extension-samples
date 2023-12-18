@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
 		new DateiFileSystemProvider(),
 		{
 			isCaseSensitive: process.platform === "linux",
-		},
+		}
 	);
 }
 
@@ -34,7 +34,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 
 	watch(
 		uri: vscode.Uri,
-		options: { recursive: boolean; excludes: string[] },
+		options: { recursive: boolean; excludes: string[] }
 	): vscode.Disposable {
 		const watcher = fs.watch(
 			uri.fsPath,
@@ -43,7 +43,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 				if (filename) {
 					const filepath = path.join(
 						uri.fsPath,
-						_.normalizeNFC(filename.toString()),
+						_.normalizeNFC(filename.toString())
 					);
 
 					// TODO support excludes (using minimatch library?)
@@ -54,13 +54,13 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 								event === "change"
 									? vscode.FileChangeType.Changed
 									: (await _.exists(filepath))
-									  ? vscode.FileChangeType.Created
-									  : vscode.FileChangeType.Deleted,
+										? vscode.FileChangeType.Created
+										: vscode.FileChangeType.Deleted,
 							uri: uri.with({ path: filepath }),
 						} as vscode.FileChangeEvent,
 					]);
 				}
-			},
+			}
 		);
 
 		return { dispose: () => watcher.close() };
@@ -76,13 +76,13 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 	}
 
 	readDirectory(
-		uri: vscode.Uri,
+		uri: vscode.Uri
 	): [string, vscode.FileType][] | Thenable<[string, vscode.FileType][]> {
 		return this._readDirectory(uri);
 	}
 
 	async _readDirectory(
-		uri: vscode.Uri,
+		uri: vscode.Uri
 	): Promise<[string, vscode.FileType][]> {
 		const children = await _.readdir(uri.fsPath);
 
@@ -107,7 +107,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 	writeFile(
 		uri: vscode.Uri,
 		content: Uint8Array,
-		options: { create: boolean; overwrite: boolean },
+		options: { create: boolean; overwrite: boolean }
 	): void | Thenable<void> {
 		return this._writeFile(uri, content, options);
 	}
@@ -115,7 +115,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 	async _writeFile(
 		uri: vscode.Uri,
 		content: Uint8Array,
-		options: { create: boolean; overwrite: boolean },
+		options: { create: boolean; overwrite: boolean }
 	): Promise<void> {
 		const exists = await _.exists(uri.fsPath);
 		if (!exists) {
@@ -135,7 +135,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 
 	delete(
 		uri: vscode.Uri,
-		options: { recursive: boolean },
+		options: { recursive: boolean }
 	): void | Thenable<void> {
 		if (options.recursive) {
 			return _.rmrf(uri.fsPath);
@@ -147,7 +147,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 	rename(
 		oldUri: vscode.Uri,
 		newUri: vscode.Uri,
-		options: { overwrite: boolean },
+		options: { overwrite: boolean }
 	): void | Thenable<void> {
 		return this._rename(oldUri, newUri, options);
 	}
@@ -155,7 +155,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 	async _rename(
 		oldUri: vscode.Uri,
 		newUri: vscode.Uri,
-		options: { overwrite: boolean },
+		options: { overwrite: boolean }
 	): Promise<void> {
 		const exists = await _.exists(newUri.fsPath);
 		if (exists) {
@@ -189,7 +189,7 @@ namespace _ {
 		resolve: (result: T) => void,
 		reject: (error: Error) => void,
 		error: Error | null | undefined,
-		result: T | undefined,
+		result: T | undefined
 	): void {
 		if (error) {
 			reject(messageError(error));
@@ -241,7 +241,7 @@ namespace _ {
 	export function readdir(path: string): Promise<string[]> {
 		return new Promise<string[]>((resolve, reject) => {
 			fs.readdir(path, (error, children) =>
-				handleResult(resolve, reject, error, normalizeNFC(children)),
+				handleResult(resolve, reject, error, normalizeNFC(children))
 			);
 		});
 	}
@@ -249,7 +249,7 @@ namespace _ {
 	export function readfile(path: string): Promise<Buffer> {
 		return new Promise<Buffer>((resolve, reject) => {
 			fs.readFile(path, (error, buffer) =>
-				handleResult(resolve, reject, error, buffer),
+				handleResult(resolve, reject, error, buffer)
 			);
 		});
 	}
@@ -257,7 +257,7 @@ namespace _ {
 	export function writefile(path: string, content: Buffer): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			fs.writeFile(path, content, (error) =>
-				handleResult(resolve, reject, error, void 0),
+				handleResult(resolve, reject, error, void 0)
 			);
 		});
 	}
@@ -265,7 +265,7 @@ namespace _ {
 	export function exists(path: string): Promise<boolean> {
 		return new Promise<boolean>((resolve, reject) => {
 			fs.exists(path, (exists) =>
-				handleResult(resolve, reject, null, exists),
+				handleResult(resolve, reject, null, exists)
 			);
 		});
 	}
@@ -273,7 +273,7 @@ namespace _ {
 	export function rmrf(path: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			rimraf(path, (error) =>
-				handleResult(resolve, reject, error, void 0),
+				handleResult(resolve, reject, error, void 0)
 			);
 		});
 	}
@@ -281,7 +281,7 @@ namespace _ {
 	export function mkdir(path: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			mkdirp(path, (error) =>
-				handleResult(resolve, reject, error, void 0),
+				handleResult(resolve, reject, error, void 0)
 			);
 		});
 	}
@@ -289,7 +289,7 @@ namespace _ {
 	export function rename(oldPath: string, newPath: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			fs.rename(oldPath, newPath, (error) =>
-				handleResult(resolve, reject, error, void 0),
+				handleResult(resolve, reject, error, void 0)
 			);
 		});
 	}
@@ -297,7 +297,7 @@ namespace _ {
 	export function unlink(path: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			fs.unlink(path, (error) =>
-				handleResult(resolve, reject, error, void 0),
+				handleResult(resolve, reject, error, void 0)
 			);
 		});
 	}
@@ -328,7 +328,10 @@ namespace _ {
 }
 
 export class FileStat implements vscode.FileStat {
-	constructor(private fsStat: fs.Stats, private _isSymbolicLink: boolean) {}
+	constructor(
+		private fsStat: fs.Stats,
+		private _isSymbolicLink: boolean
+	) {}
 
 	get type(): vscode.FileType {
 		let type: number;
@@ -342,8 +345,8 @@ export class FileStat implements vscode.FileStat {
 			type = this.fsStat.isFile()
 				? vscode.FileType.File
 				: this.fsStat.isDirectory()
-				  ? vscode.FileType.Directory
-				  : vscode.FileType.Unknown;
+					? vscode.FileType.Directory
+					: vscode.FileType.Unknown;
 		}
 
 		return type;

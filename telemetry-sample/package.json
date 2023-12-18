@@ -1,36 +1,36 @@
 {
-  "name": "telemetry-sample",
-  "displayName": "telemetry-sample",
-  "description": "Sample showing how to use Telemetry API",
-  "version": "0.0.1",
-  "publisher": "vscode-samples",
-  "private": true,
-  "license": "MIT",
-  "repository": "https://github.com/Microsoft/vscode-extension-samples",
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.logEvent",
-        "title": "Log Telemetry Event"
-      },
-      {
-        "command": "extension.logException",
-        "title": "Log Telemetry Exception"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "download-api": "dts dev",
-    "postdownload-api": "dts main",
-    "postinstall": "npm run download-api"
-  },
-  "devDependencies": {
-    "@types/node": "20.10.4",
-    "typescript": "5.3.3",
-    "@vscode/dts": "0.4.0"
-  }
+	"name": "telemetry-sample",
+	"displayName": "telemetry-sample",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Sample showing how to use Telemetry API",
+	"repository": "https://github.com/Microsoft/vscode-extension-samples",
+	"license": "MIT",
+	"publisher": "vscode-samples",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"download-api": "dts dev",
+		"postdownload-api": "dts main",
+		"postinstall": "npm run download-api",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.logEvent",
+				"title": "Log Telemetry Event"
+			},
+			{
+				"command": "extension.logException",
+				"title": "Log Telemetry Exception"
+			}
+		]
+	},
+	"devDependencies": {
+		"@types/node": "20.10.5",
+		"@vscode/dts": "0.4.0",
+		"typescript": "5.3.3"
+	}
 }

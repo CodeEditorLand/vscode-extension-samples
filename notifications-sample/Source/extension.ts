@@ -6,7 +6,7 @@ export function activate(context: vscode.ExtensionContext) {
 		"notifications-sample.showInfo",
 		() => {
 			vscode.window.showInformationMessage("Info Notification");
-		},
+		}
 	);
 
 	const showInfoNotificationAsModal = vscode.commands.registerCommand(
@@ -15,21 +15,21 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showInformationMessage("Info Notification As Modal", {
 				modal: true,
 			});
-		},
+		}
 	);
 
 	const showWarningNotification = vscode.commands.registerCommand(
 		"notifications-sample.showWarning",
 		() => {
 			vscode.window.showWarningMessage("Warning Notification");
-		},
+		}
 	);
 
 	const showErrorNotification = vscode.commands.registerCommand(
 		"notifications-sample.showError",
 		() => {
 			vscode.window.showErrorMessage("Error Notification");
-		},
+		}
 	);
 
 	// Notification with actions
@@ -40,16 +40,16 @@ export function activate(context: vscode.ExtensionContext) {
 				"Warning Notification With Actions",
 				"Action 1",
 				"Action 2",
-				"Action 3",
+				"Action 3"
 			);
 
 			if (selection !== undefined) {
 				vscode.window.showInformationMessage(
 					`You selected: ${selection}`,
-					{ modal: true },
+					{ modal: true }
 				);
 			}
-		},
+		}
 	);
 
 	// Progress notification with option to cancel
@@ -97,9 +97,9 @@ export function activate(context: vscode.ExtensionContext) {
 					});
 
 					return p;
-				},
+				}
 			);
-		},
+		}
 	);
 
 	// Show all notifications to show do not disturb behavior
@@ -109,14 +109,14 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.commands.executeCommand("notifications-sample.showInfo");
 			vscode.commands.executeCommand("notifications-sample.showWarning");
 			vscode.commands.executeCommand(
-				"notifications-sample.showWarningWithActions",
+				"notifications-sample.showWarningWithActions"
 			);
 			vscode.commands.executeCommand("notifications-sample.showError");
 			vscode.commands.executeCommand("notifications-sample.showProgress");
 			vscode.commands.executeCommand(
-				"notifications-sample.showInfoAsModal",
+				"notifications-sample.showInfoAsModal"
 			);
-		},
+		}
 	);
 
 	context.subscriptions.push(
@@ -126,6 +126,6 @@ export function activate(context: vscode.ExtensionContext) {
 		showErrorNotification,
 		showProgressNotification,
 		showWarningNotificationWithActions,
-		showAllNotifications,
+		showAllNotifications
 	);
 }

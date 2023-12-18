@@ -1,22 +1,22 @@
 {
-  "name": "product-icon-theme-sample",
-  "version": "0.1.0",
-  "publisher": "vscode-samples",
-  "contributes": {
-    "productIconThemes": [
-      {
-        "id": "vscode-v1-icons",
-        "label": "VSCode 1.0 Icons",
-        "path": "./theme/v1-product-icon-theme.json"
-      }
-    ]
-  },
-  "scripts": {
-    "updateFont": "node ./build/updateFont.js",
-    "showFont": "open ./theme/vscode-10.html"
-  },
-  "devDependencies": {
-    "open": "9.1.0",
-    "webfont": "11.2.26"
-  }
+	"name": "product-icon-theme-sample",
+	"version": "0.1.0",
+	"publisher": "vscode-samples",
+	"scripts": {
+		"showFont": "open ./theme/vscode-10.html",
+		"updateFont": "node ./build/updateFont.js"
+	},
+	"contributes": {
+		"productIconThemes": [
+			{
+				"id": "vscode-v1-icons",
+				"label": "VSCode 1.0 Icons",
+				"path": "./theme/v1-product-icon-theme.json"
+			}
+		]
+	},
+	"devDependencies": {
+		"open": "9.1.0",
+		"webfont": "11.2.26"
+	}
 }

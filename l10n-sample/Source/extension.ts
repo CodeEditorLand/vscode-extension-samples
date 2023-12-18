@@ -28,23 +28,23 @@ export function activate(context: vscode.ExtensionContext) {
 								? {
 										EXTENSION_BUNDLE_PATH:
 											vscode.l10n.uri?.fsPath,
-								  }
+									}
 								: undefined,
-						},
-					),
-				),
+						}
+					)
+				)
 			);
 
 			const messageDone = vscode.l10n.t("Hello {done}", {
 				done: "FINISHED",
 			});
 			vscode.window.showInformationMessage(messageDone);
-		},
+		}
 	);
 
 	const byeCmd = vscode.commands.registerCommand(
 		"extension.sayBye",
-		sayByeCommand,
+		sayByeCommand
 	);
 
 	context.subscriptions.push(helloCmd, byeCmd);

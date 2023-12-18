@@ -22,7 +22,7 @@ export class SampleContentSerializer implements vscode.NotebookSerializer {
 
 	public async deserializeNotebook(
 		data: Uint8Array,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): Promise<vscode.NotebookData> {
 		const contents = new TextDecoder().decode(data); // convert to String
 
@@ -40,8 +40,8 @@ export class SampleContentSerializer implements vscode.NotebookSerializer {
 				new vscode.NotebookCellData(
 					item.kind,
 					item.value,
-					item.language,
-				),
+					item.language
+				)
 		);
 
 		return new vscode.NotebookData(cells);
@@ -49,7 +49,7 @@ export class SampleContentSerializer implements vscode.NotebookSerializer {
 
 	public async serializeNotebook(
 		data: vscode.NotebookData,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): Promise<Uint8Array> {
 		// Map the Notebook data into the format we want to save the Notebook data as
 		const contents: RawNotebookData = { cells: [] };

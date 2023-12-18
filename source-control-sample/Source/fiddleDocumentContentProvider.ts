@@ -33,19 +33,19 @@ export class JSFiddleDocumentContentProvider
 
 		// let's assume all 3 documents actually changed and notify the quick-diff
 		this._onDidChange.fire(
-			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.html`),
+			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.html`)
 		);
 		this._onDidChange.fire(
-			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.css`),
+			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.css`)
 		);
 		this._onDidChange.fire(
-			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.js`),
+			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.js`)
 		);
 	}
 
 	provideTextDocumentContent(
 		uri: Uri,
-		token: CancellationToken,
+		token: CancellationToken
 	): ProviderResult<string> {
 		if (token.isCancellationRequested) {
 			return "Canceled";

@@ -93,7 +93,7 @@ connection.onCompletion(async (textDocumentPosition, token) => {
 
 	const mode = languageModes.getModeAtPosition(
 		document,
-		textDocumentPosition.position,
+		textDocumentPosition.position
 	);
 	if (!mode || !mode.doComplete) {
 		return CompletionList.create();

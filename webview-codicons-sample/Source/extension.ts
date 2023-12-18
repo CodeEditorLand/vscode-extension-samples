@@ -4,7 +4,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("catCodicons.show", () => {
 			CatCodiconsPanel.show(context.extensionUri);
-		}),
+		})
 	);
 }
 
@@ -19,22 +19,22 @@ class CatCodiconsPanel {
 		const panel = vscode.window.createWebviewPanel(
 			CatCodiconsPanel.viewType,
 			"Cat Codicons",
-			column || vscode.ViewColumn.One,
+			column || vscode.ViewColumn.One
 		);
 
 		panel.webview.html = this._getHtmlForWebview(
 			panel.webview,
-			extensionUri,
+			extensionUri
 		);
 	}
 
 	private static _getHtmlForWebview(
 		webview: vscode.Webview,
-		extensionUri: vscode.Uri,
+		extensionUri: vscode.Uri
 	) {
 		// Get resource paths
 		const styleUri = webview.asWebviewUri(
-			vscode.Uri.joinPath(extensionUri, "media", "styles.css"),
+			vscode.Uri.joinPath(extensionUri, "media", "styles.css")
 		);
 		const codiconsUri = webview.asWebviewUri(
 			vscode.Uri.joinPath(
@@ -42,8 +42,8 @@ class CatCodiconsPanel {
 				"node_modules",
 				"@vscode/codicons",
 				"dist",
-				"codicon.css",
-			),
+				"codicon.css"
+			)
 		);
 
 		return `<!DOCTYPE html>

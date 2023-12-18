@@ -24,7 +24,7 @@ export async function multiStepInput(context: ExtensionContext) {
 	class MyButton implements QuickInputButton {
 		constructor(
 			public iconPath: { light: Uri; dark: Uri },
-			public tooltip: string,
+			public tooltip: string
 		) {}
 	}
 
@@ -33,7 +33,7 @@ export async function multiStepInput(context: ExtensionContext) {
 			dark: Uri.file(context.asAbsolutePath("resources/dark/add.svg")),
 			light: Uri.file(context.asAbsolutePath("resources/light/add.svg")),
 		},
-		"Create Resource Group",
+		"Create Resource Group"
 	);
 
 	const resourceGroups: QuickPickItem[] = [
@@ -63,7 +63,7 @@ export async function multiStepInput(context: ExtensionContext) {
 
 	async function pickResourceGroup(
 		input: MultiStepInput,
-		state: Partial<State>,
+		state: Partial<State>
 	) {
 		const pick = await input.showQuickPick({
 			title,
@@ -88,7 +88,7 @@ export async function multiStepInput(context: ExtensionContext) {
 
 	async function inputResourceGroupName(
 		input: MultiStepInput,
-		state: Partial<State>,
+		state: Partial<State>
 	) {
 		state.resourceGroup = await input.showInputBox({
 			title,
@@ -124,7 +124,7 @@ export async function multiStepInput(context: ExtensionContext) {
 		const additionalSteps = typeof state.resourceGroup === "string" ? 1 : 0;
 		const runtimes = await getAvailableRuntimes(
 			state.resourceGroup!,
-			undefined /* TODO: token */,
+			undefined /* TODO: token */
 		);
 		// TODO: Remember currently active item when navigating back.
 		state.runtime = await input.showQuickPick({
@@ -153,7 +153,7 @@ export async function multiStepInput(context: ExtensionContext) {
 
 	async function getAvailableRuntimes(
 		resourceGroup: QuickPickItem | string,
-		token?: CancellationToken,
+		token?: CancellationToken
 	): Promise<QuickPickItem[]> {
 		// ...retrieve...
 		await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -164,7 +164,7 @@ export async function multiStepInput(context: ExtensionContext) {
 
 	const state = await collectInputs();
 	window.showInformationMessage(
-		`Creating Application Service '${state.name}'`,
+		`Creating Application Service '${state.name}'`
 	);
 }
 
@@ -289,10 +289,10 @@ class MultiStepInput {
 							reject(
 								shouldResume && (await shouldResume())
 									? InputFlowAction.resume
-									: InputFlowAction.cancel,
+									: InputFlowAction.cancel
 							);
 						})().catch(reject);
-					}),
+					})
 				);
 				if (this.current) {
 					this.current.dispose();
@@ -366,10 +366,10 @@ class MultiStepInput {
 							reject(
 								shouldResume && (await shouldResume())
 									? InputFlowAction.resume
-									: InputFlowAction.cancel,
+									: InputFlowAction.cancel
 							);
 						})().catch(reject);
-					}),
+					})
 				);
 				if (this.current) {
 					this.current.dispose();

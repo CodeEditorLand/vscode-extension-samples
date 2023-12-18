@@ -8,7 +8,7 @@ function handleResult<T>(
 	resolve: (result: T) => void,
 	reject: (error: Error) => void,
 	error: Error | null | undefined,
-	result: T,
+	result: T
 ): void {
 	if (error) {
 		reject(massageError(error));
@@ -40,7 +40,7 @@ function massageError(error: Error & { code?: string }): Error {
 export function readFile(path: string): Promise<Buffer> {
 	return new Promise<Buffer>((resolve, reject) => {
 		fs.readFile(path, (error, buffer) =>
-			handleResult(resolve, reject, error, buffer),
+			handleResult(resolve, reject, error, buffer)
 		);
 	});
 }
@@ -48,7 +48,7 @@ export function readFile(path: string): Promise<Buffer> {
 export function writeFile(path: string, content: Buffer): Promise<void> {
 	return new Promise<void>((resolve, reject) => {
 		fs.writeFile(path, content, (error) =>
-			handleResult(resolve, reject, error, void 0),
+			handleResult(resolve, reject, error, void 0)
 		);
 	});
 }
@@ -56,7 +56,7 @@ export function writeFile(path: string, content: Buffer): Promise<void> {
 export function exists(path: string): Promise<boolean> {
 	return new Promise<boolean>((resolve, reject) => {
 		fs.exists(path, (exists) =>
-			handleResult(resolve, reject, null, exists),
+			handleResult(resolve, reject, null, exists)
 		);
 	});
 }
@@ -64,7 +64,7 @@ export function exists(path: string): Promise<boolean> {
 export function readdir(path: string): Promise<string[]> {
 	return new Promise<string[]>((resolve, reject) => {
 		fs.readdir(path, (error, files) =>
-			handleResult(resolve, reject, error, files),
+			handleResult(resolve, reject, error, files)
 		);
 	});
 }
@@ -72,7 +72,7 @@ export function readdir(path: string): Promise<string[]> {
 export function unlink(path: string): Promise<void> {
 	return new Promise<void>((resolve, reject) => {
 		fs.unlink(path, (error) =>
-			handleResult(resolve, reject, error, void 0),
+			handleResult(resolve, reject, error, void 0)
 		);
 	});
 }

@@ -11,7 +11,7 @@ import {
 import { TextDocument } from "vscode-languageserver-textdocument";
 
 export function getHTMLMode(
-	htmlLanguageService: HTMLLanguageService,
+	htmlLanguageService: HTMLLanguageService
 ): LanguageMode {
 	return {
 		getId() {
@@ -21,7 +21,7 @@ export function getHTMLMode(
 			return htmlLanguageService.doComplete(
 				document,
 				position,
-				htmlLanguageService.parseHTMLDocument(document),
+				htmlLanguageService.parseHTMLDocument(document)
 			);
 		},
 		onDocumentRemoved(_document: TextDocument) {

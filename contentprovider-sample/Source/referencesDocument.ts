@@ -15,7 +15,7 @@ export default class ReferencesDocument {
 	constructor(
 		uri: vscode.Uri,
 		locations: vscode.Location[],
-		emitter: vscode.EventEmitter<vscode.Uri>,
+		emitter: vscode.EventEmitter<vscode.Uri>
 	) {
 		this._uri = uri;
 		this._locations = locations;
@@ -64,7 +64,7 @@ export default class ReferencesDocument {
 
 	private async _fetchAndFormatLocations(
 		uri: vscode.Uri,
-		ranges: vscode.Range[],
+		ranges: vscode.Range[]
 	): Promise<void> {
 		// Fetch the document denoted by the uri and format the matches
 		// with leading and trailing content form the document. Make sure
@@ -84,7 +84,7 @@ export default class ReferencesDocument {
 			this._lines.push(
 				"",
 				`Failed to load '${uri.toString()}'\n\n${String(err)}`,
-				"",
+				""
 			);
 		}
 	}
@@ -92,7 +92,7 @@ export default class ReferencesDocument {
 	private _appendLeading(
 		doc: vscode.TextDocument,
 		line: number,
-		previous: vscode.Range,
+		previous: vscode.Range
 	): void {
 		let from = Math.max(0, line - 3, (previous && previous.end.line) || 0);
 		while (++from < line) {
@@ -105,7 +105,7 @@ export default class ReferencesDocument {
 		doc: vscode.TextDocument,
 		line: number,
 		match: vscode.Range,
-		target: vscode.Uri,
+		target: vscode.Uri
 	) {
 		const text = doc.lineAt(line).text;
 		const preamble = `  ${line + 1}: `;
@@ -119,7 +119,7 @@ export default class ReferencesDocument {
 			len - 1,
 			preamble.length + match.start.character,
 			len - 1,
-			preamble.length + match.end.character,
+			preamble.length + match.end.character
 		);
 		const linkTarget = target.with({
 			fragment: String(1 + match.start.line),
@@ -130,7 +130,7 @@ export default class ReferencesDocument {
 	private _appendTrailing(
 		doc: vscode.TextDocument,
 		line: number,
-		next: vscode.Range,
+		next: vscode.Range
 	): void {
 		const to = Math.min(doc.lineCount, line + 3);
 		if (next && next.start.line - to <= 2) {

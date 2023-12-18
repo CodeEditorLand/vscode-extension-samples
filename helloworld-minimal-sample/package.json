@@ -1,21 +1,21 @@
 {
-  "name": "helloworld-minimal-sample",
-  "description": "Minimal HelloWorld example for VS Code",
-  "version": "0.0.1",
-  "publisher": "vscode-samples",
-  "repository": "https://github.com/Microsoft/vscode-extension-samples/helloworld-minimal-sample",
-  "activationEvents": [],
-  "main": "./extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
-  "scripts": {},
-  "devDependencies": {
-    "@types/vscode": "1.85.0"
-  }
+	"name": "helloworld-minimal-sample",
+	"version": "0.0.1",
+	"description": "Minimal HelloWorld example for VS Code",
+	"repository": "https://github.com/Microsoft/vscode-extension-samples/helloworld-minimal-sample",
+	"publisher": "vscode-samples",
+	"main": "./extension.js",
+	"scripts": {},
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.helloWorld",
+				"title": "Hello World"
+			}
+		]
+	},
+	"activationEvents": [],
+	"devDependencies": {
+		"@types/vscode": "1.85.0"
+	}
 }

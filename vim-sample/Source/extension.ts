@@ -11,10 +11,10 @@ import { Controller } from "./controller";
 export function activate(context: vscode.ExtensionContext) {
 	function registerCommandNice(
 		commandId: string,
-		run: (...args: any[]) => void,
+		run: (...args: any[]) => void
 	): void {
 		context.subscriptions.push(
-			vscode.commands.registerCommand(commandId, run),
+			vscode.commands.registerCommand(commandId, run)
 		);
 	}
 	function registerCtrlKeyBinding(key: string): void {
@@ -154,7 +154,7 @@ class VimExt {
 
 	public type(
 		text: string,
-		modifierKeys: ModifierKeys = { ctrl: false, shifit: false, alt: false },
+		modifierKeys: ModifierKeys = { ctrl: false, shifit: false, alt: false }
 	): void {
 		this._controller
 			.type(vscode.window.activeTextEditor, text, modifierKeys)
@@ -179,7 +179,7 @@ class VimExt {
 			this._controller.replacePrevChar(
 				vscode.window.activeTextEditor,
 				text,
-				replaceCharCnt,
+				replaceCharCnt
 			)
 		) {
 			this._ensureState();
@@ -232,12 +232,12 @@ class VimExt {
 			return;
 		}
 		this._controller.ensureNormalModePosition(
-			vscode.window.activeTextEditor,
+			vscode.window.activeTextEditor
 		);
 	}
 
 	private _ensureCursorStyle(
-		cursorStyle: vscode.TextEditorCursorStyle,
+		cursorStyle: vscode.TextEditorCursorStyle
 	): void {
 		if (!vscode.window.activeTextEditor) {
 			return;
@@ -268,7 +268,7 @@ class ContextKey {
 		vscode.commands.executeCommand(
 			"setContext",
 			this._name,
-			this._lastValue,
+			this._lastValue
 		);
 	}
 }
@@ -279,7 +279,7 @@ class StatusBar {
 
 	constructor() {
 		this._actual = vscode.window.createStatusBarItem(
-			vscode.StatusBarAlignment.Left,
+			vscode.StatusBarAlignment.Left
 		);
 		this._actual.show();
 	}

@@ -43,7 +43,7 @@ export const activate: ActivationFunction = (context) => {
 							context,
 						}}
 					/>,
-					root,
+					root
 				);
 			});
 		},

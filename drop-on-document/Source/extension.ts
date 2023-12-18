@@ -14,7 +14,7 @@ class ReverseTextOnDropProvider implements vscode.DocumentDropEditProvider {
 		_document: vscode.TextDocument,
 		position: vscode.Position,
 		dataTransfer: vscode.DataTransfer,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): Promise<vscode.DocumentDropEdit | undefined> {
 		// Check the data transfer to see if we have some kind of text data
 		const dataTransferItem = dataTransfer.get("text/plain");
@@ -50,7 +50,7 @@ class FileNameListOnDropProvider implements vscode.DocumentDropEditProvider {
 		_document: vscode.TextDocument,
 		_position: vscode.Position,
 		dataTransfer: vscode.DataTransfer,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): Promise<vscode.DocumentDropEdit | undefined> {
 		// Check the data transfer to see if we have dropped a list of uris
 		const dataTransferItem = dataTransfer.get(uriListMime);
@@ -102,13 +102,13 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.languages.registerDocumentDropEditProvider(
 			selector,
-			new ReverseTextOnDropProvider(),
-		),
+			new ReverseTextOnDropProvider()
+		)
 	);
 	context.subscriptions.push(
 		vscode.languages.registerDocumentDropEditProvider(
 			selector,
-			new FileNameListOnDropProvider(),
-		),
+			new FileNameListOnDropProvider()
+		)
 	);
 }

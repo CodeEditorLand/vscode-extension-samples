@@ -44,7 +44,7 @@ connection.onCompletion(async (textDocumentPosition, token) => {
 	return htmlLanguageService.doComplete(
 		document,
 		textDocumentPosition.position,
-		htmlLanguageService.parseHTMLDocument(document),
+		htmlLanguageService.parseHTMLDocument(document)
 	);
 });
 

@@ -23,7 +23,7 @@ let workspaceFolder: string | null;
 
 documents.onDidOpen((event) => {
 	connection.console.log(
-		`[Server(${process.pid}) ${workspaceFolder}] Document opened: ${event.document.uri}`,
+		`[Server(${process.pid}) ${workspaceFolder}] Document opened: ${event.document.uri}`
 	);
 });
 documents.listen(connection);
@@ -31,7 +31,7 @@ documents.listen(connection);
 connection.onInitialize((params) => {
 	workspaceFolder = params.rootUri;
 	connection.console.log(
-		`[Server(${process.pid}) ${workspaceFolder}] Started and initialize received`,
+		`[Server(${process.pid}) ${workspaceFolder}] Started and initialize received`
 	);
 	return {
 		capabilities: {

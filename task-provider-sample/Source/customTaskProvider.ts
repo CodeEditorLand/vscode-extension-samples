@@ -41,7 +41,7 @@ export class CustomBuildTaskProvider implements vscode.TaskProvider {
 			return this.getTask(
 				definition.flavor,
 				definition.flags ? definition.flags : [],
-				definition,
+				definition
 			);
 		}
 		return undefined;
@@ -72,7 +72,7 @@ export class CustomBuildTaskProvider implements vscode.TaskProvider {
 	private getTask(
 		flavor: string,
 		flags: string[],
-		definition?: CustomBuildTaskDefinition,
+		definition?: CustomBuildTaskDefinition
 	): vscode.Task {
 		if (definition === undefined) {
 			definition = {
@@ -94,10 +94,10 @@ export class CustomBuildTaskProvider implements vscode.TaskProvider {
 						flavor,
 						flags,
 						() => this.sharedState,
-						(state: string) => (this.sharedState = state),
+						(state: string) => (this.sharedState = state)
 					);
-				},
-			),
+				}
+			)
 		);
 	}
 }
@@ -115,7 +115,7 @@ class CustomBuildTaskTerminal implements vscode.Pseudoterminal {
 		private flavor: string,
 		private flags: string[],
 		private getSharedState: () => string | undefined,
-		private setSharedState: (state: string) => void,
+		private setSharedState: (state: string) => void
 	) {}
 
 	open(initialDimensions: vscode.TerminalDimensions | undefined): void {
@@ -147,12 +147,12 @@ class CustomBuildTaskTerminal implements vscode.Pseudoterminal {
 					this.writeEmitter.fire(
 						"Using last build results: " +
 							this.getSharedState() +
-							"\r\n",
+							"\r\n"
 					);
 				} else {
 					isIncremental = false;
 					this.writeEmitter.fire(
-						"No result from last build. Doing full build.\r\n",
+						"No result from last build. Doing full build.\r\n"
 					);
 				}
 			}
@@ -162,7 +162,7 @@ class CustomBuildTaskTerminal implements vscode.Pseudoterminal {
 				() => {
 					const date = new Date();
 					this.setSharedState(
-						date.toTimeString() + " " + date.toDateString(),
+						date.toTimeString() + " " + date.toDateString()
 					);
 					this.writeEmitter.fire("Build complete.\r\n\r\n");
 					if (this.flags.indexOf("watch") === -1) {
@@ -170,7 +170,7 @@ class CustomBuildTaskTerminal implements vscode.Pseudoterminal {
 						resolve();
 					}
 				},
-				isIncremental ? 1000 : 4000,
+				isIncremental ? 1000 : 4000
 			);
 		});
 	}

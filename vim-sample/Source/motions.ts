@@ -23,7 +23,7 @@ export abstract class Motion {
 	public abstract run(
 		doc: TextDocument,
 		pos: Position,
-		state: MotionState,
+		state: MotionState
 	): Position;
 
 	public repeat(hasRepeatCount: boolean, count: number): Motion {
@@ -93,8 +93,8 @@ class DownMotion extends Motion {
 				line,
 				Math.min(
 					state.cursorDesiredCharacter,
-					doc.lineAt(line).text.length,
-				),
+					doc.lineAt(line).text.length
+				)
 			);
 		}
 
@@ -117,8 +117,8 @@ class UpMotion extends Motion {
 				line,
 				Math.min(
 					state.cursorDesiredCharacter,
-					doc.lineAt(line).text.length,
-				),
+					doc.lineAt(line).text.length
+				)
 			);
 		}
 
@@ -175,7 +175,7 @@ class NextWordStartMotion extends Motion {
 			const nextNextWord = Words.findNextWord(
 				doc,
 				new Position(pos.line, nextWord.end),
-				state.wordCharacterClass,
+				state.wordCharacterClass
 			);
 			if (nextNextWord) {
 				// return start of the next next word
@@ -254,7 +254,7 @@ class GoToLastLineMotion extends GoToLineMotion {
 		const lastLine = doc.lineCount - 1;
 		return new Position(
 			lastLine,
-			this.firstNonWhitespaceChar(doc, lastLine),
+			this.firstNonWhitespaceChar(doc, lastLine)
 		);
 	}
 }
@@ -270,14 +270,17 @@ class GoToLineDefinedMotion extends GoToLineMotion {
 	public run(doc: TextDocument, pos: Position, state: MotionState): Position {
 		const line = Math.min(
 			doc.lineCount - 1,
-			Math.max(0, this._lineNumber - 1),
+			Math.max(0, this._lineNumber - 1)
 		);
 		return new Position(line, this.firstNonWhitespaceChar(doc, line));
 	}
 }
 
 class CursorMoveCommand extends AbstractCommandDescriptor {
-	constructor(private to: string, private by?: string) {
+	constructor(
+		private to: string,
+		private by?: string
+	) {
 		super();
 	}
 
@@ -296,7 +299,10 @@ class CursorMoveCommand extends AbstractCommandDescriptor {
 }
 
 class EditorScrollCommand extends AbstractCommandDescriptor {
-	constructor(private to: string, private by?: string) {
+	constructor(
+		private to: string,
+		private by?: string
+	) {
 		super();
 	}
 
@@ -427,12 +433,12 @@ export const Motions = {
 
 	WrappedLineStart: new CursorMoveCommand("wrappedLineStart"),
 	WrappedLineFirstNonWhiteSpaceCharacter: new CursorMoveCommand(
-		"wrappedLineFirstNonWhitespaceCharacter",
+		"wrappedLineFirstNonWhitespaceCharacter"
 	),
 	WrappedLineColumnCenter: new CursorMoveCommand("wrappedLineColumnCenter"),
 	WrappedLineEnd: new CursorMoveCommand("wrappedLineEnd"),
 	WrappedLineLastNonWhiteSpaceCharacter: new CursorMoveCommand(
-		"wrappedLineLastNonWhitespaceCharacter",
+		"wrappedLineLastNonWhitespaceCharacter"
 	),
 
 	ViewPortTop: new CursorMoveCommand("viewPortTop"),

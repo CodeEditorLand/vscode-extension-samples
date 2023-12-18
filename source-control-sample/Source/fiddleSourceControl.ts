@@ -28,39 +28,39 @@ export class FiddleSourceControl implements vscode.Disposable {
 		context: vscode.ExtensionContext,
 		private readonly workspaceFolder: vscode.WorkspaceFolder,
 		fiddle: Fiddle,
-		download: boolean,
+		download: boolean
 	) {
 		this.jsFiddleScm = vscode.scm.createSourceControl(
 			"jsfiddle",
 			"JSFiddle #" + fiddle.slug,
-			workspaceFolder.uri,
+			workspaceFolder.uri
 		);
 		this.changedResources = this.jsFiddleScm.createResourceGroup(
 			"workingTree",
-			"Changes",
+			"Changes"
 		);
 		this.fiddleRepository = new FiddleRepository(
 			workspaceFolder,
-			fiddle.slug,
+			fiddle.slug
 		);
 		this.jsFiddleScm.quickDiffProvider = this.fiddleRepository;
 		this.jsFiddleScm.inputBox.placeholder =
 			"Message is ignored by JS Fiddle :-]";
 
 		const fileSystemWatcher = vscode.workspace.createFileSystemWatcher(
-			new vscode.RelativePattern(workspaceFolder, "*.*"),
+			new vscode.RelativePattern(workspaceFolder, "*.*")
 		);
 		fileSystemWatcher.onDidChange(
 			(uri) => this.onResourceChange(uri),
-			context.subscriptions,
+			context.subscriptions
 		);
 		fileSystemWatcher.onDidCreate(
 			(uri) => this.onResourceChange(uri),
-			context.subscriptions,
+			context.subscriptions
 		);
 		fileSystemWatcher.onDidDelete(
 			(uri) => this.onResourceChange(uri),
-			context.subscriptions,
+			context.subscriptions
 		);
 
 		context.subscriptions.push(this.jsFiddleScm);
@@ -83,7 +83,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 		id: string,
 		context: vscode.ExtensionContext,
 		workspaceFolder: vscode.WorkspaceFolder,
-		overwrite: boolean,
+		overwrite: boolean
 	): Promise<FiddleSourceControl> {
 		const fiddleConfiguration = parseFiddleId(id);
 
@@ -91,7 +91,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 			fiddleConfiguration,
 			workspaceFolder,
 			context,
-			overwrite,
+			overwrite
 		);
 	}
 
@@ -99,14 +99,14 @@ export class FiddleSourceControl implements vscode.Disposable {
 		configuration: FiddleConfiguration,
 		workspaceFolder: vscode.WorkspaceFolder,
 		context: vscode.ExtensionContext,
-		overwrite: boolean,
+		overwrite: boolean
 	): Promise<FiddleSourceControl> {
 		return await FiddleSourceControl.fromFiddle(
 			configuration.slug,
 			configuration.version,
 			workspaceFolder,
 			context,
-			overwrite,
+			overwrite
 		);
 	}
 
@@ -115,7 +115,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 		fiddleVersion: number,
 		workspaceFolder: vscode.WorkspaceFolder,
 		context: vscode.ExtensionContext,
-		overwrite: boolean,
+		overwrite: boolean
 	): Promise<FiddleSourceControl> {
 		const fiddle = await downloadFiddle(fiddleSlug, fiddleVersion);
 		const workspacePath = workspaceFolder.uri.fsPath;
@@ -123,7 +123,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 			context,
 			workspaceFolder,
 			fiddle,
-			overwrite,
+			overwrite
 		);
 	}
 
@@ -143,7 +143,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 			vscode.window.showErrorMessage("There is nothing to commit.");
 		} else if (this.fiddle.version < this.latestFiddleVersion) {
 			vscode.window.showErrorMessage(
-				"Checkout the latest fiddle version before committing your changes.",
+				"Checkout the latest fiddle version before committing your changes."
 			);
 		} else {
 			const html = await this.getLocalResourceText("html");
@@ -157,7 +157,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 					this.fiddle.version + 1,
 					html,
 					js,
-					css,
+					css
 				);
 				if (!newFiddle) {
 					return;
@@ -166,7 +166,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 				this.jsFiddleScm.inputBox.value = "";
 			} catch (ex) {
 				vscode.window.showErrorMessage(
-					"Cannot commit changes to JS Fiddle. " + ex.message,
+					"Cannot commit changes to JS Fiddle. " + ex.message
 				);
 			}
 		}
@@ -174,7 +174,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 
 	private async getLocalResourceText(extension: string) {
 		const document = await vscode.workspace.openTextDocument(
-			this.fiddleRepository.createLocalResourcePath(extension),
+			this.fiddleRepository.createLocalResourcePath(extension)
 		);
 		return document.getText();
 	}
@@ -205,11 +205,11 @@ export class FiddleSourceControl implements vscode.Disposable {
 				...Array(this.latestFiddleVersion + 1).keys(),
 			].map(
 				(ver) =>
-					new VersionQuickPickItem(ver, ver === this.fiddle.version),
+					new VersionQuickPickItem(ver, ver === this.fiddle.version)
 			);
 			const newVersionPick = await vscode.window.showQuickPick(
 				allVersions,
-				{ canPickMany: false, placeHolder: "Select a version..." },
+				{ canPickMany: false, placeHolder: "Select a version..." }
 			);
 			if (newVersionPick) {
 				newVersion = newVersionPick.version;
@@ -226,13 +226,13 @@ export class FiddleSourceControl implements vscode.Disposable {
 			const changedResourcesCount =
 				this.changedResources.resourceStates.length;
 			vscode.window.showErrorMessage(
-				`There is one or more changed resources. Discard or commit your local changes before checking out another version.`,
+				`There is one or more changed resources. Discard or commit your local changes before checking out another version.`
 			);
 		} else {
 			try {
 				const newFiddle = await downloadFiddle(
 					this.fiddle.slug,
-					newVersion,
+					newVersion
 				);
 				this.setFiddle(newFiddle, true);
 			} catch (ex) {
@@ -281,18 +281,18 @@ export class FiddleSourceControl implements vscode.Disposable {
 
 		FiddleSourceControl.saveConfiguration(
 			this.workspaceFolder.uri,
-			fiddleConfiguration,
+			fiddleConfiguration
 		);
 	}
 
 	static saveConfiguration(
 		workspaceFolderUri: vscode.Uri,
-		fiddleConfiguration: FiddleConfiguration,
+		fiddleConfiguration: FiddleConfiguration
 	): void {
 		const fiddleConfigurationString = JSON.stringify(fiddleConfiguration);
 		afs.writeFile(
 			path.join(workspaceFolderUri.fsPath, CONFIGURATION_FILE),
-			Buffer.from(fiddleConfigurationString, UTF8),
+			Buffer.from(fiddleConfigurationString, UTF8)
 		);
 	}
 
@@ -340,7 +340,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 			if (isDirty) {
 				const resourceState = this.toSourceControlResourceState(
 					uri,
-					wasDeleted,
+					wasDeleted
 				);
 				changedResources.push(resourceState);
 			}
@@ -362,11 +362,11 @@ export class FiddleSourceControl implements vscode.Disposable {
 
 	toSourceControlResourceState(
 		docUri: vscode.Uri,
-		deleted: boolean,
+		deleted: boolean
 	): vscode.SourceControlResourceState {
 		const repositoryUri = this.fiddleRepository.provideOriginalResource(
 			docUri,
-			null,
+			null
 		);
 
 		const fiddlePart = toExtension(docUri).toUpperCase();
@@ -381,7 +381,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 						`JSFiddle#${this.fiddle.slug} ${fiddlePart} ↔ Local changes`,
 					],
 					tooltip: "Diff your changes",
-			  }
+				}
 			: null;
 
 		const resourceState: vscode.SourceControlResourceState = {
@@ -406,7 +406,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 			try {
 				const latestFiddle = await downloadFiddle(
 					this.fiddle.slug,
-					latestVersion,
+					latestVersion
 				);
 				this.latestFiddleVersion = latestVersion;
 				latestVersion++;
@@ -433,7 +433,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 			try {
 				const latestFiddle = await downloadFiddle(
 					this.fiddle.slug,
-					version,
+					version
 				);
 				latestVersion = version;
 				version++;
@@ -471,7 +471,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 class VersionQuickPickItem implements vscode.QuickPickItem {
 	constructor(
 		public readonly version: number,
-		public readonly picked: boolean,
+		public readonly picked: boolean
 	) {}
 
 	get label(): string {

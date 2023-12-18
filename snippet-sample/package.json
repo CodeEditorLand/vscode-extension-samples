@@ -1,15 +1,15 @@
 {
-  "name": "snippet-sample",
-  "displayName": "Snippet Sample",
-  "description": "Snippet Sample",
-  "version": "0.0.1",
-  "publisher": "vscode-samples",
-  "contributes": {
-    "snippets": [
-      {
-        "language": "javascript",
-        "path": "./snippets.json"
-      }
-    ]
-  }
+	"name": "snippet-sample",
+	"displayName": "Snippet Sample",
+	"version": "0.0.1",
+	"description": "Snippet Sample",
+	"publisher": "vscode-samples",
+	"contributes": {
+		"snippets": [
+			{
+				"language": "javascript",
+				"path": "./snippets.json"
+			}
+		]
+	}
 }

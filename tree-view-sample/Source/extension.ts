@@ -20,44 +20,44 @@ export function activate(context: vscode.ExtensionContext) {
 	const nodeDependenciesProvider = new DepNodeProvider(rootPath);
 	vscode.window.registerTreeDataProvider(
 		"nodeDependencies",
-		nodeDependenciesProvider,
+		nodeDependenciesProvider
 	);
 	vscode.commands.registerCommand("nodeDependencies.refreshEntry", () =>
-		nodeDependenciesProvider.refresh(),
+		nodeDependenciesProvider.refresh()
 	);
 	vscode.commands.registerCommand(
 		"extension.openPackageOnNpm",
 		(moduleName) =>
 			vscode.commands.executeCommand(
 				"vscode.open",
-				vscode.Uri.parse(`https://www.npmjs.com/package/${moduleName}`),
-			),
+				vscode.Uri.parse(`https://www.npmjs.com/package/${moduleName}`)
+			)
 	);
 	vscode.commands.registerCommand("nodeDependencies.addEntry", () =>
-		vscode.window.showInformationMessage(`Successfully called add entry.`),
+		vscode.window.showInformationMessage(`Successfully called add entry.`)
 	);
 	vscode.commands.registerCommand(
 		"nodeDependencies.editEntry",
 		(node: Dependency) =>
 			vscode.window.showInformationMessage(
-				`Successfully called edit entry on ${node.label}.`,
-			),
+				`Successfully called edit entry on ${node.label}.`
+			)
 	);
 	vscode.commands.registerCommand(
 		"nodeDependencies.deleteEntry",
 		(node: Dependency) =>
 			vscode.window.showInformationMessage(
-				`Successfully called delete entry on ${node.label}.`,
-			),
+				`Successfully called delete entry on ${node.label}.`
+			)
 	);
 
 	const jsonOutlineProvider = new JsonOutlineProvider(context);
 	vscode.window.registerTreeDataProvider("jsonOutline", jsonOutlineProvider);
 	vscode.commands.registerCommand("jsonOutline.refresh", () =>
-		jsonOutlineProvider.refresh(),
+		jsonOutlineProvider.refresh()
 	);
 	vscode.commands.registerCommand("jsonOutline.refreshNode", (offset) =>
-		jsonOutlineProvider.refresh(offset),
+		jsonOutlineProvider.refresh(offset)
 	);
 	vscode.commands.registerCommand("jsonOutline.renameNode", (args) => {
 		let offset = undefined;
@@ -71,7 +71,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 	vscode.commands.registerCommand("extension.openJsonSelection", (range) =>
-		jsonOutlineProvider.select(range),
+		jsonOutlineProvider.select(range)
 	);
 
 	// Samples of `window.createView`

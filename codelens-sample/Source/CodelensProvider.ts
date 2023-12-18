@@ -21,7 +21,7 @@ export class CodelensProvider implements vscode.CodeLensProvider {
 
 	public provideCodeLenses(
 		document: vscode.TextDocument,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): vscode.CodeLens[] | Thenable<vscode.CodeLens[]> {
 		if (
 			vscode.workspace
@@ -34,13 +34,13 @@ export class CodelensProvider implements vscode.CodeLensProvider {
 			let matches;
 			while ((matches = regex.exec(text)) !== null) {
 				const line = document.lineAt(
-					document.positionAt(matches.index).line,
+					document.positionAt(matches.index).line
 				);
 				const indexOf = line.text.indexOf(matches[0]);
 				const position = new vscode.Position(line.lineNumber, indexOf);
 				const range = document.getWordRangeAtPosition(
 					position,
-					new RegExp(this.regex),
+					new RegExp(this.regex)
 				);
 				if (range) {
 					this.codeLenses.push(new vscode.CodeLens(range));
@@ -53,7 +53,7 @@ export class CodelensProvider implements vscode.CodeLensProvider {
 
 	public resolveCodeLens(
 		codeLens: vscode.CodeLens,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	) {
 		if (
 			vscode.workspace

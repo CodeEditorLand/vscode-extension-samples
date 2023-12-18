@@ -1,21 +1,21 @@
 {
-  "name": "client",
-  "displayName": "Code Action UI Sample - Client",
-  "version": "1.0.0",
-  "private": true,
-  "author": "Microsoft Corporation",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Microsoft/vscode-extension-samples.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Microsoft/vscode-extension-samples/issues"
-  },
-  "devDependencies": {
-    "@types/vscode": "1.85.0"
-  },
-  "dependencies": {
-    "vscode-languageclient": "9.0.1"
-  }
+	"name": "client",
+	"displayName": "Code Action UI Sample - Client",
+	"version": "1.0.0",
+	"private": true,
+	"bugs": {
+		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples.git"
+	},
+	"license": "MIT",
+	"author": "Microsoft Corporation",
+	"dependencies": {
+		"vscode-languageclient": "9.0.1"
+	},
+	"devDependencies": {
+		"@types/vscode": "1.85.0"
+	}
 }

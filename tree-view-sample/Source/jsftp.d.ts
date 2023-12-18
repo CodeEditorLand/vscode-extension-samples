@@ -31,7 +31,7 @@ interface JSFtp extends EventEmitter {
 	get(path: string, callback: JSFtp.Callback<Readable>): void;
 	setType(
 		type: "A" | "AN" | "AT" | "AC" | "E" | "I" | "L",
-		callback: JSFtp.Callback<any>,
+		callback: JSFtp.Callback<any>
 	): void;
 	raw(command: string, args: any[], callback: JSFtp.Callback<void>): void;
 	raw<T>(command: string, args: any[], callback: JSFtp.Callback<T>): void;

@@ -1,61 +1,61 @@
 {
-  "name": "notifications-sample",
-  "displayName": "Notifications Sample",
-  "description": "Examples of notification types and various configurations",
-  "version": "0.0.1",
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "notifications-sample.showInfo",
-        "title": "Show Info Notification",
-        "category": "Notifications Sample"
-      },
-      {
-        "command": "notifications-sample.showInfoAsModal",
-        "title": "Show Info Notification As Modal",
-        "category": "Notifications Sample"
-      },
-      {
-        "command": "notifications-sample.showWarning",
-        "title": "Show Warning Notification",
-        "category": "Notifications Sample"
-      },
-      {
-        "command": "notifications-sample.showWarningWithActions",
-        "title": "Show Warning Notification With Actions",
-        "category": "Notifications Sample"
-      },
-      {
-        "command": "notifications-sample.showError",
-        "title": "Show Error Notification",
-        "category": "Notifications Sample"
-      },
-      {
-        "command": "notifications-sample.showProgress",
-        "title": "Show Progress Notification",
-        "category": "Notifications Sample"
-      },
-      {
-        "command": "notifications-sample.showAll",
-        "title": "Show All Notifications",
-        "category": "Notifications Sample"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint"
-  },
-  "devDependencies": {
-    "@types/vscode": "1.85.0",
-    "@types/glob": "8.1.0",
-    "@types/node": "20.x",
-    "glob": "10.3.10",
-    "typescript": "5.3.3",
-    "@vscode/test-electron": "2.3.8"
-  }
+	"name": "notifications-sample",
+	"displayName": "Notifications Sample",
+	"version": "0.0.1",
+	"description": "Examples of notification types and various configurations",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "notifications-sample.showInfo",
+				"title": "Show Info Notification",
+				"category": "Notifications Sample"
+			},
+			{
+				"command": "notifications-sample.showInfoAsModal",
+				"title": "Show Info Notification As Modal",
+				"category": "Notifications Sample"
+			},
+			{
+				"command": "notifications-sample.showWarning",
+				"title": "Show Warning Notification",
+				"category": "Notifications Sample"
+			},
+			{
+				"command": "notifications-sample.showWarningWithActions",
+				"title": "Show Warning Notification With Actions",
+				"category": "Notifications Sample"
+			},
+			{
+				"command": "notifications-sample.showError",
+				"title": "Show Error Notification",
+				"category": "Notifications Sample"
+			},
+			{
+				"command": "notifications-sample.showProgress",
+				"title": "Show Progress Notification",
+				"category": "Notifications Sample"
+			},
+			{
+				"command": "notifications-sample.showAll",
+				"title": "Show All Notifications",
+				"category": "Notifications Sample"
+			}
+		]
+	},
+	"activationEvents": [],
+	"devDependencies": {
+		"@types/glob": "8.1.0",
+		"@types/node": "20.x",
+		"@types/vscode": "1.85.0",
+		"@vscode/test-electron": "2.3.8",
+		"glob": "10.3.10",
+		"typescript": "5.3.3"
+	}
 }

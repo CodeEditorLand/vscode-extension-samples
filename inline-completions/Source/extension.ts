@@ -5,7 +5,7 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log("inline-completions demo started");
 	vscode.commands.registerCommand("demo-ext.command1", async (...args) => {
 		vscode.window.showInformationMessage(
-			"command1: " + JSON.stringify(args),
+			"command1: " + JSON.stringify(args)
 		);
 	});
 
@@ -55,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
 						position.line,
 						startInt,
 						position.line,
-						endInt,
+						endInt
 					),
 					completeBracketPairs,
 				});
@@ -72,7 +72,7 @@ export function activate(context: vscode.ExtensionContext) {
 		},
 
 		handleDidShowCompletionItem(
-			completionItem: vscode.InlineCompletionItem,
+			completionItem: vscode.InlineCompletionItem
 		): void {
 			console.log("handleDidShowCompletionItem");
 		},
@@ -83,13 +83,13 @@ export function activate(context: vscode.ExtensionContext) {
 		 */
 		handleDidPartiallyAcceptCompletionItem(
 			completionItem: vscode.InlineCompletionItem,
-			acceptedLength: number,
+			acceptedLength: number
 		): void {
 			console.log("handleDidPartiallyAcceptCompletionItem");
 		},
 	};
 	vscode.languages.registerInlineCompletionItemProvider(
 		{ pattern: "**" },
-		provider,
+		provider
 	);
 }

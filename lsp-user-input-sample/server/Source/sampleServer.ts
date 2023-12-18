@@ -49,7 +49,7 @@ function validate(document: TextDocument): void {
 			Diagnostic.create(
 				Range.create(0, 0, 0, 10),
 				"Something is wrong here",
-				DiagnosticSeverity.Warning,
+				DiagnosticSeverity.Warning
 			),
 		],
 	});
@@ -73,7 +73,7 @@ connection.onCodeAction((params) => {
 		CodeAction.create(
 			title,
 			Command.create(title, "sample.fixMe", textDocument.uri),
-			CodeActionKind.QuickFix,
+			CodeActionKind.QuickFix
 		),
 	];
 });
@@ -95,7 +95,7 @@ connection.onExecuteCommand(async (params) => {
 		documentChanges: [
 			TextDocumentEdit.create(
 				{ uri: textDocument.uri, version: textDocument.version },
-				[TextEdit.insert(Position.create(0, 0), newText)],
+				[TextEdit.insert(Position.create(0, 0), newText)]
 			),
 		],
 	});

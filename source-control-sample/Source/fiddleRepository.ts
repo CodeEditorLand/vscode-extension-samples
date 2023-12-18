@@ -16,7 +16,7 @@ export class Fiddle {
 	constructor(
 		public slug: string,
 		public version: number,
-		public data: FiddleData,
+		public data: FiddleData
 	) {}
 }
 
@@ -40,12 +40,12 @@ export const JSFIDDLE_SCHEME = "jsfiddle";
 export class FiddleRepository implements QuickDiffProvider {
 	constructor(
 		private workspaceFolder: WorkspaceFolder,
-		private fiddleSlug: string,
+		private fiddleSlug: string
 	) {}
 
 	provideOriginalResource?(
 		uri: Uri,
-		token: CancellationToken,
+		token: CancellationToken
 	): ProviderResult<Uri> {
 		// converts the local file uri to jsfiddle:file.ext
 		const relativePath = workspace.asRelativePath(uri.fsPath);
@@ -73,7 +73,7 @@ export class FiddleRepository implements QuickDiffProvider {
 	createLocalResourcePath(extension: string) {
 		return path.join(
 			this.workspaceFolder.uri.fsPath,
-			this.fiddleSlug + "." + extension,
+			this.fiddleSlug + "." + extension
 		);
 	}
 }
@@ -91,7 +91,7 @@ let demoVersionOffset: number | undefined = undefined;
 
 export async function downloadFiddle(
 	slug: string,
-	version: number | undefined,
+	version: number | undefined
 ): Promise<Fiddle> {
 	if (slug === "demo") {
 		// use mock fiddle
@@ -137,7 +137,7 @@ export async function uploadFiddle(
 	version: number,
 	html: string,
 	js: string,
-	css: string,
+	css: string
 ): Promise<Fiddle | undefined> {
 	if (slug === "demo") {
 		// using mock fiddle
@@ -153,7 +153,7 @@ export async function uploadFiddle(
 			{
 				placeHolder:
 					"JS Fiddle saving is not supported. Do you want to open the JSFiddle in the browser?",
-			},
+			}
 		);
 
 		if (answer && answer.toLowerCase().startsWith("yes")) {

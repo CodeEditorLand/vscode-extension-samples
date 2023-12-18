@@ -21,11 +21,11 @@ export function activate(_context: vscode.ExtensionContext): void {
 
 	rakeTaskProvider = vscode.tasks.registerTaskProvider(
 		RakeTaskProvider.RakeType,
-		new RakeTaskProvider(workspaceRoot),
+		new RakeTaskProvider(workspaceRoot)
 	);
 	customTaskProvider = vscode.tasks.registerTaskProvider(
 		CustomBuildTaskProvider.CustomBuildScriptType,
-		new CustomBuildTaskProvider(workspaceRoot),
+		new CustomBuildTaskProvider(workspaceRoot)
 	);
 }
 

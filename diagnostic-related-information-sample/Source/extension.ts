@@ -12,13 +12,13 @@ export function activate(context: vscode.ExtensionContext) {
 			if (editor) {
 				updateDiagnostics(editor.document, collection);
 			}
-		}),
+		})
 	);
 }
 
 function updateDiagnostics(
 	document: vscode.TextDocument,
-	collection: vscode.DiagnosticCollection,
+	collection: vscode.DiagnosticCollection
 ): void {
 	if (document && path.basename(document.uri.fsPath) === "sample-demo.rs") {
 		collection.set(document.uri, [
@@ -27,7 +27,7 @@ function updateDiagnostics(
 				message: "cannot assign twice to immutable variable `x`",
 				range: new vscode.Range(
 					new vscode.Position(3, 4),
-					new vscode.Position(3, 10),
+					new vscode.Position(3, 10)
 				),
 				severity: vscode.DiagnosticSeverity.Error,
 				source: "",
@@ -37,10 +37,10 @@ function updateDiagnostics(
 							document.uri,
 							new vscode.Range(
 								new vscode.Position(1, 8),
-								new vscode.Position(1, 9),
-							),
+								new vscode.Position(1, 9)
+							)
 						),
-						"first assignment to `x`",
+						"first assignment to `x`"
 					),
 				],
 			},

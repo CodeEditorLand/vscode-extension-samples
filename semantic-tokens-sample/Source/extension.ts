@@ -28,7 +28,7 @@ const legend = (function () {
 		"label",
 	];
 	tokenTypesLegend.forEach((tokenType, index) =>
-		tokenTypes.set(tokenType, index),
+		tokenTypes.set(tokenType, index)
 	);
 
 	const tokenModifiersLegend = [
@@ -42,12 +42,12 @@ const legend = (function () {
 		"async",
 	];
 	tokenModifiersLegend.forEach((tokenModifier, index) =>
-		tokenModifiers.set(tokenModifier, index),
+		tokenModifiers.set(tokenModifier, index)
 	);
 
 	return new vscode.SemanticTokensLegend(
 		tokenTypesLegend,
-		tokenModifiersLegend,
+		tokenModifiersLegend
 	);
 })();
 
@@ -56,8 +56,8 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.languages.registerDocumentSemanticTokensProvider(
 			{ language: "semanticLanguage" },
 			new DocumentSemanticTokensProvider(),
-			legend,
-		),
+			legend
+		)
 	);
 }
 
@@ -74,7 +74,7 @@ class DocumentSemanticTokensProvider
 {
 	async provideDocumentSemanticTokens(
 		document: vscode.TextDocument,
-		token: vscode.CancellationToken,
+		token: vscode.CancellationToken
 	): Promise<vscode.SemanticTokens> {
 		const allTokens = this._parseText(document.getText());
 		const builder = new vscode.SemanticTokensBuilder();
@@ -84,7 +84,7 @@ class DocumentSemanticTokensProvider
 				token.startCharacter,
 				token.length,
 				this._encodeTokenType(token.tokenType),
-				this._encodeTokenModifiers(token.tokenModifiers),
+				this._encodeTokenModifiers(token.tokenModifiers)
 			);
 		});
 		return builder.build();
@@ -128,7 +128,7 @@ class DocumentSemanticTokensProvider
 					break;
 				}
 				const tokenData = this._parseTextToken(
-					line.substring(openOffset + 1, closeOffset),
+					line.substring(openOffset + 1, closeOffset)
 				);
 				r.push({
 					line: i,

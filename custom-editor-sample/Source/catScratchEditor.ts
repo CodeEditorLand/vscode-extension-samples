@@ -17,12 +17,12 @@ export class CatScratchEditorProvider
 	implements vscode.CustomTextEditorProvider
 {
 	public static register(
-		context: vscode.ExtensionContext,
+		context: vscode.ExtensionContext
 	): vscode.Disposable {
 		const provider = new CatScratchEditorProvider(context);
 		const providerRegistration = vscode.window.registerCustomEditorProvider(
 			CatScratchEditorProvider.viewType,
-			provider,
+			provider
 		);
 		return providerRegistration;
 	}
@@ -52,14 +52,14 @@ export class CatScratchEditorProvider
 	public async resolveCustomTextEditor(
 		document: vscode.TextDocument,
 		webviewPanel: vscode.WebviewPanel,
-		_token: vscode.CancellationToken,
+		_token: vscode.CancellationToken
 	): Promise<void> {
 		// Setup initial content for the webview
 		webviewPanel.webview.options = {
 			enableScripts: true,
 		};
 		webviewPanel.webview.html = this.getHtmlForWebview(
-			webviewPanel.webview,
+			webviewPanel.webview
 		);
 
 		function updateWebview() {
@@ -114,32 +114,28 @@ export class CatScratchEditorProvider
 			vscode.Uri.joinPath(
 				this.context.extensionUri,
 				"media",
-				"catScratch.js",
-			),
+				"catScratch.js"
+			)
 		);
 
 		const styleResetUri = webview.asWebviewUri(
-			vscode.Uri.joinPath(
-				this.context.extensionUri,
-				"media",
-				"reset.css",
-			),
+			vscode.Uri.joinPath(this.context.extensionUri, "media", "reset.css")
 		);
 
 		const styleVSCodeUri = webview.asWebviewUri(
 			vscode.Uri.joinPath(
 				this.context.extensionUri,
 				"media",
-				"vscode.css",
-			),
+				"vscode.css"
+			)
 		);
 
 		const styleMainUri = webview.asWebviewUri(
 			vscode.Uri.joinPath(
 				this.context.extensionUri,
 				"media",
-				"catScratch.css",
-			),
+				"catScratch.css"
+			)
 		);
 
 		// Use a nonce to whitelist which scripts can be run
@@ -186,7 +182,7 @@ export class CatScratchEditorProvider
 			CatScratchEditorProvider.scratchCharacters[
 				Math.floor(
 					Math.random() *
-						CatScratchEditorProvider.scratchCharacters.length,
+						CatScratchEditorProvider.scratchCharacters.length
 				)
 			];
 		json.scratches = [
@@ -228,7 +224,7 @@ export class CatScratchEditorProvider
 			return JSON.parse(text);
 		} catch {
 			throw new Error(
-				"Could not get document as json. Content is not valid json",
+				"Could not get document as json. Content is not valid json"
 			);
 		}
 	}
@@ -244,7 +240,7 @@ export class CatScratchEditorProvider
 		edit.replace(
 			document.uri,
 			new vscode.Range(0, 0, document.lineCount, 0),
-			JSON.stringify(json, null, 2),
+			JSON.stringify(json, null, 2)
 		);
 
 		return vscode.workspace.applyEdit(edit);

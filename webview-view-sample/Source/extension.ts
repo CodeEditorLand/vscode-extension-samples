@@ -6,20 +6,20 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.window.registerWebviewViewProvider(
 			ColorsViewProvider.viewType,
-			provider,
-		),
+			provider
+		)
 	);
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand("calicoColors.addColor", () => {
 			provider.addColor();
-		}),
+		})
 	);
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand("calicoColors.clearColors", () => {
 			provider.clearColors();
-		}),
+		})
 	);
 }
 
@@ -33,7 +33,7 @@ class ColorsViewProvider implements vscode.WebviewViewProvider {
 	public resolveWebviewView(
 		webviewView: vscode.WebviewView,
 		context: vscode.WebviewViewResolveContext,
-		_token: vscode.CancellationToken,
+		_token: vscode.CancellationToken
 	) {
 		this._view = webviewView;
 
@@ -50,7 +50,7 @@ class ColorsViewProvider implements vscode.WebviewViewProvider {
 			switch (data.type) {
 				case "colorSelected": {
 					vscode.window.activeTextEditor?.insertSnippet(
-						new vscode.SnippetString(`#${data.value}`),
+						new vscode.SnippetString(`#${data.value}`)
 					);
 					break;
 				}
@@ -74,18 +74,18 @@ class ColorsViewProvider implements vscode.WebviewViewProvider {
 	private _getHtmlForWebview(webview: vscode.Webview) {
 		// Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
 		const scriptUri = webview.asWebviewUri(
-			vscode.Uri.joinPath(this._extensionUri, "media", "main.js"),
+			vscode.Uri.joinPath(this._extensionUri, "media", "main.js")
 		);
 
 		// Do the same for the stylesheet.
 		const styleResetUri = webview.asWebviewUri(
-			vscode.Uri.joinPath(this._extensionUri, "media", "reset.css"),
+			vscode.Uri.joinPath(this._extensionUri, "media", "reset.css")
 		);
 		const styleVSCodeUri = webview.asWebviewUri(
-			vscode.Uri.joinPath(this._extensionUri, "media", "vscode.css"),
+			vscode.Uri.joinPath(this._extensionUri, "media", "vscode.css")
 		);
 		const styleMainUri = webview.asWebviewUri(
-			vscode.Uri.joinPath(this._extensionUri, "media", "main.css"),
+			vscode.Uri.joinPath(this._extensionUri, "media", "main.css")
 		);
 
 		// Use a nonce to only allow a specific script to be run.

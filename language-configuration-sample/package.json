@@ -1,22 +1,22 @@
 {
-  "name": "language-configuration-sample",
-  "displayName": "Language Configuration Sample",
-  "description": "Language Configuration Sample",
-  "version": "0.0.1",
-  "publisher": "vscode-samples",
-  "contributes": {
-    "languages": [
-      {
-        "id": "javascript",
-        "extensions": [
-          ".js"
-        ],
-        "aliases": [
-          "js",
-          "JavaScript"
-        ],
-        "configuration": "./language-configuration.json"
-      }
-    ]
-  }
+	"name": "language-configuration-sample",
+	"displayName": "Language Configuration Sample",
+	"version": "0.0.1",
+	"description": "Language Configuration Sample",
+	"publisher": "vscode-samples",
+	"contributes": {
+		"languages": [
+			{
+				"id": "javascript",
+				"extensions": [
+					".js"
+				],
+				"aliases": [
+					"js",
+					"JavaScript"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		]
+	}
 }

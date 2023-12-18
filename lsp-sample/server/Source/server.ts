@@ -71,7 +71,7 @@ connection.onInitialized(() => {
 		// Register for all configuration changes.
 		connection.client.register(
 			DidChangeConfigurationNotification.type,
-			undefined,
+			undefined
 		);
 	}
 	if (hasWorkspaceFolderCapability) {
@@ -208,7 +208,7 @@ connection.onCompletion(
 				data: 2,
 			},
 		];
-	},
+	}
 );
 
 // This handler resolves additional information for the item selected in

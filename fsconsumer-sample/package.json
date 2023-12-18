@@ -1,44 +1,44 @@
 {
-  "name": "vscode-memfs",
-  "displayName": "FileSystem Consumer Sample",
-  "description": "Showcase for using the workspace.fs.-API which allows reading and writing files and folder",
-  "version": "0.0.1",
-  "publisher": "vscode-samples",
-  "private": true,
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Microsoft/vscode-extension-samples"
-  },
-  "activationEvents": [],
-  "main": "./out/src/extension",
-  "contributes": {
-    "commands": [
-      {
-        "command": "fs/openJS",
-        "title": "Open JavaScript-file for TypeScript-file...",
-        "category": "FS"
-      },
-      {
-        "command": "fs/sumSizes",
-        "title": "Show folder information for current file",
-        "category": "FS"
-      },
-      {
-        "command": "fs/readWriteFile",
-        "title": "Read and Write file",
-        "category": "FS"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
-  },
-  "devDependencies": {
-    "@types/node": "20.10.4",
-    "@types/vscode": "1.85.0",
-    "typescript": "5.3.3"
-  }
+	"name": "vscode-memfs",
+	"displayName": "FileSystem Consumer Sample",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Showcase for using the workspace.fs.-API which allows reading and writing files and folder",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"license": "MIT",
+	"publisher": "vscode-samples",
+	"main": "./out/src/extension",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "fs/openJS",
+				"title": "Open JavaScript-file for TypeScript-file...",
+				"category": "FS"
+			},
+			{
+				"command": "fs/sumSizes",
+				"title": "Show folder information for current file",
+				"category": "FS"
+			},
+			{
+				"command": "fs/readWriteFile",
+				"title": "Read and Write file",
+				"category": "FS"
+			}
+		]
+	},
+	"activationEvents": [],
+	"devDependencies": {
+		"@types/node": "20.10.5",
+		"@types/vscode": "1.85.0",
+		"typescript": "5.3.3"
+	}
 }
