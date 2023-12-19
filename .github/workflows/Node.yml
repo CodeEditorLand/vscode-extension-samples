@@ -73,7 +73,7 @@ jobs:
                           --unsafe-perm=true
                         ]
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -85,7 +85,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./authenticationprovider-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -94,7 +94,7 @@ jobs:
             - run: pnpm install
               working-directory: ./basic-multi-root-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -103,7 +103,7 @@ jobs:
             - run: pnpm install
               working-directory: ./call-hierarchy-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -112,7 +112,7 @@ jobs:
             - run: pnpm install
               working-directory: ./chat-agent-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -121,7 +121,7 @@ jobs:
             - run: pnpm install
               working-directory: ./code-actions-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -130,7 +130,7 @@ jobs:
             - run: pnpm install
               working-directory: ./codelens-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -139,7 +139,7 @@ jobs:
             - run: pnpm install
               working-directory: ./comment-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -148,7 +148,7 @@ jobs:
             - run: pnpm install
               working-directory: ./completions-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -157,7 +157,7 @@ jobs:
             - run: pnpm install
               working-directory: ./configuration-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -166,7 +166,7 @@ jobs:
             - run: pnpm install
               working-directory: ./contentprovider-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -175,7 +175,7 @@ jobs:
             - run: pnpm install
               working-directory: ./custom-editor-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -184,7 +184,7 @@ jobs:
             - run: pnpm install
               working-directory: ./decorator-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -193,7 +193,7 @@ jobs:
             - run: pnpm install
               working-directory: ./diagnostic-related-information-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -202,7 +202,7 @@ jobs:
             - run: pnpm install
               working-directory: ./document-editing-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -211,7 +211,7 @@ jobs:
             - run: pnpm install
               working-directory: ./document-paste
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -220,7 +220,7 @@ jobs:
             - run: pnpm install
               working-directory: ./drop-on-document
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -229,7 +229,7 @@ jobs:
             - run: pnpm install
               working-directory: ./extension-terminal-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -238,7 +238,7 @@ jobs:
             - run: pnpm install
               working-directory: ./fsconsumer-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -247,7 +247,7 @@ jobs:
             - run: pnpm install
               working-directory: ./fsprovider-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -259,7 +259,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./getting-started-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -268,7 +268,7 @@ jobs:
             - run: pnpm install
               working-directory: ./github-authentication-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -277,7 +277,7 @@ jobs:
             - run: pnpm install
               working-directory: ./helloworld-minimal-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -286,7 +286,7 @@ jobs:
             - run: pnpm install
               working-directory: ./helloworld-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -298,7 +298,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./helloworld-web-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -307,7 +307,7 @@ jobs:
             - run: pnpm install
               working-directory: ./inline-completions
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -316,7 +316,7 @@ jobs:
             - run: pnpm install
               working-directory: ./jupyter-server-provider-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -325,7 +325,7 @@ jobs:
             - run: pnpm install
               working-directory: ./l10n-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -334,7 +334,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-embedded-language-service/client
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -343,7 +343,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-embedded-language-service
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -352,7 +352,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-embedded-language-service/server
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -361,7 +361,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-embedded-request-forwarding/client
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -370,7 +370,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-embedded-request-forwarding
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -379,7 +379,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-embedded-request-forwarding/server
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -388,7 +388,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-log-streaming-sample/client
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -400,7 +400,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./lsp-log-streaming-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -409,7 +409,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-log-streaming-sample/server
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -418,7 +418,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-multi-server-sample/client
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -427,7 +427,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-multi-server-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -436,7 +436,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-multi-server-sample/server
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -445,7 +445,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-sample/client
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -457,7 +457,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./lsp-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -466,7 +466,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-sample/server
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -475,7 +475,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-user-input-sample/client
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -484,7 +484,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-user-input-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -493,7 +493,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-user-input-sample/server
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -502,7 +502,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-web-extension-sample/client
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -511,7 +511,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-web-extension-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -520,7 +520,7 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-web-extension-sample/server
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -529,7 +529,7 @@ jobs:
             - run: pnpm install
               working-directory: ./nodefs-provider-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -538,7 +538,7 @@ jobs:
             - run: pnpm install
               working-directory: ./notebook-extend-markdown-renderer-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -547,7 +547,7 @@ jobs:
             - run: pnpm install
               working-directory: ./notebook-renderer-react-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -556,7 +556,7 @@ jobs:
             - run: pnpm install
               working-directory: ./notebook-renderer-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -565,7 +565,7 @@ jobs:
             - run: pnpm install
               working-directory: ./notebook-serializer-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -574,7 +574,7 @@ jobs:
             - run: pnpm install
               working-directory: ./notifications-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -583,7 +583,7 @@ jobs:
             - run: pnpm install
               working-directory: ./product-icon-theme-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -592,7 +592,7 @@ jobs:
             - run: pnpm install
               working-directory: ./progress-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -601,7 +601,7 @@ jobs:
             - run: pnpm install
               working-directory: ./proposed-api-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -610,7 +610,7 @@ jobs:
             - run: pnpm install
               working-directory: ./quickinput-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -619,7 +619,7 @@ jobs:
             - run: pnpm install
               working-directory: ./semantic-tokens-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -628,7 +628,7 @@ jobs:
             - run: pnpm install
               working-directory: ./source-control-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -637,7 +637,7 @@ jobs:
             - run: pnpm install
               working-directory: ./statusbar-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -646,7 +646,7 @@ jobs:
             - run: pnpm install
               working-directory: ./tabs-api-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -655,7 +655,7 @@ jobs:
             - run: pnpm install
               working-directory: ./task-provider-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -664,7 +664,7 @@ jobs:
             - run: pnpm install
               working-directory: ./telemetry-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -673,7 +673,7 @@ jobs:
             - run: pnpm install
               working-directory: ./terminal-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -682,7 +682,7 @@ jobs:
             - run: pnpm install
               working-directory: ./theme-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -691,7 +691,7 @@ jobs:
             - run: pnpm install
               working-directory: ./tree-view-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -703,7 +703,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./uri-handler-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -712,7 +712,7 @@ jobs:
             - run: pnpm install
               working-directory: ./vim-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -721,7 +721,7 @@ jobs:
             - run: pnpm install
               working-directory: ./virtual-document-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -730,7 +730,7 @@ jobs:
             - run: pnpm install
               working-directory: ./webpack-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -739,7 +739,7 @@ jobs:
             - run: pnpm install
               working-directory: ./webview-codicons-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -748,7 +748,7 @@ jobs:
             - run: pnpm install
               working-directory: ./webview-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -757,7 +757,7 @@ jobs:
             - run: pnpm install
               working-directory: ./webview-view-sample
 
-            - uses: actions/setup-node@v4.0.0
+            - uses: actions/setup-node@v4.0.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
