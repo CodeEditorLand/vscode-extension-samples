@@ -16,7 +16,7 @@
 		]
 	},
 	"devDependencies": {
-		"open": "9.1.0",
+		"open": "10.0.0",
 		"webfont": "11.2.26"
 	}
 }
