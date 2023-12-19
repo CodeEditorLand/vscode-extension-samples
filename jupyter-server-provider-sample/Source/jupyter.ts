@@ -18,7 +18,7 @@ export async function findLocallyRunningServers(type: "lab" | "notebook") {
 	const prefix = type === "lab" ? "jpserver-" : "nbserver";
 	await Promise.all(
 		files.map(async (file) => {
-			if (!file.startsWith(prefix) || !file.endsWith(".json")) {
+			if (!(file.startsWith(prefix) && file.endsWith(".json"))) {
 				return;
 			}
 

@@ -3,13 +3,14 @@ import * as vscode from "vscode";
 export function activate(context: vscode.ExtensionContext) {
 	let NEXT_TERM_ID = 1;
 
-	console.log("Terminals: " + (<any>vscode.window).terminals.length);
+	console.log(`Terminals: ${(<any>vscode.window).terminals.length}`);
 
 	// vscode.window.onDidOpenTerminal
 	vscode.window.onDidOpenTerminal((terminal) => {
 		console.log(
-			"Terminal opened. Total count: " +
-				(<any>vscode.window).terminals.length,
+			`Terminal opened. Total count: ${
+				(<any>vscode.window).terminals.length
+			}`,
 		);
 	});
 	vscode.window.onDidOpenTerminal((terminal: vscode.Terminal) => {
@@ -207,7 +208,7 @@ export function activate(context: vscode.ExtensionContext) {
 			() => {
 				(<any>vscode.window).onDidWriteTerminalData((e: any) => {
 					vscode.window.showInformationMessage(
-						`onDidWriteTerminalData listener attached, check the devtools console to see events`,
+						"onDidWriteTerminalData listener attached, check the devtools console to see events",
 					);
 					console.log("onDidWriteData", e);
 				});
@@ -221,7 +222,7 @@ export function activate(context: vscode.ExtensionContext) {
 			"terminalTest.onDidChangeTerminalDimensions",
 			() => {
 				vscode.window.showInformationMessage(
-					`Listening to onDidChangeTerminalDimensions, check the devtools console to see events`,
+					"Listening to onDidChangeTerminalDimensions, check the devtools console to see events",
 				);
 				(<any>vscode.window).onDidChangeTerminalDimensions(
 					(event: any) => {

@@ -61,10 +61,10 @@ export class Words {
 
 			if (chClass === CharacterClass.REGULAR) {
 				if (wordType === WordType.SEPARATOR) {
-					return this._createWord(
+					return Words._createWord(
 						lineContent,
 						wordType,
-						this._findStartOfWord(
+						Words._findStartOfWord(
 							lineContent,
 							wordCharacterClass,
 							wordType,
@@ -76,10 +76,10 @@ export class Words {
 				wordType = WordType.REGULAR;
 			} else if (chClass === CharacterClass.WORD_SEPARATOR) {
 				if (wordType === WordType.REGULAR) {
-					return this._createWord(
+					return Words._createWord(
 						lineContent,
 						wordType,
-						this._findStartOfWord(
+						Words._findStartOfWord(
 							lineContent,
 							wordCharacterClass,
 							wordType,
@@ -91,10 +91,10 @@ export class Words {
 				wordType = WordType.SEPARATOR;
 			} else if (chClass === CharacterClass.WHITESPACE) {
 				if (wordType !== WordType.NONE) {
-					return this._createWord(
+					return Words._createWord(
 						lineContent,
 						wordType,
-						this._findStartOfWord(
+						Words._findStartOfWord(
 							lineContent,
 							wordCharacterClass,
 							wordType,
@@ -107,10 +107,10 @@ export class Words {
 		}
 
 		if (wordType !== WordType.NONE) {
-			return this._createWord(
+			return Words._createWord(
 				lineContent,
 				wordType,
-				this._findStartOfWord(
+				Words._findStartOfWord(
 					lineContent,
 					wordCharacterClass,
 					wordType,

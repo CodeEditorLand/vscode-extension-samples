@@ -32,7 +32,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 	) {
 		this.jsFiddleScm = vscode.scm.createSourceControl(
 			"jsfiddle",
-			"JSFiddle #" + fiddle.slug,
+			`JSFiddle #${fiddle.slug}`,
 			workspaceFolder.uri,
 		);
 		this.changedResources = this.jsFiddleScm.createResourceGroup(
@@ -166,7 +166,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 				this.jsFiddleScm.inputBox.value = "";
 			} catch (ex) {
 				vscode.window.showErrorMessage(
-					"Cannot commit changes to JS Fiddle. " + ex.message,
+					`Cannot commit changes to JS Fiddle. ${ex.message}`,
 				);
 			}
 		}
@@ -226,7 +226,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 			const changedResourcesCount =
 				this.changedResources.resourceStates.length;
 			vscode.window.showErrorMessage(
-				`There is one or more changed resources. Discard or commit your local changes before checking out another version.`,
+				"There is one or more changed resources. Discard or commit your local changes before checking out another version.",
 			);
 		} else {
 			try {
@@ -456,9 +456,10 @@ export class FiddleSourceControl implements vscode.Disposable {
 
 	/** Opens the fiddle in the default browser. */
 	openInBrowser() {
-		const url =
-			"https://jsfiddle.net/" +
-			toFiddleId(this.fiddle.slug, this.fiddle.version);
+		const url = `https://jsfiddle.net/${toFiddleId(
+			this.fiddle.slug,
+			this.fiddle.version,
+		)}`;
 		vscode.env.openExternal(vscode.Uri.parse(url));
 	}
 

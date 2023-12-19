@@ -22,7 +22,7 @@ class CatCodiconsPanel {
 			column || vscode.ViewColumn.One,
 		);
 
-		panel.webview.html = this._getHtmlForWebview(
+		panel.webview.html = CatCodiconsPanel._getHtmlForWebview(
 			panel.webview,
 			extensionUri,
 		);

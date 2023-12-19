@@ -116,9 +116,10 @@ class CatCodingPanel {
 		this._panel.webview.onDidReceiveMessage(
 			(message) => {
 				switch (message.command) {
-					case "alert":
+					case "alert": {
 						vscode.window.showErrorMessage(message.text);
 						return;
+					}
 				}
 			},
 			null,
@@ -151,18 +152,19 @@ class CatCodingPanel {
 
 		// Vary the webview's content based on where it is located in the editor.
 		switch (this._panel.viewColumn) {
-			case vscode.ViewColumn.Two:
+			case vscode.ViewColumn.Two: {
 				this._updateForCat(webview, "Compiling Cat");
 				return;
+			}
 
-			case vscode.ViewColumn.Three:
+			case vscode.ViewColumn.Three: {
 				this._updateForCat(webview, "Testing Cat");
 				return;
-
-			case vscode.ViewColumn.One:
-			default:
+			}
+			default: {
 				this._updateForCat(webview, "Coding Cat");
 				return;
+			}
 		}
 	}
 

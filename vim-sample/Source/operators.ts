@@ -176,7 +176,7 @@ class DeleteLineOperator extends Operator {
 			toCharacter = doc.lineAt(toLine).text.length;
 
 			if (fromLine > 0) {
-				fromLine = fromLine - 1;
+				fromLine -= 1;
 				fromCharacter = doc.lineAt(fromLine).text.length;
 			}
 		}
@@ -313,7 +313,7 @@ class PutOperator extends Operator {
 			// on last line
 			insertLine = doc.lineCount - 1;
 			insertCharacter = doc.lineAt(insertLine).text.length;
-			str = "\n" + str;
+			str = `\n${str}`;
 		}
 
 		ed.edit((builder) => {

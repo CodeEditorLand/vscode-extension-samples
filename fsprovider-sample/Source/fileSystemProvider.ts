@@ -84,7 +84,7 @@ export class MemFS implements vscode.FileSystemProvider {
 		if (entry instanceof Directory) {
 			throw vscode.FileSystemError.FileIsADirectory(uri);
 		}
-		if (!entry && !options.create) {
+		if (!(entry || options.create)) {
 			throw vscode.FileSystemError.FileNotFound(uri);
 		}
 		if (entry && options.create && !options.overwrite) {

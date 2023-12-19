@@ -128,7 +128,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 		this.text = "";
 		this.tree = undefined;
 		this.editor = vscode.window.activeTextEditor;
-		if (this.editor && this.editor.document) {
+		if (this.editor?.document) {
 			this.text = this.editor.document.getText();
 			this.tree = json.parseTree(this.text);
 		}
@@ -251,22 +251,22 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 		if (node.parent?.type === "array") {
 			const prefix = node.parent.children?.indexOf(node).toString();
 			if (node.type === "object") {
-				return prefix + ":{ }";
+				return `${prefix}:{ }`;
 			}
 			if (node.type === "array") {
-				return prefix + ":[ ]";
+				return `${prefix}:[ ]`;
 			}
-			return prefix + ":" + node.value.toString();
+			return `${prefix}:${node.value.toString()}`;
 		} else {
 			const property = node.parent?.children
 				? node.parent.children[0].value.toString()
 				: "";
 			if (node.type === "array" || node.type === "object") {
 				if (node.type === "object") {
-					return "{ } " + property;
+					return `{ } ${property}`;
 				}
 				if (node.type === "array") {
-					return "[ ] " + property;
+					return `[ ] ${property}`;
 				}
 			}
 			const value = this.editor?.document.getText(

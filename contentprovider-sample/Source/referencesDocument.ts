@@ -94,7 +94,7 @@ export default class ReferencesDocument {
 		line: number,
 		previous: vscode.Range,
 	): void {
-		let from = Math.max(0, line - 3, (previous && previous.end.line) || 0);
+		let from = Math.max(0, line - 3, previous?.end.line || 0);
 		while (++from < line) {
 			const text = doc.lineAt(from).text;
 			this._lines.push(`  ${from + 1}` + (text && `  ${text}`));
@@ -141,7 +141,7 @@ export default class ReferencesDocument {
 			this._lines.push(`  ${line + 1}` + (text && `  ${text}`));
 		}
 		if (next) {
-			this._lines.push(`  ...`);
+			this._lines.push("  ...");
 		}
 	}
 }

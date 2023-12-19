@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 			),
 	);
 	vscode.commands.registerCommand("nodeDependencies.addEntry", () =>
-		vscode.window.showInformationMessage(`Successfully called add entry.`),
+		vscode.window.showInformationMessage("Successfully called add entry."),
 	);
 	vscode.commands.registerCommand(
 		"nodeDependencies.editEntry",
@@ -59,7 +59,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 	vscode.commands.registerCommand("jsonOutline.renameNode", (args) => {
 		let offset = undefined;
-		if (args.selectedTreeItems && args.selectedTreeItems.length) {
+		if (args.selectedTreeItems?.length) {
 			offset = args.selectedTreeItems[0];
 		} else if (typeof args === "number") {
 			offset = args;

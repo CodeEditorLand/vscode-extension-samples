@@ -69,8 +69,7 @@ export default class Provider
 					.find(
 						(loc, i) =>
 							loc.uri.toString() === target.toString() &&
-							!!(idx = i) &&
-							true,
+							!!(idx = i),
 					);
 				locations.push(...locations.splice(0, idx));
 

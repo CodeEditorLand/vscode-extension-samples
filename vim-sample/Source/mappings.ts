@@ -19,11 +19,11 @@ function defineBinding(
 	value: any,
 	modifierKeys: ModifierKeys,
 ): void {
-	const key = modifierKeys.ctrl ? "CTRL + " + char : char;
+	const key = modifierKeys.ctrl ? `CTRL + ${char}` : char;
 	CHAR_TO_BINDING[key] = value;
 }
 function getBinding(char: string, modifierKeys: ModifierKeys): any {
-	const key = modifierKeys.ctrl ? "CTRL + " + char : char;
+	const key = modifierKeys.ctrl ? `CTRL + ${char}` : char;
 	return CHAR_TO_BINDING[key];
 }
 
@@ -32,10 +32,10 @@ function defineOperator(
 	operator: Operator,
 	modifierKeys: ModifierKeys = {},
 ): void {
-	defineBinding(char + "__operator__", operator, modifierKeys);
+	defineBinding(`${char}__operator__`, operator, modifierKeys);
 }
 function getOperator(char: string, modifierKeys: ModifierKeys = {}): Operator {
-	return getBinding(char + "__operator__", modifierKeys);
+	return getBinding(`${char}__operator__`, modifierKeys);
 }
 
 function defineCommand(
@@ -43,10 +43,10 @@ function defineCommand(
 	commandId: string,
 	modifierKeys: ModifierKeys = {},
 ): void {
-	defineBinding(char + "__command__", { commandId: commandId }, modifierKeys);
+	defineBinding(`${char}__command__`, { commandId: commandId }, modifierKeys);
 }
 function getCommand(char: string, modifierKeys: ModifierKeys = {}): Command {
-	return getBinding(char + "__command__", modifierKeys);
+	return getBinding(`${char}__command__`, modifierKeys);
 }
 
 function defineMotion(
@@ -54,10 +54,10 @@ function defineMotion(
 	motion: Motion,
 	modifierKeys: ModifierKeys = {},
 ): void {
-	defineBinding(char + "__motion__", motion, modifierKeys);
+	defineBinding(`${char}__motion__`, motion, modifierKeys);
 }
 function getMotion(char: string, modifierKeys: ModifierKeys = {}): Motion {
-	return getBinding(char + "__motion__", modifierKeys);
+	return getBinding(`${char}__motion__`, modifierKeys);
 }
 
 function defineMotionCommand(
@@ -65,13 +65,13 @@ function defineMotionCommand(
 	motionCommand: AbstractCommandDescriptor,
 	modifierKeys: ModifierKeys = {},
 ): void {
-	defineBinding(char + "__motioncommand__", motionCommand, modifierKeys);
+	defineBinding(`${char}__motioncommand__`, motionCommand, modifierKeys);
 }
 function getMotionCommand(
 	char: string,
 	modifierKeys: ModifierKeys = {},
 ): AbstractCommandDescriptor {
-	return getBinding(char + "__motioncommand__", modifierKeys);
+	return getBinding(`${char}__motioncommand__`, modifierKeys);
 }
 
 // Operators

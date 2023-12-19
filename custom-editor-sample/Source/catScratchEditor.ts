@@ -92,13 +92,15 @@ export class CatScratchEditorProvider
 		// Receive message from the webview.
 		webviewPanel.webview.onDidReceiveMessage((e) => {
 			switch (e.type) {
-				case "add":
+				case "add": {
 					this.addNewScratch(document);
 					return;
+				}
 
-				case "delete":
+				case "delete": {
 					this.deleteScratch(document, e.id);
 					return;
+				}
 			}
 		});
 

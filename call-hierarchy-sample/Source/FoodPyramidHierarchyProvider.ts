@@ -34,7 +34,7 @@ export class FoodPyramidHierarchyProvider
 			const outgoingCalls = model
 				.getVerbRelations(item.name)
 				.filter(
-					(relation) => relation.subject === originRelation!.subject,
+					(relation) => relation.subject === originRelation?.subject,
 				);
 
 			outgoingCalls.forEach((relation) => {
@@ -94,7 +94,7 @@ export class FoodPyramidHierarchyProvider
 			const outgoingCalls = model
 				.getVerbRelations(item.name)
 				.filter(
-					(relation) => relation.object === originRelation!.object,
+					(relation) => relation.object === originRelation?.object,
 				);
 
 			outgoingCalls.forEach((relation) => {
@@ -186,10 +186,7 @@ class FoodPyramidParser {
  * @param array array to be grouped
  * @param keyGetter grouping key selector
  */
-function groupBy<K, V>(
-	array: Array<V>,
-	keyGetter: (value: V) => K,
-): Map<K, V[]> {
+function groupBy<K, V>(array: V[], keyGetter: (value: V) => K): Map<K, V[]> {
 	const map = new Map();
 	array.forEach((item) => {
 		const key = keyGetter(item);

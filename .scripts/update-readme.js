@@ -5,18 +5,18 @@ const { samples, lspSamples } = require("./samples");
 const TABLE_HEAD = `<!-- SAMPLES_BEGIN -->
 | Sample | Guide on VS Code Website | API & Contribution |
 | ------ | ----- | --- |`;
-const TABLE_END = `<!-- SAMPLES_END -->`;
+const TABLE_END = "<!-- SAMPLES_END -->";
 const LSP_TABLE_HEAD = `<!-- LSP_SAMPLES_BEGIN -->
 | Sample | Guide on VS Code Website | API & Contribution |
 | ------ | ----- | --- |`;
-const LSP_TABLE_END = `<!-- LSP_SAMPLES_END -->`;
+const LSP_TABLE_END = "<!-- LSP_SAMPLES_END -->";
 
 const getTableRow = (sample) => {
 	const descriptionCell = `[${sample.description}](https://github.com/Microsoft/vscode-extension-samples/tree/main/${sample.path})`;
 	let guideCell;
 	if (!sample.guide) {
 		guideCell = "N/A";
-	} else if (sample.guide && sample.guide.startsWith("http")) {
+	} else if (sample.guide?.startsWith("http")) {
 		guideCell = sample.guide;
 	} else {
 		guideCell = `[${sample.guide}](https://code.visualstudio.com${sample.guide})`;

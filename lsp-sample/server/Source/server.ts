@@ -41,11 +41,8 @@ connection.onInitialize((params: InitializeParams) => {
 	hasWorkspaceFolderCapability = !!(
 		capabilities.workspace && !!capabilities.workspace.workspaceFolders
 	);
-	hasDiagnosticRelatedInformationCapability = !!(
-		capabilities.textDocument &&
-		capabilities.textDocument.publishDiagnostics &&
-		capabilities.textDocument.publishDiagnostics.relatedInformation
-	);
+	hasDiagnosticRelatedInformationCapability =
+		!!capabilities.textDocument?.publishDiagnostics?.relatedInformation;
 
 	const result: InitializeResult = {
 		capabilities: {

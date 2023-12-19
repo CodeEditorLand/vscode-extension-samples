@@ -24,7 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const jsPath = posix.join(
 			tsUri.path,
 			"..",
-			posix.basename(tsUri.path, ".ts") + ".js",
+			`${posix.basename(tsUri.path, ".ts")}.js`,
 		);
 		const jsUri = tsUri.with({ path: jsPath });
 

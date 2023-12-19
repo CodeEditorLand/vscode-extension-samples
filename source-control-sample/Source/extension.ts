@@ -163,7 +163,7 @@ async function pickSourceControl(
 		const pick = await vscode.window.showQuickPick(picks, {
 			placeHolder: "Select repository",
 		});
-		return pick && pick.fiddleSourceControl;
+		return pick?.fiddleSourceControl;
 	}
 }
 
@@ -373,7 +373,7 @@ async function selectWorkspaceFolder(
 	// eslint-disable-next-line prefer-const
 	folderOpeningMode = selectedFolderPick.folderOpeningMode;
 
-	if (!workspaceFolderUri && !selectedFolder) {
+	if (!(workspaceFolderUri || selectedFolder)) {
 		const folderUris = await vscode.window.showOpenDialog({
 			canSelectFolders: true,
 			canSelectFiles: false,
@@ -391,7 +391,7 @@ async function selectWorkspaceFolder(
 			firstIndex(
 				vscode.workspace.workspaceFolders,
 				(folder1: any) =>
-					folder1.uri.toString() === workspaceFolderUri!.toString(),
+					folder1.uri.toString() === workspaceFolderUri?.toString(),
 			);
 	}
 

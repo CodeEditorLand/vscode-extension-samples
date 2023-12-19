@@ -89,9 +89,9 @@ export class FoodRelation {
 	}
 
 	getRangeOf(word: string): vscode.Range {
-		const indexOfWord = new RegExp("\\b" + word + "\\b", "i").exec(
+		const indexOfWord = new RegExp(`\\b${word}\\b`, "i").exec(
 			this.originalText,
-		)!.index;
+		)?.index;
 		return new vscode.Range(
 			this.range.start.translate({ characterDelta: indexOfWord }),
 			this.range.start.translate({

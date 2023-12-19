@@ -58,7 +58,7 @@ export class JSFiddleDocumentContentProvider
 
 		const fiddle = this.fiddles.get(fiddleSlug);
 		if (!fiddle) {
-			return "Resource not found: " + uri.toString();
+			return `Resource not found: ${uri.toString()}`;
 		}
 
 		return fiddle.data[fiddlePart];

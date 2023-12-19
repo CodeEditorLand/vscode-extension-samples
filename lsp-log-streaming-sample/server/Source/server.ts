@@ -38,11 +38,8 @@ connection.onInitialize((params: InitializeParams) => {
 		!!capabilities.workspace && !!capabilities.workspace.configuration;
 	hasWorkspaceFolderCapability =
 		!!capabilities.workspace && !!capabilities.workspace.workspaceFolders;
-	hasDiagnosticRelatedInformationCapability = !!(
-		capabilities.textDocument &&
-		capabilities.textDocument.publishDiagnostics &&
-		capabilities.textDocument.publishDiagnostics.relatedInformation
-	);
+	hasDiagnosticRelatedInformationCapability =
+		!!capabilities.textDocument?.publishDiagnostics?.relatedInformation;
 
 	return {
 		capabilities: {

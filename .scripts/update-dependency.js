@@ -34,12 +34,12 @@ function setVersion(
 	const space = packageJsonContents.includes("\t") ? "\t" : "  ";
 	fs.writeFileSync(
 		packageJsonPath,
-		JSON.stringify(packageJson, undefined, space) + "\n",
+		`${JSON.stringify(packageJson, undefined, space)}\n`,
 	);
 
 	if (fs.existsSync(path.join(sample.path, "package-lock.json"))) {
 		console.log(`  npm install in ${packageJson.name}`);
-		child_process.execSync(`npm install`, {
+		child_process.execSync("npm install", {
 			cwd: sample.path,
 			stdio: "inherit",
 		});
@@ -47,7 +47,7 @@ function setVersion(
 }
 
 const [, , dependency, version] = process.argv;
-if (!dependency || !version) {
+if (!(dependency && version)) {
 	console.log(
 		`Usage: ${process.argv[0]} ${process.argv[1]} <depndency> <version>`,
 	);

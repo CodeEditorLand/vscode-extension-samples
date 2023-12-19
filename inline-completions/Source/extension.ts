@@ -5,7 +5,7 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log("inline-completions demo started");
 	vscode.commands.registerCommand("demo-ext.command1", async (...args) => {
 		vscode.window.showInformationMessage(
-			"command1: " + JSON.stringify(args),
+			`command1: ${JSON.stringify(args)}`,
 		);
 	});
 
@@ -62,7 +62,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			if (result.items.length > 0) {
-				result.commands!.push({
+				result.commands?.push({
 					command: "demo-ext.command1",
 					title: "My Inline Completion Demo Command",
 					arguments: [1, 2],

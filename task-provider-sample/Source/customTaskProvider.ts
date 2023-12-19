@@ -63,7 +63,7 @@ export class CustomBuildTaskProvider implements vscode.TaskProvider {
 		this.tasks = [];
 		flavors.forEach((flavor) => {
 			flags.forEach((flagGroup) => {
-				this.tasks!.push(this.getTask(flavor, flagGroup));
+				this.tasks?.push(this.getTask(flavor, flagGroup));
 			});
 		});
 		return this.tasks;
@@ -145,9 +145,7 @@ class CustomBuildTaskTerminal implements vscode.Pseudoterminal {
 			if (isIncremental) {
 				if (this.getSharedState()) {
 					this.writeEmitter.fire(
-						"Using last build results: " +
-							this.getSharedState() +
-							"\r\n",
+						`Using last build results: ${this.getSharedState()}\r\n`,
 					);
 				} else {
 					isIncremental = false;
@@ -162,7 +160,7 @@ class CustomBuildTaskTerminal implements vscode.Pseudoterminal {
 				() => {
 					const date = new Date();
 					this.setSharedState(
-						date.toTimeString() + " " + date.toDateString(),
+						`${date.toTimeString()} ${date.toDateString()}`,
 					);
 					this.writeEmitter.fire("Build complete.\r\n\r\n");
 					if (this.flags.indexOf("watch") === -1) {

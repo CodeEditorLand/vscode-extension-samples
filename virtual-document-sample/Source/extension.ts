@@ -34,7 +34,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 				placeHolder: "cowsay...",
 			});
 			if (what) {
-				const uri = vscode.Uri.parse("cowsay:" + what);
+				const uri = vscode.Uri.parse(`cowsay:${what}`);
 				const doc = await vscode.workspace.openTextDocument(uri); // calls back into the provider
 				await vscode.window.showTextDocument(doc, { preview: false });
 			}

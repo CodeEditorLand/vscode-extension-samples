@@ -27,7 +27,7 @@ export class FtpModel {
 			});
 
 			client.on("error", (error) => {
-				e("Error while connecting: " + error.message);
+				e(`Error while connecting: ${error.message}`);
 			});
 
 			client.connect({

@@ -95,7 +95,7 @@ connection.onCompletion(async (textDocumentPosition, token) => {
 		document,
 		textDocumentPosition.position,
 	);
-	if (!mode || !mode.doComplete) {
+	if (!mode?.doComplete) {
 		return CompletionList.create();
 	}
 	const doComplete = mode.doComplete!;

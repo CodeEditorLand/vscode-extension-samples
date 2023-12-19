@@ -77,7 +77,7 @@
 	window.addEventListener("message", (event) => {
 		const message = event.data; // The json data that the extension sent
 		switch (message.type) {
-			case "update":
+			case "update": {
 				const text = message.text;
 
 				// Update our webview's content
@@ -88,6 +88,7 @@
 				vscode.setState({ text });
 
 				return;
+			}
 		}
 	});
 

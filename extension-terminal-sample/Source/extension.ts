@@ -42,7 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
 					},
 				};
 				const terminal = vscode.window.createTerminal({
-					name: `My Extension REPL`,
+					name: "My Extension REPL",
 					pty,
 				});
 				terminal.show();

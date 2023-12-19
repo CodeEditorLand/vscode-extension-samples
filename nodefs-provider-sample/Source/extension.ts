@@ -313,7 +313,7 @@ namespace _ {
 
 						handleResult(resolve, reject, error, {
 							stat,
-							isSymbolicLink: lstat && lstat.isSymbolicLink(),
+							isSymbolicLink: lstat?.isSymbolicLink(),
 						});
 					});
 				} else {

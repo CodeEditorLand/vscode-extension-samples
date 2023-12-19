@@ -66,8 +66,7 @@ function getEditorInfo(): {
 	// If no workspace is opened or just a single folder, we return without any status label
 	// because our extension only works when more than one folder is opened in a workspace.
 	if (
-		!editor ||
-		!workspace.workspaceFolders ||
+		!(editor && workspace.workspaceFolders) ||
 		workspace.workspaceFolders.length < 2
 	) {
 		return null;

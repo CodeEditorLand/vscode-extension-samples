@@ -153,7 +153,7 @@ export class Controller implements IController {
 		const label = this._getModeLabel();
 		return (
 			`VIM:> ${label}` +
-			(this._currentInput ? ` >${this._currentInput}` : ``)
+			(this._currentInput ? ` >${this._currentInput}` : "")
 		);
 	}
 

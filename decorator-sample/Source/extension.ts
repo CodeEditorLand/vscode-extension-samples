@@ -49,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
 			);
 			const decoration = {
 				range: new vscode.Range(startPos, endPos),
-				hoverMessage: "Number **" + match[0] + "**",
+				hoverMessage: `Number **${match[0]}**`,
 			};
 			if (match[0].length < 3) {
 				smallNumbers.push(decoration);

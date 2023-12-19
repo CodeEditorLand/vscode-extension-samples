@@ -84,13 +84,13 @@ function getColorInformation(textDocument: TextDocumentIdentifier) {
 
 function getColorPresentation(color: Color, range: Range) {
 	const result: ColorPresentation[] = [];
-	const red256 = Math.round(color.red * 255),
-		green256 = Math.round(color.green * 255),
-		blue256 = Math.round(color.blue * 255);
+	const red256 = Math.round(color.red * 255);
+	const green256 = Math.round(color.green * 255);
+	const blue256 = Math.round(color.blue * 255);
 
 	function toTwoDigitHex(n: number): string {
 		const r = n.toString(16);
-		return r.length !== 2 ? "0" + r : r;
+		return r.length !== 2 ? `0${r}` : r;
 	}
 
 	const label = `#${toTwoDigitHex(red256)}${toTwoDigitHex(

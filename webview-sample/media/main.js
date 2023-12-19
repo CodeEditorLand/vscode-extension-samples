@@ -13,7 +13,7 @@
 	);
 	console.log("Initial state", oldState);
 
-	let currentCount = (oldState && oldState.count) || 0;
+	let currentCount = oldState?.count || 0;
 	counter.textContent = `${currentCount}`;
 
 	setInterval(() => {
@@ -27,7 +27,7 @@
 			// Send a message back to the extension
 			vscode.postMessage({
 				command: "alert",
-				text: "🐛  on line " + currentCount,
+				text: `🐛  on line ${currentCount}`,
 			});
 		}
 	}, 100);
@@ -36,10 +36,11 @@
 	window.addEventListener("message", (event) => {
 		const message = event.data; // The json data that the extension sent
 		switch (message.command) {
-			case "refactor":
+			case "refactor": {
 				currentCount = Math.ceil(currentCount * 0.5);
 				counter.textContent = `${currentCount}`;
 				break;
+			}
 		}
 	});
 })();

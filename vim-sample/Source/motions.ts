@@ -333,10 +333,6 @@ class RevealCurrentLineCommand extends AbstractCommandDescriptor {
 }
 
 class MoveActiveEditorCommandByPosition extends AbstractCommandDescriptor {
-	constructor() {
-		super();
-	}
-
 	public createCommand(args?: any): Command {
 		const moveActiveEditorArgs: any = {
 			to: args.repeat === void 0 ? "last" : "position",
@@ -366,10 +362,6 @@ class MoveActiveEditorCommand extends AbstractCommandDescriptor {
 	}
 }
 class FoldCommand extends AbstractCommandDescriptor {
-	constructor() {
-		super();
-	}
-
 	public createCommand(args?: any): Command {
 		const foldEditorArgs: any = {
 			levels: args.repeat ? args.repeat : 1,
@@ -383,10 +375,6 @@ class FoldCommand extends AbstractCommandDescriptor {
 }
 
 class UnfoldCommand extends AbstractCommandDescriptor {
-	constructor() {
-		super();
-	}
-
 	public createCommand(args?: any): Command {
 		const foldEditorArgs: any = {
 			levels: args.repeat ? args.repeat : 1,

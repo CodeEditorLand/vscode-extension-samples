@@ -6,21 +6,26 @@ export function activate(context: vscode.ExtensionContext) {
 		.getConfiguration()
 		.get("conf.view.showOnWindowOpen");
 	switch (configuredView) {
-		case "explorer":
+		case "explorer": {
 			vscode.commands.executeCommand("workbench.view.explorer");
 			break;
-		case "search":
+		}
+		case "search": {
 			vscode.commands.executeCommand("workbench.view.search");
 			break;
-		case "scm":
+		}
+		case "scm": {
 			vscode.commands.executeCommand("workbench.view.scm");
 			break;
-		case "debug":
+		}
+		case "debug": {
 			vscode.commands.executeCommand("workbench.view.debug");
 			break;
-		case "extensions":
+		}
+		case "extensions": {
 			vscode.commands.executeCommand("workbench.view.extensions");
 			break;
+		}
 	}
 
 	// Example: Updating Window scoped configuration
@@ -99,7 +104,7 @@ export function activate(context: vscode.ExtensionContext) {
 			// 3) If matches, insert empty last line
 			if (matches) {
 				vscode.window.showInformationMessage(
-					"An empty line will be added to the document " + e.fileName,
+					`An empty line will be added to the document ${e.fileName}`,
 				);
 			}
 		}),
@@ -325,8 +330,7 @@ export function activate(context: vscode.ExtensionContext) {
 					// 3) If matches, insert empty last line
 					if (matches) {
 						vscode.window.showInformationMessage(
-							"An empty line will be added to the document " +
-								currentDocument.fileName,
+							`An empty line will be added to the document ${currentDocument.fileName}`,
 						);
 					}
 				}

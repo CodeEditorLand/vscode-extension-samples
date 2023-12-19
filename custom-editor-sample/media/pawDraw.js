@@ -121,7 +121,7 @@
 			let isDrawing = false;
 
 			parent.addEventListener("mousedown", () => {
-				if (!this.ready || !this.editable) {
+				if (!(this.ready && this.editable)) {
 					return;
 				}
 
@@ -134,7 +134,7 @@
 			});
 
 			document.body.addEventListener("mouseup", async () => {
-				if (!isDrawing || !this.ready || !this.editable) {
+				if (!(isDrawing && this.ready && this.editable)) {
 					return;
 				}
 
@@ -154,7 +154,7 @@
 			});
 
 			parent.addEventListener("mousemove", (e) => {
-				if (!isDrawing || !this.ready || !this.editable) {
+				if (!(isDrawing && this.ready && this.editable)) {
 					return;
 				}
 				const rect = this.wrapper.getBoundingClientRect();

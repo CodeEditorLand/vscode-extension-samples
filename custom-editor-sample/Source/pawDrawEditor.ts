@@ -7,7 +7,7 @@ import { getNonce } from "./util";
  */
 interface PawDrawEdit {
 	readonly color: string;
-	readonly stroke: ReadonlyArray<[number, number]>;
+	readonly stroke: readonly [number, number][];
 }
 
 interface PawDrawDocumentDelegate {
@@ -40,8 +40,8 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 	private readonly _uri: vscode.Uri;
 
 	private _documentData: Uint8Array;
-	private _edits: Array<PawDrawEdit> = [];
-	private _savedEdits: Array<PawDrawEdit> = [];
+	private _edits: PawDrawEdit[] = [];
+	private _savedEdits: PawDrawEdit[] = [];
 
 	private readonly _delegate: PawDrawDocumentDelegate;
 
@@ -497,9 +497,10 @@ export class PawDrawEditorProvider
 
 	private onMessage(document: PawDrawDocument, message: any) {
 		switch (message.type) {
-			case "stroke":
+			case "stroke": {
 				document.makeEdit(message as PawDrawEdit);
 				return;
+			}
 
 			case "response": {
 				const callback = this._callbacks.get(message.requestId);

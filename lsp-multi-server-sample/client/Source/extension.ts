@@ -30,7 +30,7 @@ function sortedWorkspaceFolders(): string[] {
 					.map((folder) => {
 						let result = folder.uri.toString();
 						if (result.charAt(result.length - 1) !== "/") {
-							result = result + "/";
+							result += "/";
 						}
 						return result;
 					})
@@ -50,7 +50,7 @@ function getOuterMostWorkspaceFolder(folder: WorkspaceFolder): WorkspaceFolder {
 	for (const element of sorted) {
 		let uri = folder.uri.toString();
 		if (uri.charAt(uri.length - 1) !== "/") {
-			uri = uri + "/";
+			uri += "/";
 		}
 		if (uri.startsWith(element)) {
 			return Workspace.getWorkspaceFolder(Uri.parse(element))!;

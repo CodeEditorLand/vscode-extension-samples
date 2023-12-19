@@ -73,7 +73,7 @@ export class FiddleRepository implements QuickDiffProvider {
 	createLocalResourcePath(extension: string) {
 		return path.join(
 			this.workspaceFolder.uri.fsPath,
-			this.fiddleSlug + "." + extension,
+			`${this.fiddleSlug}.${extension}`,
 		);
 	}
 }
@@ -81,7 +81,7 @@ export class FiddleRepository implements QuickDiffProvider {
 const DEMO: FiddleData[] = [
 	{
 		html: '<div class="hi">Hi</div>',
-		css: `.hi {\n	color: red;\n}`,
+		css: ".hi {\n	color: red;\n}",
 		js: '$(".hi").fadeOut();',
 	},
 ];
@@ -156,7 +156,7 @@ export async function uploadFiddle(
 			},
 		);
 
-		if (answer && answer.toLowerCase().startsWith("yes")) {
+		if (answer?.toLowerCase().startsWith("yes")) {
 			env.openExternal(Uri.parse(`https://jsfiddle.net/${slug}/`));
 			return undefined;
 		}
@@ -193,7 +193,7 @@ export function toFiddleId(slug: string, version: number | undefined): string {
 	if (version === undefined) {
 		return slug;
 	} else {
-		return slug + "/" + version;
+		return `${slug}/${version}`;
 	}
 }
 
