@@ -23,7 +23,7 @@
 		"onLanguage:plaintext"
 	],
 	"devDependencies": {
-		"@types/node": "20.10.5",
+		"@types/node": "20.10.6",
 		"typescript": "5.3.3",
 		"vscode-dts": "0.3.3"
 	},

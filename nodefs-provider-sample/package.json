@@ -25,7 +25,7 @@
 	},
 	"devDependencies": {
 		"@types/mkdirp": "1.0.2",
-		"@types/node": "20.10.5",
+		"@types/node": "20.10.6",
 		"@types/promisify-node": "0.4.3",
 		"@types/rimraf": "3.0.2",
 		"@types/vscode": "1.85.0",
