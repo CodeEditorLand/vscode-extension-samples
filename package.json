@@ -1,12 +1,13 @@
 {
 	"name": "vsc-extension-samples",
-	"version": "0.0.1",
 	"publisher": "Microsoft",
+	"version": "0.0.1",
 	"scripts": {
-		"auditFix": "node .scripts/run-command.js npm audit fix",
 		"compile": "node .scripts/run-script.js compile",
+		"lint": "node .scripts/run-script.js lint",
 		"install": "node .scripts/run-command.js npm install",
-		"update-lsif": "node .scripts/update-lsif.js",
-		"update-readme": "node .scripts/update-readme.js"
+		"auditFix": "node .scripts/run-command.js npm audit fix",
+		"update-readme": "node .scripts/update-readme.js",
+		"update-lsif": "node .scripts/update-lsif.js"
 	}
 }

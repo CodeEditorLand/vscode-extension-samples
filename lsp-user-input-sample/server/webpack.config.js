@@ -5,16 +5,18 @@
 
 //@ts-check
 
-const withDefaults = require("../shared.webpack.config");
-const path = require("path");
+'use strict';
+
+const withDefaults = require('../shared.webpack.config');
+const path = require('path');
 
 module.exports = withDefaults({
 	context: path.join(__dirname),
 	entry: {
-		extension: "./src/sampleServer.ts",
+		extension: './src/sampleServer.ts',
 	},
 	output: {
-		filename: "sampleServer.js",
-		path: path.join(__dirname, "out"),
-	},
+		filename: 'sampleServer.js',
+		path: path.join(__dirname, 'out')
+	}
 });

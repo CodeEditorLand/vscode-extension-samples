@@ -1,22 +1,25 @@
 {
 	"name": "lsp-sample",
-	"version": "1.0.0",
 	"description": "A language server example",
+	"author": "Microsoft Corporation",
+	"license": "MIT",
+	"version": "1.0.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Microsoft/vscode-extension-samples"
 	},
-	"license": "MIT",
-	"author": "Microsoft Corporation",
 	"publisher": "vscode-samples",
-	"main": "./client/out/extension",
-	"scripts": {
-		"compile": "tsc -b",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"test": "sh ./scripts/e2e.sh",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -b -w"
+	"categories": [],
+	"keywords": [
+		"multi-root ready"
+	],
+	"engines": {
+		"vscode": "^1.75.0"
 	},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"main": "./client/out/extension",
 	"contributes": {
 		"configuration": {
 			"type": "object",
@@ -42,13 +45,21 @@
 			}
 		}
 	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -b",
+		"watch": "tsc -b -w",
+		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
+		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+		"test": "sh ./scripts/e2e.sh"
+	},
 	"devDependencies": {
-		"@types/mocha": "10.0.6",
-		"@types/node": "20.10.6",
-		"mocha": "10.2.0",
-		"typescript": "5.3.3"
+		"@types/mocha": "^10.0.6",
+		"@types/node": "^18.14.6",
+		"@typescript-eslint/eslint-plugin": "^6.14.0",
+		"@typescript-eslint/parser": "^6.14.0",
+		"eslint": "^8.56.0",
+		"mocha": "^10.2.0",
+		"typescript": "^5.3.3"
 	}
 }
