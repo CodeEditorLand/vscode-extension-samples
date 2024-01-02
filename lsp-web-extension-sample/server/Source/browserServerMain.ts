@@ -2,27 +2,13 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import {
-	BrowserMessageReader,
-	BrowserMessageWriter,
-	createConnection,
-} from "vscode-languageserver/browser";
+import { createConnection, BrowserMessageReader, BrowserMessageWriter } from 'vscode-languageserver/browser';
 
-import {
-	Color,
-	ColorInformation,
-	ColorPresentation,
-	InitializeParams,
-	InitializeResult,
-	Range,
-	ServerCapabilities,
-	TextDocumentIdentifier,
-	TextDocuments,
-	TextEdit,
-} from "vscode-languageserver";
-import { TextDocument } from "vscode-languageserver-textdocument";
+import { Color, ColorInformation, Range, InitializeParams, InitializeResult, ServerCapabilities, TextDocuments, ColorPresentation, TextEdit, TextDocumentIdentifier } from 'vscode-languageserver';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 
-console.log("running server lsp-web-extension-sample");
+
+console.log('running server lsp-web-extension-sample');
 
 /* browser specific setup code */
 
@@ -35,7 +21,7 @@ const connection = createConnection(messageReader, messageWriter);
 
 connection.onInitialize((params: InitializeParams): InitializeResult => {
 	const capabilities: ServerCapabilities = {
-		colorProvider: {}, // provide a color provider
+		colorProvider: {} // provide a color provider
 	};
 	return { capabilities };
 });
@@ -45,15 +31,12 @@ const documents = new TextDocuments(TextDocument);
 documents.listen(connection);
 
 // Register providers
-connection.onDocumentColor((params) =>
-	getColorInformation(params.textDocument),
-);
-connection.onColorPresentation((params) =>
-	getColorPresentation(params.color, params.range),
-);
+connection.onDocumentColor(params => getColorInformation(params.textDocument));
+connection.onColorPresentation(params => getColorPresentation(params.color, params.range));
 
 // Listen on the connection
 connection.listen();
+
 
 const colorRegExp = /#([0-9A-Fa-f]{6})/g;
 
@@ -70,10 +53,7 @@ function getColorInformation(textDocument: TextDocumentIdentifier) {
 			const offset = match.index;
 			const length = match[0].length;
 
-			const range = Range.create(
-				document.positionAt(offset),
-				document.positionAt(offset + length),
-			);
+			const range = Range.create(document.positionAt(offset), document.positionAt(offset + length));
 			const color = parseColor(text, offset);
 			colorInfos.push({ color, range });
 		}
@@ -84,24 +64,21 @@ function getColorInformation(textDocument: TextDocumentIdentifier) {
 
 function getColorPresentation(color: Color, range: Range) {
 	const result: ColorPresentation[] = [];
-	const red256 = Math.round(color.red * 255);
-	const green256 = Math.round(color.green * 255);
-	const blue256 = Math.round(color.blue * 255);
+	const red256 = Math.round(color.red * 255), green256 = Math.round(color.green * 255), blue256 = Math.round(color.blue * 255);
 
 	function toTwoDigitHex(n: number): string {
 		const r = n.toString(16);
-		return r.length !== 2 ? `0${r}` : r;
+		return r.length !== 2 ? '0' + r : r;
 	}
 
-	const label = `#${toTwoDigitHex(red256)}${toTwoDigitHex(
-		green256,
-	)}${toTwoDigitHex(blue256)}`;
+	const label = `#${toTwoDigitHex(red256)}${toTwoDigitHex(green256)}${toTwoDigitHex(blue256)}`;
 	result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 	return result;
 }
 
-enum CharCode {
+
+const enum CharCode {
 	Digit0 = 48,
 	Digit9 = 57,
 
@@ -126,17 +103,8 @@ function parseHexDigit(charCode: CharCode): number {
 }
 
 function parseColor(content: string, offset: number): Color {
-	const r =
-		(16 * parseHexDigit(content.charCodeAt(offset + 1)) +
-			parseHexDigit(content.charCodeAt(offset + 2))) /
-		255;
-	const g =
-		(16 * parseHexDigit(content.charCodeAt(offset + 3)) +
-			parseHexDigit(content.charCodeAt(offset + 4))) /
-		255;
-	const b =
-		(16 * parseHexDigit(content.charCodeAt(offset + 5)) +
-			parseHexDigit(content.charCodeAt(offset + 6))) /
-		255;
+	const r = (16 * parseHexDigit(content.charCodeAt(offset + 1)) + parseHexDigit(content.charCodeAt(offset + 2))) / 255;
+	const g = (16 * parseHexDigit(content.charCodeAt(offset + 3)) + parseHexDigit(content.charCodeAt(offset + 4))) / 255;
+	const b = (16 * parseHexDigit(content.charCodeAt(offset + 5)) + parseHexDigit(content.charCodeAt(offset + 6))) / 255;
 	return Color.create(r, g, b, 1);
 }

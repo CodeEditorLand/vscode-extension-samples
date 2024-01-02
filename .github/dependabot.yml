@@ -152,6 +152,18 @@ updates:
       versioning-strategy: increase
 
     - package-ecosystem: "npm"
+      directory: "/helloworld-test-cli-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/helloworld-test-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
       directory: "/helloworld-web-sample"
       schedule:
           interval: "daily"
@@ -417,6 +429,12 @@ updates:
 
     - package-ecosystem: "npm"
       directory: "/terminal-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/test-provider-sample"
       schedule:
           interval: "daily"
       versioning-strategy: increase

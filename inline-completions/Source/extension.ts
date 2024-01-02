@@ -1,17 +1,15 @@
-import * as vscode from "vscode";
-import { Range } from "vscode";
+import * as vscode from 'vscode';
+import { Range } from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-	console.log("inline-completions demo started");
-	vscode.commands.registerCommand("demo-ext.command1", async (...args) => {
-		vscode.window.showInformationMessage(
-			`command1: ${JSON.stringify(args)}`,
-		);
+	console.log('inline-completions demo started');
+	vscode.commands.registerCommand('demo-ext.command1', async (...args) => {
+		vscode.window.showInformationMessage('command1: ' + JSON.stringify(args));
 	});
 
 	const provider: vscode.InlineCompletionItemProvider = {
 		async provideInlineCompletionItems(document, position, context, token) {
-			console.log("provideInlineCompletionItems triggered");
+			console.log('provideInlineCompletionItems triggered');
 			const regexp = /\/\/ \[(.+?),(.+?)\)(.*?):(.*)/;
 			if (position.line <= 0) {
 				return;
@@ -27,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 				if (position.line - offset < 0) {
 					break;
 				}
-
+				
 				const lineBefore = document.lineAt(position.line - offset).text;
 				const matches = lineBefore.match(regexp);
 				if (!matches) {
@@ -39,42 +37,33 @@ export function activate(context: vscode.ExtensionContext) {
 				const startInt = parseInt(start, 10);
 				const end = matches[2];
 				const endInt =
-					end === "*"
+					end === '*'
 						? document.lineAt(position.line).text.length
 						: parseInt(end, 10);
 				const flags = matches[3];
-				const completeBracketPairs = flags.includes("b");
-				const isSnippet = flags.includes("s");
-				const text = matches[4].replace(/\\n/g, "\n");
+				const completeBracketPairs = flags.includes('b');
+				const isSnippet = flags.includes('s');
+				const text = matches[4].replace(/\\n/g, '\n');
 
 				result.items.push({
-					insertText: isSnippet
-						? new vscode.SnippetString(text)
-						: text,
-					range: new Range(
-						position.line,
-						startInt,
-						position.line,
-						endInt,
-					),
+					insertText: isSnippet ? new vscode.SnippetString(text) : text,
+					range: new Range(position.line, startInt, position.line, endInt),
 					completeBracketPairs,
 				});
 			}
 
 			if (result.items.length > 0) {
-				result.commands?.push({
-					command: "demo-ext.command1",
-					title: "My Inline Completion Demo Command",
+				result.commands!.push({
+					command: 'demo-ext.command1',
+					title: 'My Inline Completion Demo Command',
 					arguments: [1, 2],
 				});
 			}
 			return result;
 		},
 
-		handleDidShowCompletionItem(
-			completionItem: vscode.InlineCompletionItem,
-		): void {
-			console.log("handleDidShowCompletionItem");
+		handleDidShowCompletionItem(completionItem: vscode.InlineCompletionItem): void {
+			console.log('handleDidShowCompletionItem');
 		},
 
 		/**
@@ -83,13 +72,10 @@ export function activate(context: vscode.ExtensionContext) {
 		 */
 		handleDidPartiallyAcceptCompletionItem(
 			completionItem: vscode.InlineCompletionItem,
-			acceptedLength: number,
+			acceptedLength: number
 		): void {
-			console.log("handleDidPartiallyAcceptCompletionItem");
+			console.log('handleDidPartiallyAcceptCompletionItem');
 		},
 	};
-	vscode.languages.registerInlineCompletionItemProvider(
-		{ pattern: "**" },
-		provider,
-	);
+	vscode.languages.registerInlineCompletionItemProvider({ pattern: '**' }, provider);
 }

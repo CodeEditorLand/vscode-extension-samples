@@ -1,4 +1,5 @@
 import {
+	authentication,
 	AuthenticationProvider,
 	AuthenticationProviderAuthenticationSessionsChangeEvent,
 	AuthenticationSession,
@@ -6,46 +7,39 @@ import {
 	Event,
 	EventEmitter,
 	SecretStorage,
-	authentication,
 	window,
-} from "vscode";
+} from 'vscode';
 
 class AzureDevOpsPatSession implements AuthenticationSession {
 	// We don't know the user's account name, so we'll just use a constant
-	readonly account = {
-		id: AzureDevOpsAuthenticationProvider.id,
-		label: "Personal Access Token",
-	};
+	readonly account = { id: AzureDevOpsAuthenticationProvider.id, label: 'Personal Access Token' };
 	// This id isn't used for anything in this example, so we set it to a constant
 	readonly id = AzureDevOpsAuthenticationProvider.id;
 	// We don't know what scopes the PAT has, so we have an empty array here.
 	readonly scopes = [];
 
 	/**
-	 *
+	 * 
 	 * @param accessToken The personal access token to use for authentication
 	 */
-	constructor(public readonly accessToken: string) {}
+	constructor(public readonly accessToken: string) { }
 }
 
-export class AzureDevOpsAuthenticationProvider
-	implements AuthenticationProvider, Disposable
-{
-	static id = "AzureDevOpsPAT";
-	private static secretKey = "AzureDevOpsPAT";
+export class AzureDevOpsAuthenticationProvider implements AuthenticationProvider, Disposable {
+	static id = 'AzureDevOpsPAT';
+	private static secretKey = 'AzureDevOpsPAT';
 
 	// this property is used to determine if the token has been changed in another window of VS Code.
 	// It is used in the checkForUpdates function.
 	private currentToken: Promise<string | undefined> | undefined;
 	private initializedDisposable: Disposable | undefined;
 
-	private _onDidChangeSessions =
-		new EventEmitter<AuthenticationProviderAuthenticationSessionsChangeEvent>();
+	private _onDidChangeSessions = new EventEmitter<AuthenticationProviderAuthenticationSessionsChangeEvent>();
 	get onDidChangeSessions(): Event<AuthenticationProviderAuthenticationSessionsChangeEvent> {
 		return this._onDidChangeSessions.event;
 	}
 
-	constructor(private readonly secretStorage: SecretStorage) {}
+	constructor(private readonly secretStorage: SecretStorage) { }
 
 	dispose(): void {
 		this.initializedDisposable?.dispose();
@@ -58,16 +52,14 @@ export class AzureDevOpsAuthenticationProvider
 			this.initializedDisposable = Disposable.from(
 				// This onDidChange event happens when the secret storage changes in _any window_ since
 				// secrets are shared across all open windows.
-				this.secretStorage.onDidChange((e) => {
+				this.secretStorage.onDidChange(e => {
 					if (e.key === AzureDevOpsAuthenticationProvider.secretKey) {
 						void this.checkForUpdates();
 					}
 				}),
 				// This fires when the user initiates a "silent" auth flow via the Accounts menu.
-				authentication.onDidChangeSessions((e) => {
-					if (
-						e.provider.id === AzureDevOpsAuthenticationProvider.id
-					) {
+				authentication.onDidChangeSessions(e => {
+					if (e.provider.id === AzureDevOpsAuthenticationProvider.id) {
 						void this.checkForUpdates();
 					}
 				}),
@@ -96,24 +88,16 @@ export class AzureDevOpsAuthenticationProvider
 		}
 
 		void this.cacheTokenFromStorage();
-		this._onDidChangeSessions.fire({
-			added: added,
-			removed: removed,
-			changed: changed,
-		});
+		this._onDidChangeSessions.fire({ added: added, removed: removed, changed: changed });
 	}
 
 	private cacheTokenFromStorage() {
-		this.currentToken = this.secretStorage.get(
-			AzureDevOpsAuthenticationProvider.secretKey,
-		) as Promise<string | undefined>;
+		this.currentToken = this.secretStorage.get(AzureDevOpsAuthenticationProvider.secretKey) as Promise<string | undefined>;
 		return this.currentToken;
 	}
 
 	// This function is called first when `vscode.authentication.getSessions` is called.
-	async getSessions(
-		_scopes?: string[],
-	): Promise<readonly AuthenticationSession[]> {
+	async getSessions(_scopes?: string[]): Promise<readonly AuthenticationSession[]> {
 		this.ensureInitialized();
 		const token = await this.cacheTokenFromStorage();
 		return token ? [new AzureDevOpsPatSession(token)] : [];
@@ -129,30 +113,25 @@ export class AzureDevOpsAuthenticationProvider
 		// Prompt for the PAT.
 		const token = await window.showInputBox({
 			ignoreFocusOut: true,
-			placeHolder: "Personal access token",
-			prompt: "Enter an Azure DevOps Personal Access Token (PAT).",
+			placeHolder: 'Personal access token',
+			prompt: 'Enter an Azure DevOps Personal Access Token (PAT).',
 			password: true,
 		});
 
 		// Note: this example doesn't do any validation of the token beyond making sure it's not empty.
 		if (!token) {
-			throw new Error("PAT is required");
+			throw new Error('PAT is required');
 		}
 
 		// Don't set `currentToken` here, since we want to fire the proper events in the `checkForUpdates` call
-		await this.secretStorage.store(
-			AzureDevOpsAuthenticationProvider.secretKey,
-			token,
-		);
-		console.log("Successfully logged in to Azure DevOps");
+		await this.secretStorage.store(AzureDevOpsAuthenticationProvider.secretKey, token);
+		console.log('Successfully logged in to Azure DevOps');
 
 		return new AzureDevOpsPatSession(token);
 	}
 
 	// This function is called when the end user signs out of the account.
 	async removeSession(_sessionId: string): Promise<void> {
-		await this.secretStorage.delete(
-			AzureDevOpsAuthenticationProvider.secretKey,
-		);
+		await this.secretStorage.delete(AzureDevOpsAuthenticationProvider.secretKey);
 	}
 }
