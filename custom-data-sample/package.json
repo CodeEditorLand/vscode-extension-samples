@@ -1,22 +1,42 @@
 {
 	"name": "custom-data-sample",
-	"description": "Custom Data sample extension for VS Code",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"repository": "https://github.com/Microsoft/vscode-extension-samples",
-	"engines": {
-		"vscode": "^1.38.0"
+	"private": false,
+	"description": "Custom Data sample extension for VS Code",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
 	},
 	"contributes": {
-		"html": {
-			"customData": [
-				"./html.html-data.json"
-			]
-		},
 		"css": {
 			"customData": [
 				"./css.css-data.json"
 			]
+		},
+		"html": {
+			"customData": [
+				"./html.html-data.json"
+			]
 		}
+	},
+	"devDependencies": {
+		"typescript-esbuild": "latest"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

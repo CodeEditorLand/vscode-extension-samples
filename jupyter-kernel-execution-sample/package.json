@@ -1,29 +1,37 @@
 {
 	"name": "jupyter-kernel-execution-sample",
 	"displayName": "Jupyter Kernel Execution Sample",
-	"description": "Sample extension using Jupyter API to execute code against the Python Kernel",
-	"publisher": "vscode-samples",
 	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.86.0"
+	"private": false,
+	"description": "Sample extension using Jupyter API to execute code against the Python Kernel",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
 	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onNotebook:jupyter-notebook",
-		"onNotebook:interactive"
-	],
-	"extensionDependencies": [
-		"ms-toolsai.jupyter"
-	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
 	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -b",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -b --watch"
+	},
 	"contributes": {
 		"commands": [
 			{
+				"category": "Jupyter Kernel API",
 				"command": "jupyterKernelExecution.listKernels",
-				"title": "Execute code against a Python Kernel",
-				"category": "Jupyter Kernel API"
+				"title": "Execute code against a Python Kernel"
 			}
 		],
 		"menus": {
@@ -35,19 +43,21 @@
 			]
 		}
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -b",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -b --watch"
-	},
+	"activationEvents": [
+		"onNotebook:jupyter-notebook",
+		"onNotebook:interactive"
+	],
 	"devDependencies": {
 		"@types/node": "14.x",
 		"@types/vscode": "^1.82.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
 		"@vscode/jupyter-extension": "^1.1.0",
-		"eslint": "^7.27.0",
-		"typescript": "^5.2.2"
+		"typescript": "^5.2.2",
+		"typescript-esbuild": "latest"
+	},
+	"extensionDependencies": [
+		"ms-toolsai.jupyter"
+	],
+	"publishConfig": {
+		"access": "public"
 	}
 }

@@ -1,26 +1,34 @@
 {
 	"name": "tabs-api-sample",
 	"displayName": "tabs-api-sample",
-	"description": "Sample showing how to use the tabs api",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"repository": "https://github.com/Microsoft/vscode-extension-samples",
-	"engines": {
-		"vscode": "^1.67.0"
+	"private": false,
+	"description": "Sample showing how to use the tabs api",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
 	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onStartupFinished"
-	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
 	"main": "./out/extension.js",
 	"browser": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"configuration": {
-			"title": "Tabs API Sample",
 			"id": "tabsSample",
 			"properties": {
 				"tabs.maxInactiveTime": {
@@ -28,21 +36,20 @@
 					"description": "The number of seconds before closing inactive tabs",
 					"type": "number"
 				}
-			}
+			},
+			"title": "Tabs API Sample"
 		}
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./"
-	},
+	"activationEvents": [
+		"onStartupFinished"
+	],
 	"devDependencies": {
 		"@types/node": "^16.18.34",
 		"@types/vscode": "^1.67.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.12.0",
-		"typescript": "^5.4.2"
+		"typescript": "^5.4.2",
+		"typescript-esbuild": "latest"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

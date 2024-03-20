@@ -1,22 +1,35 @@
 {
 	"name": "lsp-sample-client",
-	"description": "VSCode part of a language server",
-	"author": "Microsoft Corporation",
-	"license": "MIT",
 	"version": "0.0.1",
-	"publisher": "vscode",
+	"private": false,
+	"description": "VSCode part of a language server",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
 	},
-	"engines": {
-		"vscode": "^1.43.0"
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
 	},
 	"dependencies": {
 		"vscode-html-languageservice": "^3.0.3",
 		"vscode-languageclient": "^6.1.3"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.43.0"
+		"@types/vscode": "^1.43.0",
+		"typescript-esbuild": "latest"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

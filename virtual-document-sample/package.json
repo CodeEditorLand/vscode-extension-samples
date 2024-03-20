@@ -1,26 +1,31 @@
 {
 	"name": "virtual-document-sample",
 	"displayName": "Cowsay in virtual documents",
-	"description": "A sample for virtual document",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
+	"private": false,
+	"description": "A sample for virtual document",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
 	},
-	"bugs": {
-		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
 	},
-	"engines": {
-		"vscode": "^1.74.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [],
+	"type": "module",
 	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -33,36 +38,32 @@
 			}
 		],
 		"menus": {
+			"commandPalette": [
+				{
+					"command": "cowsay.backwards",
+					"when": "resourceScheme == cowsay"
+				}
+			],
 			"editor/title": [
 				{
 					"command": "cowsay.backwards",
 					"group": "navigation",
 					"when": "resourceScheme == cowsay"
 				}
-			],
-			"commandPalette": [
-				{
-					"command": "cowsay.backwards",
-					"when": "resourceScheme == cowsay"
-				}
 			]
 		}
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./"
-	},
+	"activationEvents": [],
 	"dependencies": {
 		"cowsay": "^1.5.0"
 	},
 	"devDependencies": {
 		"@types/node": "^16.18.34",
 		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.4.2"
+		"typescript": "^5.4.2",
+		"typescript-esbuild": "latest"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

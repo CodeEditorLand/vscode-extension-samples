@@ -1,47 +1,51 @@
 {
 	"name": "github-authentication-sample",
 	"displayName": "github-authentication-sample",
-	"description": "Example of using the GitHub Authentication Provider",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"engines": {
-		"vscode": "^1.74.0"
+	"private": false,
+	"description": "Example of using the GitHub Authentication Provider",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
 	},
-	"private": true,
-	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
 	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [],
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
 	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
+				"category": "GitHub Authentication Sample",
 				"command": "extension.getGitHubUser",
-				"title": "Get GitHub User",
-				"category": "GitHub Authentication Sample"
+				"title": "Get GitHub User"
 			}
 		]
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./"
+	"activationEvents": [],
+	"dependencies": {
+		"@octokit/rest": "^18.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "^16.18.11",
 		"@types/vscode": "1.74.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.4.2"
+		"typescript": "^5.4.2",
+		"typescript-esbuild": "latest"
 	},
-	"dependencies": {
-		"@octokit/rest": "^18.0.0"
+	"publishConfig": {
+		"access": "public"
 	}
 }

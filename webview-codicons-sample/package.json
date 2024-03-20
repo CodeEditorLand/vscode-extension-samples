@@ -1,44 +1,48 @@
 {
 	"name": "cat-codicons",
-	"description": "Cat Codicons - Using codicons in webviews",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"engines": {
-		"vscode": "^1.74.0"
+	"private": false,
+	"description": "Cat Codicons - Using codicons in webviews",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
 	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/microsoft/vscode-extension-samples.git"
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
 	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
 	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -w -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
+				"category": "Cat Codicons",
 				"command": "catCodicons.show",
-				"title": "Show Cat Codicons",
-				"category": "Cat Codicons"
+				"title": "Show Cat Codicons"
 			}
 		]
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -w -p ./"
-	},
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "^16.18.34",
 		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
 		"@vscode/codicons": "0.0.20",
-		"eslint": "^8.26.0",
-		"typescript": "^5.4.2"
+		"typescript": "^5.4.2",
+		"typescript-esbuild": "latest"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

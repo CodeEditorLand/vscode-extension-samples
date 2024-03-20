@@ -1,24 +1,34 @@
 {
 	"name": "client",
 	"displayName": "Code Action UI Sample - Client",
-	"version": "1.0.0",
-	"private": true,
-	"author": "Microsoft Corporation",
-	"license": "MIT",
+	"version": "0.0.1",
+	"private": false,
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples.git"
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
 	},
-	"bugs": {
-		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
 	},
-	"engines": {
-		"vscode": "^1.84.0"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.84.0"
+	"type": "module",
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
 	},
 	"dependencies": {
 		"vscode-languageclient": "^9.0.1"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.84.0",
+		"typescript-esbuild": "latest"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

@@ -1,14 +1,27 @@
 {
 	"name": "helloworld-minimal-sample",
-	"description": "Minimal HelloWorld example for VS Code",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"repository": "https://github.com/Microsoft/vscode-extension-samples/helloworld-minimal-sample",
-	"engines": {
-		"vscode": "^1.74.0"
+	"private": false,
+	"description": "Minimal HelloWorld example for VS Code",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
 	},
-	"activationEvents": [],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
 	"main": "./extension.js",
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -17,8 +30,12 @@
 			}
 		]
 	},
-	"scripts": {},
+	"activationEvents": [],
 	"devDependencies": {
-		"@types/vscode": "^1.73.0"
+		"@types/vscode": "^1.73.0",
+		"typescript-esbuild": "latest"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

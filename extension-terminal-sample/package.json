@@ -1,23 +1,31 @@
 {
 	"name": "extension-terminal-sample",
 	"displayName": "extension-terminal-sample",
-	"description": "An example usage of the extension terminal API",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
+	"private": false,
+	"description": "An example usage of the extension terminal API",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
 	},
-	"engines": {
-		"vscode": "^1.73.0"
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
 	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [],
+	"type": "module",
 	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -30,18 +38,14 @@
 			}
 		]
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"lint": "eslint \"src/**/*.ts\""
-	},
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "^16.18.34",
 		"@types/vscode": "^1.74.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.4.2"
+		"typescript": "^5.4.2",
+		"typescript-esbuild": "latest"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

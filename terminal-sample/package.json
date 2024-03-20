@@ -1,25 +1,31 @@
 {
 	"name": "vscode-terminal-api-example",
 	"displayName": "vscode-terminal-api-example",
-	"description": "abc",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
+	"private": false,
+	"description": "abc",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
 	},
-	"engines": {
-		"vscode": "^1.74.0"
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
 	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onTerminalProfile:terminalTest.terminal-profile"
-	],
+	"type": "module",
 	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -98,25 +104,23 @@
 		"terminal": {
 			"profiles": [
 				{
-					"id": "terminalTest.terminal-profile",
 					"icon": "terminal",
+					"id": "terminalTest.terminal-profile",
 					"title": "Terminal API Profile"
 				}
 			]
 		}
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"lint": "eslint \"src/**/*.ts\""
-	},
+	"activationEvents": [
+		"onTerminalProfile:terminalTest.terminal-profile"
+	],
 	"devDependencies": {
 		"@types/node": "^16.18.34",
 		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.4.2"
+		"typescript": "^5.4.2",
+		"typescript-esbuild": "latest"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }
