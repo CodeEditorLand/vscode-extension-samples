@@ -40,7 +40,7 @@
 		"@types/rimraf": "^2.0.2",
 		"@types/vscode": "^1.34.0",
 		"typescript": "^5.4.2",
-		"typescript-esbuild": "latest"
+		"typescript-esbuild": "0.4.5"
 	},
 	"publishConfig": {
 		"access": "public"

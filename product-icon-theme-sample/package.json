@@ -33,7 +33,7 @@
 	},
 	"devDependencies": {
 		"open": "^7.0.3",
-		"typescript-esbuild": "latest",
+		"typescript-esbuild": "0.4.5",
 		"webfont": "^11.2.4"
 	},
 	"publishConfig": {

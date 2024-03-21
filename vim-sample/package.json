@@ -83,7 +83,7 @@
 		"@types/node": "^16.18.34",
 		"@types/vscode": "^1.73.0",
 		"typescript": "^5.4.2",
-		"typescript-esbuild": "latest"
+		"typescript-esbuild": "0.4.5"
 	},
 	"publishConfig": {
 		"access": "public"

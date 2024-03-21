@@ -45,7 +45,7 @@
 		"markdown-it-emoji": "^2.0.2",
 		"ts-loader": "^9.2.2",
 		"typescript": "^5.4.2",
-		"typescript-esbuild": "latest",
+		"typescript-esbuild": "0.4.5",
 		"webpack": "^5.38.1",
 		"webpack-cli": "^4.7.0"
 	},

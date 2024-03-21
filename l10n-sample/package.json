@@ -52,7 +52,7 @@
 		"glob": "^7.2.0",
 		"mocha": "^9.2.2",
 		"typescript": "^5.4.2",
-		"typescript-esbuild": "latest"
+		"typescript-esbuild": "0.4.5"
 	},
 	"publishConfig": {
 		"access": "public"

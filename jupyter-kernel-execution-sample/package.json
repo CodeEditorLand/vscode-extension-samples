@@ -52,7 +52,7 @@
 		"@types/vscode": "^1.82.0",
 		"@vscode/jupyter-extension": "^1.1.0",
 		"typescript": "^5.2.2",
-		"typescript-esbuild": "latest"
+		"typescript-esbuild": "0.4.5"
 	},
 	"extensionDependencies": [
 		"ms-toolsai.jupyter"
