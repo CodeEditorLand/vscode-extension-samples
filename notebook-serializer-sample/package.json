@@ -1,31 +1,8 @@
 {
-	"name": "notebook-serializer-sample",
-	"displayName": "notebook-serializer-sample",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Notebook using Serializer API sample",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -b",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -b --watch"
-	},
+	"activationEvents": [
+		"onNotebook:test-notebook-serializer",
+		"onCommand:notebook-serializer-sample.createJsonNotebook"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -45,10 +22,7 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onNotebook:test-notebook-serializer",
-		"onCommand:notebook-serializer-sample.createJsonNotebook"
-	],
+	"description": "Notebook using Serializer API sample",
 	"devDependencies": {
 		"@types/mocha": "^8.2.2",
 		"@types/node": "14.x",
@@ -57,7 +31,14 @@
 		"typescript": "^5.4.2",
 		"typescript-esbuild": "0.4.5"
 	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"displayName": "notebook-serializer-sample",
+	"main": "./out/extension.js",
+	"name": "notebook-serializer-sample",
+	"scripts": {
+		"compile": "tsc -b",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -b --watch"
+	},
+	"type": "module"
 }

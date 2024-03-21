@@ -1,30 +1,7 @@
 {
-	"name": "cat-coding",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Cat Coding - A Webview API Sample",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -w -p ./"
-	},
+	"activationEvents": [
+		"onWebviewPanel:catCoding"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -39,9 +16,7 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onWebviewPanel:catCoding"
-	],
+	"description": "Cat Coding - A Webview API Sample",
 	"devDependencies": {
 		"@types/node": "^16.18.34",
 		"@types/vscode": "^1.73.0",
@@ -49,7 +24,13 @@
 		"typescript": "^5.4.2",
 		"typescript-esbuild": "0.4.5"
 	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"main": "./out/extension.js",
+	"name": "cat-coding",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -w -p ./"
+	},
+	"type": "module"
 }

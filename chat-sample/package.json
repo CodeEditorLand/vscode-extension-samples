@@ -1,30 +1,12 @@
 {
-	"name": "chat-sample",
-	"displayName": "Copilot Chat Sample",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
+	"activationEvents": [],
 	"author": {
-		"name": "Playform",
 		"email": "Hello@Playform.Cloud",
+		"name": "Playform",
 		"url": "https://playform.cloud"
 	},
-	"type": "module",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
 	},
 	"contributes": {
 		"chatParticipants": [
@@ -50,22 +32,40 @@
 			}
 		]
 	},
-	"activationEvents": [],
+	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"devDependencies": {
 		"@types/node": "^20.5.9",
 		"@types/vscode": "1.82.0",
 		"typescript": "^4.0.3",
-		"typescript-esbuild": "0.4.5"
+		"typescript-esbuild": ""
 	},
-	"extensionDependencies": [
-		"github.copilot-chat"
-	],
-	"publishConfig": {
-		"access": "public"
-	},
+	"displayName": "Copilot Chat Sample",
 	"enabledApiProposals": [
 		"chatParticipant",
 		"chatVariableResolver",
 		"languageModels"
-	]
+	],
+	"extensionDependencies": [
+		"github.copilot-chat"
+	],
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./out/extension.js",
+	"name": "chat-sample",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

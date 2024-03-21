@@ -1,31 +1,4 @@
 {
-	"name": "notebook-extend-markdown-renderer-sample",
-	"displayName": "notebook-extend-markdown-renderer-sample",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"scripts": {
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"test-compile": "tsc -p ./",
-		"vscode:prepublish": "webpack --mode production",
-		"webpack": "webpack --mode development",
-		"webpack-dev": "webpack --mode development --watch"
-	},
 	"contributes": {
 		"notebookRenderer": [
 			{
@@ -38,6 +11,7 @@
 			}
 		]
 	},
+	"description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
 	"devDependencies": {
 		"@types/markdown-it": "^12.2.3",
 		"@types/vscode-notebook-renderer": "^1.57.8",
@@ -49,7 +23,14 @@
 		"webpack": "^5.38.1",
 		"webpack-cli": "^4.7.0"
 	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"displayName": "notebook-extend-markdown-renderer-sample",
+	"name": "notebook-extend-markdown-renderer-sample",
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"test-compile": "tsc -p ./",
+		"vscode:prepublish": "webpack --mode production",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	},
+	"type": "module"
 }

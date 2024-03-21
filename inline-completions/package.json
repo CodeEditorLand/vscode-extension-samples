@@ -1,33 +1,7 @@
 {
-	"name": "inline-completion-sample",
-	"displayName": "Inline Completion Sample",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Sample showing how to implement an inline completion provider",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"download-api": "dts dev",
-		"postinstall": "npm run download-api",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
-	},
+	"activationEvents": [
+		"*"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -43,9 +17,7 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"*"
-	],
+	"description": "Sample showing how to implement an inline completion provider",
 	"devDependencies": {
 		"@types/node": "^16.18.34",
 		"@types/vscode": "^1.74.0",
@@ -53,10 +25,19 @@
 		"typescript": "^5.4.2",
 		"typescript-esbuild": "0.4.5"
 	},
-	"publishConfig": {
-		"access": "public"
-	},
+	"displayName": "Inline Completion Sample",
 	"enabledApiProposals": [
 		"inlineCompletionsAdditions"
-	]
+	],
+	"main": "./out/extension.js",
+	"name": "inline-completion-sample",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"download-api": "dts dev",
+		"postinstall": "npm run download-api",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"type": "module"
 }

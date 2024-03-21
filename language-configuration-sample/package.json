@@ -1,27 +1,4 @@
 {
-	"name": "language-configuration-sample",
-	"displayName": "Language Configuration Sample",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Language Configuration Sample",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"scripts": {
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-	},
 	"contributes": {
 		"languages": [
 			{
@@ -37,10 +14,14 @@
 			}
 		]
 	},
+	"description": "Language Configuration Sample",
 	"devDependencies": {
 		"typescript-esbuild": "0.4.5"
 	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"displayName": "Language Configuration Sample",
+	"name": "language-configuration-sample",
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
+	},
+	"type": "module"
 }

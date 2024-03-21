@@ -1,25 +1,24 @@
 {
-	"name": "proposed-api-sample",
-	"displayName": "proposed-api-sample",
-	"version": "0.0.1",
-	"private": false,
+	"activationEvents": [],
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.helloWorld",
+				"title": "Hello World"
+			}
+		]
+	},
 	"description": "Sample showing how to use Proposed API",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	"devDependencies": {
+		"@types/node": "^16.18.34",
+		"@vscode/dts": "^0.4.0",
+		"typescript": "^5.4.2",
+		"typescript-esbuild": "0.4.5"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
+	"displayName": "proposed-api-sample",
+	"enabledApiProposals": [],
 	"main": "./out/extension.js",
+	"name": "proposed-api-sample",
 	"scripts": {
 		"compile": "tsc -p ./",
 		"download-api": "dts dev",
@@ -29,23 +28,5 @@
 		"vscode:prepublish": "npm run compile",
 		"watch": "tsc -watch -p ./"
 	},
-	"contributes": {
-		"commands": [
-			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"activationEvents": [],
-	"devDependencies": {
-		"@types/node": "^16.18.34",
-		"@vscode/dts": "^0.4.0",
-		"typescript": "^5.4.2",
-		"typescript-esbuild": "0.4.5"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"enabledApiProposals": []
+	"type": "module"
 }

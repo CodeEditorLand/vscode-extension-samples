@@ -1,41 +1,41 @@
 {
-	"name": "call-hierarchy-sample",
-	"displayName": "call-hierarchy-sample",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Call hierarchy provider sample",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"author": {
+		"email": "Hello@Playform.Cloud",
+		"name": "Playform",
+		"url": "https://playform.cloud"
+	},
 	"bugs": {
 		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"description": "Call hierarchy provider sample",
+	"devDependencies": {
+		"@types/node": "^16.18.34",
+		"@types/vscode": "^1.73.0",
+		"typescript": "^5.4.2",
+		"typescript-esbuild": ""
+	},
+	"displayName": "call-hierarchy-sample",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./out/extension.js",
+	"name": "call-hierarchy-sample",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
 	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"main": "./out/extension.js",
 	"scripts": {
 		"compile": "tsc -p ./",
 		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
 		"vscode:prepublish": "npm run compile",
 		"watch": "tsc -watch -p ./"
 	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
-	"devDependencies": {
-		"@types/node": "^16.18.34",
-		"@types/vscode": "^1.73.0",
-		"typescript": "^5.4.2",
-		"typescript-esbuild": "0.4.5"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"type": "module",
+	"version": "0.0.1"
 }
