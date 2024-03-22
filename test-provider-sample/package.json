@@ -1,20 +1,25 @@
 {
-	"activationEvents": [
-		"workspaceContains:*.md"
-	],
-	"description": "Sample showing how to use the test APIs",
-	"devDependencies": {
-		"@types/node": "^16.18.34",
-		"@vscode/dts": "^0.4.0",
-		"typescript": "^5.4.2",
-		"typescript-esbuild": "0.4.5"
-	},
-	"displayName": "test-provider-sample",
-	"enabledApiProposals": [
-		"testCoverage"
-	],
-	"main": "./out/extension.js",
 	"name": "test-provider-sample",
+	"displayName": "test-provider-sample",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Sample showing how to use the test APIs",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"main": "./out/extension.js",
 	"scripts": {
 		"compile": "tsc -p ./",
 		"download-api": "dts main && dts dev",
@@ -23,5 +28,19 @@
 		"vscode:prepublish": "npm run compile",
 		"watch": "tsc -watch -p ./"
 	},
-	"type": "module"
+	"activationEvents": [
+		"workspaceContains:*.md"
+	],
+	"devDependencies": {
+		"@types/node": "^16.18.34",
+		"@vscode/dts": "^0.4.0",
+		"typescript": "^5.4.2",
+		"typescript-esbuild": "0.4.5"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"enabledApiProposals": [
+		"testCoverage"
+	]
 }

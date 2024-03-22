@@ -1,4 +1,35 @@
 {
+	"name": "notebook-renderer-react-sample",
+	"displayName": "notebook-renderer-react-sample",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook built with React.",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"scripts": {
+		"compile": "npm run compile:extension && npm run compile:client",
+		"compile:client": "webpack --mode production",
+		"compile:extension": "tsc -b",
+		"dev": "concurrently -r npm:watch:extension npm:watch:client",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile && node out/test/checkNoTestProvider.js",
+		"watch": "concurrently -r \"npm:watch:*\"",
+		"watch:client": "webpack --mode development --watch",
+		"watch:extension": "tsc -b --watch"
+	},
 	"contributes": {
 		"notebookRenderer": [
 			{
@@ -11,7 +42,6 @@
 			}
 		]
 	},
-	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook built with React.",
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
 		"@types/node": "^18.15.5",
@@ -33,18 +63,7 @@
 		"webpack": "^5.38.1",
 		"webpack-cli": "^4.7.0"
 	},
-	"displayName": "notebook-renderer-react-sample",
-	"name": "notebook-renderer-react-sample",
-	"scripts": {
-		"compile": "npm run compile:extension && npm run compile:client",
-		"compile:client": "webpack --mode production",
-		"compile:extension": "tsc -b",
-		"dev": "concurrently -r npm:watch:extension npm:watch:client",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile && node out/test/checkNoTestProvider.js",
-		"watch": "concurrently -r \"npm:watch:*\"",
-		"watch:client": "webpack --mode development --watch",
-		"watch:extension": "tsc -b --watch"
-	},
-	"type": "module"
+	"publishConfig": {
+		"access": "public"
+	}
 }

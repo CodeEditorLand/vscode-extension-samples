@@ -1,4 +1,27 @@
 {
+	"name": "snippet-sample",
+	"displayName": "Snippet Sample",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Snippet Sample",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
+	},
 	"contributes": {
 		"snippets": [
 			{
@@ -7,14 +30,10 @@
 			}
 		]
 	},
-	"description": "Snippet Sample",
 	"devDependencies": {
 		"typescript-esbuild": "0.4.5"
 	},
-	"displayName": "Snippet Sample",
-	"name": "snippet-sample",
-	"scripts": {
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-	},
-	"type": "module"
+	"publishConfig": {
+		"access": "public"
+	}
 }

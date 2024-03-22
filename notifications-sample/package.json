@@ -1,5 +1,31 @@
 {
-	"activationEvents": [],
+	"name": "notifications-sample",
+	"displayName": "Notifications Sample",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Examples of notification types and various configurations",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -39,7 +65,7 @@
 			}
 		]
 	},
-	"description": "Examples of notification types and various configurations",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/glob": "^7.2.0",
 		"@types/node": "16.x",
@@ -49,14 +75,7 @@
 		"typescript": "^5.4.2",
 		"typescript-esbuild": "0.4.5"
 	},
-	"displayName": "Notifications Sample",
-	"main": "./out/extension.js",
-	"name": "notifications-sample",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
-	},
-	"type": "module"
+	"publishConfig": {
+		"access": "public"
+	}
 }

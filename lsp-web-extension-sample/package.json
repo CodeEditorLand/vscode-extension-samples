@@ -1,8 +1,33 @@
 {
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
+	"name": "lsp-web-extension-sample",
+	"version": "0.0.1",
+	"private": false,
+	"description": "A language server in a web extension",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
 	"browser": "./client/dist/browserClientMain",
+	"scripts": {
+		"chrome": "npm run compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./test-data",
+		"compile": "webpack",
+		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "webpack --watch"
+	},
 	"contributes": {
 		"configuration": [
 			{
@@ -25,7 +50,9 @@
 			}
 		]
 	},
-	"description": "A language server in a web extension",
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"devDependencies": {
 		"@vscode/test-web": "^0.0.51",
 		"path-browserify": "^1.0.1",
@@ -35,15 +62,7 @@
 		"webpack": "^5.90.1",
 		"webpack-cli": "^5.1.4"
 	},
-	"name": "lsp-web-extension-sample",
-	"scripts": {
-		"chrome": "npm run compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./test-data",
-		"compile": "webpack",
-		"package": "webpack --mode production --devtool hidden-source-map",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "webpack --watch"
-	},
-	"type": "module"
+	"publishConfig": {
+		"access": "public"
+	}
 }

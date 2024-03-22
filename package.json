@@ -1,8 +1,22 @@
 {
-	"devDependencies": {
-		"typescript-esbuild": "0.4.5"
-	},
 	"name": "vsc-extension-samples",
+	"version": "0.0.1",
+	"private": false,
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
 	"scripts": {
 		"auditFix": "node .scripts/run-command.js npm audit fix",
 		"compile": "node .scripts/run-script.js compile",
@@ -11,5 +25,10 @@
 		"update-lsif": "node .scripts/update-lsif.js",
 		"update-readme": "node .scripts/update-readme.js"
 	},
-	"type": "module"
+	"devDependencies": {
+		"typescript-esbuild": "0.4.5"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

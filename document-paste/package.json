@@ -1,39 +1,25 @@
 {
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
-	"author": {
-		"email": "Hello@Playform.Cloud",
-		"name": "Playform",
-		"url": "https://playform.cloud"
-	},
+	"name": "document-paste-sample",
+	"displayName": "Document paste Sample",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Shows use of the document paste API proposal",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
 	"bugs": {
 		"url": "https://github.com/CodeEditorLand/Foundation/issues"
-	},
-	"contributes": {},
-	"description": "Shows use of the document paste API proposal",
-	"devDependencies": {
-		"@types/node": "^16.18.34",
-		"typescript": "^5.4.2",
-		"typescript-esbuild": "",
-		"vscode-dts": "^0.3.3"
-	},
-	"displayName": "Document paste Sample",
-	"enabledApiProposals": [
-		"documentPaste"
-	],
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"license": "SEE LICENSE IN LICENSE",
-	"main": "./out/extension.js",
-	"name": "document-paste-sample",
-	"private": false,
-	"publishConfig": {
-		"access": "public"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
 	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"main": "./out/extension.js",
 	"scripts": {
 		"compile": "tsc -p ./",
 		"download-api": "vscode-dts main && vscode-dts dev",
@@ -42,6 +28,20 @@
 		"vscode:prepublish": "npm run compile",
 		"watch": "tsc -watch -p ./"
 	},
-	"type": "module",
-	"version": "0.0.1"
+	"contributes": {},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"devDependencies": {
+		"@types/node": "^16.18.34",
+		"typescript": "^5.4.2",
+		"typescript-esbuild": "0.4.5",
+		"vscode-dts": "^0.3.3"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"enabledApiProposals": [
+		"documentPaste"
+	]
 }

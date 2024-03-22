@@ -1,8 +1,32 @@
 {
-	"activationEvents": [
-		"onStartupFinished"
-	],
+	"name": "tabs-api-sample",
+	"displayName": "tabs-api-sample",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Sample showing how to use the tabs api",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"main": "./out/extension.js",
 	"browser": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"configuration": {
 			"id": "tabsSample",
@@ -16,21 +40,16 @@
 			"title": "Tabs API Sample"
 		}
 	},
-	"description": "Sample showing how to use the tabs api",
+	"activationEvents": [
+		"onStartupFinished"
+	],
 	"devDependencies": {
 		"@types/node": "^16.18.34",
 		"@types/vscode": "^1.67.0",
 		"typescript": "^5.4.2",
 		"typescript-esbuild": "0.4.5"
 	},
-	"displayName": "tabs-api-sample",
-	"main": "./out/extension.js",
-	"name": "tabs-api-sample",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
-	},
-	"type": "module"
+	"publishConfig": {
+		"access": "public"
+	}
 }

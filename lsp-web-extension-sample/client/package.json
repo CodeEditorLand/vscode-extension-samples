@@ -1,16 +1,35 @@
 {
+	"name": "lsp-web-extension-sample-client",
+	"version": "0.0.1",
+	"private": false,
+	"description": "VSCode part of a language server in a web extension",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
+	},
 	"dependencies": {
 		"vscode-languageclient": "^9.0.1"
 	},
-	"description": "VSCode part of a language server in a web extension",
 	"devDependencies": {
 		"@types/vscode": "^1.85.0",
 		"@vscode/test-web": "^0.0.51",
 		"typescript-esbuild": "0.4.5"
 	},
-	"name": "lsp-web-extension-sample-client",
-	"scripts": {
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-	},
-	"type": "module"
+	"publishConfig": {
+		"access": "public"
+	}
 }

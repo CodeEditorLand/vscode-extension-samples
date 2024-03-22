@@ -1,8 +1,31 @@
 {
-	"activationEvents": [
-		"onLanguage:json",
-		"onLanguage:jsonc"
-	],
+	"name": "custom-view-samples",
+	"displayName": "Custom view Samples",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Samples for VSCode's view API",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -197,6 +220,10 @@
 			]
 		}
 	},
+	"activationEvents": [
+		"onLanguage:json",
+		"onLanguage:jsonc"
+	],
 	"dependencies": {
 		"ftp": "^0.3.10",
 		"jsonc-parser": "^0.4.2",
@@ -204,7 +231,6 @@
 		"mkdirp": "^0.5.1",
 		"rimraf": "^2.6.2"
 	},
-	"description": "Samples for VSCode's view API",
 	"devDependencies": {
 		"@types/ftp": "^0.3.33",
 		"@types/mkdirp": "^0.5.2",
@@ -214,14 +240,7 @@
 		"typescript": "^5.4.2",
 		"typescript-esbuild": "0.4.5"
 	},
-	"displayName": "Custom view Samples",
-	"main": "./out/extension.js",
-	"name": "custom-view-samples",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
-	},
-	"type": "module"
+	"publishConfig": {
+		"access": "public"
+	}
 }

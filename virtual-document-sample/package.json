@@ -1,5 +1,31 @@
 {
-	"activationEvents": [],
+	"name": "virtual-document-sample",
+	"displayName": "Cowsay in virtual documents",
+	"version": "0.0.1",
+	"private": false,
+	"description": "A sample for virtual document",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -27,24 +53,17 @@
 			]
 		}
 	},
+	"activationEvents": [],
 	"dependencies": {
 		"cowsay": "^1.5.0"
 	},
-	"description": "A sample for virtual document",
 	"devDependencies": {
 		"@types/node": "^16.18.34",
 		"@types/vscode": "^1.73.0",
 		"typescript": "^5.4.2",
 		"typescript-esbuild": "0.4.5"
 	},
-	"displayName": "Cowsay in virtual documents",
-	"main": "./out/extension.js",
-	"name": "virtual-document-sample",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
-	},
-	"type": "module"
+	"publishConfig": {
+		"access": "public"
+	}
 }

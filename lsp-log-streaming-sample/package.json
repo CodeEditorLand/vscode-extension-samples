@@ -1,7 +1,34 @@
 {
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
+	"name": "lsp-log-streaming-sample",
+	"version": "0.0.1",
+	"private": false,
+	"description": "A language server example demonstrating log streaming",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"main": "./client/out/extension",
+	"scripts": {
+		"compile": "npm run compile:client && npm run compile:server",
+		"compile:client": "tsc -p ./client/tsconfig.json",
+		"compile:server": "tsc -p ./server/tsconfig.json",
+		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "cd client && npm run update-vscode && cd .. && npm run compile",
+		"watch:client": "tsc -w -p ./client/tsconfig.json",
+		"watch:server": "tsc -w -p ./server/tsconfig.json"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -54,7 +81,9 @@
 			"type": "object"
 		}
 	},
-	"description": "A language server example demonstrating log streaming",
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"devDependencies": {
 		"@types/mocha": "^10.0.1",
 		"@types/node": "^16.18.34",
@@ -62,17 +91,7 @@
 		"typescript": "^5.4.2",
 		"typescript-esbuild": "0.4.5"
 	},
-	"main": "./client/out/extension",
-	"name": "lsp-log-streaming-sample",
-	"scripts": {
-		"compile": "npm run compile:client && npm run compile:server",
-		"compile:client": "tsc -p ./client/tsconfig.json",
-		"compile:server": "tsc -p ./server/tsconfig.json",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "cd client && npm run update-vscode && cd .. && npm run compile",
-		"watch:client": "tsc -w -p ./client/tsconfig.json",
-		"watch:server": "tsc -w -p ./server/tsconfig.json"
-	},
-	"type": "module"
+	"publishConfig": {
+		"access": "public"
+	}
 }
