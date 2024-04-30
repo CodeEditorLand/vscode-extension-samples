@@ -1,26 +1,36 @@
 {
 	"name": "tabs-api-sample",
 	"displayName": "tabs-api-sample",
-	"description": "Sample showing how to use the tabs api",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"repository": "https://github.com/Microsoft/vscode-extension-samples",
-	"engines": {
-		"vscode": "^1.67.0"
+	"private": false,
+	"description": "Sample showing how to use the tabs api",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
 	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onStartupFinished"
-	],
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"type": "module",
 	"main": "./out/extension.js",
 	"browser": "./out/extension.js",
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"compile": "tsc -p ./",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
 	"contributes": {
 		"configuration": {
-			"title": "Tabs API Sample",
 			"id": "tabsSample",
 			"properties": {
 				"tabs.maxInactiveTime": {
@@ -28,21 +38,19 @@
 					"description": "The number of seconds before closing inactive tabs",
 					"type": "number"
 				}
-			}
+			},
+			"title": "Tabs API Sample"
 		}
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./"
-	},
+	"activationEvents": [
+		"onStartupFinished"
+	],
 	"devDependencies": {
-		"@types/node": "^16.18.34",
-		"@types/vscode": "^1.67.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.12.0",
-		"typescript": "^5.4.2"
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "^16.18.34"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

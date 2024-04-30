@@ -1,44 +1,48 @@
 {
 	"name": "cat-codicons",
-	"description": "Cat Codicons - Using codicons in webviews",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"engines": {
-		"vscode": "^1.74.0"
-	},
-	"categories": [
-		"Other"
+	"private": false,
+	"description": "Cat Codicons - Using codicons in webviews",
+	"keywords": [
+		"land"
 	],
-	"activationEvents": [],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/microsoft/vscode-extension-samples.git"
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
 	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"type": "module",
 	"main": "./out/extension.js",
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"compile": "tsc -p ./",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
 	"contributes": {
 		"commands": [
 			{
+				"category": "Cat Codicons",
 				"command": "catCodicons.show",
-				"title": "Show Cat Codicons",
-				"category": "Cat Codicons"
+				"title": "Show Cat Codicons"
 			}
 		]
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -w -p ./"
-	},
+	"activationEvents": [],
 	"devDependencies": {
-		"@types/node": "^18",
-		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"@vscode/codicons": "0.0.20",
-		"eslint": "^8.26.0",
-		"typescript": "^5.4.2"
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "^18"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

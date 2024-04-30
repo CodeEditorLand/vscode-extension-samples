@@ -1,19 +1,35 @@
 {
 	"name": "telemetry-sample",
 	"displayName": "telemetry-sample",
-	"description": "Sample showing how to use Telemetry API",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"repository": "https://github.com/Microsoft/vscode-extension-samples",
-	"engines": {
-		"vscode": "^1.76.0"
-	},
-	"categories": [
-		"Other"
+	"private": false,
+	"description": "Sample showing how to use Telemetry API",
+	"keywords": [
+		"land"
 	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"type": "module",
 	"main": "./out/extension.js",
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"compile": "tsc -p ./",
+		"download-api": "dts dev",
+		"postdownload-api": "dts main",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -26,21 +42,12 @@
 			}
 		]
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint . --ext .ts,.tsx",
-		"watch": "tsc -watch -p ./",
-		"download-api": "dts dev",
-		"postdownload-api": "dts main",
-		"postinstall": "npm run download-api"
-	},
 	"devDependencies": {
-		"@types/node": "^16.18.34",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.25.0",
-		"typescript": "^5.4.2",
-		"@vscode/dts": "^0.4.0"
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "^16.18.34"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

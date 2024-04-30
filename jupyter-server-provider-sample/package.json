@@ -1,36 +1,46 @@
 {
 	"name": "jupyter-server-provider-sample",
 	"displayName": "Jupyter Server Provider Sample",
-	"description": "Jupyter Notebook Kernel Picker with custom servers using the Jupyter API sample",
-	"publisher": "vscode-samples",
 	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.82.0"
-	},
-	"categories": [
-		"Other"
+	"private": false,
+	"description": "Jupyter Notebook Kernel Picker with custom servers using the Jupyter API sample",
+	"keywords": [
+		"land"
 	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"compile": "tsc -b",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
 	"activationEvents": [
 		"onNotebook:jupyter-notebook",
 		"onNotebook:interactive"
 	],
+	"devDependencies": {
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "^18"
+	},
 	"extensionDependencies": [
 		"ms-toolsai.jupyter"
 	],
-	"main": "./out/extension.js",
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -b",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -b --watch"
-	},
-	"devDependencies": {
-		"@types/node": "^18",
-		"@types/vscode": "^1.82.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"@vscode/jupyter-extension": "^1.0.0",
-		"eslint": "^7.27.0",
-		"typescript": "^5.4.2"
+	"publishConfig": {
+		"access": "public"
 	}
 }

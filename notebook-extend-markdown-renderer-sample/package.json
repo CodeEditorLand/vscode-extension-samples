@@ -1,46 +1,54 @@
 {
-  "name": "notebook-extend-markdown-renderer-sample",
-  "displayName": "notebook-extend-markdown-renderer-sample",
-  "description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
-  "version": "0.0.1",
-  "private": true,
-  "license": "MIT",
-  "engines": {
-    "vscode": "^1.69.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "contributes": {
-    "notebookRenderer": [
-      {
-        "id": "vscode-samples.markdown-it.emoji-extension",
-        "displayName": "Markdown it Emoji renderer",
-        "entrypoint": {
-          "extends": "vscode.markdown-it-renderer",
-          "path": "./out/emoji.js"
-        }
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "webpack --mode production",
-    "webpack": "webpack --mode development",
-    "webpack-dev": "webpack --mode development --watch",
-    "test-compile": "tsc -p ./",
-    "lint": "eslint src --ext .ts"
-  },
-  "devDependencies": {
-    "@types/markdown-it": "^12.2.3",
-    "@types/vscode-notebook-renderer": "^1.57.8",
-    "@types/webpack-env": "^1.17.0",
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
-    "@typescript-eslint/parser": "^6.7.0",
-    "eslint": "^8.26.0",
-    "markdown-it-emoji": "^2.0.2",
-    "ts-loader": "^9.2.2",
-    "typescript": "^5.4.2",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0"
-  }
+	"name": "notebook-extend-markdown-renderer-sample",
+	"displayName": "notebook-extend-markdown-renderer-sample",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"type": "module",
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"test-compile": "tsc -p ./",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	},
+	"contributes": {
+		"notebookRenderer": [
+			{
+				"displayName": "Markdown it Emoji renderer",
+				"entrypoint": {
+					"extends": "vscode.markdown-it-renderer",
+					"path": "./out/emoji.js"
+				},
+				"id": "vscode-samples.markdown-it.emoji-extension"
+			}
+		]
+	},
+	"devDependencies": {
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/markdown-it": "^12.2.3",
+		"markdown-it-emoji": "^2.0.2",
+		"ts-loader": "^9.2.2"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

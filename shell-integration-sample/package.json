@@ -1,41 +1,53 @@
 {
-  "name": "shell-integration-sample",
-  "displayName": "shell-integration-sample",
-  "description": "",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.88.0"
-  },
-  "enabledApiProposals": [
-    "terminalShellIntegration"
-  ],
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "contributes": {
-	"terminal": {
-		"profiles": [
-			{
-				"id": "shell-integration-sample.track-editor-directory",
-				"title": "Track Editor Directory"
-			}
-		]
-	}
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "lint": "eslint src --ext ts"
-  },
-  "devDependencies": {
-    "@types/vscode": "^1.88.0",
-    "@types/node": "18.x",
-    "@typescript-eslint/eslint-plugin": "^7.4.0",
-    "@typescript-eslint/parser": "^7.4.0",
-    "eslint": "^8.57.0",
-    "typescript": "^5.3.3"
-  }
+	"name": "shell-integration-sample",
+	"displayName": "shell-integration-sample",
+	"version": "0.0.1",
+	"private": false,
+	"description": "",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"type": "module",
+	"main": "./out/extension.js",
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"compile": "tsc -p ./",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"contributes": {
+		"terminal": {
+			"profiles": [
+				{
+					"id": "shell-integration-sample.track-editor-directory",
+					"title": "Track Editor Directory"
+				}
+			]
+		}
+	},
+	"activationEvents": [],
+	"devDependencies": {
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "18.x"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"enabledApiProposals": [
+		"terminalShellIntegration"
+	]
 }

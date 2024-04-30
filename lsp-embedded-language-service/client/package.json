@@ -1,22 +1,37 @@
 {
 	"name": "lsp-sample-client",
-	"description": "VSCode part of a language server",
-	"author": "Microsoft Corporation",
-	"license": "MIT",
 	"version": "0.0.1",
-	"publisher": "vscode",
+	"private": false,
+	"description": "VSCode part of a language server",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
 	},
-	"engines": {
-		"vscode": "^1.43.0"
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
 	},
-	"dependencies": {
-		"vscode-languageclient": "^6.1.3"
+	"type": "module",
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
+	"dependencies": {},
 	"devDependencies": {
-		"@types/node": "^16.18.34",
-		"@types/vscode": "^1.43.0"
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "^16.18.34"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

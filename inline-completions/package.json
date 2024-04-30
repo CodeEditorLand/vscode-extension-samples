@@ -1,23 +1,34 @@
 {
-	"enabledApiProposals": [
-		"inlineCompletionsAdditions"
-	],
 	"name": "inline-completion-sample",
 	"displayName": "Inline Completion Sample",
-	"description": "Sample showing how to implement an inline completion provider",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"repository": "https://github.com/Microsoft/vscode-extension-samples",
-	"engines": {
-		"vscode": "^1.67.0"
+	"private": false,
+	"description": "Sample showing how to implement an inline completion provider",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
 	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"*"
-	],
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"type": "module",
 	"main": "./out/extension.js",
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"compile": "tsc -p ./",
+		"download-api": "dts dev",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -33,21 +44,18 @@
 			]
 		}
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./",
-		"download-api": "dts dev",
-		"postinstall": "npm run download-api"
-	},
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
-		"@types/node": "^18",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.4.2",
-		"@vscode/dts": "^0.4.0",
-		"@types/vscode": "^1.74.0"
-	}
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "^18"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"enabledApiProposals": [
+		"inlineCompletionsAdditions"
+	]
 }
