@@ -1,18 +1,37 @@
 {
-	"activationEvents": [
-		"onLanguage:bat"
+	"name": "wasm-language-server",
+	"version": "0.0.1",
+	"private": false,
+	"description": "An example demonstrating how to implement a language server as a WebAssembly module.",
+	"keywords": [
+		"land"
 	],
-	"author": {
-		"email": "Land@PlayForm.Cloud",
-		"name": "🌆 — Land —",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"browser": "./client/dist/web/extension",
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"type": "module",
+	"main": "./client/out/extension",
+	"browser": "./client/dist/web/extension",
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"build": "cd client && npm run compile && cd ../server && npm run build && cd ..",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"activationEvents": [
+		"onLanguage:bat"
+	],
 	"dependencies": {},
-	"description": "An example demonstrating how to implement a language server as a WebAssembly module.",
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
@@ -23,26 +42,7 @@
 	"extensionDependencies": [
 		"ms-vscode.wasm-wasi-core"
 	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
-	"keywords": [
-		"land"
-	],
-	"license": "SEE LICENSE IN LICENSE",
-	"main": "./client/out/extension",
-	"name": "wasm-language-server",
-	"private": false,
 	"publishConfig": {
 		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
-	},
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"build": "cd client && npm run compile && cd ../server && npm run build && cd ..",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"type": "module",
-	"version": "0.0.1"
+	}
 }

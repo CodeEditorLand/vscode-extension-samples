@@ -1,13 +1,34 @@
 {
-	"activationEvents": [],
-	"author": {
-		"email": "Land@PlayForm.Cloud",
-		"name": "🌆 — Land —",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"browser": "./dist/web/extension.js",
+	"name": "helloworld-web-sample",
+	"displayName": "helloworld-web-sample",
+	"version": "0.0.1",
+	"private": false,
+	"description": "HelloWorld example for VS Code in the browser",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"type": "module",
+	"browser": "./dist/web/extension.js",
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"compile-web": "webpack",
+		"package-web": "webpack --mode production --devtool hidden-source-map",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"watch-web": "webpack --watch"
 	},
 	"contributes": {
 		"commands": [
@@ -17,7 +38,7 @@
 			}
 		]
 	},
-	"description": "HelloWorld example for VS Code in the browser",
+	"activationEvents": [],
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
@@ -25,28 +46,7 @@
 		"process": "0.11.10",
 		"ts-loader": "9.5.1"
 	},
-	"displayName": "helloworld-web-sample",
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
-	"keywords": [
-		"land"
-	],
-	"license": "SEE LICENSE IN LICENSE",
-	"name": "helloworld-web-sample",
-	"private": false,
 	"publishConfig": {
 		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
-	},
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"compile-web": "webpack",
-		"package-web": "webpack --mode production --devtool hidden-source-map",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"watch-web": "webpack --watch"
-	},
-	"type": "module",
-	"version": "0.0.1"
+	}
 }

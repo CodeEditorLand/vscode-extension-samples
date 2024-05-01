@@ -1,12 +1,36 @@
 {
-	"author": {
-		"email": "Land@PlayForm.Cloud",
-		"name": "🌆 — Land —",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"browser": "./dist/web/extension",
+	"name": "wasm-component-model",
+	"version": "0.0.1",
+	"private": false,
+	"description": "An example demonstrating how to use the component model to integrate WebAssembly modules into VS Code.",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"type": "module",
+	"main": "./out/extension",
+	"browser": "./dist/web/extension",
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"build": "npm run compile && cargo build --target wasm32-unknown-unknown",
+		"compile": "tsc -b",
+		"esbuild": "node ./bin/esbuild.js",
+		"generate:model": "wit2ts --noMain --outDir ./src ./wit",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
 	},
 	"contributes": {
 		"commands": [
@@ -18,7 +42,6 @@
 		]
 	},
 	"dependencies": {},
-	"description": "An example demonstrating how to use the component model to integrate WebAssembly modules into VS Code.",
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
@@ -26,30 +49,7 @@
 		"esbuild": "0.20.2",
 		"serve": "14.2.3"
 	},
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
-	"keywords": [
-		"land"
-	],
-	"license": "SEE LICENSE IN LICENSE",
-	"main": "./out/extension",
-	"name": "wasm-component-model",
-	"private": false,
 	"publishConfig": {
 		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
-	},
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"build": "npm run compile && cargo build --target wasm32-unknown-unknown",
-		"compile": "tsc -b",
-		"esbuild": "node ./bin/esbuild.js",
-		"generate:model": "wit2ts --noMain --outDir ./src ./wit",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
-	},
-	"type": "module",
-	"version": "0.0.1"
+	}
 }
