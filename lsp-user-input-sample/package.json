@@ -39,10 +39,10 @@
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
-		"@types/node": "^18.11.9",
-		"merge-options": "^3.0.4",
-		"rimraf": "^5.0.5",
-		"ts-loader": "^9.5.1"
+		"@types/node": "20.12.7",
+		"merge-options": "3.0.4",
+		"rimraf": "5.0.5",
+		"ts-loader": "9.5.1"
 	},
 	"publishConfig": {
 		"access": "public"

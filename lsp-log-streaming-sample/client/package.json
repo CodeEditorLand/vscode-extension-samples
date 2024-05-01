@@ -26,14 +26,14 @@
 		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"dependencies": {
-		"ws": "8.12.0"
+		"ws": "8.17.0"
 	},
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
-		"@types/glob": "8.0.0",
-		"@types/ws": "8.5.4",
-		"glob": "8.1.0"
+		"@types/glob": "8.1.0",
+		"@types/ws": "8.5.10",
+		"glob": "10.3.12"
 	},
 	"publishConfig": {
 		"access": "public"

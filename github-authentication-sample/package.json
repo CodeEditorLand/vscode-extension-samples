@@ -39,12 +39,12 @@
 	},
 	"activationEvents": [],
 	"dependencies": {
-		"@octokit/rest": "^18.0.0"
+		"@octokit/rest": "20.1.0"
 	},
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
-		"@types/node": "^18"
+		"@types/node": "20"
 	},
 	"publishConfig": {
 		"access": "public"

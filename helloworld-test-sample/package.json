@@ -40,10 +40,10 @@
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
-		"@types/glob": "^7.1.1",
-		"@types/node": "^18",
-		"glob": "^7.1.4",
-		"source-map-support": "^0.5.12"
+		"@types/glob": "8.1.0",
+		"@types/node": "20",
+		"glob": "10.3.12",
+		"source-map-support": "0.5.21"
 	},
 	"publishConfig": {
 		"access": "public"

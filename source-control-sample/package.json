@@ -99,12 +99,12 @@
 		"workspaceContains:.jsfiddle"
 	],
 	"dependencies": {
-		"jsfiddle": "^1.1.7"
+		"jsfiddle": "1.2.1"
 	},
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
-		"@types/node": "^18"
+		"@types/node": "20"
 	},
 	"publishConfig": {
 		"access": "public"

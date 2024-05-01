@@ -84,7 +84,7 @@
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
-		"@types/node": "^18"
+		"@types/node": "20"
 	},
 	"publishConfig": {
 		"access": "public"
