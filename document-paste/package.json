@@ -1,47 +1,47 @@
 {
-	"name": "document-paste-sample",
-	"displayName": "Document paste Sample",
-	"version": "0.0.1",
-	"private": false,
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"author": {
+		"email": "Land@PlayForm.Cloud",
+		"name": "🌆 — Land —",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	},
+	"contributes": {},
 	"description": "Shows use of the document paste API proposal",
+	"devDependencies": {
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "20"
+	},
+	"displayName": "Document paste Sample",
+	"enabledApiProposals": [
+		"documentPaste"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
 	"keywords": [
 		"land"
 	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./out/extension.js",
+	"name": "document-paste-sample",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
 	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "🌆 — Land —",
-		"email": "Land@PlayForm.Cloud",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"type": "module",
-	"main": "./out/extension.js",
 	"scripts": {
 		"Document": "Document 'Source/**/*.ts'",
 		"compile": "tsc -p ./",
 		"download-api": "dts main && dts dev",
 		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
-	"contributes": {},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
-	"devDependencies": {
-		"@playform/build": "0.0.7",
-		"@playform/document": "0.0.6",
-		"@types/node": "20"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"enabledApiProposals": [
-		"documentPaste"
-	]
+	"type": "module",
+	"version": "0.0.1"
 }

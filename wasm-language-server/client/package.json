@@ -1,41 +1,41 @@
 {
-	"name": "client",
-	"version": "0.0.1",
-	"private": false,
+	"author": {
+		"email": "Land@PlayForm.Cloud",
+		"name": "🌆 — Land —",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"browser": "./dist/web/extension",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	},
+	"dependencies": {},
 	"description": "The language client",
+	"devDependencies": {
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "20.12.7"
+	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
 	"keywords": [
 		"land"
 	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./out/extension",
+	"name": "client",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
 	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "🌆 — Land —",
-		"email": "Land@PlayForm.Cloud",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"type": "module",
-	"main": "./out/extension",
-	"browser": "./dist/web/extension",
 	"scripts": {
 		"Document": "Document 'Source/**/*.ts'",
 		"compile": "tsc -b",
 		"esbuild": "node ./bin/esbuild",
 		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
-	"dependencies": {},
-	"devDependencies": {
-		"@playform/build": "0.0.7",
-		"@playform/document": "0.0.6",
-		"@types/node": "20.12.7"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"type": "module",
+	"version": "0.0.1"
 }

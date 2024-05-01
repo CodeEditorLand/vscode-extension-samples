@@ -1,28 +1,40 @@
 {
-	"name": "vscode-codeaction-ui-sample",
-	"displayName": "Code Action UI Sample",
-	"version": "0.0.1",
-	"private": false,
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"author": {
+		"email": "Land@PlayForm.Cloud",
+		"name": "🌆 — Land —",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	},
 	"description": "Sample to demonstrate code actions with UI",
+	"devDependencies": {
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "20.12.7",
+		"merge-options": "3.0.4",
+		"rimraf": "5.0.5",
+		"ts-loader": "9.5.1"
+	},
+	"displayName": "Code Action UI Sample",
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
 	"keywords": [
 		"land"
 	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./client/out/extension",
+	"name": "vscode-codeaction-ui-sample",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
 	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "🌆 — Land —",
-		"email": "Land@PlayForm.Cloud",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"type": "module",
-	"main": "./client/out/extension",
 	"scripts": {
 		"Document": "Document 'Source/**/*.ts'",
 		"clean": "rimraf client/out && rimraf server/out",
@@ -33,18 +45,6 @@
 		"webpack": "npm run clean && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
 		"webpack:dev": "npm run clean && webpack --mode none --config ./client/webpack.config.js && webpack --mode none --config ./server/webpack.config.js"
 	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
-	"devDependencies": {
-		"@playform/build": "0.0.7",
-		"@playform/document": "0.0.6",
-		"@types/node": "20.12.7",
-		"merge-options": "3.0.4",
-		"rimraf": "5.0.5",
-		"ts-loader": "9.5.1"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"type": "module",
+	"version": "0.0.1"
 }

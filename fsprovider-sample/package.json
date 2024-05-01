@@ -1,32 +1,14 @@
 {
-	"name": "vscode-memfs",
-	"displayName": "MemFS - a file system provider sample",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Showcase for the file system provider API, also useful for testing again document that are not on disk.",
-	"keywords": [
-		"land"
+	"activationEvents": [
+		"onFileSystem:memfs"
 	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "🌆 — Land —",
 		"email": "Land@PlayForm.Cloud",
+		"name": "🌆 — Land —",
 		"url": "HTTPS://Land.PlayForm.Cloud"
 	},
-	"type": "module",
-	"main": "./out/src/extension",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"compile": "tsc -p ./",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
 	},
 	"contributes": {
 		"commands": [
@@ -81,15 +63,33 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"onFileSystem:memfs"
-	],
+	"description": "Showcase for the file system provider API, also useful for testing again document that are not on disk.",
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
 		"@types/node": "20"
 	},
+	"displayName": "MemFS - a file system provider sample",
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
+	"keywords": [
+		"land"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./out/src/extension",
+	"name": "vscode-memfs",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
+	},
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"compile": "tsc -p ./",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

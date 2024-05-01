@@ -1,32 +1,15 @@
 {
-	"name": "lsp-web-extension-sample",
-	"version": "0.0.1",
-	"private": false,
-	"description": "A language server in a web extension",
-	"keywords": [
-		"land"
+	"activationEvents": [
+		"onLanguage:plaintext"
 	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "🌆 — Land —",
 		"email": "Land@PlayForm.Cloud",
+		"name": "🌆 — Land —",
 		"url": "HTTPS://Land.PlayForm.Cloud"
 	},
-	"type": "module",
 	"browser": "./client/dist/browserClientMain",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"chrome": "npm run compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./test-data",
-		"compile": "webpack",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
 	},
 	"contributes": {
 		"configuration": [
@@ -50,16 +33,33 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
+	"description": "A language server in a web extension",
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
 		"path-browserify": "1.0.1",
 		"ts-loader": "9.5.1"
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
+	"keywords": [
+		"land"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"name": "lsp-web-extension-sample",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
+	},
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"chrome": "npm run compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./test-data",
+		"compile": "webpack",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }
