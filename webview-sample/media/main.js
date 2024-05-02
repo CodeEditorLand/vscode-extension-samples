@@ -4,9 +4,9 @@
 (function () {
     const vscode = acquireVsCodeApi();
 
-    const oldState = /** @type {{ count: number} | undefined} */ (vscode.getState());
+    const oldState = (vscode.getState());
 
-    const counter = /** @type {HTMLElement} */ (document.getElementById('lines-of-code-counter'));
+    const counter = (document.getElementById('lines-of-code-counter'));
     console.log('Initial state', oldState);
 
     let currentCount = (oldState && oldState.count) || 0;

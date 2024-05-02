@@ -8,8 +8,8 @@ const child_process = require('child_process');
 const { samples, lspSamples } = require('./samples')
 
 function tryRun(
-  /** @type {string} */ scriptName,
-  /** @type {import('./samples').Sample} */ sample
+  scriptName,
+  sample
 ) {
   const packageJsonPath = path.join(sample.path, 'package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
