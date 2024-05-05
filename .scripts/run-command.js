@@ -8,8 +8,8 @@ const child_process = require('child_process');
 const { samples, lspSamples } = require('./samples');
 
 async function tryRunCommand(
-	command,
-	sample,
+	/** @type {string} */ command,
+	/** @type {import('./samples').Sample} */ sample,
 ) {
 	const packageJsonPath = path.join(sample.path, 'package.json');
 	if (fs.existsSync(packageJsonPath)) {

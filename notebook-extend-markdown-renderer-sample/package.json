@@ -4,25 +4,28 @@
 	"version": "0.0.1",
 	"private": false,
 	"description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
 	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
 	},
 	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
 	},
 	"type": "module",
 	"scripts": {
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"Document": "Document 'Source/**/*.ts'",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"test-compile": "tsc -p ./",
-		"vscode:prepublish": "webpack --mode production",
 		"webpack": "webpack --mode development",
 		"webpack-dev": "webpack --mode development --watch"
 	},
@@ -39,15 +42,11 @@
 		]
 	},
 	"devDependencies": {
-		"@types/markdown-it": "^12.2.3",
-		"@types/vscode-notebook-renderer": "^1.57.8",
-		"@types/webpack-env": "^1.17.0",
-		"markdown-it-emoji": "^2.0.2",
-		"ts-loader": "^9.2.2",
-		"typescript": "^5.4.2",
-		"typescript-esbuild": "0.4.5",
-		"webpack": "^5.38.1",
-		"webpack-cli": "^4.7.0"
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/markdown-it": "14.0.1",
+		"markdown-it-emoji": "3.0.0",
+		"ts-loader": "9.5.1"
 	},
 	"publishConfig": {
 		"access": "public"

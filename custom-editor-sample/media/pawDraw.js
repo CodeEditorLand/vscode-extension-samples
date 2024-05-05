@@ -9,13 +9,13 @@
 	 * A drawn line.
 	 */
 	class Stroke {
-		constructor(color, stroke) {
+		constructor(/** @type {string} */ color, /** @type {Array<[number, number]> | undefined} */ stroke) {
 			this.color = color;
 			/** @type {Array<[number, number]>} */
 			this.stroke = stroke || [];
 		}
 
-		addPoint(x, y) {
+		addPoint(/** @type {number} */ x, /** @type {number} */ y) {
 			this.stroke.push([x, y])
 		}
 	}
@@ -42,7 +42,7 @@
 	}
 
 	class PawDrawEditor {
-		constructor( parent) {
+		constructor( /** @type {HTMLElement} */ parent) {
 			this.ready = false;
 
 			this.editable = false;
@@ -58,13 +58,13 @@
 			this._initElements(parent);
 		}
 
-		addPoint(x, y) {
+		addPoint(/** @type {number} */ x, /** @type {number} */ y) {
 			if (this.currentStroke) {
 				this.currentStroke.addPoint(x, y)
 			}
 		}
 
-		beginStoke(color) {
+		beginStoke(/** @type {string} */ color) {
 			this.currentStroke = new Stroke(color);
 			this.strokes.push(this.currentStroke);
 		}
@@ -77,14 +77,14 @@
 
 		setEditable(editable) {
 			this.editable = editable;
-			const colorButtons = (document.querySelectorAll('.drawing-controls button'));
+			const colorButtons = /** @type {NodeListOf<HTMLButtonElement>} */ (document.querySelectorAll('.drawing-controls button'));
 			for (const colorButton of colorButtons) {
 				colorButton.disabled = !editable;
 			}
 		}
 
-		_initElements(parent) {
-			const colorButtons = (document.querySelectorAll('.drawing-controls button'));
+		_initElements(/** @type {HTMLElement} */ parent) {
+			const colorButtons = /** @type {NodeListOf<HTMLButtonElement>} */ (document.querySelectorAll('.drawing-controls button'));
 			for (const colorButton of colorButtons) {
 				colorButton.addEventListener('click', e => {
 					e.stopPropagation();

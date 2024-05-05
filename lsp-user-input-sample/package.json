@@ -4,31 +4,32 @@
 	"version": "0.0.1",
 	"private": false,
 	"description": "Sample to demonstrate code actions with UI",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples#readme",
 	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionSamples/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionSamples.git"
 	},
 	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
 	},
 	"type": "module",
 	"main": "./client/out/extension",
 	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
 		"clean": "rimraf client/out && rimraf server/out",
 		"compile": "tsc -b",
 		"compile:client": "tsc -b ./client/tsconfig.json",
 		"compile:server": "tsc -b ./server/tsconfig.json",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run webpack",
-		"watch": "tsc -b -w",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"webpack": "npm run clean && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
 		"webpack:dev": "npm run clean && webpack --mode none --config ./client/webpack.config.js && webpack --mode none --config ./server/webpack.config.js"
 	},
@@ -36,14 +37,12 @@
 		"onLanguage:plaintext"
 	],
 	"devDependencies": {
-		"@types/node": "^18.11.9",
-		"merge-options": "^3.0.4",
-		"rimraf": "^5.0.5",
-		"ts-loader": "^9.5.1",
-		"typescript": "^5.3.3",
-		"typescript-esbuild": "0.4.5",
-		"webpack": "^5.89.0",
-		"webpack-cli": "^5.1.4"
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "20.12.7",
+		"merge-options": "3.0.4",
+		"rimraf": "5.0.5",
+		"ts-loader": "9.5.1"
 	},
 	"publishConfig": {
 		"access": "public"
