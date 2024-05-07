@@ -7,7 +7,7 @@
 
     const oldState = vscode.getState() || { colors: [] };
 
-    /** @type {Array<{ value: string }>} */
+    
     let colors = oldState.colors;
 
     updateColorList(colors);

@@ -9,13 +9,13 @@
 	 * A drawn line.
 	 */
 	class Stroke {
-		constructor(/** @type {string} */ color, /** @type {Array<[number, number]> | undefined} */ stroke) {
+		constructor( stroke) {
 			this.color = color;
-			/** @type {Array<[number, number]>} */
+			
 			this.stroke = stroke || [];
 		}
 
-		addPoint(/** @type {number} */ x, /** @type {number} */ y) {
+		addPoint( y) {
 			this.stroke.push([x, y])
 		}
 	}
@@ -42,29 +42,29 @@
 	}
 
 	class PawDrawEditor {
-		constructor( /** @type {HTMLElement} */ parent) {
+		constructor(  parent) {
 			this.ready = false;
 
 			this.editable = false;
 
 			this.drawingColor = 'black';
 
-			/** @type {Array<Stroke>} */
+			
 			this.strokes = [];
 
-			/** @type {Stroke | undefined} */
+			
 			this.currentStroke = undefined;
 
 			this._initElements(parent);
 		}
 
-		addPoint(/** @type {number} */ x, /** @type {number} */ y) {
+		addPoint( y) {
 			if (this.currentStroke) {
 				this.currentStroke.addPoint(x, y)
 			}
 		}
 
-		beginStoke(/** @type {string} */ color) {
+		beginStoke( color) {
 			this.currentStroke = new Stroke(color);
 			this.strokes.push(this.currentStroke);
 		}
@@ -77,14 +77,14 @@
 
 		setEditable(editable) {
 			this.editable = editable;
-			const colorButtons = /** @type {NodeListOf<HTMLButtonElement>} */ (document.querySelectorAll('.drawing-controls button'));
+			const colorButtons =  (document.querySelectorAll('.drawing-controls button'));
 			for (const colorButton of colorButtons) {
 				colorButton.disabled = !editable;
 			}
 		}
 
-		_initElements(/** @type {HTMLElement} */ parent) {
-			const colorButtons = /** @type {NodeListOf<HTMLButtonElement>} */ (document.querySelectorAll('.drawing-controls button'));
+		_initElements( parent) {
+			const colorButtons =  (document.querySelectorAll('.drawing-controls button'));
 			for (const colorButton of colorButtons) {
 				colorButton.addEventListener('click', e => {
 					e.stopPropagation();
@@ -208,7 +208,7 @@
 			this._redraw();
 		}
 
-		/** @return {Promise<Uint8Array>} */
+		
 		async getImageData() {
 			const outCanvas = document.createElement('canvas');
 			outCanvas.width = this.drawingCanvas.width;

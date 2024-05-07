@@ -10,7 +10,7 @@
 	const vscode = acquireVsCodeApi();
 
 
-	const notesContainer = /** @type {HTMLElement} */ (document.querySelector('.notes'));
+	const notesContainer =  (document.querySelector('.notes'));
 
 	const addButtonContainer = document.querySelector('.add-button');
 	addButtonContainer.querySelector('button').addEventListener('click', () => {
@@ -27,7 +27,7 @@
 	/**
 	 * Render the document in the webview.
 	 */
-	function updateContent(/** @type {string} */ text) {
+	function updateContent( text) {
 		let json;
 		try {
 			if (!text) {

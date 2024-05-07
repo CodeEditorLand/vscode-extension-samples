@@ -9,11 +9,11 @@
 'use strict';
 
 //@ts-check
-/** @typedef {import('webpack').Configuration} WebpackConfig **/
+
 
 const path = require('path');
 
-/** @type WebpackConfig */
+
 const browserClientConfig = {
 	context: path.join(__dirname, 'client'),
 	mode: 'none',
@@ -57,7 +57,7 @@ const browserClientConfig = {
 	devtool: 'nosources-source-map',
 };
 
-/** @type WebpackConfig */
+
 const browserServerConfig = {
 	context: path.join(__dirname, 'server'),
 	mode: 'none',
