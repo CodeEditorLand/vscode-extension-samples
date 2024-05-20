@@ -2,59 +2,45 @@
 	"name": "vscode-comment-api-example",
 	"displayName": "Comment API Sample",
 	"description": "Comment API Sample",
-	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"engines": {
-		"vscode": "^1.73.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"*"
-	],
 	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
 				"command": "mywiki.createNote",
-				"title": "Create Note",
-				"enablement": "!commentIsEmpty"
+				"enablement": "!commentIsEmpty",
+				"title": "Create Note"
 			},
 			{
 				"command": "mywiki.replyNote",
-				"title": "Reply",
-				"enablement": "!commentIsEmpty"
+				"enablement": "!commentIsEmpty",
+				"title": "Reply"
 			},
 			{
 				"command": "mywiki.editNote",
-				"title": "Edit",
 				"icon": {
 					"dark": "resources/edit_inverse.svg",
 					"light": "resources/edit.svg"
-				}
+				},
+				"title": "Edit"
 			},
 			{
 				"command": "mywiki.deleteNote",
-				"title": "Delete",
 				"icon": {
 					"dark": "resources/close_inverse.svg",
 					"light": "resources/close.svg"
-				}
+				},
+				"title": "Delete"
 			},
 			{
 				"command": "mywiki.deleteNoteComment",
-				"title": "Delete",
 				"icon": {
 					"dark": "resources/close_inverse.svg",
 					"light": "resources/close.svg"
-				}
+				},
+				"title": "Delete"
 			},
 			{
 				"command": "mywiki.saveNote",
@@ -66,8 +52,8 @@
 			},
 			{
 				"command": "mywiki.startDraft",
-				"title": "Start Draft",
-				"enablement": "!commentIsEmpty"
+				"enablement": "!commentIsEmpty",
+				"title": "Start Draft"
 			},
 			{
 				"command": "mywiki.finishDraft",
@@ -97,11 +83,28 @@
 					"when": "false"
 				}
 			],
-			"comments/commentThread/title": [
+			"comments/comment/context": [
 				{
-					"command": "mywiki.deleteNote",
-					"group": "navigation",
-					"when": "commentController == comment-sample && !commentThreadIsEmpty"
+					"command": "mywiki.cancelsaveNote",
+					"group": "inline@1",
+					"when": "commentController == comment-sample"
+				},
+				{
+					"command": "mywiki.saveNote",
+					"group": "inline@2",
+					"when": "commentController == comment-sample"
+				}
+			],
+			"comments/comment/title": [
+				{
+					"command": "mywiki.editNote",
+					"group": "group@1",
+					"when": "commentController == comment-sample"
+				},
+				{
+					"command": "mywiki.deleteNoteComment",
+					"group": "group@2",
+					"when": "commentController == comment-sample && comment == canDelete"
 				}
 			],
 			"comments/commentThread/context": [
@@ -126,44 +129,19 @@
 					"when": "commentController == comment-sample && commentThread == draft"
 				}
 			],
-			"comments/comment/title": [
+			"comments/commentThread/title": [
 				{
-					"command": "mywiki.editNote",
-					"group": "group@1",
-					"when": "commentController == comment-sample"
-				},
-				{
-					"command": "mywiki.deleteNoteComment",
-					"group": "group@2",
-					"when": "commentController == comment-sample && comment == canDelete"
-				}
-			],
-			"comments/comment/context": [
-				{
-					"command": "mywiki.cancelsaveNote",
-					"group": "inline@1",
-					"when": "commentController == comment-sample"
-				},
-				{
-					"command": "mywiki.saveNote",
-					"group": "inline@2",
-					"when": "commentController == comment-sample"
+					"command": "mywiki.deleteNote",
+					"group": "navigation",
+					"when": "commentController == comment-sample && !commentThreadIsEmpty"
 				}
 			]
 		}
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"lint": "eslint \"src/**/*.ts\""
-	},
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
-		"@types/node": "^18",
-		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.4.2"
+		"@types/node": "^18"
 	}
 }
