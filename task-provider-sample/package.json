@@ -2,53 +2,71 @@
 	"name": "task-provider-samples",
 	"displayName": "Task Provider Samples",
 	"description": "Samples for VSCode's view API",
-	"main": "./out/extension",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"compile": "tsc -b",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
 	},
-	"contributes": {
-		"taskDefinitions": [
-			{
-				"properties": {
-					"file": {
-						"description": "The Rake file that provides the task. Can be omitted.",
-						"type": "string"
-					},
-					"task": {
-						"description": "The Rake task to customize",
-						"type": "string"
-					}
-				},
-				"required": [
-					"task"
-				],
-				"type": "rake"
-			},
-			{
-				"properties": {
-					"flags": {
-						"description": "Additional build flags.",
-						"type": "array"
-					},
-					"flavor": {
-						"description": "The build flavor. Should be either '32' or '64'.",
-						"type": "string"
-					}
-				},
-				"required": [
-					"flavor"
-				],
-				"type": "custombuildscript"
-			}
-		]
+	"engines": {
+		"vscode": "^1.73.0"
 	},
+	"categories": [
+		"Other"
+	],
 	"activationEvents": [
 		"onCommand:workbench.action.tasks.runTask"
 	],
+	"main": "./out/extension",
+	"contributes": {
+		"taskDefinitions": [
+			{
+				"type": "rake",
+				"required": [
+					"task"
+				],
+				"properties": {
+					"task": {
+						"type": "string",
+						"description": "The Rake task to customize"
+					},
+					"file": {
+						"type": "string",
+						"description": "The Rake file that provides the task. Can be omitted."
+					}
+				}
+			},
+			{
+				"type": "custombuildscript",
+				"required": [
+					"flavor"
+				],
+				"properties": {
+					"flavor": {
+						"type": "string",
+						"description": "The build flavor. Should be either '32' or '64'."
+					},
+					"flags": {
+						"type": "array",
+						"description": "Additional build flags."
+					}
+				}
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -b",
+		"watch": "tsc -b -w"
+	},
 	"devDependencies": {
-		"@playform/build": "0.0.7",
-		"@types/node": "20"
+		"@types/node": "^18",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.4.2"
 	}
 }

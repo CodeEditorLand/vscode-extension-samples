@@ -1,10 +1,9 @@
 {
 	"name": "product-icon-theme-sample",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"showFont": "open ./theme/vscode-10.html",
-		"updateFont": "node ./build/updateFont.js"
+	"version": "0.1.0",
+	"publisher": "vscode-samples",
+	"engines": {
+		"vscode": "*"
 	},
 	"contributes": {
 		"productIconThemes": [
@@ -15,9 +14,12 @@
 			}
 		]
 	},
+	"scripts": {
+		"updateFont": "node ./build/updateFont.js",
+		"showFont": "open ./theme/vscode-10.html"
+	},
 	"devDependencies": {
-		"@playform/build": "0.0.7",
-		"open": "10.1.0",
-		"webfont": "11.2.26"
+		"open": "^7.0.3",
+		"webfont": "^11.2.4"
 	}
 }

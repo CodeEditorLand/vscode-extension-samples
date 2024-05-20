@@ -1,11 +1,22 @@
 {
 	"name": "server",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
+	"version": "1.0.0",
+	"private": true,
+	"author": "Microsoft Corporation",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples.git"
 	},
-	"dependencies": {},
-	"devDependencies": {
-		"@playform/build": "0.0.7"
+	"bugs": {
+		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+	},
+	"engines": {
+		"node": "*"
+	},
+	"dependencies": {
+		"vscode-uri": "^3.0.8",
+		"vscode-languageserver": "^9.0.1",
+		"vscode-languageserver-textdocument": "^1.0.11"
 	}
 }

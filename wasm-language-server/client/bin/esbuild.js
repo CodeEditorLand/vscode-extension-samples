@@ -9,7 +9,7 @@ const esbuild = require('esbuild');
  * @typedef {import('esbuild').BuildOptions} BuildOptions
  */
 
-
+/** @type BuildOptions */
 const sharedWebOptions = {
 	bundle: true,
 	external: ['vscode'],
@@ -18,7 +18,7 @@ const sharedWebOptions = {
 	sourcemap: true,
 };
 
-
+/** @type BuildOptions */
 const webOptions = {
 	entryPoints: ['src/extension.ts'],
 	outfile: 'dist/web/extension.js',
@@ -26,7 +26,7 @@ const webOptions = {
 	...sharedWebOptions,
 };
 
-
+/** @type BuildOptions */
 const sharedDesktopOptions = {
 	bundle: true,
 	external: ['vscode'],
@@ -35,7 +35,7 @@ const sharedDesktopOptions = {
 	sourcemap: true,
 };
 
-
+/** @type BuildOptions */
 const desktopOptions = {
 	entryPoints: ['src/extension.ts'],
 	outfile: 'dist/desktop/extension.js',

@@ -1,12 +1,24 @@
 {
 	"name": "client",
 	"displayName": "Code Action UI Sample - Client",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
+	"version": "1.0.0",
+	"private": true,
+	"author": "Microsoft Corporation",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples.git"
 	},
-	"dependencies": {},
+	"bugs": {
+		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+	},
+	"engines": {
+		"vscode": "^1.84.0"
+	},
 	"devDependencies": {
-		"@playform/build": "0.0.7"
+		"@types/vscode": "^1.84.0"
+	},
+	"dependencies": {
+		"vscode-languageclient": "^9.0.1"
 	}
 }

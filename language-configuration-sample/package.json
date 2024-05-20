@@ -1,27 +1,28 @@
 {
-	"name": "language-configuration-sample",
-	"displayName": "Language Configuration Sample",
-	"description": "Language Configuration Sample",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"contributes": {
-		"languages": [
-			{
-				"aliases": [
-					"js",
-					"JavaScript"
-				],
-				"configuration": "./language-configuration.json",
-				"extensions": [
-					".js"
-				],
-				"id": "javascript"
-			}
-		]
-	},
-	"devDependencies": {
-		"@playform/build": "0.0.7"
-	}
+  "name": "language-configuration-sample",
+  "displayName": "Language Configuration Sample",
+  "description": "Language Configuration Sample",
+  "version": "0.0.1",
+  "publisher": "vscode-samples",
+  "engines": {
+    "vscode": "^1.28.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "javascript",
+        "extensions": [
+          ".js"
+        ],
+        "aliases": [
+          "js",
+          "JavaScript"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ]
+  }
 }

@@ -10,7 +10,7 @@
  * @property {boolean} [excludeFromReadme] - Don't generate a readme entry for this extension
  */
 
-
+/** @type {Sample[]} */
 const samples = [
   {
     description: 'Webview Sample',
@@ -291,7 +291,7 @@ const samples = [
 ]
 
 /** LSP specific samples */
-
+/** @type {Sample[]} */
 const lspSamples = [
   {
     description: 'Snippet Sample',

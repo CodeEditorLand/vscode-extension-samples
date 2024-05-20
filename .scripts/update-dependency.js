@@ -8,9 +8,9 @@ const child_process = require('child_process');
 const { samples } = require('./samples');
 
 function setVersion(
-	 dependencyName,
-	 version,
-	 sample
+	/** @type {string} */ dependencyName,
+	/** @type {string} */ version,
+	/** @type {import('./samples').Sample} */ sample
 ) {
 	const packageJsonPath = path.join(sample.path, 'package.json');
 	const packageJsonContents = fs.readFileSync(packageJsonPath).toString();

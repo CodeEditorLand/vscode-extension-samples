@@ -2,10 +2,14 @@
 	"name": "snippet-sample",
 	"displayName": "Snippet Sample",
 	"description": "Snippet Sample",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"engines": {
+		"vscode": "^1.28.0"
 	},
+	"categories": [
+		"Snippets"
+	],
 	"contributes": {
 		"snippets": [
 			{
@@ -13,8 +17,5 @@
 				"path": "./snippets.json"
 			}
 		]
-	},
-	"devDependencies": {
-		"@playform/build": "0.0.7"
 	}
 }
