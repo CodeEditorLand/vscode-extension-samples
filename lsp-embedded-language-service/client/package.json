@@ -3,6 +3,6 @@
 	"description": "VSCode part of a language server",
 	"dependencies": {},
 	"devDependencies": {
-		"@types/node": "16.18.34"
+		"@types/node": "20.12.12"
 	}
 }

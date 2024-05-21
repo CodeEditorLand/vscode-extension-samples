@@ -22,8 +22,8 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@types/node": "18.14.6",
-		"esbuild": "0.20.2",
-		"serve": "14.2.1"
+		"@types/node": "20.12.12",
+		"esbuild": "0.21.3",
+		"serve": "14.2.3"
 	}
 }
