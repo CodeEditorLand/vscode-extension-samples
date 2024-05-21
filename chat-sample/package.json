@@ -35,7 +35,7 @@
 	},
 	"activationEvents": [],
 	"devDependencies": {
-		"@types/node": "^20.5.9"
+		"@types/node": "20.5.9"
 	},
 	"extensionDependencies": [
 		"github.copilot-chat"

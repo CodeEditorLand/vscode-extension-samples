@@ -16,9 +16,9 @@
 	},
 	"activationEvents": [],
 	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/node": "^18",
-		"glob": "^7.1.4",
-		"source-map-support": "^0.5.12"
+		"@types/glob": "7.1.1",
+		"@types/node": "18",
+		"glob": "7.1.4",
+		"source-map-support": "0.5.12"
 	}
 }
