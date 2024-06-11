@@ -41,9 +41,9 @@
 	},
 	"description": "Examples of notification types and various configurations",
 	"devDependencies": {
-		"@types/glob": "^7.2.0",
-		"@types/node": "16.x",
-		"glob": "^8.0.3"
+		"@types/glob": "^8.1.0",
+		"@types/node": "20.x",
+		"glob": "^10.4.1"
 	},
 	"displayName": "Notifications Sample",
 	"main": "./out/extension.js",

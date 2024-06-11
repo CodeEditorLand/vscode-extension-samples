@@ -19,7 +19,7 @@
 	},
 	"description": "Sample showing how to implement an inline completion provider",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "^20"
 	},
 	"displayName": "Inline Completion Sample",
 	"enabledApiProposals": [

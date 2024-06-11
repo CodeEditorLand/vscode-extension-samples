@@ -4,7 +4,7 @@
 	],
 	"description": "Call hierarchy provider sample",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "^20"
 	},
 	"displayName": "call-hierarchy-sample",
 	"main": "./out/extension.js",

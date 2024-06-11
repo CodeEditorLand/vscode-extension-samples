@@ -4,8 +4,8 @@
 	],
 	"devDependencies": {
 		"@types/glob": "^8.1.0",
-		"@types/node": "^18",
-		"glob": "^8.1.0"
+		"@types/node": "^20",
+		"glob": "^10.4.1"
 	},
 	"displayName": "Notebook Format Code Action Provider Sample",
 	"main": "./out/extension.js",

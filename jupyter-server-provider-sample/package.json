@@ -5,7 +5,7 @@
 	],
 	"description": "Jupyter Notebook Kernel Picker with custom servers using the Jupyter API sample",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "^20"
 	},
 	"displayName": "Jupyter Server Provider Sample",
 	"extensionDependencies": [

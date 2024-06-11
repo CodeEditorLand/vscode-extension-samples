@@ -12,7 +12,7 @@
 	},
 	"description": "Show a long running operation in the notification area",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "^20"
 	},
 	"displayName": "Notification Progress",
 	"main": "./out/extension.js",

@@ -133,7 +133,7 @@
 	},
 	"description": "How to contribute and use configurations in VS Code",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "^20"
 	},
 	"displayName": "Configuration Sample",
 	"main": "./out/extension",

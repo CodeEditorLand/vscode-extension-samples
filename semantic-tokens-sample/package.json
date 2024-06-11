@@ -12,7 +12,7 @@
 	},
 	"description": "Sample showing the Semantic Tokens Provider API",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "^20"
 	},
 	"displayName": "semantic-tokens-sample",
 	"main": "./out/extension.js",

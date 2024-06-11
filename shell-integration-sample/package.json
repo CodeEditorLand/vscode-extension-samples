@@ -12,7 +12,7 @@
 	},
 	"description": "",
 	"devDependencies": {
-		"@types/node": "18.x"
+		"@types/node": "20.x"
 	},
 	"displayName": "shell-integration-sample",
 	"enabledApiProposals": [

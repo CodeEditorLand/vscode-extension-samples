@@ -29,7 +29,7 @@
 	},
 	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"devDependencies": {
-		"@types/node": "^20.5.9",
+		"@types/node": "^20.14.2",
 		"@vscode/prompt-tsx": "^0.2.1-alpha",
 		"run-script-os": "^1.1.6"
 	},
