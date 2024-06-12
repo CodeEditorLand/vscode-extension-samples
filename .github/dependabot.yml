@@ -110,6 +110,12 @@ updates:
       versioning-strategy: increase
 
     - package-ecosystem: "npm"
+      directory: "/esbuild-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
       directory: "/extension-terminal-sample"
       schedule:
           interval: "daily"
@@ -483,6 +489,18 @@ updates:
 
     - package-ecosystem: "npm"
       directory: "/virtual-document-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "cargo"
+      directory: "/wasm-component-model-async"
+      schedule:
+          interval: "daily"
+      versioning-strategy: lockfile-only
+
+    - package-ecosystem: "npm"
+      directory: "/wasm-component-model-async"
       schedule:
           interval: "daily"
       versioning-strategy: increase

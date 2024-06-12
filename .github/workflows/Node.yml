@@ -61,7 +61,7 @@ jobs:
 
             - uses: pnpm/action-setup@v4.0.0
               with:
-                  version: 8.15.5
+                  version: 9.3.0
                   run_install: |
                       - recursive: true
                         args: [
@@ -81,6 +81,9 @@ jobs:
                   cache-dependency-path: ./authenticationprovider-sample/pnpm-lock.yaml
 
             - run: pnpm install
+              working-directory: ./authenticationprovider-sample
+
+            - run: pnpm run test
               working-directory: ./authenticationprovider-sample
 
             - uses: actions/setup-node@v4.0.2
@@ -222,6 +225,15 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
+                  cache-dependency-path: ./esbuild-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./esbuild-sample
+
+            - uses: actions/setup-node@v4.0.2
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
                   cache-dependency-path: ./extension-terminal-sample/pnpm-lock.yaml
 
             - run: pnpm install
@@ -252,6 +264,9 @@ jobs:
                   cache-dependency-path: ./getting-started-sample/pnpm-lock.yaml
 
             - run: pnpm install
+              working-directory: ./getting-started-sample
+
+            - run: pnpm run test
               working-directory: ./getting-started-sample
 
             - uses: actions/setup-node@v4.0.2
@@ -290,6 +305,9 @@ jobs:
             - run: pnpm install
               working-directory: ./helloworld-test-cli-sample
 
+            - run: pnpm run test
+              working-directory: ./helloworld-test-cli-sample
+
             - uses: actions/setup-node@v4.0.2
               with:
                   node-version: ${{ matrix.node-version }}
@@ -299,6 +317,9 @@ jobs:
             - run: pnpm install
               working-directory: ./helloworld-test-sample
 
+            - run: pnpm run test
+              working-directory: ./helloworld-test-sample
+
             - uses: actions/setup-node@v4.0.2
               with:
                   node-version: ${{ matrix.node-version }}
@@ -306,6 +327,9 @@ jobs:
                   cache-dependency-path: ./helloworld-web-sample/pnpm-lock.yaml
 
             - run: pnpm install
+              working-directory: ./helloworld-web-sample
+
+            - run: pnpm run test
               working-directory: ./helloworld-web-sample
 
             - uses: actions/setup-node@v4.0.2
@@ -416,6 +440,9 @@ jobs:
             - run: pnpm install
               working-directory: ./lsp-log-streaming-sample
 
+            - run: pnpm run test
+              working-directory: ./lsp-log-streaming-sample
+
             - uses: actions/setup-node@v4.0.2
               with:
                   node-version: ${{ matrix.node-version }}
@@ -468,6 +495,9 @@ jobs:
                   cache-dependency-path: ./lsp-sample/pnpm-lock.yaml
 
             - run: pnpm install
+              working-directory: ./lsp-sample
+
+            - run: pnpm run test
               working-directory: ./lsp-sample
 
             - uses: actions/setup-node@v4.0.2
@@ -740,6 +770,9 @@ jobs:
             - run: pnpm install
               working-directory: ./uri-handler-sample
 
+            - run: pnpm run test
+              working-directory: ./uri-handler-sample
+
             - uses: actions/setup-node@v4.0.2
               with:
                   node-version: ${{ matrix.node-version }}
@@ -757,6 +790,23 @@ jobs:
 
             - run: pnpm install
               working-directory: ./virtual-document-sample
+
+            - uses: actions/setup-node@v4.0.2
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./wasm-component-model-async/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./wasm-component-model-async
+
+            - run: pnpm run build
+              working-directory: .
+
+            - uses: actions/upload-artifact@v4.3.3
+              with:
+                  name: .-wasm-component-model-async-Node-${{ matrix.node-version }}-Target
+                  path: ./wasm-component-model-async/Target
 
             - uses: actions/setup-node@v4.0.2
               with:
@@ -869,4 +919,7 @@ jobs:
                   cache-dependency-path: ./welcome-view-content-sample/pnpm-lock.yaml
 
             - run: pnpm install
+              working-directory: ./welcome-view-content-sample
+
+            - run: pnpm run test
               working-directory: ./welcome-view-content-sample
