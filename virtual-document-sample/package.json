@@ -28,11 +28,11 @@
 		}
 	},
 	"dependencies": {
-		"cowsay": "^1.6.0"
+		"cowsay": "1.6.0"
 	},
 	"description": "A sample for virtual document",
 	"devDependencies": {
-		"@types/node": "^20"
+		"@types/node": "20"
 	},
 	"displayName": "Cowsay in virtual documents",
 	"main": "./out/extension.js",

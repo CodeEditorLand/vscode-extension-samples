@@ -10,9 +10,9 @@
 	},
 	"description": "Uri Handler Sample",
 	"devDependencies": {
-		"@types/glob": "^8.1.0",
-		"@types/node": "^20",
-		"glob": "^10.4.1"
+		"@types/glob": "8.1.0",
+		"@types/node": "20",
+		"glob": "10.4.1"
 	},
 	"main": "./out/extension.js",
 	"name": "uri-handler-sample",

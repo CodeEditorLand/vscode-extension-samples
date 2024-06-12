@@ -3,15 +3,15 @@
 		"onFileSystem:datei"
 	],
 	"dependencies": {
-		"mkdirp": "^3.0.1",
-		"rimraf": "^5.0.7"
+		"mkdirp": "3.0.1",
+		"rimraf": "5.0.7"
 	},
 	"description": "",
 	"devDependencies": {
-		"@types/mkdirp": "^1.0.2",
-		"@types/node": "^20",
-		"@types/promisify-node": "^0.4.3",
-		"@types/rimraf": "^3.0.2"
+		"@types/mkdirp": "1.0.2",
+		"@types/node": "20",
+		"@types/promisify-node": "0.4.3",
+		"@types/rimraf": "3.0.2"
 	},
 	"displayName": "nodefs-provider-sample",
 	"main": "./out/extension.js",

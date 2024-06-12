@@ -18,7 +18,7 @@
 	},
 	"description": "Cat Coding - A Webview API Sample",
 	"devDependencies": {
-		"@types/node": "^20"
+		"@types/node": "20"
 	},
 	"main": "./out/extension.js",
 	"name": "cat-coding",

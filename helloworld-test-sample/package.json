@@ -10,10 +10,10 @@
 	},
 	"description": "HelloWorld example for VS Code",
 	"devDependencies": {
-		"@types/glob": "^8.1.0",
-		"@types/node": "^20",
-		"glob": "^10.4.1",
-		"source-map-support": "^0.5.21"
+		"@types/glob": "8.1.0",
+		"@types/node": "20",
+		"glob": "10.4.1",
+		"source-map-support": "0.5.21"
 	},
 	"displayName": "helloworld-sample",
 	"main": "./out/extension.js",
