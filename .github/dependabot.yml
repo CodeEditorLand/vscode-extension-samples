@@ -1,0 +1,566 @@
+version: 2
+enable-beta-ecosystems: true
+
+updates:
+    - package-ecosystem: "github-actions"
+      directory: "/"
+      schedule:
+          interval: "daily"
+
+    - package-ecosystem: "npm"
+      directory: "/authenticationprovider-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/basic-multi-root-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/call-hierarchy-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/chat-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/code-actions-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/codelens-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/comment-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/completions-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/configuration-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/contentprovider-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/custom-data-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/custom-editor-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/decorator-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/diagnostic-related-information-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/document-editing-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/document-paste"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/drop-on-document"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/extension-terminal-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/fsconsumer-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/fsprovider-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/getting-started-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/github-authentication-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/helloworld-minimal-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/helloworld-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/helloworld-test-cli-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/helloworld-test-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/helloworld-web-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/inline-completions"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/jupyter-kernel-execution-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/jupyter-server-provider-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/l10n-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/language-configuration-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-embedded-language-service/client"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-embedded-language-service"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-embedded-language-service/server"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-embedded-request-forwarding/client"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-embedded-request-forwarding"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-embedded-request-forwarding/server"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-log-streaming-sample/client"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-log-streaming-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-log-streaming-sample/server"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-multi-server-sample/client"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-multi-server-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-multi-server-sample/server"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-sample/client"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-sample/server"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-user-input-sample/client"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-user-input-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-user-input-sample/server"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-web-extension-sample/client"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-web-extension-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/lsp-web-extension-sample/server"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/nodefs-provider-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/notebook-extend-markdown-renderer-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/notebook-format-code-action-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/notebook-renderer-react-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/notebook-renderer-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/notebook-serializer-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/notifications-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/product-icon-theme-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/progress-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/proposed-api-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/quickinput-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/semantic-tokens-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/shell-integration-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/snippet-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/source-control-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/statusbar-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/tabs-api-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/task-provider-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/telemetry-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/terminal-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/test-provider-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/theme-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/tree-view-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/uri-handler-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/vim-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/virtual-document-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "cargo"
+      directory: "/wasm-component-model-resource"
+      schedule:
+          interval: "daily"
+      versioning-strategy: lockfile-only
+
+    - package-ecosystem: "npm"
+      directory: "/wasm-component-model-resource"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "cargo"
+      directory: "/wasm-component-model"
+      schedule:
+          interval: "daily"
+      versioning-strategy: lockfile-only
+
+    - package-ecosystem: "npm"
+      directory: "/wasm-component-model"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/wasm-language-server/client"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/wasm-language-server"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "cargo"
+      directory: "/wasm-language-server/server"
+      schedule:
+          interval: "daily"
+      versioning-strategy: lockfile-only
+
+    - package-ecosystem: "npm"
+      directory: "/wasm-language-server/server"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/webpack-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/webview-codicons-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/webview-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/webview-view-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/welcome-view-content-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
