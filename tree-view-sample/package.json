@@ -206,15 +206,15 @@
 	],
 	"dependencies": {
 		"ftp": "^0.3.10",
-		"jsonc-parser": "^0.4.2",
-		"minimist": "^1.2.6",
-		"mkdirp": "^0.5.1",
-		"rimraf": "^2.6.2"
+		"jsonc-parser": "^3.2.1",
+		"minimist": "^1.2.8",
+		"mkdirp": "^3.0.1",
+		"rimraf": "^5.0.7"
 	},
 	"devDependencies": {
-		"@types/ftp": "^0.3.33",
-		"@types/mkdirp": "^0.5.2",
-		"@types/node": "^18",
-		"@types/rimraf": "^2.0.2"
+		"@types/ftp": "^0.3.36",
+		"@types/mkdirp": "^1.0.2",
+		"@types/node": "^20",
+		"@types/rimraf": "^3.0.2"
 	}
 }
