@@ -15,7 +15,7 @@
 	"scripts": {},
 	"dependencies": {
 		"vscode-languageclient": "8.1.0-next.6",
-		"ws": "8.12.0"
+		"ws": "8.17.1"
 	},
 	"devDependencies": {
 		"@types/ws": "8.5.4",
