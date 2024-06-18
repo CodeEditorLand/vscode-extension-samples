@@ -6,7 +6,7 @@
 	"private": true,
 	"license": "MIT",
 	"engines": {
-		"vscode": "^1.74.0"
+		"vscode": "1.74.0"
 	},
 	"categories": [
 		"Other"
@@ -33,12 +33,12 @@
 		"watch": "tsc -w -p ./"
 	},
 	"devDependencies": {
-		"@types/node": "^20",
-		"@types/vscode": "^1.90.0",
-		"@typescript-eslint/eslint-plugin": "^7.13.1",
-		"@typescript-eslint/parser": "^7.13.1",
+		"@types/node": "20",
+		"@types/vscode": "1.90.0",
+		"@typescript-eslint/eslint-plugin": "7.13.1",
+		"@typescript-eslint/parser": "7.13.1",
 		"@vscode/codicons": "0.0.36",
-		"eslint": "^9.5.0",
-		"typescript": "^5.4.5"
+		"eslint": "9.5.0",
+		"typescript": "5.4.5"
 	}
 }

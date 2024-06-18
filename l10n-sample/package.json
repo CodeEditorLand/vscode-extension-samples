@@ -11,7 +11,7 @@
 		"url": "https://github.com/Microsoft/vscode-extension-samples"
 	},
 	"engines": {
-		"vscode": "^1.74.0"
+		"vscode": "1.74.0"
 	},
 	"categories": [
 		"Other"
@@ -38,20 +38,20 @@
 		"lint": "eslint src --ext ts"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.90.0",
-		"@types/glob": "^8.1.0",
-		"@types/mocha": "^10.0.6",
-		"@types/node": "^20",
-		"@typescript-eslint/eslint-plugin": "^7.13.1",
-		"@typescript-eslint/parser": "^7.13.1",
-		"eslint": "^9.5.0",
-		"glob": "^10.4.1",
-		"mocha": "^10.4.0",
-		"typescript": "^5.4.5",
-		"@vscode/test-electron": "^2.4.0",
-		"@vscode/l10n-dev": "^0.0.35"
+		"@types/vscode": "1.90.0",
+		"@types/glob": "8.1.0",
+		"@types/mocha": "10.0.6",
+		"@types/node": "20",
+		"@typescript-eslint/eslint-plugin": "7.13.1",
+		"@typescript-eslint/parser": "7.13.1",
+		"eslint": "9.5.0",
+		"glob": "10.4.1",
+		"mocha": "10.4.0",
+		"typescript": "5.4.5",
+		"@vscode/test-electron": "2.4.0",
+		"@vscode/l10n-dev": "0.0.35"
 	},
 	"dependencies": {
-		"@vscode/l10n": "^0.0.18"
+		"@vscode/l10n": "0.0.18"
 	}
 }

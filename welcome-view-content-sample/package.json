@@ -6,7 +6,7 @@
   "private": true,
   "license": "MIT",
   "engines": {
-    "vscode": "^1.74.0"
+    "vscode": "1.74.0"
   },
   "categories": [
     "Other"
@@ -36,14 +36,14 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/glob": "^8.1.0",
-    "@types/node": "^20",
-    "@types/vscode": "^1.90.0",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
-    "@vscode/test-electron": "^2.4.0",
-    "eslint": "^9.5.0",
-    "glob": "^10.4.1",
-    "typescript": "^5.4.5"
+    "@types/glob": "8.1.0",
+    "@types/node": "20",
+    "@types/vscode": "1.90.0",
+    "@typescript-eslint/eslint-plugin": "7.13.1",
+    "@typescript-eslint/parser": "7.13.1",
+    "@vscode/test-electron": "2.4.0",
+    "eslint": "9.5.0",
+    "glob": "10.4.1",
+    "typescript": "5.4.5"
   }
 }

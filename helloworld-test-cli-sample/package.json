@@ -6,7 +6,7 @@
 	"publisher": "vscode-samples",
 	"repository": "https://github.com/Microsoft/vscode-extension-samples/helloworld-sample",
 	"engines": {
-		"vscode": "^1.74.0"
+		"vscode": "1.74.0"
 	},
 	"categories": [
 		"Other"
@@ -29,12 +29,12 @@
 		"test": "vscode-test"
 	},
 	"devDependencies": {
-		"@types/mocha": "^10.0.6",
-		"@types/node": "^20.14.5",
-		"@types/vscode": "^1.90.0",
-		"@vscode/test-cli": "^0.0.9",
-		"@vscode/test-electron": "^2.4.0",
-		"mocha": "^10.4.0",
-		"typescript": "^5.4.5"
+		"@types/mocha": "10.0.6",
+		"@types/node": "20.14.5",
+		"@types/vscode": "1.90.0",
+		"@vscode/test-cli": "0.0.9",
+		"@vscode/test-electron": "2.4.0",
+		"mocha": "10.4.0",
+		"typescript": "5.4.5"
 	}
 }

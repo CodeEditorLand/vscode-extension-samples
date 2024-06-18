@@ -5,7 +5,7 @@
   "publisher": "vscode-samples",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.74.0"
+    "vscode": "1.74.0"
   },
   "categories": [
     "Other"
@@ -41,13 +41,13 @@
     "watch": "tsc -b --watch"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.6",
+    "@types/mocha": "10.0.6",
     "@types/node": "20.x",
-    "@types/vscode": "^1.90.0",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
-    "eslint": "^9.5.0",
-    "mocha": "^10.4.0",
-    "typescript": "^5.4.5"
+    "@types/vscode": "1.90.0",
+    "@typescript-eslint/eslint-plugin": "7.13.1",
+    "@typescript-eslint/parser": "7.13.1",
+    "eslint": "9.5.0",
+    "mocha": "10.4.0",
+    "typescript": "5.4.5"
   }
 }

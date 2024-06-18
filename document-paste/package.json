@@ -14,7 +14,7 @@
 		"documentPaste"
 	],
 	"engines": {
-		"vscode": "^1.88.0"
+		"vscode": "1.88.0"
 	},
 	"categories": [
 		"Other"
@@ -33,11 +33,11 @@
 		"postinstall": "npm run download-api"
 	},
 	"devDependencies": {
-		"@types/node": "^20",
-		"@typescript-eslint/eslint-plugin": "^7.13.1",
-		"@typescript-eslint/parser": "^7.13.1",
-		"eslint": "^9.5.0",
-		"typescript": "^5.4.5",
-		"@vscode/dts": "^0.4.0"
+		"@types/node": "20",
+		"@typescript-eslint/eslint-plugin": "7.13.1",
+		"@typescript-eslint/parser": "7.13.1",
+		"eslint": "9.5.0",
+		"typescript": "5.4.5",
+		"@vscode/dts": "0.4.0"
 	}
 }
