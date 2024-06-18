@@ -32,14 +32,14 @@
 		"@vscode/wasm-component-model": "0.1.0-pre.11"
 	},
 	"devDependencies": {
-		"@types/vscode": "1.88.0",
-		"@types/node": "^18.14.6",
-		"@typescript-eslint/eslint-plugin": "^7.6.0",
-		"@typescript-eslint/parser": "^7.6.0",
-		"eslint": "^8.57.0",
+		"@types/vscode": "1.90.0",
+		"@types/node": "^20.14.5",
+		"@typescript-eslint/eslint-plugin": "^7.13.1",
+		"@typescript-eslint/parser": "^7.13.1",
+		"eslint": "^9.5.0",
 		"typescript": "^5.4.5",
-		"esbuild": "^0.20.2",
-		"serve": "^14.2.1"
+		"esbuild": "^0.21.5",
+		"serve": "^14.2.3"
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
