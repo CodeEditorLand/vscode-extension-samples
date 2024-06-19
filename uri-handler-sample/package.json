@@ -1,41 +1,22 @@
 {
-  "name": "uri-handler-sample",
-  "publisher": "vscode-samples",
-  "description": "Uri Handler Sample",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "1.74.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "uri-handler-sample.start",
-        "title": "Start handling Uris"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
-  "devDependencies": {
-    "@types/glob": "8.1.0",
-    "@types/node": "20",
-    "@types/vscode": "1.90.0",
-    "@typescript-eslint/eslint-plugin": "7.13.1",
-    "@typescript-eslint/parser": "7.13.1",
-    "@vscode/test-electron": "2.4.0",
-    "eslint": "9.5.0",
-    "glob": "10.4.1",
-    "typescript": "5.4.5"
-  }
+	"name": "uri-handler-sample",
+	"description": "Uri Handler Sample",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "uri-handler-sample.start",
+				"title": "Start handling Uris"
+			}
+		]
+	},
+	"activationEvents": [],
+	"devDependencies": {
+		"@types/glob": "8.1.0",
+		"@types/node": "20",
+		"glob": "10.4.1"
+	}
 }

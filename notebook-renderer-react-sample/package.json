@@ -1,61 +1,34 @@
 {
-  "name": "notebook-renderer-react-sample",
-  "displayName": "notebook-renderer-react-sample",
-  "description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook built with React.",
-  "version": "0.0.1",
-  "private": true,
-  "license": "MIT",
-  "engines": {
-    "vscode": "1.58.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "contributes": {
-    "notebookRenderer": [
-      {
-        "id": "notebook-renderer-react-github-issues",
-        "entrypoint": "./out/client/index.js",
-        "displayName": "GitHub Issues React-based Renderer",
-        "mimeTypes": [
-          "x-application/github-issues"
-        ]
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile && node out/test/checkNoTestProvider.js",
-    "compile": "npm run compile:extension && npm run compile:client",
-    "compile:extension": "tsc -b",
-    "compile:client": "webpack --mode production",
-    "lint": "eslint src --ext .ts,.tsx",
-    "watch": "concurrently -r \"npm:watch:*\"",
-    "watch:extension": "tsc -b --watch",
-    "watch:client": "webpack --mode development --watch",
-    "dev": "concurrently -r npm:watch:extension npm:watch:client",
-    "pretest": "npm run compile && npm run lint"
-  },
-  "devDependencies": {
-    "@types/glob": "8.1.0",
-    "@types/node": "20",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
-    "@types/vscode": "1.90.0",
-    "@types/vscode-notebook-renderer": "1.72.3",
-    "@types/webpack-env": "1.18.5",
-    "@typescript-eslint/eslint-plugin": "7.13.1",
-    "@typescript-eslint/parser": "7.13.1",
-    "concurrently": "8.2.2",
-    "css-loader": "7.1.2",
-    "eslint": "9.5.0",
-    "glob": "10.4.1",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "style-loader": "4.0.0",
-    "ts-loader": "9.5.1",
-    "typescript": "5.4.5",
-    "vscode-notebook-error-overlay": "1.0.1",
-    "webpack": "5.92.0",
-    "webpack-cli": "5.1.4"
-  }
+	"name": "notebook-renderer-react-sample",
+	"displayName": "notebook-renderer-react-sample",
+	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook built with React.",
+	"scripts": {
+		"compile": "npm run compile:extension && npm run compile:client",
+		"compile:client": "webpack --mode production",
+		"compile:extension": "tsc -b",
+		"dev": "concurrently -r npm:watch:extension npm:watch:client",
+		"watch:client": "webpack --mode development --watch",
+		"watch:extension": "tsc -b --watch"
+	},
+	"contributes": {
+		"notebookRenderer": [
+			{
+				"displayName": "GitHub Issues React-based Renderer",
+				"entrypoint": "./out/client/index.js",
+				"id": "notebook-renderer-react-github-issues",
+				"mimeTypes": [
+					"x-application/github-issues"
+				]
+			}
+		]
+	},
+	"devDependencies": {
+		"@types/glob": "8.1.0",
+		"@types/node": "20",
+		"concurrently": "8.2.2",
+		"css-loader": "7.1.2",
+		"glob": "10.4.1",
+		"style-loader": "4.0.0",
+		"ts-loader": "9.5.1"
+	}
 }

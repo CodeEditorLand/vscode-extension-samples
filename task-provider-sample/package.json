@@ -2,71 +2,50 @@
 	"name": "task-provider-samples",
 	"displayName": "Task Provider Samples",
 	"description": "Samples for VSCode's view API",
-	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"engines": {
-		"vscode": "1.73.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:workbench.action.tasks.runTask"
-	],
 	"main": "./out/extension",
+	"scripts": {
+		"compile": "tsc -b"
+	},
 	"contributes": {
 		"taskDefinitions": [
 			{
-				"type": "rake",
+				"properties": {
+					"file": {
+						"description": "The Rake file that provides the task. Can be omitted.",
+						"type": "string"
+					},
+					"task": {
+						"description": "The Rake task to customize",
+						"type": "string"
+					}
+				},
 				"required": [
 					"task"
 				],
-				"properties": {
-					"task": {
-						"type": "string",
-						"description": "The Rake task to customize"
-					},
-					"file": {
-						"type": "string",
-						"description": "The Rake file that provides the task. Can be omitted."
-					}
-				}
+				"type": "rake"
 			},
 			{
-				"type": "custombuildscript",
+				"properties": {
+					"flags": {
+						"description": "Additional build flags.",
+						"type": "array"
+					},
+					"flavor": {
+						"description": "The build flavor. Should be either '32' or '64'.",
+						"type": "string"
+					}
+				},
 				"required": [
 					"flavor"
 				],
-				"properties": {
-					"flavor": {
-						"type": "string",
-						"description": "The build flavor. Should be either '32' or '64'."
-					},
-					"flags": {
-						"type": "array",
-						"description": "Additional build flags."
-					}
-				}
+				"type": "custombuildscript"
 			}
 		]
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -b",
-		"watch": "tsc -b -w"
-	},
+	"activationEvents": [
+		"onCommand:workbench.action.tasks.runTask"
+	],
 	"devDependencies": {
-		"@types/node": "20",
-		"@types/vscode": "1.90.0",
-		"@typescript-eslint/eslint-plugin": "7.13.1",
-		"@typescript-eslint/parser": "7.13.1",
-		"eslint": "9.5.0",
-		"typescript": "5.4.5"
+		"@types/node": "20"
 	}
 }
