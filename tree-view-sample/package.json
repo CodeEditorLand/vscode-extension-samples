@@ -206,7 +206,7 @@
 	],
 	"dependencies": {
 		"ftp": "0.3.10",
-		"jsonc-parser": "3.2.1",
+		"jsonc-parser": "3.3.0",
 		"minimist": "1.2.8",
 		"mkdirp": "3.0.1",
 		"rimraf": "5.0.7"
