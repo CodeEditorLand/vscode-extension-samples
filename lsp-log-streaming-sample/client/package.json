@@ -3,7 +3,7 @@
 	"description": "VSCode part of a language server",
 	"scripts": {},
 	"dependencies": {
-		"ws": "8.12.0"
+		"ws": "8.17.1"
 	},
 	"devDependencies": {
 		"@types/glob": "8.0.0",
