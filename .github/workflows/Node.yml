@@ -57,11 +57,11 @@ jobs:
                 node-version: [18, 19, 20]
 
         steps:
-            - uses: actions/checkout@v4.1.6
+            - uses: actions/checkout@v4.1.7
 
             - uses: pnpm/action-setup@v4.0.0
               with:
-                  version: 8.15.5
+                  version: 9.3.0
                   run_install: |
                       - recursive: true
                         args: [
@@ -217,6 +217,15 @@ jobs:
 
             - run: pnpm install
               working-directory: ./drop-on-document
+
+            - uses: actions/setup-node@v4.0.2
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./esbuild-sample/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./esbuild-sample
 
             - uses: actions/setup-node@v4.0.2
               with:
@@ -757,6 +766,23 @@ jobs:
 
             - run: pnpm install
               working-directory: ./virtual-document-sample
+
+            - uses: actions/setup-node@v4.0.2
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./wasm-component-model-async/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./wasm-component-model-async
+
+            - run: pnpm run build
+              working-directory: .
+
+            - uses: actions/upload-artifact@v4.3.3
+              with:
+                  name: .-wasm-component-model-async-Node-${{ matrix.node-version }}-Target
+                  path: ./wasm-component-model-async/Target
 
             - uses: actions/setup-node@v4.0.2
               with:

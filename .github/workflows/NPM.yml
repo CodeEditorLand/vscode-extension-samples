@@ -24,7 +24,7 @@ jobs:
             id-token: write
 
         steps:
-            - uses: actions/checkout@v4.1.6
+            - uses: actions/checkout@v4.1.7
 
             - uses: actions/setup-node@v4.0.2
               with:
@@ -32,6 +32,14 @@ jobs:
                   registry-url: "https://registry.npmjs.org"
 
             - run: npm install -g npm
+
+            - name: Publish ./wasm-component-model-async
+              continue-on-error: true
+              working-directory: ./wasm-component-model-async
+              run: |
+                  npm publish --legacy-peer-deps --provenance --ignore-scripts
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: Publish ./wasm-component-model-resource
               continue-on-error: true
