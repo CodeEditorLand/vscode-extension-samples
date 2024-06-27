@@ -28,7 +28,7 @@
 		"onNotebook:interactive"
 	],
 	"devDependencies": {
-		"@types/node": "14.x"
+		"@types/node": "20.x"
 	},
 	"extensionDependencies": [
 		"ms-toolsai.jupyter"
