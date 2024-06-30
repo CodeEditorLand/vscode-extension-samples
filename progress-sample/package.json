@@ -1,7 +1,11 @@
 {
-	"activationEvents": [
-		"*"
-	],
+	"name": "progress-ts",
+	"displayName": "Notification Progress",
+	"description": "Show a long running operation in the notification area",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -10,14 +14,10 @@
 			}
 		]
 	},
-	"description": "Show a long running operation in the notification area",
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
 		"@types/node": "^18"
-	},
-	"displayName": "Notification Progress",
-	"main": "./out/extension.js",
-	"name": "progress-ts",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

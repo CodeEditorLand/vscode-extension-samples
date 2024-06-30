@@ -1,4 +1,15 @@
 {
+	"name": "notebook-renderer-react-sample",
+	"displayName": "notebook-renderer-react-sample",
+	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook built with React.",
+	"scripts": {
+		"compile": "npm run compile:extension && npm run compile:client",
+		"compile:client": "webpack --mode production",
+		"compile:extension": "tsc -b",
+		"dev": "concurrently -r npm:watch:extension npm:watch:client",
+		"watch:client": "webpack --mode development --watch",
+		"watch:extension": "tsc -b --watch"
+	},
 	"contributes": {
 		"notebookRenderer": [
 			{
@@ -11,7 +22,6 @@
 			}
 		]
 	},
-	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook built with React.",
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
 		"@types/node": "^18",
@@ -20,15 +30,5 @@
 		"glob": "^7.1.7",
 		"style-loader": "^1.2.1",
 		"ts-loader": "^9.4.2"
-	},
-	"displayName": "notebook-renderer-react-sample",
-	"name": "notebook-renderer-react-sample",
-	"scripts": {
-		"compile": "npm run compile:extension && npm run compile:client",
-		"compile:client": "webpack --mode production",
-		"compile:extension": "tsc -b",
-		"dev": "concurrently -r npm:watch:extension npm:watch:client",
-		"watch:client": "webpack --mode development --watch",
-		"watch:extension": "tsc -b --watch"
 	}
 }

@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "configuration-sample",
+	"displayName": "Configuration Sample",
+	"description": "How to contribute and use configurations in VS Code",
+	"main": "./out/extension",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -131,14 +137,8 @@
 			}
 		]
 	},
-	"description": "How to contribute and use configurations in VS Code",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "^18"
-	},
-	"displayName": "Configuration Sample",
-	"main": "./out/extension",
-	"name": "configuration-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

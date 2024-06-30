@@ -1,5 +1,14 @@
 {
+	"name": "wasm-component-model-async",
+	"description": "An example demonstrating how to use the component model to integrate WebAssembly modules into VS Code.",
+	"main": "./out/extension",
 	"browser": "./dist/web/extension",
+	"scripts": {
+		"build": "npm run compile && cargo build --target wasm32-unknown-unknown",
+		"compile": "tsc -b",
+		"generate:model": "wit2ts --outDir ./src ./wit",
+		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -10,18 +19,9 @@
 		]
 	},
 	"dependencies": {},
-	"description": "An example demonstrating how to use the component model to integrate WebAssembly modules into VS Code.",
 	"devDependencies": {
 		"@types/node": "^18.14.6",
 		"esbuild": "^0.20.2",
 		"serve": "^14.2.1"
-	},
-	"main": "./out/extension",
-	"name": "wasm-component-model-async",
-	"scripts": {
-		"build": "npm run compile && cargo build --target wasm32-unknown-unknown",
-		"compile": "tsc -b",
-		"generate:model": "wit2ts --outDir ./src ./wit",
-		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
 	}
 }

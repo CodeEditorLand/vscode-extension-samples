@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "extension-terminal-sample",
+	"displayName": "extension-terminal-sample",
+	"description": "An example usage of the extension terminal API",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -12,14 +18,8 @@
 			}
 		]
 	},
-	"description": "An example usage of the extension terminal API",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "^18"
-	},
-	"displayName": "extension-terminal-sample",
-	"main": "./out/extension.js",
-	"name": "extension-terminal-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

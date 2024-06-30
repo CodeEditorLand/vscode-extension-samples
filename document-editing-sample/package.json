@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "reverseword",
+	"displayName": "ReverseWord",
+	"description": "Reverse a word",
+	"main": "./out/extension",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -8,14 +14,8 @@
 			}
 		]
 	},
-	"description": "Reverse a word",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "^18"
-	},
-	"displayName": "ReverseWord",
-	"main": "./out/extension",
-	"name": "reverseword",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

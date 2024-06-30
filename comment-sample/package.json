@@ -1,7 +1,11 @@
 {
-	"activationEvents": [
-		"*"
-	],
+	"name": "vscode-comment-api-example",
+	"displayName": "Comment API Sample",
+	"description": "Comment API Sample",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -134,14 +138,10 @@
 			]
 		}
 	},
-	"description": "Comment API Sample",
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
 		"@types/node": "^18"
-	},
-	"displayName": "Comment API Sample",
-	"main": "./out/extension.js",
-	"name": "vscode-comment-api-example",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

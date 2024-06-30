@@ -1,6 +1,13 @@
 {
-	"activationEvents": [],
+	"name": "helloworld-web-sample",
+	"displayName": "helloworld-web-sample",
+	"description": "HelloWorld example for VS Code in the browser",
 	"browser": "./dist/web/extension.js",
+	"scripts": {
+		"compile-web": "webpack",
+		"package-web": "webpack --mode production --devtool hidden-source-map",
+		"watch-web": "webpack --watch"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -9,17 +16,10 @@
 			}
 		]
 	},
-	"description": "HelloWorld example for VS Code in the browser",
+	"activationEvents": [],
 	"devDependencies": {
 		"assert": "^2.0.0",
 		"process": "^0.11.10",
 		"ts-loader": "^9.2.5"
-	},
-	"displayName": "helloworld-web-sample",
-	"name": "helloworld-web-sample",
-	"scripts": {
-		"compile-web": "webpack",
-		"package-web": "webpack --mode production --devtool hidden-source-map",
-		"watch-web": "webpack --watch"
 	}
 }

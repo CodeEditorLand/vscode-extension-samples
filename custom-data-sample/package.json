@@ -1,4 +1,6 @@
 {
+	"name": "custom-data-sample",
+	"description": "Custom Data sample extension for VS Code",
 	"contributes": {
 		"css": {
 			"customData": [
@@ -10,7 +12,5 @@
 				"./html.html-data.json"
 			]
 		}
-	},
-	"description": "Custom Data sample extension for VS Code",
-	"name": "custom-data-sample"
+	}
 }
