@@ -1,14 +1,14 @@
 {
-	"name": "completions-sample",
-	"displayName": "Completion Item Provider Sample",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
 	"activationEvents": [
 		"*"
 	],
 	"devDependencies": {
 		"@types/node": "^18"
+	},
+	"displayName": "Completion Item Provider Sample",
+	"main": "./out/extension.js",
+	"name": "completions-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

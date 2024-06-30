@@ -1,5 +1,4 @@
 {
-	"name": "theme-sample",
 	"contributes": {
 		"themes": [
 			{
@@ -14,5 +13,6 @@
 			}
 		]
 	},
-	"dependencies": {}
+	"dependencies": {},
+	"name": "theme-sample"
 }

@@ -1,11 +1,7 @@
 {
-	"name": "vscode-terminal-api-example",
-	"displayName": "vscode-terminal-api-example",
-	"description": "abc",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [
+		"onTerminalProfile:terminalTest.terminal-profile"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -91,10 +87,14 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"onTerminalProfile:terminalTest.terminal-profile"
-	],
+	"description": "abc",
 	"devDependencies": {
 		"@types/node": "^18"
+	},
+	"displayName": "vscode-terminal-api-example",
+	"main": "./out/extension.js",
+	"name": "vscode-terminal-api-example",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

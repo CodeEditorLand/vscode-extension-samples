@@ -1,10 +1,7 @@
 {
-	"name": "lsp-sample",
-	"description": "A language server example",
-	"main": "./client/out/extension",
-	"scripts": {
-		"compile": "tsc -b"
-	},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"contributes": {
 		"configuration": {
 			"properties": {
@@ -30,10 +27,13 @@
 			"type": "object"
 		}
 	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
+	"description": "A language server example",
 	"devDependencies": {
 		"@types/node": "^18.14.6"
+	},
+	"main": "./client/out/extension",
+	"name": "lsp-sample",
+	"scripts": {
+		"compile": "tsc -b"
 	}
 }
