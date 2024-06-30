@@ -9,8 +9,8 @@
 		"onStartupFinished"
 	],
 	"devDependencies": {
-		"@types/glob": "^8.1.0",
-		"@types/node": "^18",
-		"glob": "^8.1.0"
+		"@types/glob": "8.1.0",
+		"@types/node": "18",
+		"glob": "8.1.0"
 	}
 }

@@ -10,13 +10,13 @@
 		"onFileSystem:datei"
 	],
 	"dependencies": {
-		"mkdirp": "^0.5.1",
-		"rimraf": "^2.6.2"
+		"mkdirp": "0.5.1",
+		"rimraf": "2.6.2"
 	},
 	"devDependencies": {
-		"@types/mkdirp": "^0.5.2",
-		"@types/node": "^18",
-		"@types/promisify-node": "^0.4.0",
-		"@types/rimraf": "^2.0.2"
+		"@types/mkdirp": "0.5.2",
+		"@types/node": "18",
+		"@types/promisify-node": "0.4.0",
+		"@types/rimraf": "2.0.2"
 	}
 }
