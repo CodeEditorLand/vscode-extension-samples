@@ -2,45 +2,59 @@
 	"name": "vscode-comment-api-example",
 	"displayName": "Comment API Sample",
 	"description": "Comment API Sample",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
 	},
+	"engines": {
+		"vscode": "^1.73.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "mywiki.createNote",
-				"enablement": "!commentIsEmpty",
-				"title": "Create Note"
+				"title": "Create Note",
+				"enablement": "!commentIsEmpty"
 			},
 			{
 				"command": "mywiki.replyNote",
-				"enablement": "!commentIsEmpty",
-				"title": "Reply"
+				"title": "Reply",
+				"enablement": "!commentIsEmpty"
 			},
 			{
 				"command": "mywiki.editNote",
+				"title": "Edit",
 				"icon": {
 					"dark": "resources/edit_inverse.svg",
 					"light": "resources/edit.svg"
-				},
-				"title": "Edit"
+				}
 			},
 			{
 				"command": "mywiki.deleteNote",
+				"title": "Delete",
 				"icon": {
 					"dark": "resources/close_inverse.svg",
 					"light": "resources/close.svg"
-				},
-				"title": "Delete"
+				}
 			},
 			{
 				"command": "mywiki.deleteNoteComment",
+				"title": "Delete",
 				"icon": {
 					"dark": "resources/close_inverse.svg",
 					"light": "resources/close.svg"
-				},
-				"title": "Delete"
+				}
 			},
 			{
 				"command": "mywiki.saveNote",
@@ -52,8 +66,8 @@
 			},
 			{
 				"command": "mywiki.startDraft",
-				"enablement": "!commentIsEmpty",
-				"title": "Start Draft"
+				"title": "Start Draft",
+				"enablement": "!commentIsEmpty"
 			},
 			{
 				"command": "mywiki.finishDraft",
@@ -83,28 +97,11 @@
 					"when": "false"
 				}
 			],
-			"comments/comment/context": [
+			"comments/commentThread/title": [
 				{
-					"command": "mywiki.cancelsaveNote",
-					"group": "inline@1",
-					"when": "commentController == comment-sample"
-				},
-				{
-					"command": "mywiki.saveNote",
-					"group": "inline@2",
-					"when": "commentController == comment-sample"
-				}
-			],
-			"comments/comment/title": [
-				{
-					"command": "mywiki.editNote",
-					"group": "group@1",
-					"when": "commentController == comment-sample"
-				},
-				{
-					"command": "mywiki.deleteNoteComment",
-					"group": "group@2",
-					"when": "commentController == comment-sample && comment == canDelete"
+					"command": "mywiki.deleteNote",
+					"group": "navigation",
+					"when": "commentController == comment-sample && !commentThreadIsEmpty"
 				}
 			],
 			"comments/commentThread/context": [
@@ -129,19 +126,44 @@
 					"when": "commentController == comment-sample && commentThread == draft"
 				}
 			],
-			"comments/commentThread/title": [
+			"comments/comment/title": [
 				{
-					"command": "mywiki.deleteNote",
-					"group": "navigation",
-					"when": "commentController == comment-sample && !commentThreadIsEmpty"
+					"command": "mywiki.editNote",
+					"group": "group@1",
+					"when": "commentController == comment-sample"
+				},
+				{
+					"command": "mywiki.deleteNoteComment",
+					"group": "group@2",
+					"when": "commentController == comment-sample && comment == canDelete"
+				}
+			],
+			"comments/comment/context": [
+				{
+					"command": "mywiki.cancelsaveNote",
+					"group": "inline@1",
+					"when": "commentController == comment-sample"
+				},
+				{
+					"command": "mywiki.saveNote",
+					"group": "inline@2",
+					"when": "commentController == comment-sample"
 				}
 			]
 		}
 	},
-	"activationEvents": [
-		"*"
-	],
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint \"src/**/*.ts\""
+	},
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "^18",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.5.2"
 	}
 }

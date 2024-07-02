@@ -2,10 +2,25 @@
 	"name": "virtual-document-sample",
 	"displayName": "Cowsay in virtual documents",
 	"description": "A sample for virtual document",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
 	},
+	"bugs": {
+		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
+	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
@@ -18,26 +33,36 @@
 			}
 		],
 		"menus": {
-			"commandPalette": [
-				{
-					"command": "cowsay.backwards",
-					"when": "resourceScheme == cowsay"
-				}
-			],
 			"editor/title": [
 				{
 					"command": "cowsay.backwards",
 					"group": "navigation",
 					"when": "resourceScheme == cowsay"
 				}
+			],
+			"commandPalette": [
+				{
+					"command": "cowsay.backwards",
+					"when": "resourceScheme == cowsay"
+				}
 			]
 		}
 	},
-	"activationEvents": [],
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"watch": "tsc -watch -p ./"
+	},
 	"dependencies": {
-		"cowsay": "1.6.0"
+		"cowsay": "^1.5.0"
 	},
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "^18",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.5.2"
 	}
 }

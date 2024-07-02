@@ -1,35 +1,53 @@
 {
-	"name": "notebook-serializer-sample",
-	"displayName": "notebook-serializer-sample",
-	"description": "Notebook using Serializer API sample",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -b"
-	},
-	"contributes": {
-		"commands": [
-			{
-				"command": "notebook-serializer-sample.createJsonNotebook",
-				"title": "Create JSON Notebook"
-			}
-		],
-		"notebooks": [
-			{
-				"displayName": "Sample Notebook",
-				"selector": [
-					{
-						"filenamePattern": "*.sample-json-notebook"
-					}
-				],
-				"type": "test-notebook-serializer"
-			}
-		]
-	},
-	"activationEvents": [
-		"onNotebook:test-notebook-serializer",
-		"onCommand:notebook-serializer-sample.createJsonNotebook"
+  "name": "notebook-serializer-sample",
+  "displayName": "notebook-serializer-sample",
+  "description": "Notebook using Serializer API sample",
+  "publisher": "vscode-samples",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onNotebook:test-notebook-serializer",
+	"onCommand:notebook-serializer-sample.createJsonNotebook"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+	"commands": [
+		{
+			"command": "notebook-serializer-sample.createJsonNotebook",
+			"title": "Create JSON Notebook"
+		}
 	],
-	"devDependencies": {
-		"@types/node": "20.x"
-	}
+    "notebooks": [
+      {
+        "type": "test-notebook-serializer",
+        "displayName": "Sample Notebook",
+        "selector": [
+          {
+            "filenamePattern": "*.sample-json-notebook"
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -b",
+    "lint": "eslint src --ext ts",
+    "watch": "tsc -b --watch"
+  },
+  "devDependencies": {
+    "@types/mocha": "^8.2.2",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.0",
+    "@typescript-eslint/parser": "^7.14.0",
+    "eslint": "^8.56.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.5.2"
+  }
 }
