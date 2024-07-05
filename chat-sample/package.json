@@ -36,7 +36,7 @@
 	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "^20.14.9",
-		"@vscode/prompt-tsx": "^0.2.4-alpha"
+		"@vscode/prompt-tsx": "^0.2.5-alpha"
 	},
 	"enabledApiProposals": [
 		"chatVariableResolver"
