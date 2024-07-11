@@ -1,6 +1,0 @@
-{
-	"name": "lsp-web-extension-sample-server",
-	"description": "Example implementation of a language server in a web extension.",
-	"scripts": {},
-	"dependencies": {}
-}

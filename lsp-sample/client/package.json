@@ -1,6 +1,0 @@
-{
-	"name": "lsp-sample-client",
-	"description": "VSCode part of a language server",
-	"dependencies": {},
-	"devDependencies": {}
-}

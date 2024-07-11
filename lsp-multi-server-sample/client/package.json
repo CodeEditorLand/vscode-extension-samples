@@ -1,7 +1,0 @@
-{
-	"name": "lsp-sample-multi-server-client-part",
-	"description": "VSCode part of a language server",
-	"scripts": {},
-	"dependencies": {},
-	"devDependencies": {}
-}

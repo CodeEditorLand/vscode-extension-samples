@@ -1,6 +1,0 @@
-{
-	"name": "lsp-web-extension-sample-client",
-	"description": "VSCode part of a language server in a web extension",
-	"dependencies": {},
-	"devDependencies": {}
-}
