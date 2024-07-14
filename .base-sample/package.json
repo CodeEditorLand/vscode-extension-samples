@@ -1,11 +1,5 @@
 {
-	"name": "base-sample",
-	"displayName": "base-sample",
-	"description": "Base sample for other samples at Microsoft/vscode-extension-samples",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -14,8 +8,14 @@
 			}
 		]
 	},
-	"activationEvents": [],
+	"description": "Base sample for other samples at Microsoft/vscode-extension-samples",
 	"devDependencies": {
 		"@types/node": "^16.18.34"
+	},
+	"displayName": "base-sample",
+	"main": "./out/extension.js",
+	"name": "base-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

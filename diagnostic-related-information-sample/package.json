@@ -1,15 +1,15 @@
 {
-	"name": "diagnostic-related-information-sample",
-	"displayName": "Diagnostic Related Information Sample",
-	"description": "Diagnostic Related Information Sample",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
 	"activationEvents": [
 		"*"
 	],
+	"description": "Diagnostic Related Information Sample",
 	"devDependencies": {
 		"@types/node": "^18"
+	},
+	"displayName": "Diagnostic Related Information Sample",
+	"main": "./out/extension.js",
+	"name": "diagnostic-related-information-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }
