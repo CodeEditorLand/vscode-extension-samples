@@ -32,7 +32,7 @@
 		"onLanguage:plaintext"
 	],
 	"devDependencies": {
-		"path-browserify": "^1.0.1",
-		"ts-loader": "^9.5.1"
+		"path-browserify": "1.0.1",
+		"ts-loader": "9.5.1"
 	}
 }
