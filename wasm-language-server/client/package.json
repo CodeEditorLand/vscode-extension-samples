@@ -9,6 +9,6 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@types/node": "20.14.11"
+		"@types/node": "18.14.6"
 	}
 }

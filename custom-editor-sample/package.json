@@ -37,6 +37,6 @@
 	},
 	"activationEvents": [],
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "18"
 	}
 }

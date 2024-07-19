@@ -24,6 +24,6 @@
 		"onStartupFinished"
 	],
 	"devDependencies": {
-		"@types/node": "20.14.11"
+		"@types/node": "16.18.34"
 	}
 }

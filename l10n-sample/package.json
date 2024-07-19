@@ -21,9 +21,9 @@
 	"activationEvents": [],
 	"dependencies": {},
 	"devDependencies": {
-		"@types/glob": "8.1.0",
-		"@types/node": "20",
-		"glob": "11.0.0"
+		"@types/glob": "7.2.0",
+		"@types/node": "18",
+		"glob": "7.2.0"
 	},
 	"l10n": "./l10n"
 }

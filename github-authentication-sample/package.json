@@ -17,9 +17,9 @@
 	},
 	"activationEvents": [],
 	"dependencies": {
-		"@octokit/rest": "21.0.1"
+		"@octokit/rest": "18.0.0"
 	},
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "18"
 	}
 }
