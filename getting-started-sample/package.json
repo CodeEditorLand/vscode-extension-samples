@@ -189,6 +189,6 @@
 		"onCommand:getting-started-sample.viewSources"
 	],
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "20"
 	}
 }

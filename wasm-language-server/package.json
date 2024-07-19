@@ -22,9 +22,9 @@
 	],
 	"dependencies": {},
 	"devDependencies": {
-		"@types/node": "^18.14.6",
-		"esbuild": "^0.21.3",
-		"serve": "^14.2.3"
+		"@types/node": "20.14.11",
+		"esbuild": "0.23.0",
+		"serve": "14.2.3"
 	},
 	"extensionDependencies": [
 		"ms-vscode.wasm-wasi-core"

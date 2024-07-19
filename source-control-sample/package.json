@@ -77,9 +77,9 @@
 		"workspaceContains:.jsfiddle"
 	],
 	"dependencies": {
-		"jsfiddle": "^1.1.7"
+		"jsfiddle": "1.2.1"
 	},
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "20"
 	}
 }
