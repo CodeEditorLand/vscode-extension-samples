@@ -15,9 +15,9 @@
 		"onLanguage:plaintext"
 	],
 	"devDependencies": {
-		"@types/node": "18.11.9",
+		"@types/node": "20.14.12",
 		"merge-options": "3.0.4",
-		"rimraf": "5.0.5",
+		"rimraf": "6.0.1",
 		"ts-loader": "9.5.1"
 	}
 }
