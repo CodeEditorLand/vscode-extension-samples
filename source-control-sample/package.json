@@ -1,25 +1,7 @@
 {
-	"name": "source-control-sample",
-	"displayName": "source-control-sample",
-	"description": "Source control VS Code extension sample",
-	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"engines": {
-		"vscode": "^1.74.0"
-	},
-	"categories": [
-		"SCM Providers"
-	],
 	"activationEvents": [
 		"workspaceContains:.jsfiddle"
 	],
-	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
@@ -28,35 +10,35 @@
 			},
 			{
 				"command": "extension.source-control.commit",
-				"title": "Commit local changes to JS Fiddle",
 				"icon": {
-					"light": "resources/icons/light/check.svg",
-					"dark": "resources/icons/dark/check.svg"
-				}
+					"dark": "resources/icons/dark/check.svg",
+					"light": "resources/icons/light/check.svg"
+				},
+				"title": "Commit local changes to JS Fiddle"
 			},
 			{
 				"command": "extension.source-control.refresh",
-				"title": "Refresh JS Fiddle status",
 				"icon": {
-					"light": "resources/icons/light/refresh.svg",
-					"dark": "resources/icons/dark/refresh.svg"
-				}
+					"dark": "resources/icons/dark/refresh.svg",
+					"light": "resources/icons/light/refresh.svg"
+				},
+				"title": "Refresh JS Fiddle status"
 			},
 			{
 				"command": "extension.source-control.discard",
-				"title": "Discards local changes to JS Fiddle",
 				"icon": {
-					"light": "resources/icons/light/discard.svg",
-					"dark": "resources/icons/dark/discard.svg"
-				}
+					"dark": "resources/icons/dark/discard.svg",
+					"light": "resources/icons/light/discard.svg"
+				},
+				"title": "Discards local changes to JS Fiddle"
 			},
 			{
 				"command": "extension.source-control.checkout",
-				"title": "Checkout another version of this Fiddle",
 				"icon": {
-					"light": "resources/icons/light/refresh.svg",
-					"dark": "resources/icons/dark/refresh.svg"
-				}
+					"dark": "resources/icons/dark/refresh.svg",
+					"light": "resources/icons/light/refresh.svg"
+				},
+				"title": "Checkout another version of this Fiddle"
 			},
 			{
 				"command": "extension.source-control.browse",
@@ -87,21 +69,17 @@
 			]
 		}
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./"
-	},
 	"dependencies": {
 		"jsfiddle": "^1.1.7"
 	},
+	"description": "Source control VS Code extension sample",
 	"devDependencies": {
-		"@types/node": "^18",
-		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^7.14.0",
-		"@typescript-eslint/parser": "^7.14.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.5.2"
+		"@types/node": "^18"
+	},
+	"displayName": "source-control-sample",
+	"main": "./out/extension.js",
+	"name": "source-control-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }
