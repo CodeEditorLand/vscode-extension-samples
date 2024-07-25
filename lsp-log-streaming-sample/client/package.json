@@ -1,13 +1,14 @@
 {
+	"name": "lsp-sample-client",
+	"description": "VSCode part of a language server",
+	"scripts": {},
 	"dependencies": {
-		"ws": "8.12.0"
+		"ws": "8.18.0"
 	},
 	"description": "VSCode part of a language server",
 	"devDependencies": {
-		"@types/glob": "8.0.0",
-		"@types/ws": "8.5.4",
-		"glob": "8.1.0"
-	},
-	"name": "lsp-sample-client",
-	"scripts": {}
+		"@types/glob": "8.1.0",
+		"@types/ws": "8.5.11",
+		"glob": "11.0.0"
+	}
 }

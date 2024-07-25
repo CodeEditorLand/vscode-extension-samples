@@ -1,16 +1,16 @@
 {
+	"name": "document-on-drop-sample",
+	"displayName": "Document On Drop Sample",
+	"description": "Shows use of the document on drop API proposal",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
+	"contributes": {},
 	"activationEvents": [
 		"onLanguage:plaintext"
 	],
-	"contributes": {},
-	"description": "Shows use of the document on drop API proposal",
 	"devDependencies": {
-		"@types/node": "^18"
-	},
-	"displayName": "Document On Drop Sample",
-	"main": "./out/extension.js",
-	"name": "document-on-drop-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "20"
 	}
 }

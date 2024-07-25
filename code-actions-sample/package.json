@@ -1,14 +1,14 @@
 {
+	"name": "code-actions-sample",
+	"displayName": "Code Actions Provider Sample",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"activationEvents": [
 		"onLanguage:markdown"
 	],
 	"devDependencies": {
-		"@types/node": "^18"
-	},
-	"displayName": "Code Actions Provider Sample",
-	"main": "./out/extension.js",
-	"name": "code-actions-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "20"
 	}
 }

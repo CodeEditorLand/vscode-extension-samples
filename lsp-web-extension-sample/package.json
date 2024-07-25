@@ -1,8 +1,11 @@
 {
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
+	"name": "lsp-web-extension-sample",
+	"description": "A language server in a web extension",
 	"browser": "./client/dist/browserClientMain",
+	"scripts": {
+		"chrome": "npm run compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./test-data",
+		"compile": "webpack"
+	},
 	"contributes": {
 		"configuration": [
 			{
@@ -25,14 +28,11 @@
 			}
 		]
 	},
-	"description": "A language server in a web extension",
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"devDependencies": {
-		"path-browserify": "^1.0.1",
-		"ts-loader": "^9.5.1"
-	},
-	"name": "lsp-web-extension-sample",
-	"scripts": {
-		"chrome": "npm run compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./test-data",
-		"compile": "webpack"
+		"path-browserify": "1.0.1",
+		"ts-loader": "9.5.1"
 	}
 }

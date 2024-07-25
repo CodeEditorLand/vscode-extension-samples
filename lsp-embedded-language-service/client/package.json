@@ -1,8 +1,8 @@
 {
 	"dependencies": {},
 	"description": "VSCode part of a language server",
+	"dependencies": {},
 	"devDependencies": {
-		"@types/node": "^16.18.34"
-	},
-	"name": "lsp-sample-client"
+		"@types/node": "20.14.12"
+	}
 }

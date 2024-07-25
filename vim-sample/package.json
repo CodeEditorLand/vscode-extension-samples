@@ -1,7 +1,11 @@
 {
-	"activationEvents": [
-		"*"
-	],
+	"name": "vim",
+	"displayName": "vim",
+	"description": "vim sample extension",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"keybindings": [
 			{
@@ -52,14 +56,10 @@
 			}
 		]
 	},
-	"description": "vim sample extension",
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
-		"@types/node": "^18"
-	},
-	"displayName": "vim",
-	"main": "./out/extension.js",
-	"name": "vim",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "20"
 	}
 }

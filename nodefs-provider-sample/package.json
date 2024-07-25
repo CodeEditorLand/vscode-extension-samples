@@ -1,22 +1,23 @@
 {
+	"name": "nodefs-provider-sample",
+	"displayName": "nodefs-provider-sample",
+	"description": "",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"activationEvents": [
 		"onFileSystem:datei"
 	],
 	"dependencies": {
-		"mkdirp": "^0.5.1",
-		"rimraf": "^2.6.2"
+		"mkdirp": "3.0.1",
+		"rimraf": "6.0.1"
 	},
 	"description": "",
 	"devDependencies": {
-		"@types/mkdirp": "^0.5.2",
-		"@types/node": "^18",
-		"@types/promisify-node": "^0.4.0",
-		"@types/rimraf": "^2.0.2"
-	},
-	"displayName": "nodefs-provider-sample",
-	"main": "./out/extension.js",
-	"name": "nodefs-provider-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/mkdirp": "1.0.2",
+		"@types/node": "20",
+		"@types/promisify-node": "0.4.3",
+		"@types/rimraf": "3.0.2"
 	}
 }

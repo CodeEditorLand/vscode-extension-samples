@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "virtual-document-sample",
+	"displayName": "Cowsay in virtual documents",
+	"description": "A sample for virtual document",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -27,17 +33,12 @@
 			]
 		}
 	},
+	"activationEvents": [],
 	"dependencies": {
-		"cowsay": "^1.5.0"
+		"cowsay": "1.6.0"
 	},
 	"description": "A sample for virtual document",
 	"devDependencies": {
-		"@types/node": "^18"
-	},
-	"displayName": "Cowsay in virtual documents",
-	"main": "./out/extension.js",
-	"name": "virtual-document-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "20"
 	}
 }

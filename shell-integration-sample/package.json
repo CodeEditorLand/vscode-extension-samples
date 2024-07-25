@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "shell-integration-sample",
+	"displayName": "shell-integration-sample",
+	"description": "",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"terminal": {
 			"profiles": [
@@ -10,17 +16,11 @@
 			]
 		}
 	},
-	"description": "",
+	"activationEvents": [],
 	"devDependencies": {
-		"@types/node": "18.x"
+		"@types/node": "20.x"
 	},
-	"displayName": "shell-integration-sample",
 	"enabledApiProposals": [
 		"terminalShellIntegration"
-	],
-	"main": "./out/extension.js",
-	"name": "shell-integration-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
-	}
+	]
 }

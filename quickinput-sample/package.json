@@ -1,7 +1,11 @@
 {
-	"activationEvents": [
-		"onCommand:samples.quickInput"
-	],
+	"name": "quickinput-sample",
+	"displayName": "QuickInput Sample",
+	"description": "Samples for VS Code's QuickInput API",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -10,14 +14,10 @@
 			}
 		]
 	},
-	"description": "Samples for VS Code's QuickInput API",
+	"activationEvents": [
+		"onCommand:samples.quickInput"
+	],
 	"devDependencies": {
-		"@types/node": "^18"
-	},
-	"displayName": "QuickInput Sample",
-	"main": "./out/extension.js",
-	"name": "quickinput-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "20"
 	}
 }

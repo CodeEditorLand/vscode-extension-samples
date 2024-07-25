@@ -1,4 +1,6 @@
 {
+	"name": "custom-data-sample",
+	"description": "Custom Data sample extension for VS Code",
 	"contributes": {
 		"css": {
 			"customData": [

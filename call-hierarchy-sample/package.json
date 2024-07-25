@@ -1,15 +1,15 @@
 {
+	"name": "call-hierarchy-sample",
+	"displayName": "call-hierarchy-sample",
+	"description": "Call hierarchy provider sample",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"activationEvents": [
 		"onLanguage:plaintext"
 	],
-	"description": "Call hierarchy provider sample",
 	"devDependencies": {
-		"@types/node": "^18"
-	},
-	"displayName": "call-hierarchy-sample",
-	"main": "./out/extension.js",
-	"name": "call-hierarchy-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "20"
 	}
 }

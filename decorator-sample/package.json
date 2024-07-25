@@ -1,7 +1,10 @@
 {
-	"activationEvents": [
-		"*"
-	],
+	"name": "decorator-sample",
+	"description": "Sample for the decorator API",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"colors": [
 			{
@@ -15,13 +18,10 @@
 			}
 		]
 	},
-	"description": "Sample for the decorator API",
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
-		"@types/node": "^18"
-	},
-	"main": "./out/extension.js",
-	"name": "decorator-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "20"
 	}
 }

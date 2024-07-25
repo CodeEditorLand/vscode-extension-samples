@@ -1,20 +1,20 @@
 {
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
-	"contributes": {},
-	"description": "Shows use of the document paste API proposal",
-	"devDependencies": {
-		"@types/node": "^18"
-	},
-	"displayName": "Document paste Sample",
-	"enabledApiProposals": [
-		"documentPaste"
-	],
-	"main": "./out/extension.js",
 	"name": "document-paste-sample",
+	"displayName": "Document paste Sample",
+	"description": "Shows use of the document paste API proposal",
+	"main": "./out/extension.js",
 	"scripts": {
 		"compile": "tsc -p ./",
 		"download-api": "dts main && dts dev"
-	}
+	},
+	"contributes": {},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"devDependencies": {
+		"@types/node": "20"
+	},
+	"enabledApiProposals": [
+		"documentPaste"
+	]
 }

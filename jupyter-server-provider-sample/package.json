@@ -1,19 +1,19 @@
 {
+	"name": "jupyter-server-provider-sample",
+	"displayName": "Jupyter Server Provider Sample",
+	"description": "Jupyter Notebook Kernel Picker with custom servers using the Jupyter API sample",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -b"
+	},
 	"activationEvents": [
 		"onNotebook:jupyter-notebook",
 		"onNotebook:interactive"
 	],
-	"description": "Jupyter Notebook Kernel Picker with custom servers using the Jupyter API sample",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "20"
 	},
-	"displayName": "Jupyter Server Provider Sample",
 	"extensionDependencies": [
 		"ms-toolsai.jupyter"
-	],
-	"main": "./out/extension.js",
-	"name": "jupyter-server-provider-sample",
-	"scripts": {
-		"compile": "tsc -b"
-	}
+	]
 }

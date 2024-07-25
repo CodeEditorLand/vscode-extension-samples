@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "helloworld-sample",
+	"displayName": "helloworld-sample",
+	"description": "HelloWorld example for VS Code",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -8,17 +14,11 @@
 			}
 		]
 	},
-	"description": "HelloWorld example for VS Code",
+	"activationEvents": [],
 	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/node": "^18",
-		"glob": "^7.1.4",
-		"source-map-support": "^0.5.12"
-	},
-	"displayName": "helloworld-sample",
-	"main": "./out/extension.js",
-	"name": "helloworld-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/glob": "8.1.0",
+		"@types/node": "20",
+		"glob": "11.0.0",
+		"source-map-support": "0.5.21"
 	}
 }
