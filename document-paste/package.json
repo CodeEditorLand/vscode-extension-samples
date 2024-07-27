@@ -5,7 +5,7 @@
 	"contributes": {},
 	"description": "Shows use of the document paste API proposal",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "18"
 	},
 	"displayName": "Document paste Sample",
 	"enabledApiProposals": [

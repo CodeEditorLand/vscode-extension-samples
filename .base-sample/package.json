@@ -10,7 +10,7 @@
 	},
 	"description": "Base sample for other samples at Microsoft/vscode-extension-samples",
 	"devDependencies": {
-		"@types/node": "^16.18.34"
+		"@types/node": "16.18.34"
 	},
 	"displayName": "base-sample",
 	"main": "./out/extension.js",

@@ -10,8 +10,8 @@
 	},
 	"description": "",
 	"devDependencies": {
-		"@types/node": "^18",
-		"ts-loader": "^7.0.5"
+		"@types/node": "18",
+		"ts-loader": "7.0.5"
 	},
 	"displayName": "webpack-sample",
 	"main": "./dist/extension",

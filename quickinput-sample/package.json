@@ -12,7 +12,7 @@
 	},
 	"description": "Samples for VS Code's QuickInput API",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "18"
 	},
 	"displayName": "QuickInput Sample",
 	"main": "./out/extension.js",
