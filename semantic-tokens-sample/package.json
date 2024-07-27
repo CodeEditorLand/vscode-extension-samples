@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "semantic-tokens-sample",
+	"displayName": "semantic-tokens-sample",
+	"description": "Sample showing the Semantic Tokens Provider API",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"languages": [
 			{
@@ -10,14 +16,8 @@
 			}
 		]
 	},
-	"description": "Sample showing the Semantic Tokens Provider API",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "18"
-	},
-	"displayName": "semantic-tokens-sample",
-	"main": "./out/extension.js",
-	"name": "semantic-tokens-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

@@ -1,4 +1,12 @@
 {
+	"name": "notebook-extend-markdown-renderer-sample",
+	"displayName": "notebook-extend-markdown-renderer-sample",
+	"description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
+	"scripts": {
+		"test-compile": "tsc -p ./",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	},
 	"contributes": {
 		"notebookRenderer": [
 			{
@@ -11,17 +19,9 @@
 			}
 		]
 	},
-	"description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
 	"devDependencies": {
 		"@types/markdown-it": "12.2.3",
 		"markdown-it-emoji": "2.0.2",
 		"ts-loader": "9.2.2"
-	},
-	"displayName": "notebook-extend-markdown-renderer-sample",
-	"name": "notebook-extend-markdown-renderer-sample",
-	"scripts": {
-		"test-compile": "tsc -p ./",
-		"webpack": "webpack --mode development",
-		"webpack-dev": "webpack --mode development --watch"
 	}
 }

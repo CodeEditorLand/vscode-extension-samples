@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "vscode-memfs",
+	"displayName": "FileSystem Consumer Sample",
+	"description": "Showcase for using the workspace.fs.-API which allows reading and writing files and folder",
+	"main": "./out/src/extension",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -19,14 +25,8 @@
 			}
 		]
 	},
-	"description": "Showcase for using the workspace.fs.-API which allows reading and writing files and folder",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "18"
-	},
-	"displayName": "FileSystem Consumer Sample",
-	"main": "./out/src/extension",
-	"name": "vscode-memfs",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

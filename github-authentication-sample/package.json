@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "github-authentication-sample",
+	"displayName": "github-authentication-sample",
+	"description": "Example of using the GitHub Authentication Provider",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -9,17 +15,11 @@
 			}
 		]
 	},
+	"activationEvents": [],
 	"dependencies": {
 		"@octokit/rest": "18.0.0"
 	},
-	"description": "Example of using the GitHub Authentication Provider",
 	"devDependencies": {
 		"@types/node": "18"
-	},
-	"displayName": "github-authentication-sample",
-	"main": "./out/extension.js",
-	"name": "github-authentication-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

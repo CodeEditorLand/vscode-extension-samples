@@ -1,7 +1,12 @@
 {
-	"activationEvents": [
-		"*"
-	],
+	"name": "inline-completion-sample",
+	"displayName": "Inline Completion Sample",
+	"description": "Sample showing how to implement an inline completion provider",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"download-api": "dts dev"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -17,18 +22,13 @@
 			]
 		}
 	},
-	"description": "Sample showing how to implement an inline completion provider",
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
 		"@types/node": "18"
 	},
-	"displayName": "Inline Completion Sample",
 	"enabledApiProposals": [
 		"inlineCompletionsAdditions"
-	],
-	"main": "./out/extension.js",
-	"name": "inline-completion-sample",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"download-api": "dts dev"
-	}
+	]
 }

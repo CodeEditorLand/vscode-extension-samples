@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "l10n-sample",
+	"displayName": "l10n-sample",
+	"description": "Sample that shows how to localize an extension",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -12,18 +18,12 @@
 			}
 		]
 	},
+	"activationEvents": [],
 	"dependencies": {},
-	"description": "Sample that shows how to localize an extension",
 	"devDependencies": {
 		"@types/glob": "7.2.0",
 		"@types/node": "18",
 		"glob": "7.2.0"
 	},
-	"displayName": "l10n-sample",
-	"l10n": "./l10n",
-	"main": "./out/extension.js",
-	"name": "l10n-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
-	}
+	"l10n": "./l10n"
 }

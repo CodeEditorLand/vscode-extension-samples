@@ -1,4 +1,9 @@
 {
+	"name": "product-icon-theme-sample",
+	"scripts": {
+		"showFont": "open ./theme/vscode-10.html",
+		"updateFont": "node ./build/updateFont.js"
+	},
 	"contributes": {
 		"productIconThemes": [
 			{
@@ -11,10 +16,5 @@
 	"devDependencies": {
 		"open": "7.0.3",
 		"webfont": "11.2.4"
-	},
-	"name": "product-icon-theme-sample",
-	"scripts": {
-		"showFont": "open ./theme/vscode-10.html",
-		"updateFont": "node ./build/updateFont.js"
 	}
 }

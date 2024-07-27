@@ -1,8 +1,11 @@
 {
-	"activationEvents": [
-		"onNotebook:test-notebook-serializer",
-		"onCommand:notebook-serializer-sample.createJsonNotebook"
-	],
+	"name": "notebook-serializer-sample",
+	"displayName": "notebook-serializer-sample",
+	"description": "Notebook using Serializer API sample",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -b"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -22,14 +25,11 @@
 			}
 		]
 	},
-	"description": "Notebook using Serializer API sample",
+	"activationEvents": [
+		"onNotebook:test-notebook-serializer",
+		"onCommand:notebook-serializer-sample.createJsonNotebook"
+	],
 	"devDependencies": {
 		"@types/node": "14.0"
-	},
-	"displayName": "notebook-serializer-sample",
-	"main": "./out/extension.js",
-	"name": "notebook-serializer-sample",
-	"scripts": {
-		"compile": "tsc -b"
 	}
 }

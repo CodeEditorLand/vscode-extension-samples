@@ -1,11 +1,11 @@
 {
-	"activationEvents": [
-		"onCommand:getting-started-sample.runCommand",
-		"onCommand:getting-started-sample.changeSetting",
-		"onCommand:getting-started-sample.setContext",
-		"onCommand:getting-started-sample.sayHello",
-		"onCommand:getting-started-sample.viewSources"
-	],
+	"name": "getting-started-sample",
+	"displayName": "getting-started-sample",
+	"description": "Example extension contribution to Getting Started page",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -181,14 +181,14 @@
 			}
 		]
 	},
-	"description": "Example extension contribution to Getting Started page",
+	"activationEvents": [
+		"onCommand:getting-started-sample.runCommand",
+		"onCommand:getting-started-sample.changeSetting",
+		"onCommand:getting-started-sample.setContext",
+		"onCommand:getting-started-sample.sayHello",
+		"onCommand:getting-started-sample.viewSources"
+	],
 	"devDependencies": {
 		"@types/node": "18"
-	},
-	"displayName": "getting-started-sample",
-	"main": "./out/extension.js",
-	"name": "getting-started-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }
