@@ -1,10 +1,7 @@
 {
-	"name": "cat-coding",
-	"description": "Cat Coding - A Webview API Sample",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [
+		"onWebviewPanel:catCoding"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -19,10 +16,13 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onWebviewPanel:catCoding"
-	],
+	"description": "Cat Coding - A Webview API Sample",
 	"devDependencies": {
 		"@types/node": "18"
+	},
+	"main": "./out/extension.js",
+	"name": "cat-coding",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

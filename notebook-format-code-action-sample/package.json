@@ -1,10 +1,4 @@
 {
-	"name": "notebook-format-code-action-sample",
-	"displayName": "Notebook Format Code Action Provider Sample",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
 	"activationEvents": [
 		"onStartupFinished"
 	],
@@ -12,5 +6,11 @@
 		"@types/glob": "8.1.0",
 		"@types/node": "18",
 		"glob": "8.1.0"
+	},
+	"displayName": "Notebook Format Code Action Provider Sample",
+	"main": "./out/extension.js",
+	"name": "notebook-format-code-action-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

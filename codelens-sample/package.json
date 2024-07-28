@@ -1,11 +1,7 @@
 {
-	"name": "codelens-sample",
-	"displayName": "CodeLens Sample",
-	"description": "Samples for VS Code's CodeLens API",
-	"main": "./out/extension",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [
+		"*"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -28,10 +24,14 @@
 			}
 		}
 	},
-	"activationEvents": [
-		"*"
-	],
+	"description": "Samples for VS Code's CodeLens API",
 	"devDependencies": {
 		"@types/node": "18"
+	},
+	"displayName": "CodeLens Sample",
+	"main": "./out/extension",
+	"name": "codelens-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

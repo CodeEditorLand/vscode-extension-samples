@@ -1,13 +1,5 @@
 {
-	"name": "proposed-api-sample",
-	"displayName": "proposed-api-sample",
-	"description": "Sample showing how to use Proposed API",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"download-api": "dts dev",
-		"postdownload-api": "dts main"
-	},
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -16,9 +8,17 @@
 			}
 		]
 	},
-	"activationEvents": [],
+	"description": "Sample showing how to use Proposed API",
 	"devDependencies": {
 		"@types/node": "18"
 	},
-	"enabledApiProposals": []
+	"displayName": "proposed-api-sample",
+	"enabledApiProposals": [],
+	"main": "./out/extension.js",
+	"name": "proposed-api-sample",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"download-api": "dts dev",
+		"postdownload-api": "dts main"
+	}
 }

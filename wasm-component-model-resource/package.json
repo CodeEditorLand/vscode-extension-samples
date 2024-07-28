@@ -1,16 +1,5 @@
 {
-	"name": "wasm-component-model-resource",
-	"description": "An example implementing a calculator using a resource.",
-	"main": "./out/extension",
 	"browser": "./dist/web/extension",
-	"scripts": {
-		"build": "npm run compile && cargo build --target wasm32-unknown-unknown",
-		"compile": "tsc -b",
-		"esbuild": "node ./bin/esbuild.js",
-		"generate:model": "wit2ts --outDir ./src ./wit",
-		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem",
-		"wit-bindgen": "wit-bindgen rust --out-dir ./src ./wit"
-	},
 	"contributes": {
 		"commands": [
 			{
@@ -21,9 +10,20 @@
 		]
 	},
 	"dependencies": {},
+	"description": "An example implementing a calculator using a resource.",
 	"devDependencies": {
 		"@types/node": "18.14.6",
 		"esbuild": "0.20.2",
 		"serve": "14.2.1"
+	},
+	"main": "./out/extension",
+	"name": "wasm-component-model-resource",
+	"scripts": {
+		"build": "npm run compile && cargo build --target wasm32-unknown-unknown",
+		"compile": "tsc -b",
+		"esbuild": "node ./bin/esbuild.js",
+		"generate:model": "wit2ts --outDir ./src ./wit",
+		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem",
+		"wit-bindgen": "wit-bindgen rust --out-dir ./src ./wit"
 	}
 }

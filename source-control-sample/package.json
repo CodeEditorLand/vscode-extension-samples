@@ -1,11 +1,7 @@
 {
-	"name": "source-control-sample",
-	"displayName": "source-control-sample",
-	"description": "Source control VS Code extension sample",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [
+		"workspaceContains:.jsfiddle"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -73,13 +69,17 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"workspaceContains:.jsfiddle"
-	],
 	"dependencies": {
 		"jsfiddle": "1.1.7"
 	},
+	"description": "Source control VS Code extension sample",
 	"devDependencies": {
 		"@types/node": "18"
+	},
+	"displayName": "source-control-sample",
+	"main": "./out/extension.js",
+	"name": "source-control-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

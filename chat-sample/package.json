@@ -1,11 +1,5 @@
 {
-	"name": "chat-sample",
-	"displayName": "Copilot Chat Sample",
-	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [],
 	"contributes": {
 		"chatParticipants": [
 			{
@@ -33,12 +27,18 @@
 			}
 		]
 	},
-	"activationEvents": [],
+	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"devDependencies": {
 		"@types/node": "20.5.9",
 		"@vscode/prompt-tsx": "0.2.3-alpha"
 	},
+	"displayName": "Copilot Chat Sample",
 	"enabledApiProposals": [
 		"chatVariableResolver"
-	]
+	],
+	"main": "./out/extension.js",
+	"name": "chat-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
+	}
 }

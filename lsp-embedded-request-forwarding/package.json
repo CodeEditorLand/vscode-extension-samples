@@ -1,10 +1,7 @@
 {
-	"name": "lsp-embedded-language-service-sample",
-	"description": "A language server example using language services to support embedded languages",
-	"main": "./client/out/extension",
-	"scripts": {
-		"compile": "tsc -b"
-	},
+	"activationEvents": [
+		"onLanguage:html1"
+	],
 	"contributes": {
 		"grammars": [
 			{
@@ -22,10 +19,13 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onLanguage:html1"
-	],
+	"description": "A language server example using language services to support embedded languages",
 	"devDependencies": {
 		"@types/node": "16.18.34"
+	},
+	"main": "./client/out/extension",
+	"name": "lsp-embedded-language-service-sample",
+	"scripts": {
+		"compile": "tsc -b"
 	}
 }
