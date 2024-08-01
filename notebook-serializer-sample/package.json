@@ -24,7 +24,7 @@
 	},
 	"description": "Notebook using Serializer API sample",
 	"devDependencies": {
-		"@types/node": "14.0"
+		"@types/node": "22.0"
 	},
 	"displayName": "notebook-serializer-sample",
 	"main": "./out/extension.js",

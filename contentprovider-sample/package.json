@@ -37,7 +37,7 @@
 	},
 	"description": "Show the results of 'Find References' as formatted text in an editor",
 	"devDependencies": {
-		"@types/node": "18"
+		"@types/node": "22"
 	},
 	"displayName": "References++",
 	"main": "./out/extension.js",
