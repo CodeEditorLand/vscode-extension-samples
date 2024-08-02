@@ -11,7 +11,8 @@ interface ICatChatResult extends vscode.ChatResult {
     }
 }
 
-const MODEL_SELECTOR: vscode.LanguageModelChatSelector = { vendor: 'copilot', family: 'gpt-3.5-turbo' };
+// Use gpt-4o since it is fast and high quality. gpt-3.5-turbo and gpt-4 are also available.
+const MODEL_SELECTOR: vscode.LanguageModelChatSelector = { vendor: 'copilot', family: 'gpt-4o' };
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -24,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
             stream.progress('Picking the right topic to teach...');
             const topic = getTopic(context.history);
             try {
+                // To get a list of all available models, do not pass any selector to the selectChatModels.
                 const [model] = await vscode.lm.selectChatModels(MODEL_SELECTOR);
                 if (model) {
                     const messages = [
@@ -37,14 +39,15 @@ export function activate(context: vscode.ExtensionContext) {
                     }
                 }
             } catch(err) {
-                handleError(err, stream);
+                handleError(logger, err, stream);
             }
 
             stream.button({
                 command: CAT_NAMES_COMMAND_ID,
                 title: vscode.l10n.t('Use Cat Names in Editor')
             });
-
+            
+            logger.logUsage('request', { kind: 'teach'});
             return { metadata: { command: 'teach' } };
         } else if (request.command === 'play') {
             stream.progress('Throwing away the computer science books and preparing to play with some Python code...');
@@ -64,9 +67,10 @@ export function activate(context: vscode.ExtensionContext) {
                     }
                 }
             } catch(err) {
-                handleError(err, stream);
+                handleError(logger, err, stream);
             }
 
+            logger.logUsage('request', { kind: 'play'});
             return { metadata: { command: 'play' } };
         } else {
             try {
@@ -87,9 +91,10 @@ export function activate(context: vscode.ExtensionContext) {
                     }
                 }
             } catch(err) {
-                handleError(err, stream);
+                handleError(logger, err, stream);
             }
 
+            logger.logUsage('request', { kind: ''});
             return { metadata: { command: '' } };
         }
     };
@@ -109,6 +114,29 @@ export function activate(context: vscode.ExtensionContext) {
         }
     };
 
+    const logger = vscode.env.createTelemetryLogger({
+        sendEventData(eventName, data) {
+            // Capture event telemetry
+            console.log(`Event: ${eventName}`);
+            console.log(`Data: ${JSON.stringify(data)}`);
+        },
+        sendErrorData(error, data) {
+            // Capture error telemetry
+            console.error(`Error: ${error}`);
+            console.error(`Data: ${JSON.stringify(data)}`);
+        }
+    });
+
+    context.subscriptions.push(cat.onDidReceiveFeedback((feedback: vscode.ChatResultFeedback) => {
+        if (logger.isUsageEnabled) {
+            // Log chat result feedback to be able to compute the success matric of the participant
+            // unhelpful / totalRequests is a good success metric
+            logger.logUsage('chatResultFeedback', {
+                kind: feedback.kind
+            });
+        }
+    }));
+
     context.subscriptions.push(
         cat,
         // Register the command handler for the /meow followup
@@ -118,7 +146,7 @@ export function activate(context: vscode.ExtensionContext) {
 
             let chatResponse: vscode.LanguageModelChatResponse | undefined;
             try {
-                const [model] = await vscode.lm.selectChatModels({ vendor: 'copilot', family: 'gpt-3.5-turbo' });
+                const [model] = await vscode.lm.selectChatModels(MODEL_SELECTOR);
                 if (!model) {
                     console.log('Model not found. Please make sure the GitHub Copilot Chat extension is installed and enabled.');
                     return;
@@ -168,11 +196,15 @@ export function activate(context: vscode.ExtensionContext) {
     );
 }
 
-function handleError(err: any, stream: vscode.ChatResponseStream): void {
+function handleError(logger: vscode.TelemetryLogger, err: any, stream: vscode.ChatResponseStream): void {
     // making the chat request might fail because
     // - model does not exist
     // - user consent not given
     // - quote limits exceeded
+    if (logger.isErrorsEnabled) {
+        logger.logError(err);
+    }
+    
     if (err instanceof vscode.LanguageModelError) {
         console.log(err.message, err.code, err.cause);
         if (err.cause instanceof Error && err.cause.message.includes('off_topic')) {
