@@ -10,7 +10,7 @@
 	},
 	"description": "Base sample for other samples at Microsoft/vscode-extension-samples",
 	"devDependencies": {
-		"@types/node": "22.0.2"
+		"@types/node": "22.1.0"
 	},
 	"displayName": "base-sample",
 	"main": "./out/extension.js",

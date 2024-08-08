@@ -10,7 +10,7 @@
 	},
 	"description": "HelloWorld example for VS Code",
 	"devDependencies": {
-		"@types/node": "22.0.2"
+		"@types/node": "22.1.0"
 	},
 	"displayName": "helloworld-sample",
 	"main": "./out/extension.js",

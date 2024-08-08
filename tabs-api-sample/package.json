@@ -18,7 +18,7 @@
 	},
 	"description": "Sample showing how to use the tabs api",
 	"devDependencies": {
-		"@types/node": "22.0.2"
+		"@types/node": "22.1.0"
 	},
 	"displayName": "tabs-api-sample",
 	"main": "./out/extension.js",
