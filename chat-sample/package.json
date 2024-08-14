@@ -5,11 +5,10 @@
 			{
 				"commands": [
 					{
-						"name": "randomTeach",
-						"description": "Pick at random a computer science concept then explain it in purfect way of a cat"
+						"description": "Pick at random a computer science concept then explain it in purfect way of a cat",
+						"name": "randomTeach"
 					},
 					{
-						"name": "play",
 						"description": "Do whatever you want, you are a cat after all",
 						"disambiguation": [
 							{
@@ -20,9 +19,11 @@
 									"Can you show me a cat playing with a laser pointer?"
 								]
 							}
-						]
+						],
+						"name": "play"
 					}
 				],
+				"description": "Meow! What can I teach you?",
 				"disambiguation": [
 					{
 						"categoryName": "cat",
@@ -34,7 +35,6 @@
 						]
 					}
 				],
-				"description": "Meow! What can I teach you?",
 				"fullName": "Cat",
 				"id": "chat-sample.cat",
 				"isSticky": true,
