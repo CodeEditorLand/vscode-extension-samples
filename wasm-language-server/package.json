@@ -15,8 +15,8 @@
 	"dependencies": {},
 	"description": "An example demonstrating how to implement a language server as a WebAssembly module.",
 	"devDependencies": {
-		"@types/node": "22.1.0",
-		"esbuild": "0.23.0",
+		"@types/node": "22.4.0",
+		"esbuild": "0.23.1",
 		"serve": "14.2.3"
 	},
 	"extensionDependencies": [

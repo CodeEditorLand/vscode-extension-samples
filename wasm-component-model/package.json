@@ -12,8 +12,8 @@
 	"dependencies": {},
 	"description": "An example demonstrating how to use the component model to integrate WebAssembly modules into VS Code.",
 	"devDependencies": {
-		"@types/node": "22.1.0",
-		"esbuild": "0.23.0",
+		"@types/node": "22.4.0",
+		"esbuild": "0.23.1",
 		"serve": "14.2.3"
 	},
 	"main": "./out/extension",

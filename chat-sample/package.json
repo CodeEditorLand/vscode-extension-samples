@@ -49,11 +49,11 @@
 		]
 	},
 	"dependencies": {
-		"@vscode/prompt-tsx": "^0.2.6-alpha"
+		"@vscode/prompt-tsx": "0.2.6-alpha"
 	},
 	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"devDependencies": {
-		"@types/node": "^22.1.0"
+		"@types/node": "22.4.0"
 	},
 	"displayName": "Copilot Chat Sample",
 	"main": "./out/extension.js",

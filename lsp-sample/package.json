@@ -29,7 +29,7 @@
 	},
 	"description": "A language server example",
 	"devDependencies": {
-		"@types/node": "22.1.0"
+		"@types/node": "22.4.0"
 	},
 	"main": "./client/out/extension",
 	"name": "lsp-sample",

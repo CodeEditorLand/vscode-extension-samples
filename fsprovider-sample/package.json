@@ -57,7 +57,7 @@
 	},
 	"description": "Showcase for the file system provider API, also useful for testing again document that are not on disk.",
 	"devDependencies": {
-		"@types/node": "22.1.0"
+		"@types/node": "22.4.0"
 	},
 	"displayName": "MemFS - a file system provider sample",
 	"main": "./out/src/extension",

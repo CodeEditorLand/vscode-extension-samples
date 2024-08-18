@@ -42,7 +42,7 @@
 	"description": "Examples of notification types and various configurations",
 	"devDependencies": {
 		"@types/glob": "8.1.0",
-		"@types/node": "22.1",
+		"@types/node": "22.4",
 		"glob": "11.0.0"
 	},
 	"displayName": "Notifications Sample",
