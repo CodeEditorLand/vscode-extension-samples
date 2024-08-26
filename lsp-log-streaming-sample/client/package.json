@@ -8,6 +8,6 @@
 		"@types/ws": "8.5.12",
 		"glob": "11.0.0"
 	},
-	"name": "lsp-sample-client",
+	"name": "lsp-log-streaming-sample-client",
 	"scripts": {}
 }

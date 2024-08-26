@@ -4,5 +4,5 @@
 	"devDependencies": {
 		"@types/node": "22.5.0"
 	},
-	"name": "lsp-sample-client"
+	"name": "lsp-embedded-language-service-sample-client"
 }

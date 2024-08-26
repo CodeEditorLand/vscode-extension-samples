@@ -8,7 +8,6 @@
 			}
 		]
 	},
-	"description": "",
 	"devDependencies": {
 		"@types/node": "22",
 		"ts-loader": "9.5.1"

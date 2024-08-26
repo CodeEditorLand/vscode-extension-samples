@@ -10,7 +10,6 @@
 			]
 		}
 	},
-	"description": "",
 	"devDependencies": {
 		"@types/node": "22.5"
 	},

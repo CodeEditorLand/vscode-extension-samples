@@ -17,7 +17,7 @@
 	},
 	"displayName": "helloworld-sample",
 	"main": "./out/extension.js",
-	"name": "helloworld-sample",
+	"name": "helloworld-test-sample",
 	"scripts": {
 		"compile": "tsc -p ./"
 	}
