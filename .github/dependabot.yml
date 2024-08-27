@@ -110,6 +110,18 @@ updates:
       versioning-strategy: increase
 
     - package-ecosystem: "npm"
+      directory: "/esbuild-sample/Documentation/media/Documentation/media"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/esbuild-sample/Documentation/media"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
       directory: "/esbuild-sample"
       schedule:
           interval: "daily"
@@ -189,6 +201,18 @@ updates:
 
     - package-ecosystem: "npm"
       directory: "/jupyter-server-provider-sample"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/l10n-sample/Documentation/media/Documentation/media"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/l10n-sample/Documentation/media"
       schedule:
           interval: "daily"
       versioning-strategy: increase
@@ -549,6 +573,18 @@ updates:
 
     - package-ecosystem: "npm"
       directory: "/wasm-language-server/server"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/webpack-sample/Documentation/media/Documentation/media"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/webpack-sample/Documentation/media"
       schedule:
           interval: "daily"
       versioning-strategy: increase

@@ -223,6 +223,24 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
+                  cache-dependency-path: ./esbuild-sample/Documentation/media/Documentation/media/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./esbuild-sample/Documentation/media/Documentation/media
+
+            - uses: actions/setup-node@v4.0.3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./esbuild-sample/Documentation/media/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./esbuild-sample/Documentation/media
+
+            - uses: actions/setup-node@v4.0.3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
                   cache-dependency-path: ./esbuild-sample/pnpm-lock.yaml
 
             - run: pnpm install
@@ -344,6 +362,24 @@ jobs:
 
             - run: pnpm install
               working-directory: ./jupyter-server-provider-sample
+
+            - uses: actions/setup-node@v4.0.3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./l10n-sample/Documentation/media/Documentation/media/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./l10n-sample/Documentation/media/Documentation/media
+
+            - uses: actions/setup-node@v4.0.3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./l10n-sample/Documentation/media/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./l10n-sample/Documentation/media
 
             - uses: actions/setup-node@v4.0.3
               with:
@@ -852,6 +888,24 @@ jobs:
               with:
                   name: .-wasm-language-server-server-Node-${{ matrix.node-version }}-Target
                   path: ./wasm-language-server/server/Target
+
+            - uses: actions/setup-node@v4.0.3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./webpack-sample/Documentation/media/Documentation/media/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./webpack-sample/Documentation/media/Documentation/media
+
+            - uses: actions/setup-node@v4.0.3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./webpack-sample/Documentation/media/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./webpack-sample/Documentation/media
 
             - uses: actions/setup-node@v4.0.3
               with:
