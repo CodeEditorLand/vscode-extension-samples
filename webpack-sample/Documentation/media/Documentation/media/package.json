@@ -1,0 +1,23 @@
+{
+	"activationEvents": [],
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.helloWebpack",
+				"title": "Hello Webpack"
+			}
+		]
+	},
+	"devDependencies": {
+		"@types/node": "22",
+		"ts-loader": "9.5.1"
+	},
+	"displayName": "webpack-sample",
+	"main": "./dist/extension",
+	"name": "webpack-sample",
+	"scripts": {
+		"test-compile": "tsc -p ./",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	}
+}

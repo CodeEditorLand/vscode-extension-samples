@@ -1,0 +1,129 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta name="keywords" content="@playform/document"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>configuration-sample</title><meta name="description" content="Documentation for configuration-sample"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><link rel="stylesheet" href="assets/custom.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">configuration-sample</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h2>configuration-sample</h2></div><div class="tsd-panel tsd-typography"><a id="md:configuration-sample-extension" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Configuration Sample Extension<a href="#md:configuration-sample-extension" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>This sample shows</p>
+<ul>
+<li>How to define a <code>window</code>, <code>resource</code> and <code>language-overridable</code> scoped
+configurations.</li>
+<li>How to read and update a <code>window</code> scoped configuration</li>
+<li>How to read a <code>resource</code> scoped configuration of a resource</li>
+<li>How to update a value for <code>resource</code> scoped configuration of a resource</li>
+<li>How to read a <code>language-overridable</code> scoped configuration</li>
+<li>How to override a <code>language-overridable</code> scoped configuration under a
+language</li>
+<li>How to listen to configuration changes</li>
+<li>How to test it</li>
+</ul>
+<p>See <a href="media/extension.ts">extension.ts</a></p>
+<a id="md:testing" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Testing<a href="#md:testing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><a id="md:empty-workspace" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Empty Workspace<a href="#md:empty-workspace" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Explains how to test this extension in an Empty workspace</p>
+<a id="md:testing-window-configuration" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Testing Window configuration<a href="#md:testing-window-configuration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>Open User Settings and set <code>&quot;conf.view.showOnWindowOpen&quot;: &quot;scm&quot;</code></li>
+<li>Refresh the Window. SCM view will be shown always, even if you refresh from
+a view other than SCM.</li>
+<li>Run the command <code>Configure view to show on window open</code> and Select the value
+(View to show when opening a window)</li>
+<li>Value should be updated in <code>User Settings</code></li>
+</ul>
+<a id="md:testing-resource-configuration" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Testing Resource configuration<a href="#md:testing-resource-configuration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>Open User Settings and set
+<code>&quot;conf.resource.insertEmptyLastLine&quot;: {&quot;${absolute_path_to_file}&quot;: true}</code></li>
+<li>Open the above configured file in the empty window. A message about adding
+empty line from the extension is shown.</li>
+<li>Open a different file. No message is shown.</li>
+<li>Run the command <code>Configure empty last line for current file</code></li>
+<li>Value in User settings is updated. Message is shown now</li>
+<li>Run the command <code>Configure empty last line for files</code> and provide absolute
+path of another file</li>
+<li>Value should be updated in User Settings</li>
+</ul>
+<a id="md:testing-language-specific-configuration" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Testing Language Specific configuration<a href="#md:testing-language-specific-configuration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>Set <code>&quot;conf.language.showSize&quot;: true</code> in user settings</li>
+<li>Open a file and you should see the size of the file in the status</li>
+<li>Unset <code>conf.language.showSize</code></li>
+<li>Run the command <code>Configuration Sample: Configure show size for language</code></li>
+<li>Enter the language for which you want to configure this feature and press
+Enter.</li>
+<li>Open a file with above configured language and size of the file is shown in
+status</li>
+<li>Open a file with a different language and no status is shown.</li>
+</ul>
+<a id="md:folder-workspace" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Folder Workspace<a href="#md:folder-workspace" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Explains how to test this extension in a Folder workspace</p>
+<a id="md:testing-window-configuration-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Testing Window configuration<a href="#md:testing-window-configuration-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>Open User or Workspace Settings and set
+<code>&quot;conf.view.showOnWindowOpen&quot;: &quot;scm&quot;</code></li>
+<li>Refresh the Window. SCM view will be shown always, even if you refresh from
+a view other than SCM.</li>
+<li>Run the command <code>Configure view to show on window open</code>. Select the value
+(View to show when opening a window)</li>
+<li>Pick the target <code>User Settings</code> or <code>Workspace Settings</code> into which the value
+should be updated</li>
+<li>Value should be updated in selected target</li>
+</ul>
+<a id="md:testing-resource-configuration-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Testing Resource configuration<a href="#md:testing-resource-configuration-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>Open User Settings and set
+<code>&quot;conf.resource.insertEmptyLastLine&quot;: {&quot;${absolute_path_to_file}&quot;: true}</code></li>
+<li>Open the above configured file in the empty window. A message about adding
+empty line from the extension is shown.</li>
+<li>Open a different file from the opened folder. No message is shown.</li>
+<li>Run the command <code>Configure empty last line for current file</code></li>
+<li>Value in Workspace settings is updated. Message is shown now.</li>
+<li>Run the command <code>Configure empty last line for files</code> and provide absolute
+path of another file.</li>
+<li>Pick the target <code>User Settings</code> or <code>Workspace Settings</code> into which the value
+should be updated</li>
+<li>Value should be updated in selected target</li>
+</ul>
+<a id="md:testing-language-specific-configuration-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Testing Language Specific configuration<a href="#md:testing-language-specific-configuration-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>Set <code>&quot;conf.language.showSize&quot;: true</code> in any settings (user, workspace)</li>
+<li>Open a file and you should see the size of the file in the status</li>
+<li>Unset <code>conf.language.showSize</code></li>
+<li>Run the command <code>Configuration Sample: Configure show size for language</code></li>
+<li>Enter the language for which you want to configure this feature and press
+Enter.</li>
+<li>Open a file with above configured language and size of the file is shown in
+status</li>
+<li>Open a file with a different language and no status is shown.</li>
+</ul>
+<a id="md:multiroot-workspace" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Multiroot Workspace<a href="#md:multiroot-workspace" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Explains how to test this extension in a Multiroot workspace</p>
+<a id="md:testing-window-configuration-2" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Testing Window configuration<a href="#md:testing-window-configuration-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>Open User or Workspace Settings and set
+<code>&quot;conf.view.showOnWindowOpen&quot;: &quot;scm&quot;</code></li>
+<li>Refresh the Window. SCM view will be shown always, even if you refresh from
+a view other than SCM.</li>
+<li><em>NOTE</em>: This setting cannot be applied under Folder settings, doing so will
+show a warning and value is not respected.</li>
+<li>Run the command <code>Configure view to show on window open</code>. Select the value
+(View to show when opening a window)</li>
+<li>Pick the target <code>User Settings</code> or <code>Workspace Settings</code> into which the value
+should be updated</li>
+<li>Value should be updated in selected target</li>
+</ul>
+<a id="md:testing-resource-configuration-2" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Testing Resource configuration<a href="#md:testing-resource-configuration-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>Open User Settings and set
+<code>&quot;conf.resource.insertEmptyLastLine&quot;: {&quot;${absolute_path_to_file}&quot;: true}</code></li>
+<li>Open the above configured file in the empty window. A message about adding
+empty line from the extension is shown.</li>
+<li>Open a different file from one of the root folders. No message is shown.</li>
+<li>Run the command <code>Configure empty last line for current file</code></li>
+<li>Value in Folder Settings of the root folder of the current file is updated.
+Message is shown now.</li>
+<li>Run the command <code>Configure empty last line for files</code> and provide absolute
+path of another file.</li>
+<li>Pick the target <code>User Settings</code> or <code>Workspace Settings</code> or
+<code>Workspace Folder Settings</code> into which the value should be updated</li>
+<li>Selecting User or Workspace Settings should update the value in respective
+targets.</li>
+<li>Selecting Workspace Folder Settings will show a Workspace Folder Picker</li>
+<li>Picking a workspace folder should update the value in the respective folder
+settings file.</li>
+</ul>
+<a id="md:testing-language-specific-configuration-2" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Testing Language Specific configuration<a href="#md:testing-language-specific-configuration-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>Set <code>&quot;conf.language.showSize&quot;: true</code> in any settings (user, workspace or
+workspace folder)</li>
+<li>Open a file and you should see the size of the file in the status</li>
+<li>Unset <code>conf.language.showSize</code></li>
+<li>Run the command <code>Configuration Sample: Configure show size for language</code></li>
+<li>Enter the language for which you want to configure this feature and press
+Enter.</li>
+<li>Open a file with above configured language and size of the file is shown in
+status</li>
+<li>Open a file with a different language and no status is shown.</li>
+</ul>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:configuration-sample-extension"><span>Configuration <wbr/>Sample <wbr/>Extension</span></a><a href="#md:testing"><span>Testing</span></a><ul><li><a href="#md:empty-workspace"><span>Empty <wbr/>Workspace</span></a></li><li><ul><li><a href="#md:testing-window-configuration"><span>Testing <wbr/>Window configuration</span></a></li><li><a href="#md:testing-resource-configuration"><span>Testing <wbr/>Resource configuration</span></a></li><li><a href="#md:testing-language-specific-configuration"><span>Testing <wbr/>Language <wbr/>Specific configuration</span></a></li></ul></li><li><a href="#md:folder-workspace"><span>Folder <wbr/>Workspace</span></a></li><li><ul><li><a href="#md:testing-window-configuration-1"><span>Testing <wbr/>Window configuration</span></a></li><li><a href="#md:testing-resource-configuration-1"><span>Testing <wbr/>Resource configuration</span></a></li><li><a href="#md:testing-language-specific-configuration-1"><span>Testing <wbr/>Language <wbr/>Specific configuration</span></a></li><li><a href="#md:multiroot-workspace"><span>Multiroot <wbr/>Workspace</span></a></li><li><a href="#md:testing-window-configuration-2"><span>Testing <wbr/>Window configuration</span></a></li><li><a href="#md:testing-resource-configuration-2"><span>Testing <wbr/>Resource configuration</span></a></li><li><a href="#md:testing-language-specific-configuration-2"><span>Testing <wbr/>Language <wbr/>Specific configuration</span></a></li></ul></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>configuration-sample</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

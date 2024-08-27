@@ -1,0 +1,29 @@
+{
+	"activationEvents": [],
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.sayHello",
+				"title": "%extension.sayHello.title%"
+			},
+			{
+				"command": "extension.sayBye",
+				"title": "%extension.sayBye.title%"
+			}
+		]
+	},
+	"dependencies": {},
+	"description": "Sample that shows how to localize an extension",
+	"devDependencies": {
+		"@types/glob": "8.1.0",
+		"@types/node": "22",
+		"glob": "11.0.0"
+	},
+	"displayName": "l10n-sample",
+	"l10n": "./l10n",
+	"main": "./out/extension.js",
+	"name": "l10n-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
+	}
+}

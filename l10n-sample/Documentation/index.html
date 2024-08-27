@@ -1,0 +1,96 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta name="keywords" content="@playform/document"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>l10n-sample</title><meta name="description" content="Documentation for l10n-sample"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><link rel="stylesheet" href="assets/custom.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">l10n-sample</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h2>l10n-sample</h2></div><div class="tsd-panel tsd-typography"><a id="md:l10n-sample-readme" class="tsd-anchor"></a><h1 class="tsd-anchor-link">l10n-sample README<a href="#md:l10n-sample-readme" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>This folder contains a sample VS code extension that shows how to localize an
+extension. For this sample, it shows two commands: Hello and Bye in English and
+Japanese.</p>
+<p>Localization for VS Code extension's source code has 4 important parts:</p>
+<ul>
+<li><code>package.nls.json</code> - The file used for translating static contributions in
+your extension's package.json</li>
+<li><code>vscode.l10n.t</code> - The API for translating strings in your extension's code</li>
+<li><code>@vscode/l10n-dev</code> - The tooling used for extracting l10n strings from
+vscode extensions and working with XLF files</li>
+<li><code>@vscode/l10n</code> - The library used for loading the translations into
+subprocesses of your extension</li>
+</ul>
+<a id="md:packagenlsjson" class="tsd-anchor"></a><h2 class="tsd-anchor-link"><code>package.nls.json</code><a href="#md:packagenlsjson" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Take a look at the <a href="media/package.nls.json">package.nls.json</a> file. This file
+contains the translations for the static contributions in your extension's
+manifest (package.json). The keys in this file are the same as the keys in your
+package.json. The values are the translations for the corresponding key. Now
+open the <a href="media/package.json">package.json</a>. You'll notice that the keys in the file
+(ex. <code>extension.sayHello.title</code>) surrounded by <code>%</code>s.</p>
+<a id="md:vscodel10nt" class="tsd-anchor"></a><h2 class="tsd-anchor-link"><code>vscode.l10n.t</code><a href="#md:vscodel10nt" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p><code>l10n</code> is a new namespace that's a part of
+<a href="https://code.visualstudio.com/api/references/vscode-api#l10n">the official VS Code API</a>.
+This is the new way to mark a string as &quot;needing to be translated&quot; and replaces
+the old way of using the <code>vscode-nls</code> and the <code>vscode-nls-dev</code> packages.</p>
+<a id="md:🛠️-usage" class="tsd-anchor"></a><h3 class="tsd-anchor-link">🛠️ Usage<a href="#md:🛠️-usage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>In <code>extension.ts</code> and <code>command/sayBye.ts</code> you'll notice the usages of
+<code>vscode.l10n.t()</code>. This is how you mark a string a localized string. Localized
+strings will be pulled out of a <code>bundle.l10n.&lt;LANG&gt;.json</code> file if one is
+available. In this repo, <a href="media/bundle.l10n.ja.json">we have one for Japanese</a>.
+There are three function signatures for this API:</p>
+<pre><code class="ts"><span class="hl-0">function</span><span class="hl-1"> </span><span class="hl-2">t</span><span class="hl-1">(</span><span class="hl-3">message</span><span class="hl-1">: </span><span class="hl-4">string</span><span class="hl-1">, ...</span><span class="hl-3">args</span><span class="hl-1">: </span><span class="hl-4">Array</span><span class="hl-1">&lt;</span><span class="hl-4">string</span><span class="hl-1"> | </span><span class="hl-4">number</span><span class="hl-1">&gt;): </span><span class="hl-4">string</span><span class="hl-1">;</span><br/><span class="hl-0">function</span><span class="hl-1"> </span><span class="hl-2">t</span><span class="hl-1">(</span><span class="hl-3">message</span><span class="hl-1">: </span><span class="hl-4">string</span><span class="hl-1">, </span><span class="hl-3">args</span><span class="hl-1">: </span><span class="hl-4">Record</span><span class="hl-1">&lt;</span><span class="hl-4">string</span><span class="hl-1">, </span><span class="hl-4">any</span><span class="hl-1">&gt;): </span><span class="hl-4">string</span><span class="hl-1">;</span><br/><span class="hl-0">function</span><span class="hl-1"> </span><span class="hl-2">t</span><span class="hl-1">(</span><span class="hl-3">options</span><span class="hl-1">: {</span><br/><span class="hl-1">	</span><span class="hl-3">message</span><span class="hl-1">: </span><span class="hl-4">string</span><span class="hl-1">;</span><br/><span class="hl-1">	</span><span class="hl-3">args</span><span class="hl-1">?: </span><span class="hl-4">Array</span><span class="hl-1">&lt;</span><span class="hl-4">string</span><span class="hl-1"> | </span><span class="hl-4">number</span><span class="hl-1">&gt; | </span><span class="hl-4">Record</span><span class="hl-1">&lt;</span><span class="hl-4">string</span><span class="hl-1">, </span><span class="hl-4">any</span><span class="hl-1">&gt;;</span><br/><span class="hl-1">	</span><span class="hl-3">comment</span><span class="hl-1">: </span><span class="hl-4">string</span><span class="hl-1">[];</span><br/><span class="hl-1">}): </span><span class="hl-4">string</span><span class="hl-1">;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>These strings support arguments and comments. The arguments are used to replace
+placeholders in the string which look like <code>Hello {0}</code> where <code>{0}</code> is a
+placeholder and will be filled in with the argument at the specified index or
+<code>Hello {name}</code> where <code>{name}</code> is a placeholder and will be filled in with the
+<code>name</code> property of the specified args object. The comments are used to provide
+context for the translators. For example, if you have a string that says
+<code>Hello {0}</code>, the translators might not know what <code>{0}</code> is. So you can provide a
+comment to explain what <code>{0}</code> is.</p>
+<a id="md:extension-manifest-l10n-property" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Extension manifest <code>l10n</code> property<a href="#md:extension-manifest-l10n-property" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>An absolute must for this to work is that you must add the following to your
+extension manifest which you can see is done in this extension. Like so:</p>
+<pre><code class="jsonc"><span class="hl-1">{</span><br/><span class="hl-1">	</span><span class="hl-5">// example</span><br/><span class="hl-1">	</span><span class="hl-6">&quot;main&quot;</span><span class="hl-1">: </span><span class="hl-7">&quot;./out/extension.js&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">	</span><span class="hl-5">// ...</span><br/><span class="hl-1">	</span><span class="hl-6">&quot;l10n&quot;</span><span class="hl-1">: </span><span class="hl-7">&quot;./l10n&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>This tells VS Code where to find the localized strings for your extension and
+should be set to the directory that has the <code>bundle.l10n.&lt;LANG&gt;.json</code> files. You
+can set <code>l10n</code> to whatever you want, but note that it must be a relative path to
+the root of your extension. At runtime, that property will be used to load the
+correct localized strings for your extension so you will need to make sure that
+you put the files with the localized strings in the correct place.</p>
+<a id="md:vscodel10n-dev" class="tsd-anchor"></a><h2 class="tsd-anchor-link"><code>@vscode/l10n-dev</code><a href="#md:vscodel10n-dev" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>This package is used for extracting strings from your extension and working with
+XLF files. It's a CLI tool that you can run from the command line. You can see
+the full usage of this tool in
+<a href="https://github.com/microsoft/vscode-l10n/tree/main/l10n-dev">its repo</a>. But for
+this sample, we'll just go over the basics.</p>
+<p>First off, if you want to generate a <code>bundle.l10n.json</code> file which contains the
+sample's localizable strings, run:</p>
+<pre><code class="sh"><span class="hl-2">npx</span><span class="hl-1"> </span><span class="hl-7">@vscode/l10n-dev</span><span class="hl-1"> </span><span class="hl-7">export</span><span class="hl-1"> </span><span class="hl-0">-o</span><span class="hl-1"> </span><span class="hl-7">./l10n</span><span class="hl-1"> </span><span class="hl-7">./src</span>
+</code><button type="button">Copy</button></pre>
+
+<p>This will generate a <code>bundle.l10n.json</code> file in the <code>l10n</code> folder. This file
+contains all of the strings that are localizable in the extension. You can then
+create a <code>bundle.l10n.&lt;LANG&gt;.json</code> file for each language that you want to
+support and add the key/value pairs for the strings that you want to translate.</p>
+<p>If you don't speak another language but want to test out localization changes,
+you can use the
+<a href="https://en.wikipedia.org/wiki/Pseudolocalization">Pseudolocalization</a> generator
+built in to the <code>@vscode/l10n-dev</code> package. Give it a try:</p>
+<pre><code class="sh"><span class="hl-2">npx</span><span class="hl-1"> </span><span class="hl-7">@vscode/l10n-dev</span><span class="hl-1"> </span><span class="hl-7">generate-pseudo</span><span class="hl-1"> </span><span class="hl-0">-o</span><span class="hl-1"> </span><span class="hl-7">./l10n/</span><span class="hl-1"> </span><span class="hl-7">./l10n/bundle.l10n.json</span><span class="hl-1"> </span><span class="hl-7">./package.nls.json</span>
+</code><button type="button">Copy</button></pre>
+
+<p>This will create a <code>package.nls.qps-ploc.json</code> file and a
+<code>bundle.l10n.qps-ploc.json</code> file. If you install the
+<a href="https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-qps-ploc">Pseudo Language Language Pack</a>,
+you'll be able to set VS Code to this locale which will pull strings for this
+extension out of the respective <code>qps-ploc</code> files. The <code>qps-ploc</code> is the language
+code for Pseudolocalization used by VS Code.</p>
+<a id="md:advanced" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Advanced<a href="#md:advanced" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>On the VS Code team, we work with a team at Microsoft that accepts XLF files and
+handles translating strings for us. So we use the <code>@vscode/l10n-dev</code> tool to
+convert our <code>bundle.l10n.json</code> and <code>package.nls.json</code> files into XLF files. If
+you want to generate an XLF file, you can run:</p>
+<pre><code class="sh"><span class="hl-2">npx</span><span class="hl-1"> </span><span class="hl-7">@vscode/l10n-dev</span><span class="hl-1"> </span><span class="hl-7">generate-xlf</span><span class="hl-1"> </span><span class="hl-0">-o</span><span class="hl-1"> </span><span class="hl-7">./l10n-sample.xlf</span><span class="hl-1"> </span><span class="hl-7">./l10n/bundle.l10n.json</span><span class="hl-1"> </span><span class="hl-7">./package.nls.json</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The <code>l10n-dev</code> tooling also supports converting XLF files back into
+<code>bundle.l10n.json</code> and <code>package.nls.json</code> files, but we won't cover this here as
+it's not needed for this sample.</p>
+<a id="md:vscodel10n" class="tsd-anchor"></a><h2 class="tsd-anchor-link"><code>@vscode/l10n</code><a href="#md:vscodel10n" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>In this repo, you can see that there is a <code>cli.ts</code>. This file will be run
+outside of your extension using the <code>node</code> executable directly. This is a simple
+example of how you can use the <code>@vscode/l10n</code> package to load the localized
+strings for your extension inside of that subprocess.</p>
+<p>Those <code>l10n.t</code> calls will pull the strings from the file uri that was passed
+in... but the importance of this package is that these <code>l10n.t()</code> calls will
+also be picked up by the tooling that we use to extract strings for
+localization.</p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:l10n-sample-readme"><span>l10n-<wbr/>sample README</span></a><ul><li><a href="#md:packagenlsjson"><span>package.nls.json</span></a></li><li><a href="#md:vscodel10nt"><span>vscode.l10n.t</span></a></li><li><ul><li><a href="#md:🛠️-usage"><span>🛠️ <wbr/>Usage</span></a></li><li><a href="#md:extension-manifest-l10n-property"><span>Extension manifest l10n property</span></a></li></ul></li><li><a href="#md:vscodel10n-dev"><span>@vscode/l10n-<wbr/>dev</span></a></li><li><ul><li><a href="#md:advanced"><span>Advanced</span></a></li></ul></li><li><a href="#md:vscodel10n"><span>@vscode/l10n</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>l10n-sample</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta name="keywords" content="@playform/document"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>custom-view-samples</title><meta name="description" content="Documentation for custom-view-samples"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><link rel="stylesheet" href="assets/custom.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">custom-view-samples</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h2>custom-view-samples</h2></div><div class="tsd-panel tsd-typography"><a id="md:views--view-containers" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Views &amp; View Containers<a href="#md:views--view-containers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>This sample demonstrates how to implement and contribute a tree view in VS Code.
+This includes:</p>
+<ul>
+<li>Contributing views and view containers.</li>
+<li>Contributing actions in various location of the view.</li>
+<li>Implementing the tree data provider for the view.</li>
+<li>Creating and working with the view.</li>
+</ul>
+<p>This sample provides following views</p>
+<ul>
+<li>Node dependencies view</li>
+<li>Ftp file explorer view</li>
+</ul>
+<p>Following example shows Node dependencies view in Package Explorer View
+container.</p>
+<p><img src="media/package-explorer.png" alt="Package Explorer"></p>
+<a id="md:vs-code-api" class="tsd-anchor"></a><h2 class="tsd-anchor-link">VS Code API<a href="#md:vs-code-api" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>This sample uses following contribution points, activation events and APIs</p>
+<a id="md:contribution-points" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Contribution Points<a href="#md:contribution-points" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><code>views</code></li>
+<li><code>viewsContainers</code></li>
+<li><code>menu</code>
+<ul>
+<li><code>view/title</code></li>
+<li><code>view/item/context</code></li>
+</ul>
+</li>
+</ul>
+<a id="md:activation-events" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Activation Events<a href="#md:activation-events" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><code>onView:${viewId}</code></li>
+</ul>
+<a id="md:apis" class="tsd-anchor"></a><h3 class="tsd-anchor-link">APIs<a href="#md:apis" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><code>window.createTreeView</code></li>
+<li><code>window.registerTreeDataProvider</code></li>
+<li><code>TreeView</code></li>
+<li><code>TreeDataProvider</code></li>
+</ul>
+<p>Refer to <a href="media/USAGE.md">Usage</a> document for more details.</p>
+<a id="md:running-the-sample" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Running the Sample<a href="#md:running-the-sample" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>Open this example in VS Code Insiders</li>
+<li><code>npm install</code></li>
+<li><code>npm run watch</code></li>
+<li><code>F5</code> to start debugging</li>
+<li>Node dependencies view is shown in Package explorer view container in
+Activity bar.</li>
+<li>FTP file explorer view should be shown in Explorer</li>
+</ul>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:views--view-containers"><span>Views &amp; <wbr/>View <wbr/>Containers</span></a><ul><li><a href="#md:vs-code-api"><span>VS <wbr/>Code API</span></a></li><li><ul><li><a href="#md:contribution-points"><span>Contribution <wbr/>Points</span></a></li><li><a href="#md:activation-events"><span>Activation <wbr/>Events</span></a></li><li><a href="#md:apis"><span>APIs</span></a></li></ul></li><li><a href="#md:running-the-sample"><span>Running the <wbr/>Sample</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>custom-view-samples</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
