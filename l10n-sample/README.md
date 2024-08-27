@@ -30,7 +30,7 @@ open the [package.json](./package.json). You'll notice that the keys in the file
 This is the new way to mark a string as "needing to be translated" and replaces
 the old way of using the `vscode-nls` and the `vscode-nls-dev` packages.
 
-### Usage
+### 🛠️ Usage
 
 In `extension.ts` and `command/sayBye.ts` you'll notice the usages of
 `vscode.l10n.t()`. This is how you mark a string a localized string. Localized

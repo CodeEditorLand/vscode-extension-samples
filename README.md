@@ -26,7 +26,7 @@ is recommended to use the node version used for VS Code development itself which
 is documented
 [here](https://github.com/Microsoft/vscode/wiki/How-to-Contribute#prerequisites)
 
-## Usage
+## 🛠️ Usage
 
 -   `git clone https://github.com/Microsoft/vscode-extension-samples`
 -   `code <any-sample-folder>`
