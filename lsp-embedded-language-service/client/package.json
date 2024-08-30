@@ -1,8 +1,0 @@
-{
-	"dependencies": {},
-	"description": "VSCode part of a language server",
-	"devDependencies": {
-		"@types/node": "22.5.0"
-	},
-	"name": "lsp-embedded-language-service-sample-client"
-}
