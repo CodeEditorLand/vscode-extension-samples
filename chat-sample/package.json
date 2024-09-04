@@ -1,0 +1,64 @@
+{
+	"activationEvents": [],
+	"contributes": {
+		"chatParticipants": [
+			{
+				"commands": [
+					{
+						"description": "Pick at random a computer science concept then explain it in purfect way of a cat",
+						"name": "randomTeach"
+					},
+					{
+						"description": "Do whatever you want, you are a cat after all",
+						"disambiguation": [
+							{
+								"categoryName": "cat_play",
+								"description": "The user just wants to relax and see the cat play.",
+								"examples": [
+									"Enough learning, let the cat play with a ball of yarn",
+									"Can you show me a cat playing with a laser pointer?"
+								]
+							}
+						],
+						"name": "play"
+					}
+				],
+				"description": "Meow! What can I teach you?",
+				"disambiguation": [
+					{
+						"categoryName": "cat",
+						"description": "The user wants to learn a specific computer science topic in an informal way.",
+						"examples": [
+							"Teach me C++ pointers using metaphors",
+							"Explain to me what is a linked list in a simple way",
+							"Can you explain to me what is a function in programming?"
+						]
+					}
+				],
+				"fullName": "Cat",
+				"id": "chat-sample.cat",
+				"isSticky": true,
+				"name": "cat"
+			}
+		],
+		"commands": [
+			{
+				"command": "cat.namesInEditor",
+				"title": "Use Cat Names in Editor"
+			}
+		]
+	},
+	"dependencies": {
+		"@vscode/prompt-tsx": "^0.2.8-alpha"
+	},
+	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
+	"devDependencies": {
+		"@types/node": "^20.5.9"
+	},
+	"displayName": "Copilot Chat Sample",
+	"main": "./out/extension.js",
+	"name": "chat-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
+	}
+}
