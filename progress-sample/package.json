@@ -1,4 +1,24 @@
 {
+	"name": "progress-ts",
+	"displayName": "Notification Progress",
+	"description": "Show a long running operation in the notification area",
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"bugs": {
+		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+	},
+	"engines": {
+		"vscode": "^1.73.0"
+	},
+	"categories": [
+		"Other"
+	],
 	"activationEvents": [
 		"*"
 	],
@@ -10,14 +30,19 @@
 			}
 		]
 	},
-	"description": "Show a long running operation in the notification area",
-	"devDependencies": {
-		"@types/node": "18"
-	},
-	"displayName": "Notification Progress",
 	"main": "./out/extension.js",
-	"name": "progress-ts",
 	"scripts": {
-		"compile": "tsc -p ./"
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint \"src/**/*.ts\""
+	},
+	"devDependencies": {
+		"@types/node": "^18",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.5.2"
 	}
 }
