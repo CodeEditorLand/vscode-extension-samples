@@ -70,11 +70,11 @@
 		}
 	},
 	"dependencies": {
-		"jsfiddle": "^1.1.7"
+		"jsfiddle": "1.1.7"
 	},
 	"description": "Source control VS Code extension sample",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "18"
 	},
 	"displayName": "source-control-sample",
 	"main": "./out/extension.js",

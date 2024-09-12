@@ -5,7 +5,7 @@
 	"contributes": {},
 	"description": "Shows use of the document on drop API proposal",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "18"
 	},
 	"displayName": "Document On Drop Sample",
 	"main": "./out/extension.js",

@@ -10,7 +10,7 @@
 	},
 	"description": "Reverse a word",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "18"
 	},
 	"displayName": "ReverseWord",
 	"main": "./out/extension",

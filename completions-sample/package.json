@@ -3,7 +3,7 @@
 		"*"
 	],
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "18"
 	},
 	"displayName": "Completion Item Provider Sample",
 	"main": "./out/extension.js",

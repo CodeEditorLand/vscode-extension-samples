@@ -4,7 +4,7 @@
 	],
 	"description": "Diagnostic Related Information Sample",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "18"
 	},
 	"displayName": "Diagnostic Related Information Sample",
 	"main": "./out/extension.js",

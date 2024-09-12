@@ -199,18 +199,18 @@
 		}
 	},
 	"dependencies": {
-		"ftp": "^0.3.10",
-		"jsonc-parser": "^0.4.2",
-		"minimist": "^1.2.6",
-		"mkdirp": "^0.5.1",
-		"rimraf": "^2.6.2"
+		"ftp": "0.3.10",
+		"jsonc-parser": "0.4.2",
+		"minimist": "1.2.6",
+		"mkdirp": "0.5.1",
+		"rimraf": "2.6.2"
 	},
 	"description": "Samples for VSCode's view API",
 	"devDependencies": {
-		"@types/ftp": "^0.3.33",
-		"@types/mkdirp": "^0.5.2",
-		"@types/node": "^18",
-		"@types/rimraf": "^2.0.2"
+		"@types/ftp": "0.3.33",
+		"@types/mkdirp": "0.5.2",
+		"@types/node": "18",
+		"@types/rimraf": "2.0.2"
 	},
 	"displayName": "Custom view Samples",
 	"main": "./out/extension.js",
