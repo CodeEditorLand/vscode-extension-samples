@@ -1,64 +1,42 @@
 {
-	"name": "cat-customs",
-	"displayName": "Cat Customs",
-	"description": "Custom Editor API Samples",
-	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"engines": {
-		"vscode": "^1.74.0"
-	},
-	"categories": [
-		"Other"
-	],
 	"activationEvents": [],
-	"main": "./out/extension.js",
 	"contributes": {
+		"commands": [
+			{
+				"category": "Paw Draw",
+				"command": "catCustoms.pawDraw.new",
+				"title": "Create new Paw Draw Document"
+			}
+		],
 		"customEditors": [
 			{
-				"viewType": "catCustoms.catScratch",
 				"displayName": "Cat Scratch",
 				"selector": [
 					{
 						"filenamePattern": "*.cscratch"
 					}
-				]
+				],
+				"viewType": "catCustoms.catScratch"
 			},
 			{
-				"viewType": "catCustoms.pawDraw",
 				"displayName": "Paw Draw",
 				"selector": [
 					{
 						"filenamePattern": "*.pawdraw"
 					}
-				]
-			}
-		],
-		"commands": [
-			{
-				"command": "catCustoms.pawDraw.new",
-				"title": "Create new Paw Draw Document",
-				"category": "Paw Draw"
+				],
+				"viewType": "catCustoms.pawDraw"
 			}
 		]
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -w -p ./"
-	},
+	"description": "Custom Editor API Samples",
 	"devDependencies": {
-		"@types/node": "^18",
-		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^7.14.0",
-		"@typescript-eslint/parser": "^7.14.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.5.2"
+		"@types/node": "^18"
+	},
+	"displayName": "Cat Customs",
+	"main": "./out/extension.js",
+	"name": "cat-customs",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }
