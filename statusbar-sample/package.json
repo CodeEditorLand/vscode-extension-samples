@@ -1,39 +1,13 @@
 {
-	"name": "status-ts",
-	"displayName": "Selected Line Numbers",
-	"description": "Shows the number of selected lines in the status bar",
-	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"bugs": {
-		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
-	},
-	"engines": {
-		"vscode": "^1.73.0"
-	},
-	"categories": [
-		"Other"
-	],
 	"activationEvents": [
 		"*"
 	],
+	"description": "Shows the number of selected lines in the status bar",
+	"devDependencies": {},
+	"displayName": "Selected Line Numbers",
 	"main": "./out/extension.js",
+	"name": "status-ts",
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^7.14.0",
-		"@typescript-eslint/parser": "^7.14.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.5.2"
+		"compile": "tsc -p ./"
 	}
 }
