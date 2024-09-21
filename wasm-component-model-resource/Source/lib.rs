@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 mod calculator;
 
-use crate::calculator::exports::vscode::example::types::{Guest, GuestEngine, Operation};
 use std::cell::RefCell;
+use crate::calculator::exports::vscode::example::types::{ Guest, GuestEngine, Operation };
 
 struct EngineImpl {
 	left: Option<u32>,
@@ -14,7 +14,10 @@ struct EngineImpl {
 
 impl EngineImpl {
 	fn new() -> Self {
-		EngineImpl { left: None, right: None }
+		EngineImpl {
+			left: None,
+			right: None,
+		}
 	}
 
 	fn push_operand(&mut self, operand: u32) {
@@ -26,9 +29,9 @@ impl EngineImpl {
 	}
 
 	fn push_operation(&mut self, operation: Operation) {
-		let left = self.left.unwrap();
-		let right = self.right.unwrap();
-		self.left = Some(match operation {
+        let left = self.left.unwrap();
+        let right = self.right.unwrap();
+        self.left = Some(match operation {
 			Operation::Add => left + right,
 			Operation::Sub => left - right,
 			Operation::Mul => left * right,
@@ -46,15 +49,18 @@ struct CalcEngine {
 }
 
 impl GuestEngine for CalcEngine {
+
 	fn new() -> Self {
-		CalcEngine { stack: RefCell::new(EngineImpl::new()) }
+		CalcEngine {
+			stack: RefCell::new(EngineImpl::new())
+		}
 	}
 
 	fn push_operand(&self, operand: u32) {
 		self.stack.borrow_mut().push_operand(operand);
 	}
 
-	fn push_operation(&self, operation: Operation) {
+	fn push_operation(&self,operation:Operation) {
 		self.stack.borrow_mut().push_operation(operation);
 	}
 

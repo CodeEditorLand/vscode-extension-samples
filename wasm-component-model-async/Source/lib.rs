@@ -8,6 +8,7 @@ wit_bindgen::generate!({
 struct Calculator;
 
 impl Guest for Calculator {
+
 	fn calc(op: Operation) -> u32 {
 		log(&format!("Starting calculation: {:?}", op));
 		let result = match op {
