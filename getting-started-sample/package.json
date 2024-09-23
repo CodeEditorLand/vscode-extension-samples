@@ -183,7 +183,7 @@
 	},
 	"description": "Example extension contribution to Getting Started page",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "22"
 	},
 	"displayName": "getting-started-sample",
 	"main": "./out/extension.js",

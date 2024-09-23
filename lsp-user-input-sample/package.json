@@ -4,10 +4,10 @@
 	],
 	"description": "Sample to demonstrate code actions with UI",
 	"devDependencies": {
-		"@types/node": "^18.11.9",
-		"merge-options": "^3.0.4",
-		"rimraf": "^5.0.5",
-		"ts-loader": "^9.5.1"
+		"@types/node": "22.6.0",
+		"merge-options": "3.0.4",
+		"rimraf": "6.0.1",
+		"ts-loader": "9.5.1"
 	},
 	"displayName": "Code Action UI Sample",
 	"main": "./client/out/extension",

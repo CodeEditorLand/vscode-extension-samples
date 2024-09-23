@@ -10,7 +10,7 @@
 	},
 	"description": "Sample showing how to use Proposed API",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "22"
 	},
 	"displayName": "proposed-api-sample",
 	"enabledApiProposals": [],

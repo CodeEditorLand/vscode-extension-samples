@@ -15,9 +15,9 @@
 	"dependencies": {},
 	"description": "An example demonstrating how to implement a language server as a WebAssembly module.",
 	"devDependencies": {
-		"@types/node": "^18.14.6",
-		"esbuild": "^0.21.3",
-		"serve": "^14.2.3"
+		"@types/node": "22.6.0",
+		"esbuild": "0.24.0",
+		"serve": "14.2.3"
 	},
 	"extensionDependencies": [
 		"ms-vscode.wasm-wasi-core"

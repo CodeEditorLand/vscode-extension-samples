@@ -26,7 +26,7 @@
 	},
 	"description": "Samples for VS Code's CodeLens API",
 	"devDependencies": {
-		"@types/node": "^18"
+		"@types/node": "22"
 	},
 	"displayName": "CodeLens Sample",
 	"main": "./out/extension",

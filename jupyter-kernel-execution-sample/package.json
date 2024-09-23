@@ -22,7 +22,7 @@
 	},
 	"description": "Sample extension using Jupyter API to execute code against the Python Kernel",
 	"devDependencies": {
-		"@types/node": "14.x"
+		"@types/node": "22.x"
 	},
 	"displayName": "Jupyter Kernel Execution Sample",
 	"extensionDependencies": [
