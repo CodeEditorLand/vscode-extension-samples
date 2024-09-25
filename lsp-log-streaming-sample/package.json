@@ -1,7 +1,14 @@
 {
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
+	"name": "lsp-log-streaming-sample",
+	"description": "A language server example demonstrating log streaming",
+	"main": "./client/out/extension",
+	"scripts": {
+		"compile": "npm run compile:client && npm run compile:server",
+		"compile:client": "tsc -p ./client/tsconfig.json",
+		"compile:server": "tsc -p ./server/tsconfig.json",
+		"watch:client": "tsc -w -p ./client/tsconfig.json",
+		"watch:server": "tsc -w -p ./server/tsconfig.json"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -54,17 +61,10 @@
 			"type": "object"
 		}
 	},
-	"description": "A language server example demonstrating log streaming",
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"devDependencies": {
 		"@types/node": "22.6.0"
-	},
-	"main": "./client/out/extension",
-	"name": "lsp-log-streaming-sample",
-	"scripts": {
-		"compile": "npm run compile:client && npm run compile:server",
-		"compile:client": "tsc -p ./client/tsconfig.json",
-		"compile:server": "tsc -p ./server/tsconfig.json",
-		"watch:client": "tsc -w -p ./client/tsconfig.json",
-		"watch:server": "tsc -w -p ./server/tsconfig.json"
 	}
 }

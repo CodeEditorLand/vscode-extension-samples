@@ -1,15 +1,15 @@
 {
+	"name": "test-provider-sample",
+	"displayName": "test-provider-sample",
+	"description": "Sample showing how to use the test APIs",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"activationEvents": [
 		"workspaceContains:*.md"
 	],
-	"description": "Sample showing how to use the test APIs",
 	"devDependencies": {
 		"@types/node": "22"
-	},
-	"displayName": "test-provider-sample",
-	"main": "./out/extension.js",
-	"name": "test-provider-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

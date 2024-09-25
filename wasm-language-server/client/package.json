@@ -1,14 +1,14 @@
 {
-	"browser": "./dist/web/extension",
-	"dependencies": {},
-	"description": "The language client",
-	"devDependencies": {
-		"@types/node": "22.6.0"
-	},
-	"main": "./out/extension",
 	"name": "client",
+	"description": "The language client",
+	"main": "./out/extension",
+	"browser": "./dist/web/extension",
 	"scripts": {
 		"compile": "tsc -b",
 		"esbuild": "node ./bin/esbuild"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@types/node": "22.6.0"
 	}
 }

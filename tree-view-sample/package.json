@@ -1,8 +1,11 @@
 {
-	"activationEvents": [
-		"onLanguage:json",
-		"onLanguage:jsonc"
-	],
+	"name": "custom-view-samples",
+	"displayName": "Custom view Samples",
+	"description": "Samples for VSCode's view API",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -198,6 +201,10 @@
 			]
 		}
 	},
+	"activationEvents": [
+		"onLanguage:json",
+		"onLanguage:jsonc"
+	],
 	"dependencies": {
 		"ftp": "0.3.10",
 		"jsonc-parser": "3.3.1",
@@ -205,17 +212,10 @@
 		"mkdirp": "3.0.1",
 		"rimraf": "6.0.1"
 	},
-	"description": "Samples for VSCode's view API",
 	"devDependencies": {
 		"@types/ftp": "0.3.36",
 		"@types/mkdirp": "2.0.0",
 		"@types/node": "22",
 		"@types/rimraf": "4.0.5"
-	},
-	"displayName": "Custom view Samples",
-	"main": "./out/extension.js",
-	"name": "custom-view-samples",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

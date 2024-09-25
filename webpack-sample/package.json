@@ -1,5 +1,13 @@
 {
-	"activationEvents": [],
+	"name": "webpack-sample",
+	"displayName": "webpack-sample",
+	"description": "",
+	"main": "./dist/extension",
+	"scripts": {
+		"test-compile": "tsc -p ./",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -8,17 +16,9 @@
 			}
 		]
 	},
-	"description": "",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "22",
 		"ts-loader": "9.5.1"
-	},
-	"displayName": "webpack-sample",
-	"main": "./dist/extension",
-	"name": "webpack-sample",
-	"scripts": {
-		"test-compile": "tsc -p ./",
-		"webpack": "webpack --mode development",
-		"webpack-dev": "webpack --mode development --watch"
 	}
 }
