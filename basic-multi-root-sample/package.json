@@ -1,7 +1,11 @@
 {
-	"activationEvents": [
-		"*"
-	],
+	"name": "basic-multi-root-sample",
+	"displayName": "Basic Multi Root Sample",
+	"description": "Samples for VSCode's multi root API",
+	"main": "./out/src/extension",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"configuration": {
 			"properties": {
@@ -18,14 +22,10 @@
 			"type": "object"
 		}
 	},
-	"description": "Samples for VSCode's multi root API",
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
 		"@types/node": "22"
-	},
-	"displayName": "Basic Multi Root Sample",
-	"main": "./out/src/extension",
-	"name": "basic-multi-root-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

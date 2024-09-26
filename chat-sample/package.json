@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "chat-sample",
+	"displayName": "Copilot Chat Sample",
+	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"chatParticipants": [
 			{
@@ -48,17 +54,11 @@
 			}
 		]
 	},
+	"activationEvents": [],
 	"dependencies": {
 		"@vscode/prompt-tsx": "0.2.11-alpha"
 	},
-	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"devDependencies": {
 		"@types/node": "22.6.0"
-	},
-	"displayName": "Copilot Chat Sample",
-	"main": "./out/extension.js",
-	"name": "chat-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }
