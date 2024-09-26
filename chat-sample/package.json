@@ -59,6 +59,6 @@
 		"@vscode/prompt-tsx": "0.2.11-alpha"
 	},
 	"devDependencies": {
-		"@types/node": "22.7.2"
+		"@types/node": "22.7.3"
 	}
 }

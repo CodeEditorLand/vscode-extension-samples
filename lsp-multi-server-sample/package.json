@@ -40,6 +40,6 @@
 		"onLanguage:plaintext"
 	],
 	"devDependencies": {
-		"@types/node": "22.7.2"
+		"@types/node": "22.7.3"
 	}
 }
