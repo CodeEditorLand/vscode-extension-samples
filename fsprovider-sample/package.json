@@ -1,11 +1,7 @@
 {
-	"name": "vscode-memfs",
-	"displayName": "MemFS - a file system provider sample",
-	"description": "Showcase for the file system provider API, also useful for testing again document that are not on disk.",
-	"main": "./out/src/extension",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [
+		"onFileSystem:memfs"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -59,10 +55,14 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"onFileSystem:memfs"
-	],
+	"description": "Showcase for the file system provider API, also useful for testing again document that are not on disk.",
 	"devDependencies": {
 		"@types/node": "22.7.3"
+	},
+	"displayName": "MemFS - a file system provider sample",
+	"main": "./out/src/extension",
+	"name": "vscode-memfs",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

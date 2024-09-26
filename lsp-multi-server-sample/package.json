@@ -1,10 +1,7 @@
 {
-	"name": "lsp-sample-multi-server",
-	"description": "A multi server LSP example",
-	"main": "./client/out/extension",
-	"scripts": {
-		"compile": "tsc -b"
-	},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"contributes": {
 		"configuration": {
 			"properties": {
@@ -36,10 +33,13 @@
 			"type": "object"
 		}
 	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
+	"description": "A multi server LSP example",
 	"devDependencies": {
 		"@types/node": "22.7.3"
+	},
+	"main": "./client/out/extension",
+	"name": "lsp-sample-multi-server",
+	"scripts": {
+		"compile": "tsc -b"
 	}
 }

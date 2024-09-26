@@ -1,4 +1,4 @@
 {
-	"name": "server",
-	"dependencies": {}
+	"dependencies": {},
+	"name": "server"
 }

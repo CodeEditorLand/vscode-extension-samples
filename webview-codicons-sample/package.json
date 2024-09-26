@@ -1,10 +1,5 @@
 {
-	"name": "cat-codicons",
-	"description": "Cat Codicons - Using codicons in webviews",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -14,8 +9,13 @@
 			}
 		]
 	},
-	"activationEvents": [],
+	"description": "Cat Codicons - Using codicons in webviews",
 	"devDependencies": {
 		"@types/node": "22"
+	},
+	"main": "./out/extension.js",
+	"name": "cat-codicons",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

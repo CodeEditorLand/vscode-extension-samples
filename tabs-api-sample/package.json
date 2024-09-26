@@ -1,12 +1,8 @@
 {
-	"name": "tabs-api-sample",
-	"displayName": "tabs-api-sample",
-	"description": "Sample showing how to use the tabs api",
-	"main": "./out/extension.js",
+	"activationEvents": [
+		"onStartupFinished"
+	],
 	"browser": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
 	"contributes": {
 		"configuration": {
 			"id": "tabsSample",
@@ -20,10 +16,14 @@
 			"title": "Tabs API Sample"
 		}
 	},
-	"activationEvents": [
-		"onStartupFinished"
-	],
+	"description": "Sample showing how to use the tabs api",
 	"devDependencies": {
 		"@types/node": "22.7.3"
+	},
+	"displayName": "tabs-api-sample",
+	"main": "./out/extension.js",
+	"name": "tabs-api-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

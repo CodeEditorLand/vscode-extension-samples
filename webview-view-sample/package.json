@@ -1,10 +1,5 @@
 {
-	"name": "calico-colors",
-	"description": "Calico Colors - A Webview View API Sample",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -38,10 +33,15 @@
 			]
 		}
 	},
-	"activationEvents": [],
+	"description": "Calico Colors - A Webview View API Sample",
 	"devDependencies": {},
 	"extensionKind": [
 		"ui",
 		"workspace"
-	]
+	],
+	"main": "./out/extension.js",
+	"name": "calico-colors",
+	"scripts": {
+		"compile": "tsc -p ./"
+	}
 }

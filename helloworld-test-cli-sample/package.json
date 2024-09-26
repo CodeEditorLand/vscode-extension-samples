@@ -1,11 +1,5 @@
 {
-	"name": "helloworld-sample",
-	"displayName": "helloworld-sample",
-	"description": "HelloWorld example for VS Code",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -14,8 +8,14 @@
 			}
 		]
 	},
-	"activationEvents": [],
+	"description": "HelloWorld example for VS Code",
 	"devDependencies": {
 		"@types/node": "22.7.3"
+	},
+	"displayName": "helloworld-sample",
+	"main": "./out/extension.js",
+	"name": "helloworld-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }
