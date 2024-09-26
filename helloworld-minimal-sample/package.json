@@ -1,8 +1,5 @@
 {
-	"name": "helloworld-minimal-sample",
-	"description": "Minimal HelloWorld example for VS Code",
-	"main": "./extension.js",
-	"scripts": {},
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -11,6 +8,9 @@
 			}
 		]
 	},
-	"activationEvents": [],
-	"devDependencies": {}
+	"description": "Minimal HelloWorld example for VS Code",
+	"devDependencies": {},
+	"main": "./extension.js",
+	"name": "helloworld-minimal-sample",
+	"scripts": {}
 }

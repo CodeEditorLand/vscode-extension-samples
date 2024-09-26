@@ -1,8 +1,17 @@
 {
-	"name": "vscode-codeaction-ui-sample",
-	"displayName": "Code Action UI Sample",
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"description": "Sample to demonstrate code actions with UI",
+	"devDependencies": {
+		"@types/node": "22.6.0",
+		"merge-options": "3.0.4",
+		"rimraf": "6.0.1",
+		"ts-loader": "9.5.1"
+	},
+	"displayName": "Code Action UI Sample",
 	"main": "./client/out/extension",
+	"name": "vscode-codeaction-ui-sample",
 	"scripts": {
 		"clean": "rimraf client/out && rimraf server/out",
 		"compile": "tsc -b",
@@ -10,14 +19,5 @@
 		"compile:server": "tsc -b ./server/tsconfig.json",
 		"webpack": "npm run clean && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
 		"webpack:dev": "npm run clean && webpack --mode none --config ./client/webpack.config.js && webpack --mode none --config ./server/webpack.config.js"
-	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
-	"devDependencies": {
-		"@types/node": "22.6.0",
-		"merge-options": "3.0.4",
-		"rimraf": "6.0.1",
-		"ts-loader": "9.5.1"
 	}
 }

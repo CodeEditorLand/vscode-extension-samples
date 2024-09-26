@@ -1,11 +1,5 @@
 {
-	"name": "vscode-authenticationprovider-sample",
-	"displayName": "AuthenticationProvider API Sample",
-	"description": "AuthenticationProvider API Sample",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [],
 	"contributes": {
 		"authentication": [
 			{
@@ -20,14 +14,20 @@
 			}
 		]
 	},
-	"activationEvents": [],
 	"dependencies": {
 		"isomorphic-fetch": "3.0.0"
 	},
+	"description": "AuthenticationProvider API Sample",
 	"devDependencies": {
 		"@types/glob": "8.1.0",
 		"@types/isomorphic-fetch": "0.0.39",
 		"@types/node": "22",
 		"glob": "11.0.0"
+	},
+	"displayName": "AuthenticationProvider API Sample",
+	"main": "./out/extension.js",
+	"name": "vscode-authenticationprovider-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

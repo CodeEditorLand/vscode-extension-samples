@@ -1,11 +1,5 @@
 {
-	"name": "cat-customs",
-	"displayName": "Cat Customs",
-	"description": "Custom Editor API Samples",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -35,8 +29,14 @@
 			}
 		]
 	},
-	"activationEvents": [],
+	"description": "Custom Editor API Samples",
 	"devDependencies": {
 		"@types/node": "22"
+	},
+	"displayName": "Cat Customs",
+	"main": "./out/extension.js",
+	"name": "cat-customs",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

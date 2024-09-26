@@ -1,13 +1,8 @@
 {
-	"name": "wasm-language-server",
-	"description": "An example demonstrating how to implement a language server as a WebAssembly module.",
-	"main": "./client/out/extension",
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"browser": "./client/dist/web/extension",
-	"scripts": {
-		"build": "cd client && npm run compile && cd ../server && npm run build && cd ..",
-		"esbuild": "node ./bin/esbuild.js",
-		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
-	},
 	"contributes": {
 		"commands": [
 			{
@@ -17,10 +12,8 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
 	"dependencies": {},
+	"description": "An example demonstrating how to implement a language server as a WebAssembly module.",
 	"devDependencies": {
 		"@types/node": "22.6.0",
 		"esbuild": "0.24.0",
@@ -28,5 +21,12 @@
 	},
 	"extensionDependencies": [
 		"ms-vscode.wasm-wasi-core"
-	]
+	],
+	"main": "./client/out/extension",
+	"name": "wasm-language-server",
+	"scripts": {
+		"build": "cd client && npm run compile && cd ../server && npm run build && cd ..",
+		"esbuild": "node ./bin/esbuild.js",
+		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
+	}
 }
