@@ -11,6 +11,7 @@ impl Guest for Calculator {
 
 	fn calc(op: Operation) -> Result<u32, ErrorCode> {
 		log(&format!("Starting calculation: {:?}", op));
+
 		let result: Result<u32, ErrorCode> = match op {
 			Operation::Add(operands) => Result::Ok(operands.left + operands.right),
 			Operation::Sub(operands) => Result::Ok(operands.left - operands.right),
