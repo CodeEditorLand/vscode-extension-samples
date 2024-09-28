@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "notifications-sample",
+	"displayName": "Notifications Sample",
+	"description": "Examples of notification types and various configurations",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -39,16 +45,10 @@
 			}
 		]
 	},
-	"description": "Examples of notification types and various configurations",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/glob": "8.1.0",
 		"@types/node": "22.x",
 		"glob": "11.0.0"
-	},
-	"displayName": "Notifications Sample",
-	"main": "./out/extension.js",
-	"name": "notifications-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

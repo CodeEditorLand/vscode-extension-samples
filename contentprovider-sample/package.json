@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "references-plusplus",
+	"displayName": "References++",
+	"description": "Show the results of 'Find References' as formatted text in an editor",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -35,14 +41,8 @@
 			]
 		}
 	},
-	"description": "Show the results of 'Find References' as formatted text in an editor",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "22"
-	},
-	"displayName": "References++",
-	"main": "./out/extension.js",
-	"name": "references-plusplus",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }
