@@ -1,11 +1,8 @@
 {
-	"name": "jupyter-kernel-execution-sample",
-	"displayName": "Jupyter Kernel Execution Sample",
-	"description": "Sample extension using Jupyter API to execute code against the Python Kernel",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -b"
-	},
+	"activationEvents": [
+		"onNotebook:jupyter-notebook",
+		"onNotebook:interactive"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -23,14 +20,17 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"onNotebook:jupyter-notebook",
-		"onNotebook:interactive"
-	],
+	"description": "Sample extension using Jupyter API to execute code against the Python Kernel",
 	"devDependencies": {
 		"@types/node": "22.x"
 	},
+	"displayName": "Jupyter Kernel Execution Sample",
 	"extensionDependencies": [
 		"ms-toolsai.jupyter"
-	]
+	],
+	"main": "./out/extension.js",
+	"name": "jupyter-kernel-execution-sample",
+	"scripts": {
+		"compile": "tsc -b"
+	}
 }

@@ -1,11 +1,7 @@
 {
-	"name": "task-provider-samples",
-	"displayName": "Task Provider Samples",
-	"description": "Samples for VSCode's view API",
-	"main": "./out/extension",
-	"scripts": {
-		"compile": "tsc -b"
-	},
+	"activationEvents": [
+		"onCommand:workbench.action.tasks.runTask"
+	],
 	"contributes": {
 		"taskDefinitions": [
 			{
@@ -42,10 +38,14 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onCommand:workbench.action.tasks.runTask"
-	],
+	"description": "Samples for VSCode's view API",
 	"devDependencies": {
 		"@types/node": "22"
+	},
+	"displayName": "Task Provider Samples",
+	"main": "./out/extension",
+	"name": "task-provider-samples",
+	"scripts": {
+		"compile": "tsc -b"
 	}
 }

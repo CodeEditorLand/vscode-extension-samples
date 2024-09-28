@@ -1,6 +1,6 @@
 {
-	"name": "client",
-	"displayName": "Code Action UI Sample - Client",
 	"dependencies": {},
-	"devDependencies": {}
+	"devDependencies": {},
+	"displayName": "Code Action UI Sample - Client",
+	"name": "client"
 }

@@ -1,13 +1,4 @@
 {
-	"name": "telemetry-sample",
-	"displayName": "telemetry-sample",
-	"description": "Sample showing how to use Telemetry API",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"download-api": "dts dev",
-		"postdownload-api": "dts main"
-	},
 	"contributes": {
 		"commands": [
 			{
@@ -20,7 +11,16 @@
 			}
 		]
 	},
+	"description": "Sample showing how to use Telemetry API",
 	"devDependencies": {
 		"@types/node": "22.7.3"
+	},
+	"displayName": "telemetry-sample",
+	"main": "./out/extension.js",
+	"name": "telemetry-sample",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"download-api": "dts dev",
+		"postdownload-api": "dts main"
 	}
 }
