@@ -1,25 +1,7 @@
 {
-	"name": "lsp-log-streaming-sample",
-	"description": "A language server example demonstrating log streaming",
-	"author": "Microsoft Corporation",
-	"license": "MIT",
-	"version": "1.0.0",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"publisher": "vscode-samples",
-	"categories": [],
-	"keywords": [
-		"multi-root ready"
-	],
-	"engines": {
-		"vscode": "^1.26.0"
-	},
 	"activationEvents": [
 		"onLanguage:plaintext"
 	],
-	"main": "./client/out/extension",
 	"contributes": {
 		"commands": [
 			{
@@ -28,68 +10,61 @@
 			}
 		],
 		"configuration": {
-			"type": "object",
-			"title": "Example configuration",
 			"properties": {
 				"languageServerExample.maxNumberOfProblems": {
-					"scope": "resource",
-					"type": "number",
 					"default": 100,
-					"description": "Controls the maximum number of problems produced by the server."
+					"description": "Controls the maximum number of problems produced by the server.",
+					"scope": "resource",
+					"type": "number"
 				},
 				"languageServerExample.port": {
-					"type": "number",
 					"default": 7000,
+					"description": "The WebSocket port to stream LSP log data into.",
 					"scope": "window",
-					"description": "The WebSocket port to stream LSP log data into."
+					"type": "number"
 				},
 				"languageServerExample.trace.server": {
-					"scope": "window",
-					"type": "object",
 					"description": "Traces the communication between VS Code and the language server.",
 					"properties": {
+						"format": {
+							"default": "text",
+							"description": "Controls the output format of the trace.",
+							"enum": [
+								"text",
+								"json"
+							],
+							"type": "string"
+						},
 						"verbosity": {
-							"type": "string",
+							"default": "off",
 							"description": "Controls the verbosity of the trace.",
 							"enum": [
 								"off",
 								"message",
 								"verbose"
 							],
-							"default": "off"
-						},
-						"format": {
-							"type": "string",
-							"description": "Controls the output format of the trace.",
-							"enum": [
-								"text",
-								"json"
-							],
-							"default": "text"
+							"type": "string"
 						}
-					}
+					},
+					"scope": "window",
+					"type": "object"
 				}
-			}
+			},
+			"title": "Example configuration",
+			"type": "object"
 		}
 	},
+	"description": "A language server example demonstrating log streaming",
+	"devDependencies": {
+		"@types/node": "^20"
+	},
+	"main": "./client/out/extension",
+	"name": "lsp-log-streaming-sample",
 	"scripts": {
-		"vscode:prepublish": "cd client && npm run update-vscode && cd .. && npm run compile",
+		"compile": "npm run compile:client && npm run compile:server",
 		"compile:client": "tsc -p ./client/tsconfig.json",
 		"compile:server": "tsc -p ./server/tsconfig.json",
 		"watch:client": "tsc -w -p ./client/tsconfig.json",
-		"watch:server": "tsc -w -p ./server/tsconfig.json",
-		"compile": "npm run compile:client && npm run compile:server",
-		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"test": "sh ./scripts/e2e.sh"
-	},
-	"devDependencies": {
-		"@types/mocha": "^10.0.1",
-		"@types/node": "^20",
-		"@typescript-eslint/eslint-plugin": "^7.14.0",
-		"@typescript-eslint/parser": "^7.14.0",
-		"eslint": "^8.26.0",
-		"mocha": "^10.2.0",
-		"typescript": "^5.6.2"
+		"watch:server": "tsc -w -p ./server/tsconfig.json"
 	}
 }
