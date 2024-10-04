@@ -1,29 +1,55 @@
 {
+	"name": "wasm-component-model-resource",
+	"description": "An example implementing a calculator using a resource.",
+	"author": "Microsoft Corporation",
+	"license": "MIT",
+	"version": "1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"publisher": "vscode-samples",
+	"categories": [],
+	"keywords": [
+		"WASM",
+		"Component Model"
+	],
+	"engines": {
+		"vscode": "^1.88.0"
+	},
+	"main": "./out/extension",
 	"browser": "./dist/web/extension",
 	"contributes": {
 		"commands": [
 			{
-				"category": "Samples",
 				"command": "vscode-samples.wasm-component-model.run",
+				"category": "Samples",
 				"title": "Run Calc Service"
 			}
 		]
 	},
-	"dependencies": {},
-	"description": "An example implementing a calculator using a resource.",
-	"devDependencies": {
-		"@types/node": "22.7.4",
-		"esbuild": "0.24.0",
-		"serve": "14.2.3"
+	"dependencies": {
+		"@vscode/wasm-component-model": "1.0.0"
 	},
-	"main": "./out/extension",
-	"name": "wasm-component-model-resource",
+	"devDependencies": {
+		"@types/vscode": "1.88.0",
+		"@types/node": "^20",
+		"@typescript-eslint/eslint-plugin": "^7.6.0",
+		"@typescript-eslint/parser": "^7.6.0",
+		"eslint": "^8.57.0",
+		"typescript": "^5.6.2",
+		"esbuild": "^0.20.2",
+		"serve": "^14.2.1"
+	},
 	"scripts": {
+		"vscode:prepublish": "npm run compile",
 		"build": "npm run compile && cargo build --target wasm32-unknown-unknown",
+		"wit-bindgen": "wit-bindgen rust --out-dir ./src ./wit",
 		"compile": "tsc -b",
+		"watch": "tsc -b -w",
+		"lint": "eslint ./src --ext .ts,.tsx",
 		"esbuild": "node ./bin/esbuild.js",
 		"generate:model": "wit2ts --outDir ./src ./wit",
-		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem",
-		"wit-bindgen": "wit-bindgen rust --out-dir ./src ./wit"
+		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
 	}
 }
