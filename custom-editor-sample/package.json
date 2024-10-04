@@ -31,7 +31,7 @@
 	},
 	"description": "Custom Editor API Samples",
 	"devDependencies": {
-		"@types/node": "^20"
+		"@types/node": "^22"
 	},
 	"displayName": "Cat Customs",
 	"main": "./out/extension.js",

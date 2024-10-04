@@ -15,9 +15,9 @@
 	"dependencies": {},
 	"description": "Sample that shows how to localize an extension",
 	"devDependencies": {
-		"@types/glob": "^7.2.0",
-		"@types/node": "^20",
-		"glob": "^7.2.0"
+		"@types/glob": "^8.1.0",
+		"@types/node": "^22",
+		"glob": "^11.0.0"
 	},
 	"displayName": "l10n-sample",
 	"l10n": "./l10n",

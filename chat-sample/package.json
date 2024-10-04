@@ -53,7 +53,7 @@
 	},
 	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"devDependencies": {
-		"@types/node": "^20"
+		"@types/node": "^22"
 	},
 	"displayName": "Copilot Chat Sample",
 	"main": "./out/extension.js",
