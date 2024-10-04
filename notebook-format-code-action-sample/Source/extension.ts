@@ -2,12 +2,12 @@
  * Copyright (C) Microsoft Corporation. All rights reserved.
  *--------------------------------------------------------*/
 
-import * as vscode from 'vscode';
-import { CodeActionKind } from 'vscode';
+import * as vscode from "vscode";
+import { CodeActionKind } from "vscode";
 
 export async function activate(context: vscode.ExtensionContext) {
 	const notebookSelector: vscode.DocumentSelector = {
-		notebookType: 'jupyter-notebook',
+		notebookType: "jupyter-notebook",
 	};
 
 	// Notebook Format Code Action Provider
@@ -17,8 +17,8 @@ export async function activate(context: vscode.ExtensionContext) {
 			new ExtractNotebookImports(),
 			{
 				providedCodeActionKinds: [ExtractNotebookImports.providedKind],
-			}
-		)
+			},
+		),
 	);
 }
 
@@ -27,15 +27,16 @@ export async function activate(context: vscode.ExtensionContext) {
  * Takes all mentions of import "xx" or from "xx" and extracts them to a new top code cell.
  */
 export class ExtractNotebookImports implements vscode.CodeActionProvider {
-	static readonly providedKind = CodeActionKind.Notebook.append('format.extensionName');
+	static readonly providedKind = CodeActionKind.Notebook.append(
+		"format.extensionName",
+	);
 
 	public provideCodeActions(
 		document: vscode.TextDocument,
 		_range: vscode.Range | vscode.Selection,
 		_context: vscode.CodeActionContext,
-		_token: vscode.CancellationToken
+		_token: vscode.CancellationToken,
 	): vscode.CodeAction[] | undefined {
-
 		const notebookDocument = this.getNotebookDocument(document);
 		if (!notebookDocument) {
 			return;
@@ -48,8 +49,8 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 		}
 
 		const fix = new vscode.CodeAction(
-			'Extract cell level imports to single cell.',
-			ExtractNotebookImports.providedKind
+			"Extract cell level imports to single cell.",
+			ExtractNotebookImports.providedKind,
 		);
 		fix.edit = new vscode.WorkspaceEdit();
 
@@ -64,7 +65,7 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 	}
 
 	private extractImportsAndCreateCellEdits(
-		notebookDocument: vscode.NotebookDocument
+		notebookDocument: vscode.NotebookDocument,
 	): (vscode.NotebookEdit | vscode.TextEdit)[] {
 		const nbEdits: (vscode.NotebookEdit | vscode.TextEdit)[] = [];
 		let importStatements: string[] = [];
@@ -75,31 +76,36 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 			}
 
 			let cellHasImports = false;
-			let nonImportText = '';
+			let nonImportText = "";
 			cell.document
 				.getText()
-				.split('\n')
+				.split("\n")
 				.forEach((line) => {
-					if (line.startsWith('import') || line.startsWith('from')) {
+					if (line.startsWith("import") || line.startsWith("from")) {
 						importStatements.push(line);
 						cellHasImports = true;
 					} else {
-						nonImportText += line + '\n';
+						nonImportText += line + "\n";
 					}
 				});
 
 			if (cellHasImports) {
 				if (nonImportText.trim()) {
 					// Replace cell content without imports
-					const range = new vscode.Range(0, 0, cell.document.lineCount, 0);
+					const range = new vscode.Range(
+						0,
+						0,
+						cell.document.lineCount,
+						0,
+					);
 					nbEdits.push(new vscode.TextEdit(range, nonImportText));
 				} else {
 					// Cell is empty after removing imports, mark for deletion
 					nbEdits.push(
 						vscode.NotebookEdit.replaceCells(
 							new vscode.NotebookRange(index, index + 1),
-							[]
-						)
+							[],
+						),
 					);
 				}
 			}
@@ -109,19 +115,17 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 			// Create a new top cell with all import statements
 			const newCell = new vscode.NotebookCellData(
 				vscode.NotebookCellKind.Code,
-				importStatements.join('\n') + '\n',
-				'python'
+				importStatements.join("\n") + "\n",
+				"python",
 			);
-			nbEdits.push(
-				vscode.NotebookEdit.insertCells(0, [newCell])
-			);
+			nbEdits.push(vscode.NotebookEdit.insertCells(0, [newCell]));
 		}
 
 		return nbEdits;
 	}
 
 	private getNotebookDocument(
-		document: vscode.TextDocument
+		document: vscode.TextDocument,
 	): vscode.NotebookDocument | undefined {
 		for (const nb of vscode.workspace.notebookDocuments) {
 			if (nb.uri.path === document.uri.path) {
