@@ -9,8 +9,8 @@
 		]
 	},
 	"devDependencies": {
-		"open": "^10.1.0",
-		"webfont": "^11.2.26"
+		"open": "10.1.0",
+		"webfont": "11.2.26"
 	},
 	"name": "product-icon-theme-sample",
 	"scripts": {

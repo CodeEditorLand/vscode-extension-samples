@@ -27,8 +27,8 @@
 	},
 	"description": "A language server in a web extension",
 	"devDependencies": {
-		"path-browserify": "^1.0.1",
-		"ts-loader": "^9.5.1"
+		"path-browserify": "1.0.1",
+		"ts-loader": "9.5.1"
 	},
 	"name": "lsp-web-extension-sample",
 	"scripts": {

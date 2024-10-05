@@ -20,7 +20,7 @@
 	},
 	"description": "Samples for VSCode's multi root API",
 	"devDependencies": {
-		"@types/node": "^22"
+		"@types/node": "22"
 	},
 	"displayName": "Basic Multi Root Sample",
 	"main": "./out/src/extension",

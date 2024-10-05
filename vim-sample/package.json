@@ -54,7 +54,7 @@
 	},
 	"description": "vim sample extension",
 	"devDependencies": {
-		"@types/node": "^22"
+		"@types/node": "22"
 	},
 	"displayName": "vim",
 	"main": "./out/extension.js",

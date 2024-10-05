@@ -12,9 +12,9 @@
 	"dependencies": {},
 	"description": "An example implementing a calculator using a resource.",
 	"devDependencies": {
-		"@types/node": "^22",
-		"esbuild": "^0.24.0",
-		"serve": "^14.2.3"
+		"@types/node": "22",
+		"esbuild": "0.24.0",
+		"serve": "14.2.3"
 	},
 	"main": "./out/extension",
 	"name": "wasm-component-model-resource",

@@ -3,7 +3,7 @@
 	"dependencies": {},
 	"description": "The language client",
 	"devDependencies": {
-		"@types/node": "^22"
+		"@types/node": "22"
 	},
 	"main": "./out/extension",
 	"name": "client",
