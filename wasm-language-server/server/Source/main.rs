@@ -75,15 +75,8 @@ fn main_loop(
 				}
 				match cast::<GotoDefinition>(req.clone()) {
 					Ok((id, params)) => {
-						let uri = params
-							.text_document_position_params
-							.text_document
-							.uri;
-						eprintln!(
-							"Received gotoDefinition request #{} {}",
-							id,
-							uri.to_string()
-						);
+						let uri = params.text_document_position_params.text_document.uri;
+						eprintln!("Received gotoDefinition request #{} {}", id, uri.to_string());
 						let loc = Location::new(
 							uri,
 							lsp_types::Range::new(
@@ -95,8 +88,7 @@ fn main_loop(
 						vec.push(loc);
 						let result = Some(GotoDefinitionResponse::Array(vec));
 						let result = serde_json::to_value(&result).unwrap();
-						let resp =
-							Response { id, result:Some(result), error:None };
+						let resp = Response { id, result:Some(result), error:None };
 						connection.sender.send(Message::Response(resp))?;
 						continue;
 					},
@@ -107,15 +99,10 @@ fn main_loop(
 				};
 				match cast::<CountFilesRequest>(req.clone()) {
 					Ok((id, params)) => {
-						eprintln!(
-							"Received countFiles request #{} {}",
-							id, params.folder
-						);
-						let result =
-							count_files_in_directory(&params.folder.path());
+						eprintln!("Received countFiles request #{} {}", id, params.folder);
+						let result = count_files_in_directory(&params.folder.path());
 						let json = serde_json::to_value(&result).unwrap();
-						let resp =
-							Response { id, result:Some(json), error:None };
+						let resp = Response { id, result:Some(json), error:None };
 						connection.sender.send(Message::Response(resp))?;
 						continue;
 					},

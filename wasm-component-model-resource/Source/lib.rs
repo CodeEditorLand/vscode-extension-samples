@@ -7,11 +7,7 @@ mod calculator;
 
 use std::cell::RefCell;
 
-use crate::calculator::exports::vscode::example::types::{
-	Guest,
-	GuestEngine,
-	Operation,
-};
+use crate::calculator::exports::vscode::example::types::{Guest, GuestEngine, Operation};
 
 struct EngineImpl {
 	left:Option<u32>,
@@ -50,9 +46,7 @@ struct CalcEngine {
 impl GuestEngine for CalcEngine {
 	fn new() -> Self { CalcEngine { stack:RefCell::new(EngineImpl::new()) } }
 
-	fn push_operand(&self, operand:u32) {
-		self.stack.borrow_mut().push_operand(operand);
-	}
+	fn push_operand(&self, operand:u32) { self.stack.borrow_mut().push_operand(operand); }
 
 	fn push_operation(&self, operation:Operation) {
 		self.stack.borrow_mut().push_operation(operation);
