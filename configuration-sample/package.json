@@ -1,134 +1,6 @@
 {
-	"name": "configuration-sample",
-	"displayName": "Configuration Sample",
-	"description": "How to contribute and use configurations in VS Code",
-	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"engines": {
-		"vscode": "^1.74.0"
-	},
-	"categories": [
-		"Other"
-	],
 	"activationEvents": [],
-	"main": "./out/extension",
-	"keywords": [
-		"multi-root ready"
-	],
 	"contributes": {
-		"configuration": [
-			{
-				"id": "widgetSamples",
-				"title": "Settings Editor Widget Samples",
-				"order": 2,
-				"properties": {
-					"conf.settingsEditor.numericObjectSetting": {
-						"type": "object",
-						"order": 2,
-						"description": "An example numeric object setting.",
-						"properties": {
-							"intprop": {
-								"type": "integer",
-								"description": "Integer property"
-							},
-							"numprop": {
-								"type": "number",
-								"description": "Numeric property"
-							}
-						},
-						"additionalProperties": false
-					},
-					"conf.settingsEditor.boolObjectSetting": {
-						"type": "object",
-						"order": 1,
-						"description": "An example bool object setting.",
-						"properties": {
-							"prop1": {
-								"type": "boolean",
-								"description": "Property 1"
-							},
-							"prop2": {
-								"type": "boolean",
-								"description": "Property 2"
-							}
-						},
-						"additionalProperties": false,
-						"default": {
-							"prop1": true,
-							"prop2": false
-						}
-					},
-					"conf.settingsEditor.uniqueEnumArraySetting": {
-						"type": "array",
-						"description": "An example enum array setting.",
-						"items": {
-							"type": "string",
-							"enum": [
-								"red",
-								"yellow",
-								"blue"
-							]
-						},
-						"uniqueItems": true
-					},
-					"conf.settingsEditor.multilineSetting": {
-						"type": "string",
-						"description": "An example multiline setting.",
-						"editPresentation": "multilineText"
-					}
-				}
-			},
-			{
-				"id": "configurationSamples",
-				"title": "Configuration Sample",
-				"properties": {
-					"conf.view.showOnWindowOpen": {
-						"type": "string",
-						"enum": [
-							"explorer",
-							"search",
-							"scm",
-							"debug",
-							"extensions"
-						],
-						"default": "explorer",
-						"description": "Window configuration: View to show always when a window opens",
-						"scope": "window"
-					},
-					"conf.resource.insertEmptyLastLine": {
-						"type": "object",
-						"default": {},
-						"description": "Resource configuration: Configure files using glob patterns to have an empty last line always",
-						"scope": "resource"
-					},
-					"conf.language.showSize": {
-						"type": "boolean",
-						"default": false,
-						"description": "Shows the size of the document",
-						"scope": "language-overridable"
-					}
-				}
-			},
-			{
-				"id": "anotherCategory",
-				"title": "Misc Category",
-				"order": 1,
-				"properties": {
-					"conf.settingsEditor.firstMisc": {
-						"type": "string"
-					},
-					"conf.settingsEditor.secondMisc": {
-						"type": "string"
-					}
-				}
-			}
-		],
 		"commands": [
 			{
 				"category": "Configuration Sample",
@@ -150,20 +22,123 @@
 				"command": "config.commands.overrideLanguageValue",
 				"title": "Configure show size for language"
 			}
+		],
+		"configuration": [
+			{
+				"id": "widgetSamples",
+				"order": 2,
+				"properties": {
+					"conf.settingsEditor.boolObjectSetting": {
+						"additionalProperties": false,
+						"default": {
+							"prop1": true,
+							"prop2": false
+						},
+						"description": "An example bool object setting.",
+						"order": 1,
+						"properties": {
+							"prop1": {
+								"description": "Property 1",
+								"type": "boolean"
+							},
+							"prop2": {
+								"description": "Property 2",
+								"type": "boolean"
+							}
+						},
+						"type": "object"
+					},
+					"conf.settingsEditor.multilineSetting": {
+						"description": "An example multiline setting.",
+						"editPresentation": "multilineText",
+						"type": "string"
+					},
+					"conf.settingsEditor.numericObjectSetting": {
+						"additionalProperties": false,
+						"description": "An example numeric object setting.",
+						"order": 2,
+						"properties": {
+							"intprop": {
+								"description": "Integer property",
+								"type": "integer"
+							},
+							"numprop": {
+								"description": "Numeric property",
+								"type": "number"
+							}
+						},
+						"type": "object"
+					},
+					"conf.settingsEditor.uniqueEnumArraySetting": {
+						"description": "An example enum array setting.",
+						"items": {
+							"enum": [
+								"red",
+								"yellow",
+								"blue"
+							],
+							"type": "string"
+						},
+						"type": "array",
+						"uniqueItems": true
+					}
+				},
+				"title": "Settings Editor Widget Samples"
+			},
+			{
+				"id": "configurationSamples",
+				"properties": {
+					"conf.language.showSize": {
+						"default": false,
+						"description": "Shows the size of the document",
+						"scope": "language-overridable",
+						"type": "boolean"
+					},
+					"conf.resource.insertEmptyLastLine": {
+						"default": {},
+						"description": "Resource configuration: Configure files using glob patterns to have an empty last line always",
+						"scope": "resource",
+						"type": "object"
+					},
+					"conf.view.showOnWindowOpen": {
+						"default": "explorer",
+						"description": "Window configuration: View to show always when a window opens",
+						"enum": [
+							"explorer",
+							"search",
+							"scm",
+							"debug",
+							"extensions"
+						],
+						"scope": "window",
+						"type": "string"
+					}
+				},
+				"title": "Configuration Sample"
+			},
+			{
+				"id": "anotherCategory",
+				"order": 1,
+				"properties": {
+					"conf.settingsEditor.firstMisc": {
+						"type": "string"
+					},
+					"conf.settingsEditor.secondMisc": {
+						"type": "string"
+					}
+				},
+				"title": "Misc Category"
+			}
 		]
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./"
-	},
+	"description": "How to contribute and use configurations in VS Code",
 	"devDependencies": {
-		"@types/node": "^20",
-		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^7.14.0",
-		"@typescript-eslint/parser": "^7.14.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.6.2"
+		"@types/node": "^20"
+	},
+	"displayName": "Configuration Sample",
+	"main": "./out/extension",
+	"name": "configuration-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }
