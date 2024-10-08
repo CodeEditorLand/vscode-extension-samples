@@ -1,16 +1,38 @@
 {
+	"name": "document-on-drop-sample",
+	"displayName": "Document On Drop Sample",
+	"description": "Shows use of the document on drop API proposal",
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"engines": {
+		"vscode": "^1.71.0"
+	},
+	"categories": [
+		"Other"
+	],
 	"activationEvents": [
 		"onLanguage:plaintext"
 	],
-	"contributes": {},
-	"description": "Shows use of the document on drop API proposal",
-	"devDependencies": {
-		"@types/node": "22"
-	},
-	"displayName": "Document On Drop Sample",
 	"main": "./out/extension.js",
-	"name": "document-on-drop-sample",
+	"contributes": {},
 	"scripts": {
-		"compile": "tsc -p ./"
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/vscode": "^1.71.0",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.6.2"
 	}
 }
