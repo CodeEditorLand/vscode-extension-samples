@@ -4,7 +4,7 @@
 	],
 	"description": "Sample showing how to use the test APIs",
 	"devDependencies": {
-		"@types/node": "^20"
+		"@types/node": "^22"
 	},
 	"displayName": "test-provider-sample",
 	"main": "./out/extension.js",
