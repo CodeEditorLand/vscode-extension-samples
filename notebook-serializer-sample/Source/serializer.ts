@@ -1,5 +1,5 @@
-import * as vscode from 'vscode';
-import { TextDecoder, TextEncoder } from 'util';
+import { TextDecoder, TextEncoder } from "util";
+import * as vscode from "vscode";
 
 /**
  * An ultra-minimal sample provider that lets the user type in JSON, and then
@@ -7,7 +7,7 @@ import { TextDecoder, TextEncoder } from 'util';
  */
 
 interface RawNotebookData {
-	cells: RawNotebookCell[]
+	cells: RawNotebookCell[];
 }
 
 interface RawNotebookCell {
@@ -18,9 +18,12 @@ interface RawNotebookCell {
 }
 
 export class SampleContentSerializer implements vscode.NotebookSerializer {
-	public readonly label: string = 'My Sample Content Serializer';
+	public readonly label: string = "My Sample Content Serializer";
 
-	public async deserializeNotebook(data: Uint8Array, token: vscode.CancellationToken): Promise<vscode.NotebookData> {
+	public async deserializeNotebook(
+		data: Uint8Array,
+		token: vscode.CancellationToken,
+	): Promise<vscode.NotebookData> {
 		const contents = new TextDecoder().decode(data); // convert to String
 
 		// Read file contents
@@ -32,16 +35,22 @@ export class SampleContentSerializer implements vscode.NotebookSerializer {
 		}
 
 		// Create array of Notebook cells for the VS Code API from file contents
-		const cells = raw.cells.map(item => new vscode.NotebookCellData(
-			item.kind,
-			item.value,
-			item.language
-		));
+		const cells = raw.cells.map(
+			(item) =>
+				new vscode.NotebookCellData(
+					item.kind,
+					item.value,
+					item.language,
+				),
+		);
 
 		return new vscode.NotebookData(cells);
 	}
 
-	public async serializeNotebook(data: vscode.NotebookData, token: vscode.CancellationToken): Promise<Uint8Array> {
+	public async serializeNotebook(
+		data: vscode.NotebookData,
+		token: vscode.CancellationToken,
+	): Promise<Uint8Array> {
 		// Map the Notebook data into the format we want to save the Notebook data as
 		const contents: RawNotebookData = { cells: [] };
 
@@ -49,7 +58,7 @@ export class SampleContentSerializer implements vscode.NotebookSerializer {
 			contents.cells.push({
 				kind: cell.kind,
 				language: cell.languageId,
-				value: cell.value
+				value: cell.value,
 			});
 		}
 

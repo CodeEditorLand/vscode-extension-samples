@@ -10,10 +10,11 @@ import {
 	InitializeParams,
 	ProposedFeatures,
 	TextDocuments,
-	TextDocumentSyncKind
-} from 'vscode-languageserver';
-import { getLanguageModes, LanguageModes } from './languageModes';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+	TextDocumentSyncKind,
+} from "vscode-languageserver";
+import { TextDocument } from "vscode-languageserver-textdocument";
+
+import { getLanguageModes, LanguageModes } from "./languageModes";
 
 // Create a connection for the server. The connection uses Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -28,7 +29,7 @@ let languageModes: LanguageModes;
 connection.onInitialize((_params: InitializeParams) => {
 	languageModes = getLanguageModes();
 
-	documents.onDidClose(e => {
+	documents.onDidClose((e) => {
 		languageModes.onDocumentRemoved(e.document);
 	});
 	connection.onShutdown(() => {
@@ -40,20 +41,20 @@ connection.onInitialize((_params: InitializeParams) => {
 			textDocumentSync: TextDocumentSyncKind.Full,
 			// Tell the client that the server supports code completion
 			completionProvider: {
-				resolveProvider: false
-			}
-		}
+				resolveProvider: false,
+			},
+		},
 	};
 });
 
-connection.onDidChangeConfiguration(_change => {
+connection.onDidChangeConfiguration((_change) => {
 	// Revalidate all open text documents
 	documents.all().forEach(validateTextDocument);
 });
 
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
-documents.onDidChangeContent(change => {
+documents.onDidChangeContent((change) => {
 	validateTextDocument(change.document);
 });
 
@@ -61,19 +62,22 @@ async function validateTextDocument(textDocument: TextDocument) {
 	try {
 		const version = textDocument.version;
 		const diagnostics: Diagnostic[] = [];
-		if (textDocument.languageId === 'html1') {
+		if (textDocument.languageId === "html1") {
 			const modes = languageModes.getAllModesInDocument(textDocument);
 			const latestTextDocument = documents.get(textDocument.uri);
 			if (latestTextDocument && latestTextDocument.version === version) {
 				// check no new version has come in after in after the async op
-				modes.forEach(mode => {
+				modes.forEach((mode) => {
 					if (mode.doValidation) {
-						mode.doValidation(latestTextDocument).forEach(d => {
+						mode.doValidation(latestTextDocument).forEach((d) => {
 							diagnostics.push(d);
 						});
 					}
 				});
-				connection.sendDiagnostics({ uri: latestTextDocument.uri, diagnostics });
+				connection.sendDiagnostics({
+					uri: latestTextDocument.uri,
+					diagnostics,
+				});
 			}
 		}
 	} catch (e) {
@@ -88,7 +92,10 @@ connection.onCompletion(async (textDocumentPosition, token) => {
 		return null;
 	}
 
-	const mode = languageModes.getModeAtPosition(document, textDocumentPosition.position);
+	const mode = languageModes.getModeAtPosition(
+		document,
+		textDocumentPosition.position,
+	);
 	if (!mode || !mode.doComplete) {
 		return CompletionList.create();
 	}

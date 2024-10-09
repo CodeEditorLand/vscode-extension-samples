@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 /* eslint-disable @typescript-eslint/ban-types */
-import * as $wcm from '@vscode/wasm-component-model';
-import type { u32, i32, ptr, result } from '@vscode/wasm-component-model';
+import * as $wcm from "@vscode/wasm-component-model";
+import type { i32, ptr, result, u32 } from "@vscode/wasm-component-model";
 
 export namespace Types {
 	export type Operands = {
@@ -13,33 +13,45 @@ export namespace Types {
 	};
 
 	export namespace Operation {
-		export const add = 'add' as const;
-		export type Add = { readonly tag: typeof add; readonly value: Operands } & _common;
+		export const add = "add" as const;
+		export type Add = {
+			readonly tag: typeof add;
+			readonly value: Operands;
+		} & _common;
 		export function Add(value: Operands): Add {
 			return new VariantImpl(add, value) as Add;
 		}
 
-		export const sub = 'sub' as const;
-		export type Sub = { readonly tag: typeof sub; readonly value: Operands } & _common;
+		export const sub = "sub" as const;
+		export type Sub = {
+			readonly tag: typeof sub;
+			readonly value: Operands;
+		} & _common;
 		export function Sub(value: Operands): Sub {
 			return new VariantImpl(sub, value) as Sub;
 		}
 
-		export const mul = 'mul' as const;
-		export type Mul = { readonly tag: typeof mul; readonly value: Operands } & _common;
+		export const mul = "mul" as const;
+		export type Mul = {
+			readonly tag: typeof mul;
+			readonly value: Operands;
+		} & _common;
 		export function Mul(value: Operands): Mul {
 			return new VariantImpl(mul, value) as Mul;
 		}
 
-		export const div = 'div' as const;
-		export type Div = { readonly tag: typeof div; readonly value: Operands } & _common;
+		export const div = "div" as const;
+		export type Div = {
+			readonly tag: typeof div;
+			readonly value: Operands;
+		} & _common;
 		export function Div(value: Operands): Div {
 			return new VariantImpl(div, value) as Div;
 		}
 
 		export type _tt = typeof add | typeof sub | typeof mul | typeof div;
 		export type _vt = Operands | Operands | Operands | Operands;
-		type _common = Omit<VariantImpl, 'tag' | 'value'>;
+		type _common = Omit<VariantImpl, "tag" | "value">;
 		export function _ctor(t: _tt, v: _vt): Operation {
 			return new VariantImpl(t, v) as Operation;
 		}
@@ -70,12 +82,16 @@ export namespace Types {
 			}
 		}
 	}
-	export type Operation = Operation.Add | Operation.Sub | Operation.Mul | Operation.Div;
+	export type Operation =
+		| Operation.Add
+		| Operation.Sub
+		| Operation.Mul
+		| Operation.Div;
 
 	export enum ErrorCode {
-		none = 'none',
-		overflow = 'overflow',
-		divideByZero = 'divideByZero'
+		none = "none",
+		overflow = "overflow",
+		divideByZero = "divideByZero",
 	}
 	export namespace ErrorCode {
 		export class Error_ extends $wcm.ResultError<ErrorCode> {
@@ -85,8 +101,7 @@ export namespace Types {
 		}
 	}
 }
-export type Types = {
-};
+export type Types = {};
 export namespace calculator {
 	export type Operation = Types.Operation;
 	export const Operation = Types.Operation;
@@ -117,74 +132,129 @@ export namespace calculator {
 
 export namespace Types.$ {
 	export const Operands = new $wcm.RecordType<Types.Operands>([
-		['left', $wcm.u32],
-		['right', $wcm.u32],
+		["left", $wcm.u32],
+		["right", $wcm.u32],
 	]);
-	export const Operation = new $wcm.VariantType<Types.Operation, Types.Operation._tt, Types.Operation._vt>([['add', Operands], ['sub', Operands], ['mul', Operands], ['div', Operands]], Types.Operation._ctor);
-	export const ErrorCode = new $wcm.EnumType<Types.ErrorCode>(['none', 'overflow', 'divideByZero']);
+	export const Operation = new $wcm.VariantType<
+		Types.Operation,
+		Types.Operation._tt,
+		Types.Operation._vt
+	>(
+		[
+			["add", Operands],
+			["sub", Operands],
+			["mul", Operands],
+			["div", Operands],
+		],
+		Types.Operation._ctor,
+	);
+	export const ErrorCode = new $wcm.EnumType<Types.ErrorCode>([
+		"none",
+		"overflow",
+		"divideByZero",
+	]);
 }
 export namespace Types._ {
-	export const id = 'vscode:example/types' as const;
-	export const witName = 'types' as const;
-	export const types: Map<string, $wcm.AnyComponentModelType> = new Map<string, $wcm.AnyComponentModelType>([
-		['Operands', $.Operands],
-		['Operation', $.Operation],
-		['ErrorCode', $.ErrorCode]
+	export const id = "vscode:example/types" as const;
+	export const witName = "types" as const;
+	export const types: Map<string, $wcm.AnyComponentModelType> = new Map<
+		string,
+		$wcm.AnyComponentModelType
+	>([
+		["Operands", $.Operands],
+		["Operation", $.Operation],
+		["ErrorCode", $.ErrorCode],
 	]);
-	export type WasmInterface = {
-	};
+	export type WasmInterface = {};
 }
 export namespace calculator.$ {
 	export const Operation = Types.$.Operation;
 	export const ErrorCode = Types.$.ErrorCode;
 	export namespace imports {
-		export const log = new $wcm.FunctionType<calculator.Imports['log']>('log',[
-			['msg', $wcm.wstring],
-		], undefined);
+		export const log = new $wcm.FunctionType<calculator.Imports["log"]>(
+			"log",
+			[["msg", $wcm.wstring]],
+			undefined,
+		);
 	}
 	export namespace exports {
-		export const calc = new $wcm.FunctionType<calculator.Exports['calc']>('calc',[
-			['o', Operation],
-		], new $wcm.ResultType<u32, calculator.ErrorCode>($wcm.u32, ErrorCode, Types.ErrorCode.Error_));
+		export const calc = new $wcm.FunctionType<calculator.Exports["calc"]>(
+			"calc",
+			[["o", Operation]],
+			new $wcm.ResultType<u32, calculator.ErrorCode>(
+				$wcm.u32,
+				ErrorCode,
+				Types.ErrorCode.Error_,
+			),
+		);
 	}
 }
 export namespace calculator._ {
-	export const id = 'vscode:example/calculator' as const;
-	export const witName = 'calculator' as const;
+	export const id = "vscode:example/calculator" as const;
+	export const witName = "calculator" as const;
 	export type $Root = {
-		'log': (msg_ptr: i32, msg_len: i32) => void;
+		"log": (msg_ptr: i32, msg_len: i32) => void;
 	};
 	export namespace imports {
 		export const functions: Map<string, $wcm.FunctionType> = new Map([
-			['log', $.imports.log]
+			["log", $.imports.log],
 		]);
-		export const interfaces: Map<string, $wcm.InterfaceType> = new Map<string, $wcm.InterfaceType>([
-			['Types', Types._]
-		]);
-		export function create(service: calculator.Imports, context: $wcm.WasmContext): Imports {
+		export const interfaces: Map<string, $wcm.InterfaceType> = new Map<
+			string,
+			$wcm.InterfaceType
+		>([["Types", Types._]]);
+		export function create(
+			service: calculator.Imports,
+			context: $wcm.WasmContext,
+		): Imports {
 			return $wcm.$imports.create<Imports>(_, service, context);
 		}
-		export function loop(service: calculator.Imports, context: $wcm.WasmContext): calculator.Imports {
+		export function loop(
+			service: calculator.Imports,
+			context: $wcm.WasmContext,
+		): calculator.Imports {
 			return $wcm.$imports.loop<calculator.Imports>(_, service, context);
 		}
 	}
 	export type Imports = {
-		'$root': $Root;
+		"$root": $Root;
 	};
 	export namespace exports {
 		export const functions: Map<string, $wcm.FunctionType> = new Map([
-			['calc', $.exports.calc]
+			["calc", $.exports.calc],
 		]);
-		export function bind(exports: Exports, context: $wcm.WasmContext): calculator.Exports {
+		export function bind(
+			exports: Exports,
+			context: $wcm.WasmContext,
+		): calculator.Exports {
 			return $wcm.$exports.bind<calculator.Exports>(_, exports, context);
 		}
 	}
 	export type Exports = {
-		'calc': (o_Operation_case: i32, o_Operation_0: i32, o_Operation_1: i32, result: ptr<result<u32, ErrorCode>>) => void;
+		"calc": (
+			o_Operation_case: i32,
+			o_Operation_0: i32,
+			o_Operation_1: i32,
+			result: ptr<result<u32, ErrorCode>>,
+		) => void;
 	};
-	export function bind(service: calculator.Imports, code: $wcm.Code, context?: $wcm.ComponentModelContext): Promise<calculator.Exports>;
-	export function bind(service: calculator.Imports.Promisified, code: $wcm.Code, port: $wcm.RAL.ConnectionPort, context?: $wcm.ComponentModelContext): Promise<calculator.Exports.Promisified>;
-	export function bind(service: calculator.Imports | calculator.Imports.Promisified, code: $wcm.Code, portOrContext?: $wcm.RAL.ConnectionPort | $wcm.ComponentModelContext, context?: $wcm.ComponentModelContext | undefined): Promise<calculator.Exports> | Promise<calculator.Exports.Promisified> {
+	export function bind(
+		service: calculator.Imports,
+		code: $wcm.Code,
+		context?: $wcm.ComponentModelContext,
+	): Promise<calculator.Exports>;
+	export function bind(
+		service: calculator.Imports.Promisified,
+		code: $wcm.Code,
+		port: $wcm.RAL.ConnectionPort,
+		context?: $wcm.ComponentModelContext,
+	): Promise<calculator.Exports.Promisified>;
+	export function bind(
+		service: calculator.Imports | calculator.Imports.Promisified,
+		code: $wcm.Code,
+		portOrContext?: $wcm.RAL.ConnectionPort | $wcm.ComponentModelContext,
+		context?: $wcm.ComponentModelContext | undefined,
+	): Promise<calculator.Exports> | Promise<calculator.Exports.Promisified> {
 		return $wcm.$main.bind(_, service, code, portOrContext, context);
 	}
 }
