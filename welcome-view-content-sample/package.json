@@ -16,9 +16,9 @@
 	},
 	"description": "Uri Handler Sample",
 	"devDependencies": {
-		"@types/glob": "^8.1.0",
-		"@types/node": "^22",
-		"glob": "^11.0.0"
+		"@types/glob": "8.1.0",
+		"@types/node": "22",
+		"glob": "11.0.0"
 	},
 	"main": "./out/extension.js",
 	"name": "welcome-view-content-sample",

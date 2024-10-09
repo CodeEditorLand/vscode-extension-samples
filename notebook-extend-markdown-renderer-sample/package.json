@@ -13,9 +13,9 @@
 	},
 	"description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
 	"devDependencies": {
-		"@types/markdown-it": "^14.1.2",
-		"markdown-it-emoji": "^3.0.0",
-		"ts-loader": "^9.5.1"
+		"@types/markdown-it": "14.1.2",
+		"markdown-it-emoji": "3.0.0",
+		"ts-loader": "9.5.1"
 	},
 	"displayName": "notebook-extend-markdown-renderer-sample",
 	"name": "notebook-extend-markdown-renderer-sample",

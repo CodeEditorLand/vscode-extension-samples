@@ -12,9 +12,9 @@
 	"dependencies": {},
 	"description": "An example demonstrating how to use the component model to integrate WebAssembly modules into VS Code.",
 	"devDependencies": {
-		"@types/node": "^22",
-		"esbuild": "^0.24.0",
-		"serve": "^14.2.3"
+		"@types/node": "22",
+		"esbuild": "0.24.0",
+		"serve": "14.2.3"
 	},
 	"main": "./out/extension",
 	"name": "wasm-component-model-async",

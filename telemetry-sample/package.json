@@ -13,7 +13,7 @@
 	},
 	"description": "Sample showing how to use Telemetry API",
 	"devDependencies": {
-		"@types/node": "^22"
+		"@types/node": "22"
 	},
 	"displayName": "telemetry-sample",
 	"main": "./out/extension.js",
