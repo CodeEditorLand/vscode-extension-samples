@@ -1,22 +1,21 @@
-import { Jupyter } from "@vscode/jupyter-extension";
 import {
 	CancellationError,
 	CancellationToken,
 	Disposable,
 	ExtensionContext,
-	extensions,
 	ProgressLocation,
 	QuickInputButtons,
 	Uri,
+	extensions,
 	window,
-} from "vscode";
-
-import { findLocallyRunningServers } from "./jupyter";
+} from 'vscode';
+import { Jupyter } from '@vscode/jupyter-extension';
+import { findLocallyRunningServers } from './jupyter';
 
 export function activate(context: ExtensionContext) {
-	const jupyterExt = extensions.getExtension<Jupyter>("ms-toolsai.jupyter");
+	const jupyterExt = extensions.getExtension<Jupyter>('ms-toolsai.jupyter');
 	if (!jupyterExt) {
-		throw new Error("Jupyter Extension not installed");
+		throw new Error('Jupyter Extension not installed');
 	}
 	if (!jupyterExt.isActive) {
 		jupyterExt.activate();
@@ -24,50 +23,47 @@ export function activate(context: ExtensionContext) {
 
 	const jupyterLab = jupyterExt.exports.createJupyterServerCollection(
 		`${context.extension.id}:lab`,
-		"Local JupyterLab Servers...",
+		'Local JupyterLab Servers...',
 		{
-			provideJupyterServers: () => provideJupyterServers("lab"),
+			provideJupyterServers: () => provideJupyterServers('lab'),
 			resolveJupyterServer: (server) => server,
-		},
+		}
 	);
 	// Link to documentation explaining this Jupyter Collection is optional.
-	jupyterLab.documentation = Uri.parse(
-		"https://github.com/microsoft/vscode-jupyter-hub/wiki/Connecting-to-JupyterHub-from-VS-Code",
-	);
+	jupyterLab.documentation = Uri.parse('https://github.com/microsoft/vscode-jupyter-hub/wiki/Connecting-to-JupyterHub-from-VS-Code');
 	context.subscriptions.push(jupyterLab);
 	// // Commands are optional.
 	jupyterLab.commandProvider = {
 		provideCommands: () => {
 			return [
 				{
-					label: "Start JupyterLab",
-					description: "Start a new server in the terminal",
+					label: 'Start JupyterLab',
+					description: 'Start a new server in the terminal',
 				},
 				{
-					label: "Configure and start JupyterLab",
-					description: "Start a new server in the terminal",
+					label: 'Configure and start JupyterLab',
+					description: 'Start a new server in the terminal',
 				},
 			];
 		},
 		handleCommand: async (command, token) => {
 			switch (command.label) {
-				case "Start JupyterLab": {
+				case 'Start JupyterLab': {
 					// Upon staring a server, return that server back to the Jupyter Extension.
-					return startJupyterInTerminal("lab", undefined, token);
+					return startJupyterInTerminal('lab', undefined, token);
 				}
-				case "Configure and start JupyterLab": {
+				case 'Configure and start JupyterLab': {
 					// This is a sample of how to use QuickPick to get additional user input and ensure a back button is displayed.
 					const disposables: Disposable[] = [];
 					const options = await new Promise<
-						| { emptyToken: boolean; allowOtherWebsites: boolean }
-						| undefined
+						{ emptyToken: boolean; allowOtherWebsites: boolean } | undefined
 					>((resolve, reject) => {
 						const quickPick = window.createQuickPick();
 						disposables.push(quickPick);
-						quickPick.title = "Start Jupyter Lab";
+						quickPick.title = 'Start Jupyter Lab';
 						quickPick.items = [
-							"Empty Token",
-							"Allow access from other Websites (bypass CORS)",
+							'Empty Token',
+							'Allow access from other Websites (bypass CORS)',
 						].map((label) => ({ label }));
 						quickPick.canSelectMany = true;
 						quickPick.buttons = [QuickInputButtons.Back];
@@ -91,12 +87,12 @@ export function activate(context: ExtensionContext) {
 								emptyToken: false,
 							};
 							quickPick.selectedItems.forEach((item) => {
-								if (item.label === "Empty Token") {
+								if (item.label === 'Empty Token') {
 									options.emptyToken = true;
 								}
 								if (
 									item.label ===
-									"Allow access from other Websites (bypass CORS)"
+									'Allow access from other Websites (bypass CORS)'
 								) {
 									options.allowOtherWebsites = true;
 								}
@@ -111,7 +107,7 @@ export function activate(context: ExtensionContext) {
 						return;
 					}
 					// Upon staring a server, return that server back to the Jupyter Extension.
-					return startJupyterInTerminal("lab", options, token);
+					return startJupyterInTerminal('lab', options, token);
 				}
 			}
 		},
@@ -120,11 +116,11 @@ export function activate(context: ExtensionContext) {
 	// Thus an extension can contribute more than one collection of servers.
 	const jupyterNotebook = jupyterExt.exports.createJupyterServerCollection(
 		`${context.extension.id}:notebook`,
-		"Local Jupyter Notebook Servers...",
+		'Local Jupyter Notebook Servers...',
 		{
-			provideJupyterServers: () => provideJupyterServers("notebook"),
+			provideJupyterServers: () => provideJupyterServers('notebook'),
 			resolveJupyterServer: (server) => server,
-		},
+		}
 	);
 	context.subscriptions.push(jupyterNotebook);
 	// Commands are optional.
@@ -132,21 +128,21 @@ export function activate(context: ExtensionContext) {
 		provideCommands: () => {
 			return [
 				{
-					label: "Start Jupyter Notebook",
-					description: "Start a new server in the terminal",
+					label: 'Start Jupyter Notebook',
+					description: 'Start a new server in the terminal',
 				},
 			];
 		},
 		handleCommand: async (command, token) => {
-			if (command.label === "Start Jupyter Notebook") {
+			if (command.label === 'Start Jupyter Notebook') {
 				// Upon staring a server, return that server back to the Jupyter Extension.
-				return startJupyterInTerminal("notebook", undefined, token);
+				return startJupyterInTerminal('notebook', undefined, token);
 			}
 		},
 	};
 }
 
-async function provideJupyterServers(type: "lab" | "notebook") {
+async function provideJupyterServers(type: 'lab' | 'notebook') {
 	const servers = await findLocallyRunningServers(type);
 	return servers.map((server) => {
 		return {
@@ -160,38 +156,35 @@ async function provideJupyterServers(type: "lab" | "notebook") {
 	});
 }
 async function startJupyterInTerminal(
-	type: "lab" | "notebook",
+	type: 'lab' | 'notebook',
 	options: { emptyToken: boolean; allowOtherWebsites: boolean } | undefined,
-	token: CancellationToken,
+	token: CancellationToken
 ) {
 	return await window.withProgress(
 		{
 			location: ProgressLocation.Notification,
-			title:
-				type === "lab"
-					? "Starting JupyterLab"
-					: "Staring Jupyter Notebook",
+			title: type === 'lab' ? 'Starting JupyterLab' : 'Staring Jupyter Notebook',
 		},
 		async () => {
 			const servers = await findLocallyRunningServers(type);
 			const existingPids = new Set(servers.map((s) => s.pid));
 			const terminal = window.createTerminal(
-				type === "lab" ? "JupyterLab" : "Jupyter Notebook",
+				type === 'lab' ? 'JupyterLab' : 'Jupyter Notebook'
 			);
 			terminal.show();
-			const args: string[] = [type, "--no-browser"];
+			const args: string[] = [type, '--no-browser'];
 			if (options?.emptyToken) {
 				args.push('--NotebookApp.token=""');
 			}
 			if (options?.allowOtherWebsites) {
 				args.push('--NotebookApp.allow_origin="*"');
 			}
-			terminal.sendText(`jupyter ${args.join(" ")}`);
+			terminal.sendText(`jupyter ${args.join(' ')}`);
 			// Wait for 5 seconds, then give up, this is only a sample.
 			await new Promise((resolve) => setTimeout(resolve, 5_000));
 
 			const newServers = (await findLocallyRunningServers(type)).filter(
-				(s) => !existingPids.has(s.pid),
+				(s) => !existingPids.has(s.pid)
 			);
 			if (token.isCancellationRequested) {
 				return;
@@ -211,8 +204,8 @@ async function startJupyterInTerminal(
 			// Or the terminal isn't configured correctly.
 			// Or there are delays in starting Jupyter.
 			window.showInformationMessage(
-				"Timeout waiting for Jupyter to start in the terminal (check terminal output)",
+				'Timeout waiting for Jupyter to start in the terminal (check terminal output)'
 			);
-		},
+		}
 	);
 }

@@ -1,34 +1,15 @@
-import * as vscode from "vscode";
-
-import {
-	getContentFromFilesystem,
-	TestCase,
-	testData,
-	TestFile,
-} from "./testTree";
+import * as vscode from 'vscode';
+import { getContentFromFilesystem, TestCase, testData, TestFile } from './testTree';
 
 export async function activate(context: vscode.ExtensionContext) {
-	const ctrl = vscode.tests.createTestController(
-		"mathTestController",
-		"Markdown Math",
-	);
+	const ctrl = vscode.tests.createTestController('mathTestController', 'Markdown Math');
 	context.subscriptions.push(ctrl);
 
 	const fileChangedEmitter = new vscode.EventEmitter<vscode.Uri>();
-	const watchingTests = new Map<
-		vscode.TestItem | "ALL",
-		vscode.TestRunProfile | undefined
-	>();
-	fileChangedEmitter.event((uri) => {
-		if (watchingTests.has("ALL")) {
-			startTestRun(
-				new vscode.TestRunRequest(
-					undefined,
-					undefined,
-					watchingTests.get("ALL"),
-					true,
-				),
-			);
+	const watchingTests = new Map<vscode.TestItem | 'ALL', vscode.TestRunProfile | undefined>();
+	fileChangedEmitter.event(uri => {
+		if (watchingTests.has('ALL')) {
+			startTestRun(new vscode.TestRunRequest(undefined, undefined, watchingTests.get('ALL'), true));
 			return;
 		}
 
@@ -43,32 +24,21 @@ export async function activate(context: vscode.ExtensionContext) {
 		}
 
 		if (include.length) {
-			startTestRun(
-				new vscode.TestRunRequest(include, undefined, profile, true),
-			);
+			startTestRun(new vscode.TestRunRequest(include, undefined, profile, true));
 		}
 	});
 
-	const runHandler = (
-		request: vscode.TestRunRequest,
-		cancellation: vscode.CancellationToken,
-	) => {
+	const runHandler = (request: vscode.TestRunRequest, cancellation: vscode.CancellationToken) => {
 		if (!request.continuous) {
 			return startTestRun(request);
 		}
 
 		if (request.include === undefined) {
-			watchingTests.set("ALL", request.profile);
-			cancellation.onCancellationRequested(() =>
-				watchingTests.delete("ALL"),
-			);
+			watchingTests.set('ALL', request.profile);
+			cancellation.onCancellationRequested(() => watchingTests.delete('ALL'));
 		} else {
-			request.include.forEach((item) =>
-				watchingTests.set(item, request.profile),
-			);
-			cancellation.onCancellationRequested(() =>
-				request.include!.forEach((item) => watchingTests.delete(item)),
-			);
+			request.include.forEach(item => watchingTests.set(item, request.profile));
+			cancellation.onCancellationRequested(() => request.include!.forEach(item => watchingTests.delete(item)));
 		}
 	};
 
@@ -76,10 +46,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		const queue: { test: vscode.TestItem; data: TestCase }[] = [];
 		const run = ctrl.createTestRun(request);
 		// map of file uris to statements on each line:
-		const coveredLines = new Map<
-			/* file uri */ string,
-			(vscode.StatementCoverage | undefined)[]
-		>();
+		const coveredLines = new Map</* file uri */ string, (vscode.StatementCoverage | undefined)[]>();
 
 		const discoverTests = async (tests: Iterable<vscode.TestItem>) => {
 			for (const test of tests) {
@@ -99,25 +66,14 @@ export async function activate(context: vscode.ExtensionContext) {
 					await discoverTests(gatherTestItems(test.children));
 				}
 
-				if (
-					test.uri &&
-					!coveredLines.has(test.uri.toString()) &&
-					request.profile?.kind === vscode.TestRunProfileKind.Coverage
-				) {
+				if (test.uri && !coveredLines.has(test.uri.toString()) && request.profile?.kind === vscode.TestRunProfileKind.Coverage) {
 					try {
-						const lines = (
-							await getContentFromFilesystem(test.uri)
-						).split("\n");
+						const lines = (await getContentFromFilesystem(test.uri)).split('\n');
 						coveredLines.set(
 							test.uri.toString(),
 							lines.map((lineText, lineNo) =>
-								lineText.trim().length
-									? new vscode.StatementCoverage(
-											0,
-											new vscode.Position(lineNo, 0),
-										)
-									: undefined,
-							),
+								lineText.trim().length ? new vscode.StatementCoverage(0, new vscode.Position(lineNo, 0)) : undefined
+							)
 						);
 					} catch {
 						// ignored
@@ -153,51 +109,27 @@ export async function activate(context: vscode.ExtensionContext) {
 			run.end();
 		};
 
-		discoverTests(request.include ?? gatherTestItems(ctrl.items)).then(
-			runTestQueue,
-		);
+		discoverTests(request.include ?? gatherTestItems(ctrl.items)).then(runTestQueue);
 	};
 
 	ctrl.refreshHandler = async () => {
-		await Promise.all(
-			getWorkspaceTestPatterns().map(({ pattern }) =>
-				findInitialFiles(ctrl, pattern),
-			),
-		);
+		await Promise.all(getWorkspaceTestPatterns().map(({ pattern }) => findInitialFiles(ctrl, pattern)));
 	};
 
-	ctrl.createRunProfile(
-		"Run Tests",
-		vscode.TestRunProfileKind.Run,
-		runHandler,
-		true,
-		undefined,
-		true,
-	);
+	ctrl.createRunProfile('Run Tests', vscode.TestRunProfileKind.Run, runHandler, true, undefined, true);
 
-	const coverageProfile = ctrl.createRunProfile(
-		"Run with Coverage",
-		vscode.TestRunProfileKind.Coverage,
-		runHandler,
-		true,
-		undefined,
-		true,
-	);
+	const coverageProfile = ctrl.createRunProfile('Run with Coverage', vscode.TestRunProfileKind.Coverage, runHandler, true, undefined, true);
 	coverageProfile.loadDetailedCoverage = async (_testRun, coverage) => {
 		if (coverage instanceof MarkdownFileCoverage) {
-			return coverage.coveredLines.filter(
-				(l): l is vscode.StatementCoverage => !!l,
-			);
+			return coverage.coveredLines.filter((l): l is vscode.StatementCoverage => !!l);
 		}
 
 		return [];
 	};
 
-	ctrl.resolveHandler = async (item) => {
+	ctrl.resolveHandler = async item => {
 		if (!item) {
-			context.subscriptions.push(
-				...startWatchingWorkspace(ctrl, fileChangedEmitter),
-			);
+			context.subscriptions.push(...startWatchingWorkspace(ctrl, fileChangedEmitter));
 			return;
 		}
 
@@ -208,11 +140,11 @@ export async function activate(context: vscode.ExtensionContext) {
 	};
 
 	function updateNodeForDocument(e: vscode.TextDocument) {
-		if (e.uri.scheme !== "file") {
+		if (e.uri.scheme !== 'file') {
 			return;
 		}
 
-		if (!e.uri.path.endsWith(".md")) {
+		if (!e.uri.path.endsWith('.md')) {
 			return;
 		}
 
@@ -226,9 +158,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(
 		vscode.workspace.onDidOpenTextDocument(updateNodeForDocument),
-		vscode.workspace.onDidChangeTextDocument((e) =>
-			updateNodeForDocument(e.document),
-		),
+		vscode.workspace.onDidChangeTextDocument(e => updateNodeForDocument(e.document)),
 	);
 }
 
@@ -238,11 +168,7 @@ function getOrCreateFile(controller: vscode.TestController, uri: vscode.Uri) {
 		return { file: existing, data: testData.get(existing) as TestFile };
 	}
 
-	const file = controller.createTestItem(
-		uri.toString(),
-		uri.path.split("/").pop()!,
-		uri,
-	);
+	const file = controller.createTestItem(uri.toString(), uri.path.split('/').pop()!, uri);
 	controller.items.add(file);
 
 	const data = new TestFile();
@@ -254,7 +180,7 @@ function getOrCreateFile(controller: vscode.TestController, uri: vscode.Uri) {
 
 function gatherTestItems(collection: vscode.TestItemCollection) {
 	const items: vscode.TestItem[] = [];
-	collection.forEach((item) => items.push(item));
+	collection.forEach(item => items.push(item));
 	return items;
 }
 
@@ -263,40 +189,34 @@ function getWorkspaceTestPatterns() {
 		return [];
 	}
 
-	return vscode.workspace.workspaceFolders.map((workspaceFolder) => ({
+	return vscode.workspace.workspaceFolders.map(workspaceFolder => ({
 		workspaceFolder,
-		pattern: new vscode.RelativePattern(workspaceFolder, "**/*.md"),
+		pattern: new vscode.RelativePattern(workspaceFolder, '**/*.md'),
 	}));
 }
 
-async function findInitialFiles(
-	controller: vscode.TestController,
-	pattern: vscode.GlobPattern,
-) {
+async function findInitialFiles(controller: vscode.TestController, pattern: vscode.GlobPattern) {
 	for (const file of await vscode.workspace.findFiles(pattern)) {
 		getOrCreateFile(controller, file);
 	}
 }
 
-function startWatchingWorkspace(
-	controller: vscode.TestController,
-	fileChangedEmitter: vscode.EventEmitter<vscode.Uri>,
-) {
+function startWatchingWorkspace(controller: vscode.TestController, fileChangedEmitter: vscode.EventEmitter<vscode.Uri>) {
 	return getWorkspaceTestPatterns().map(({ workspaceFolder, pattern }) => {
 		const watcher = vscode.workspace.createFileSystemWatcher(pattern);
 
-		watcher.onDidCreate((uri) => {
+		watcher.onDidCreate(uri => {
 			getOrCreateFile(controller, uri);
 			fileChangedEmitter.fire(uri);
 		});
-		watcher.onDidChange(async (uri) => {
+		watcher.onDidChange(async uri => {
 			const { file, data } = getOrCreateFile(controller, uri);
 			if (data.didResolve) {
 				await data.updateFromDisk(controller, file);
 			}
 			fileChangedEmitter.fire(uri);
 		});
-		watcher.onDidDelete((uri) => controller.items.delete(uri.toString()));
+		watcher.onDidDelete(uri => controller.items.delete(uri.toString()));
 
 		findInitialFiles(controller, pattern);
 
@@ -305,10 +225,7 @@ function startWatchingWorkspace(
 }
 
 class MarkdownFileCoverage extends vscode.FileCoverage {
-	constructor(
-		uri: string,
-		public readonly coveredLines: (vscode.StatementCoverage | undefined)[],
-	) {
+	constructor(uri: string, public readonly coveredLines: (vscode.StatementCoverage | undefined)[]) {
 		super(vscode.Uri.parse(uri), new vscode.TestCoverageCount(0, 0));
 		for (const line of coveredLines) {
 			if (line) {

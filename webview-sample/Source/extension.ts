@@ -1,40 +1,35 @@
-import * as vscode from "vscode";
+import * as vscode from 'vscode';
 
 const cats = {
-	"Coding Cat": "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif",
-	"Compiling Cat": "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif",
-	"Testing Cat": "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif",
+	'Coding Cat': 'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif',
+	'Compiling Cat': 'https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif',
+	'Testing Cat': 'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif'
 };
 
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
-		vscode.commands.registerCommand("catCoding.start", () => {
+		vscode.commands.registerCommand('catCoding.start', () => {
 			CatCodingPanel.createOrShow(context.extensionUri);
-		}),
+		})
 	);
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand("catCoding.doRefactor", () => {
+		vscode.commands.registerCommand('catCoding.doRefactor', () => {
 			if (CatCodingPanel.currentPanel) {
 				CatCodingPanel.currentPanel.doRefactor();
 			}
-		}),
+		})
 	);
 
 	if (vscode.window.registerWebviewPanelSerializer) {
 		// Make sure we register a serializer in activation event
 		vscode.window.registerWebviewPanelSerializer(CatCodingPanel.viewType, {
-			async deserializeWebviewPanel(
-				webviewPanel: vscode.WebviewPanel,
-				state: any,
-			) {
+			async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
 				console.log(`Got state: ${state}`);
 				// Reset the webview options so we use latest uri for `localResourceRoots`.
-				webviewPanel.webview.options = getWebviewOptions(
-					context.extensionUri,
-				);
+				webviewPanel.webview.options = getWebviewOptions(context.extensionUri);
 				CatCodingPanel.revive(webviewPanel, context.extensionUri);
-			},
+			}
 		});
 	}
 }
@@ -45,7 +40,7 @@ function getWebviewOptions(extensionUri: vscode.Uri): vscode.WebviewOptions {
 		enableScripts: true,
 
 		// And restrict the webview to only loading content from our extension's `media` directory.
-		localResourceRoots: [vscode.Uri.joinPath(extensionUri, "media")],
+		localResourceRoots: [vscode.Uri.joinPath(extensionUri, 'media')]
 	};
 }
 
@@ -58,7 +53,7 @@ class CatCodingPanel {
 	 */
 	public static currentPanel: CatCodingPanel | undefined;
 
-	public static readonly viewType = "catCoding";
+	public static readonly viewType = 'catCoding';
 
 	private readonly _panel: vscode.WebviewPanel;
 	private readonly _extensionUri: vscode.Uri;
@@ -78,7 +73,7 @@ class CatCodingPanel {
 		// Otherwise, create a new panel.
 		const panel = vscode.window.createWebviewPanel(
 			CatCodingPanel.viewType,
-			"Cat Coding",
+			'Cat Coding',
 			column || vscode.ViewColumn.One,
 			getWebviewOptions(extensionUri),
 		);
@@ -103,33 +98,33 @@ class CatCodingPanel {
 
 		// Update the content based on view changes
 		this._panel.onDidChangeViewState(
-			(e) => {
+			e => {
 				if (this._panel.visible) {
 					this._update();
 				}
 			},
 			null,
-			this._disposables,
+			this._disposables
 		);
 
 		// Handle messages from the webview
 		this._panel.webview.onDidReceiveMessage(
-			(message) => {
+			message => {
 				switch (message.command) {
-					case "alert":
+					case 'alert':
 						vscode.window.showErrorMessage(message.text);
 						return;
 				}
 			},
 			null,
-			this._disposables,
+			this._disposables
 		);
 	}
 
 	public doRefactor() {
 		// Send a message to the webview webview.
 		// You can send any JSON serializable data.
-		this._panel.webview.postMessage({ command: "refactor" });
+		this._panel.webview.postMessage({ command: 'refactor' });
 	}
 
 	public dispose() {
@@ -152,50 +147,35 @@ class CatCodingPanel {
 		// Vary the webview's content based on where it is located in the editor.
 		switch (this._panel.viewColumn) {
 			case vscode.ViewColumn.Two:
-				this._updateForCat(webview, "Compiling Cat");
+				this._updateForCat(webview, 'Compiling Cat');
 				return;
 
 			case vscode.ViewColumn.Three:
-				this._updateForCat(webview, "Testing Cat");
+				this._updateForCat(webview, 'Testing Cat');
 				return;
 
 			case vscode.ViewColumn.One:
 			default:
-				this._updateForCat(webview, "Coding Cat");
+				this._updateForCat(webview, 'Coding Cat');
 				return;
 		}
 	}
 
 	private _updateForCat(webview: vscode.Webview, catName: keyof typeof cats) {
 		this._panel.title = catName;
-		this._panel.webview.html = this._getHtmlForWebview(
-			webview,
-			cats[catName],
-		);
+		this._panel.webview.html = this._getHtmlForWebview(webview, cats[catName]);
 	}
 
 	private _getHtmlForWebview(webview: vscode.Webview, catGifPath: string) {
 		// Local path to main script run in the webview
-		const scriptPathOnDisk = vscode.Uri.joinPath(
-			this._extensionUri,
-			"media",
-			"main.js",
-		);
+		const scriptPathOnDisk = vscode.Uri.joinPath(this._extensionUri, 'media', 'main.js');
 
 		// And the uri we use to load this script in the webview
 		const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
 
 		// Local path to css styles
-		const styleResetPath = vscode.Uri.joinPath(
-			this._extensionUri,
-			"media",
-			"reset.css",
-		);
-		const stylesPathMainPath = vscode.Uri.joinPath(
-			this._extensionUri,
-			"media",
-			"vscode.css",
-		);
+		const styleResetPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css');
+		const stylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css');
 
 		// Uri to load styles into webview
 		const stylesResetUri = webview.asWebviewUri(styleResetPath);
@@ -233,9 +213,8 @@ class CatCodingPanel {
 }
 
 function getNonce() {
-	let text = "";
-	const possible =
-		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	let text = '';
+	const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 	for (let i = 0; i < 32; i++) {
 		text += possible.charAt(Math.floor(Math.random() * possible.length));
 	}

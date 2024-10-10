@@ -3,12 +3,12 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { Motion, MotionState } from "./motions";
+import { MotionState, Motion } from './motions';
 
 export enum Mode {
 	INSERT,
 	NORMAL,
-	REPLACE,
+	REPLACE
 }
 
 export interface ModifierKeys {
@@ -40,7 +40,9 @@ export interface IController {
 }
 
 export abstract class AbstractCommandDescriptor {
+
 	public abstract createCommand(args?: any): Command;
+
 }
 
 export interface Command {

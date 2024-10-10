@@ -1,19 +1,18 @@
-import * as vscode from "vscode";
+import * as vscode from 'vscode';
 
 export class SampleKernel {
-	private readonly _id = "test-notebook-serializer-kernel";
-	private readonly _label = "Sample Notebook Kernel";
-	private readonly _supportedLanguages = ["json"];
+	private readonly _id = 'test-notebook-serializer-kernel';
+	private readonly _label = 'Sample Notebook Kernel';
+	private readonly _supportedLanguages = ['json'];
 
 	private _executionOrder = 0;
 	private readonly _controller: vscode.NotebookController;
 
 	constructor() {
-		this._controller = vscode.notebooks.createNotebookController(
-			this._id,
-			"test-notebook-serializer",
-			this._label,
-		);
+
+		this._controller = vscode.notebooks.createNotebookController(this._id,
+			'test-notebook-serializer',
+			this._label);
 
 		this._controller.supportedLanguages = this._supportedLanguages;
 		this._controller.supportsExecutionOrder = true;
@@ -24,11 +23,7 @@ export class SampleKernel {
 		this._controller.dispose();
 	}
 
-	private _executeAll(
-		cells: vscode.NotebookCell[],
-		_notebook: vscode.NotebookDocument,
-		_controller: vscode.NotebookController,
-	): void {
+	private _executeAll(cells: vscode.NotebookCell[], _notebook: vscode.NotebookDocument, _controller: vscode.NotebookController): void {
 		for (const cell of cells) {
 			this._doExecution(cell);
 		}
@@ -41,21 +36,15 @@ export class SampleKernel {
 		execution.start(Date.now());
 
 		try {
-			execution.replaceOutput([
-				new vscode.NotebookCellOutput([
-					vscode.NotebookCellOutputItem.json(
-						JSON.parse(cell.document.getText()),
-					),
-				]),
-			]);
+			execution.replaceOutput([new vscode.NotebookCellOutput([
+				vscode.NotebookCellOutputItem.json(JSON.parse(cell.document.getText()))
+			])]);
 
 			execution.end(true, Date.now());
 		} catch (err) {
-			execution.replaceOutput([
-				new vscode.NotebookCellOutput([
-					vscode.NotebookCellOutputItem.error(err as Error),
-				]),
-			]);
+			execution.replaceOutput([new vscode.NotebookCellOutput([
+				vscode.NotebookCellOutputItem.error(err as Error)
+			])]);
 			execution.end(false, Date.now());
 		}
 	}
