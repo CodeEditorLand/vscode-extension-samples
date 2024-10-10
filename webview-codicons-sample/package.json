@@ -1,44 +1,21 @@
 {
-	"name": "cat-codicons",
-	"description": "Cat Codicons - Using codicons in webviews",
-	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
-	"engines": {
-		"vscode": "^1.74.0"
-	},
-	"categories": [
-		"Other"
-	],
 	"activationEvents": [],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/microsoft/vscode-extension-samples.git"
-	},
-	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
+				"category": "Cat Codicons",
 				"command": "catCodicons.show",
-				"title": "Show Cat Codicons",
-				"category": "Cat Codicons"
+				"title": "Show Cat Codicons"
 			}
 		]
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -w -p ./"
-	},
+	"description": "Cat Codicons - Using codicons in webviews",
 	"devDependencies": {
-		"@types/node": "^20",
-		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^7.14.0",
-		"@typescript-eslint/parser": "^7.14.0",
-		"@vscode/codicons": "0.0.20",
-		"eslint": "^8.26.0",
-		"typescript": "^5.6.2"
+		"@types/node": "^20"
+	},
+	"main": "./out/extension.js",
+	"name": "cat-codicons",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }
