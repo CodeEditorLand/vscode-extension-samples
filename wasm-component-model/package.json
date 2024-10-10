@@ -1,15 +1,5 @@
 {
-	"name": "wasm-component-model",
-	"description": "An example demonstrating how to use the component model to integrate WebAssembly modules into VS Code.",
-	"main": "./out/extension",
 	"browser": "./dist/web/extension",
-	"scripts": {
-		"build": "npm run compile && cargo build --target wasm32-unknown-unknown",
-		"compile": "tsc -b",
-		"esbuild": "node ./bin/esbuild.js",
-		"generate:model": "wit2ts --outDir ./src ./wit",
-		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
-	},
 	"contributes": {
 		"commands": [
 			{
@@ -20,9 +10,19 @@
 		]
 	},
 	"dependencies": {},
+	"description": "An example demonstrating how to use the component model to integrate WebAssembly modules into VS Code.",
 	"devDependencies": {
 		"@types/node": "22",
 		"esbuild": "0.24.0",
 		"serve": "14.2.3"
+	},
+	"main": "./out/extension",
+	"name": "wasm-component-model",
+	"scripts": {
+		"build": "npm run compile && cargo build --target wasm32-unknown-unknown",
+		"compile": "tsc -b",
+		"esbuild": "node ./bin/esbuild.js",
+		"generate:model": "wit2ts --outDir ./src ./wit",
+		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
 	}
 }
