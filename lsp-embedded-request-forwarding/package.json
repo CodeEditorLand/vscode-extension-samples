@@ -21,7 +21,7 @@
 	},
 	"description": "A language server example using language services to support embedded languages",
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "22"
 	},
 	"main": "./client/out/extension",
 	"name": "lsp-embedded-language-service-sample",

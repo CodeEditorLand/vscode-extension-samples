@@ -136,7 +136,7 @@
 	},
 	"description": "Comment API Sample",
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "22"
 	},
 	"displayName": "Comment API Sample",
 	"main": "./out/extension.js",

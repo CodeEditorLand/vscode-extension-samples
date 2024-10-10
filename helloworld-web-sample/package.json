@@ -11,9 +11,9 @@
 	},
 	"description": "HelloWorld example for VS Code in the browser",
 	"devDependencies": {
-		"assert": "2.0.0",
+		"assert": "2.1.0",
 		"process": "0.11.10",
-		"ts-loader": "9.2.5"
+		"ts-loader": "9.5.1"
 	},
 	"displayName": "helloworld-web-sample",
 	"name": "helloworld-web-sample",

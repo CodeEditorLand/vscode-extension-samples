@@ -21,7 +21,7 @@
 	},
 	"description": "Showcase for using the workspace.fs.-API which allows reading and writing files and folder",
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "22"
 	},
 	"displayName": "FileSystem Consumer Sample",
 	"main": "./out/src/extension",

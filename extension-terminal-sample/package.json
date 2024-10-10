@@ -14,7 +14,7 @@
 	},
 	"description": "An example usage of the extension terminal API",
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "22"
 	},
 	"displayName": "extension-terminal-sample",
 	"main": "./out/extension.js",

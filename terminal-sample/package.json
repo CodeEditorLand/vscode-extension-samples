@@ -89,7 +89,7 @@
 	},
 	"description": "abc",
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "22"
 	},
 	"displayName": "vscode-terminal-api-example",
 	"main": "./out/extension.js",

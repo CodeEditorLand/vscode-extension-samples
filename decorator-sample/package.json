@@ -17,7 +17,7 @@
 	},
 	"description": "Sample for the decorator API",
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "22"
 	},
 	"main": "./out/extension.js",
 	"name": "decorator-sample",
