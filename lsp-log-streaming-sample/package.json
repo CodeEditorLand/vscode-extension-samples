@@ -56,7 +56,7 @@
 	},
 	"description": "A language server example demonstrating log streaming",
 	"devDependencies": {
-		"@types/node": "^20"
+		"@types/node": "20"
 	},
 	"main": "./client/out/extension",
 	"name": "lsp-log-streaming-sample",

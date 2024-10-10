@@ -40,7 +40,7 @@
 	},
 	"description": "Samples for VSCode's view API",
 	"devDependencies": {
-		"@types/node": "^20"
+		"@types/node": "20"
 	},
 	"displayName": "Task Provider Samples",
 	"main": "./out/extension",

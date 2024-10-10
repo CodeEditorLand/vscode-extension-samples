@@ -3,7 +3,7 @@
 		"onLanguage:markdown"
 	],
 	"devDependencies": {
-		"@types/node": "^20"
+		"@types/node": "20"
 	},
 	"displayName": "Code Actions Provider Sample",
 	"main": "./out/extension.js",

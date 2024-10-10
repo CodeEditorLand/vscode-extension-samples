@@ -35,7 +35,7 @@
 	},
 	"description": "A multi server LSP example",
 	"devDependencies": {
-		"@types/node": "^20"
+		"@types/node": "20"
 	},
 	"main": "./client/out/extension",
 	"name": "lsp-sample-multi-server",

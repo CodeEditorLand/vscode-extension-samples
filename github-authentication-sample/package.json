@@ -10,11 +10,11 @@
 		]
 	},
 	"dependencies": {
-		"@octokit/rest": "^18.0.0"
+		"@octokit/rest": "18.0.0"
 	},
 	"description": "Example of using the GitHub Authentication Provider",
 	"devDependencies": {
-		"@types/node": "^20"
+		"@types/node": "20"
 	},
 	"displayName": "github-authentication-sample",
 	"main": "./out/extension.js",
