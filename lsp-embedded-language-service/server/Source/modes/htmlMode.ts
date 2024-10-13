@@ -3,26 +3,33 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import {
-	LanguageMode,
-	LanguageService as HTMLLanguageService,
-	Position,
-} from '../languageModes';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import { TextDocument } from "vscode-languageserver-textdocument";
 
-export function getHTMLMode(htmlLanguageService: HTMLLanguageService): LanguageMode {
+import {
+	LanguageService as HTMLLanguageService,
+	LanguageMode,
+	Position,
+} from "../languageModes";
+
+export function getHTMLMode(
+	htmlLanguageService: HTMLLanguageService,
+): LanguageMode {
 	return {
 		getId() {
-			return 'html';
+			return "html";
 		},
 		doComplete(document: TextDocument, position: Position) {
 			return htmlLanguageService.doComplete(
 				document,
 				position,
-				htmlLanguageService.parseHTMLDocument(document)
+				htmlLanguageService.parseHTMLDocument(document),
 			);
 		},
-		onDocumentRemoved(_document: TextDocument) { /* nothing to do */ },
-		dispose() { /* nothing to do */ }
+		onDocumentRemoved(_document: TextDocument) {
+			/* nothing to do */
+		},
+		dispose() {
+			/* nothing to do */
+		},
 	};
 }
