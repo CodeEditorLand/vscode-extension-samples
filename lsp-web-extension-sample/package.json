@@ -27,14 +27,14 @@
 	},
 	"description": "A language server in a web extension",
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^6.20.0",
-		"@typescript-eslint/parser": "^6.20.0",
-		"@vscode/test-web": "^0.0.51",
-		"eslint": "^8.56.0",
-		"path-browserify": "^1.0.1",
-		"ts-loader": "^9.5.1",
-		"typescript": "^5.6.2",
-		"webpack": "^5.90.1",
-		"webpack-cli": "^5.1.4"
+		"@typescript-eslint/eslint-plugin": "8.9.0",
+		"@typescript-eslint/parser": "8.9.0",
+		"@vscode/test-web": "0.0.62",
+		"eslint": "9.12.0",
+		"path-browserify": "1.0.1",
+		"ts-loader": "9.5.1",
+		"typescript": "5.6.3",
+		"webpack": "5.95.0",
+		"webpack-cli": "5.1.4"
 	}
 }

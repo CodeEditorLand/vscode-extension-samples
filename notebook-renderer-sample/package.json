@@ -31,17 +31,17 @@
     "lint": "eslint src --ext .ts,.tsx"
   },
   "devDependencies": {
-    "@types/vscode-notebook-renderer": "^1.57.8",
-    "@types/webpack-env": "^1.17.0",
-    "@typescript-eslint/eslint-plugin": "^7.14.0",
-    "@typescript-eslint/parser": "^7.14.0",
-    "css-loader": "^4.2.0",
-    "eslint": "^8.26.0",
-    "style-loader": "^1.2.1",
-    "ts-loader": "^9.2.2",
-    "typescript": "^5.6.2",
-    "vscode-notebook-error-overlay": "^1.0.1",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0"
+    "@types/vscode-notebook-renderer": "1.72.3",
+    "@types/webpack-env": "1.18.5",
+    "@typescript-eslint/eslint-plugin": "8.9.0",
+    "@typescript-eslint/parser": "8.9.0",
+    "css-loader": "7.1.2",
+    "eslint": "9.12.0",
+    "style-loader": "4.0.0",
+    "ts-loader": "9.5.1",
+    "typescript": "5.6.3",
+    "vscode-notebook-error-overlay": "1.0.1",
+    "webpack": "5.95.0",
+    "webpack-cli": "5.1.4"
   }
 }
