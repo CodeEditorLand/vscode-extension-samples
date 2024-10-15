@@ -16,23 +16,6 @@
 		"clean": "rimraf client/out && rimraf server/out",
 		"compile": "tsc -b",
 		"compile:client": "tsc -b ./client/tsconfig.json",
-		"compile:server": "tsc -b ./server/tsconfig.json",
-		"watch": "tsc -b -w",
-		"lint": "npm run lint:client && npm run lint:server",
-		"lint:client": "eslint --config ./client/.eslintrc.json ./client/src/*.ts",
-		"lint:server": "eslint --config ./server/.eslintrc.json ./server/src/*.ts",
-		"clean": "rimraf client/out && rimraf server/out",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd .."
-	},
-	"devDependencies": {
-		"@types/node": "22",
-		"typescript": "5.6.3",
-		"eslint": "9.12.0",
-		"@typescript-eslint/parser": "8.9.0",
-		"webpack": "5.95.0",
-		"webpack-cli": "5.1.4",
-		"ts-loader": "9.5.1",
-		"merge-options": "3.0.4",
-		"rimraf": "6.0.1"
+		"compile:server": "tsc -b ./server/tsconfig.json"
 	}
 }

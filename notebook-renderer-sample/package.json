@@ -11,37 +11,14 @@
 			}
 		]
 	},
-  "contributes": {
-    "notebookRenderer": [
-      {
-        "id": "notebook-renderer-github-issues",
-        "entrypoint": "./out/index.js",
-        "displayName": "GitHub Issues Plain Renderer",
-        "mimeTypes": [
-          "x-application/github-issues"
-        ]
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "webpack --mode production",
-    "webpack": "webpack --mode development",
-    "webpack-dev": "webpack --mode development --watch",
-    "test-compile": "tsc -p ./",
-    "lint": "eslint src --ext .ts,.tsx"
-  },
-  "devDependencies": {
-    "@types/vscode-notebook-renderer": "1.72.3",
-    "@types/webpack-env": "1.18.5",
-    "@typescript-eslint/eslint-plugin": "8.9.0",
-    "@typescript-eslint/parser": "8.9.0",
-    "css-loader": "7.1.2",
-    "eslint": "9.12.0",
-    "style-loader": "4.0.0",
-    "ts-loader": "9.5.1",
-    "typescript": "5.6.3",
-    "vscode-notebook-error-overlay": "1.0.1",
-    "webpack": "5.95.0",
-    "webpack-cli": "5.1.4"
-  }
+	"devDependencies": {
+		"css-loader": "7.1.2",
+		"style-loader": "4.0.0",
+		"ts-loader": "9.5.1"
+	},
+	"scripts": {
+		"test-compile": "tsc -p ./",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	}
 }

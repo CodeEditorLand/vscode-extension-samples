@@ -19,12 +19,6 @@
 	},
 	"description": "Sample showing how to implement an inline completion provider",
 	"devDependencies": {
-		"@types/node": "22",
-		"@typescript-eslint/eslint-plugin": "8.9.0",
-		"@typescript-eslint/parser": "8.9.0",
-		"eslint": "9.12.0",
-		"typescript": "5.6.3",
-		"@vscode/dts": "0.4.1",
-		"@types/vscode": "1.94.0"
+		"@types/node": "22"
 	}
 }

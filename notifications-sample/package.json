@@ -41,14 +41,8 @@
 	},
 	"description": "Examples of notification types and various configurations",
 	"devDependencies": {
-		"@types/vscode": "1.94.0",
 		"@types/glob": "8.1.0",
 		"@types/node": "22",
-		"@typescript-eslint/eslint-plugin": "8.9.0",
-		"@typescript-eslint/parser": "8.9.0",
-		"eslint": "9.12.0",
-		"glob": "11.0.0",
-		"typescript": "5.6.3",
-		"@vscode/test-electron": "2.4.1"
+		"glob": "11.0.0"
 	}
 }

@@ -1,52 +1,31 @@
 {
-  "name": "code-tutor",
-  "displayName": "Code Tutor",
-  "description": "",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "1.93.0"
-  },
-  "categories": [
-    "AI",
-    "Chat"
-  ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
-"contributes": {
-    "chatParticipants": [
-      {
-        "id": "chat-tutorial.code-tutor",
-        "fullName": "Code Tutor",
-        "name": "tutor",
-        "description": "What can I teach you?",
-        "isSticky": true,
-        "commands": [
-          {
-            "name": "exercise",
-            "description": "Provide exercises to practice a concept."
-          }
-        ]
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
-  "devDependencies": {
-    "@types/vscode": "1.94.0",
-    "@types/mocha": "10.0.9",
-    "@types/node": "22.x",
-    "@typescript-eslint/eslint-plugin": "8.9.0",
-    "@typescript-eslint/parser": "8.9.0",
-    "eslint": "9.12.0",
-    "glob": "11.0.0",
-    "mocha": "10.7.3",
-    "typescript": "5.6.3",
-    "@vscode/test-electron": "2.4.1"
-  }
+	"activationEvents": [],
+	"contributes": {
+		"chatParticipants": [
+			{
+				"commands": [
+					{
+						"description": "Provide exercises to practice a concept.",
+						"name": "exercise"
+					}
+				],
+				"description": "What can I teach you?",
+				"fullName": "Code Tutor",
+				"id": "chat-tutorial.code-tutor",
+				"isSticky": true,
+				"name": "tutor"
+			}
+		]
+	},
+	"description": "",
+	"devDependencies": {
+		"@types/node": "22.x",
+		"glob": "11.0.0"
+	},
+	"displayName": "Code Tutor",
+	"main": "./out/extension.js",
+	"name": "code-tutor",
+	"scripts": {
+		"compile": "tsc -p ./"
+	}
 }

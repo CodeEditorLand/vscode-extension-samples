@@ -3,32 +3,15 @@
 		"onNotebook:test-notebook-serializer",
 		"onCommand:notebook-serializer-sample.createJsonNotebook"
 	],
-    "notebooks": [
-      {
-        "type": "test-notebook-serializer",
-        "displayName": "Sample Notebook",
-        "selector": [
-          {
-            "filenamePattern": "*.sample-json-notebook"
-          }
-        ]
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -b",
-    "lint": "eslint src --ext ts",
-    "watch": "tsc -b --watch"
-  },
-  "devDependencies": {
-    "@types/mocha": "8.2.2",
-    "@types/node": "20",
-    "@types/vscode": "1.74.0",
-    "@typescript-eslint/eslint-plugin": "7.14.0",
-    "@typescript-eslint/parser": "7.14.0",
-    "eslint": "8.56.0",
-    "mocha": "10.2.0",
-    "typescript": "5.6.2"
-  }
+	"notebooks": [
+		{
+			"displayName": "Sample Notebook",
+			"selector": [
+				{
+					"filenamePattern": "*.sample-json-notebook"
+				}
+			],
+			"type": "test-notebook-serializer"
+		}
+	]
 }

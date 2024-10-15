@@ -6,14 +6,6 @@
 		"@types/node": "22"
 	},
 	"main": "./out/extension",
-	"browser": "./dist/web/extension",
-	"dependencies": {
-		"@vscode/wasm-wasi-lsp": "0.1.0-pre.6"
-	},
-	"devDependencies": {
-		"@types/vscode": "1.94.0",
-		"@types/node": "22"
-	},
 	"scripts": {
 		"compile": "tsc -b",
 		"esbuild": "node ./bin/esbuild"

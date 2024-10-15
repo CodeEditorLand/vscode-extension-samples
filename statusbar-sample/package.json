@@ -8,16 +8,6 @@
 	"main": "./out/extension.js",
 	"name": "status-ts",
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./"
-	},
-	"devDependencies": {
-		"@types/vscode": "1.94.0",
-		"@typescript-eslint/eslint-plugin": "8.9.0",
-		"@typescript-eslint/parser": "8.9.0",
-		"eslint": "9.12.0",
-		"typescript": "5.6.3"
+		"compile": "tsc -p ./"
 	}
 }
