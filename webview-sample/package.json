@@ -18,11 +18,12 @@
 	},
 	"description": "Cat Coding - A Webview API Sample",
 	"devDependencies": {
-		"@types/node": "22"
-	},
-	"main": "./out/extension.js",
-	"name": "cat-coding",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "^20",
+		"@types/vscode": "^1.73.0",
+		"@types/vscode-webview": "^1.57.0",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^8.57.0",
+		"typescript": "^5.6.2"
 	}
 }

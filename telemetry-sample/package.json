@@ -13,14 +13,11 @@
 	},
 	"description": "Sample showing how to use Telemetry API",
 	"devDependencies": {
-		"@types/node": "22"
-	},
-	"displayName": "telemetry-sample",
-	"main": "./out/extension.js",
-	"name": "telemetry-sample",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"download-api": "dts dev",
-		"postdownload-api": "dts main"
+		"@types/node": "^20",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^8.25.0",
+		"typescript": "^5.6.2",
+		"@vscode/dts": "^0.4.0"
 	}
 }

@@ -21,11 +21,11 @@
 	},
 	"description": "A language server example using language services to support embedded languages",
 	"devDependencies": {
-		"@types/node": "22"
-	},
-	"main": "./client/out/extension",
-	"name": "lsp-embedded-language-service-sample",
-	"scripts": {
-		"compile": "tsc -b"
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^20",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^7.21.0",
+		"typescript": "^5.6.2"
 	}
 }

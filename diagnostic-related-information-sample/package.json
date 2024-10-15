@@ -4,12 +4,11 @@
 	],
 	"description": "Diagnostic Related Information Sample",
 	"devDependencies": {
-		"@types/node": "22"
-	},
-	"displayName": "Diagnostic Related Information Sample",
-	"main": "./out/extension.js",
-	"name": "diagnostic-related-information-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "^20",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.6.2"
 	}
 }

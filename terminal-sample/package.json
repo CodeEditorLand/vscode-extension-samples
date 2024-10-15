@@ -89,12 +89,11 @@
 	},
 	"description": "abc",
 	"devDependencies": {
-		"@types/node": "22"
-	},
-	"displayName": "vscode-terminal-api-example",
-	"main": "./out/extension.js",
-	"name": "vscode-terminal-api-example",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "^20",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.6.2"
 	}
 }

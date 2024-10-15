@@ -11,15 +11,19 @@
 	},
 	"description": "HelloWorld example for VS Code in the browser",
 	"devDependencies": {
-		"assert": "2.1.0",
-		"process": "0.11.10",
-		"ts-loader": "9.5.1"
-	},
-	"displayName": "helloworld-web-sample",
-	"name": "helloworld-web-sample",
-	"scripts": {
-		"compile-web": "webpack",
-		"package-web": "webpack --mode production --devtool hidden-source-map",
-		"watch-web": "webpack --watch"
+		"@types/mocha": "^9.0.0",
+		"@types/vscode": "^1.73.0",
+		"@types/webpack-env": "^1.16.2",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"@vscode/test-web": "^0.0.22",
+		"assert": "^2.0.0",
+		"eslint": "^8.26.0",
+		"mocha": "^9.2.0",
+		"process": "^0.11.10",
+		"ts-loader": "^9.2.5",
+		"typescript": "^5.6.2",
+		"webpack": "^5.52.1",
+		"webpack-cli": "^4.8.0"
 	}
 }

@@ -14,12 +14,11 @@
 	},
 	"description": "An example usage of the extension terminal API",
 	"devDependencies": {
-		"@types/node": "22"
-	},
-	"displayName": "extension-terminal-sample",
-	"main": "./out/extension.js",
-	"name": "extension-terminal-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "^20",
+		"@types/vscode": "^1.74.0",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.6.2"
 	}
 }

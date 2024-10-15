@@ -21,12 +21,11 @@
 	},
 	"description": "Showcase for using the workspace.fs.-API which allows reading and writing files and folder",
 	"devDependencies": {
-		"@types/node": "22"
-	},
-	"displayName": "FileSystem Consumer Sample",
-	"main": "./out/src/extension",
-	"name": "vscode-memfs",
-	"scripts": {
-		"compile": "tsc -p ./"
+		"@types/node": "^20",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.6.2"
 	}
 }

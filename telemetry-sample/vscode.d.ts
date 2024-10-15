@@ -12382,23 +12382,20 @@ declare module "vscode" {
 		 * * *NOTE:* You can expand only to 3 levels maximum.
 		 * * *NOTE:* The {@link TreeDataProvider} that the `TreeView` {@link window.createTreeView is registered with} with must implement {@link TreeDataProvider.getParent getParent} method to access this API.
 		 */
-		reveal(
-			element: T,
-			options?: {
-				/**
-				 * If true, then the element will be selected.
-				 */
-				readonly select?: boolean;
-				/**
-				 * If true, then the element will be focused.
-				 */
-				readonly focus?: boolean;
-				/**
-				 * If true, then the element will be expanded. If a number is passed, then up to that number of levels of children will be expanded
-				 */
-				readonly expand?: boolean | number;
-			},
-		): Thenable<void>;
+		reveal(element: T, options?: {
+			/**
+			 * If true, then the element will be selected.
+			 */
+			readonly select?: boolean;
+			/**
+			 * If true, then the element will be focused.
+			 */
+			readonly focus?: boolean;
+			/**
+			 * If true, then the element will be expanded. If a number is passed, then up to that number of levels of children will be expanded
+			 */
+			readonly expand?: boolean | number;
+		}): Thenable<void>;
 	}
 
 	/**
@@ -18210,10 +18207,7 @@ declare module "vscode" {
 		 * @param options Additional options for getting sessions.
 		 * @returns A promise that resolves to an array of authentication sessions.
 		 */
-		getSessions(
-			scopes: readonly string[] | undefined,
-			options: AuthenticationProviderSessionOptions,
-		): Thenable<AuthenticationSession[]>;
+		getSessions(scopes: readonly string[] | undefined, options: AuthenticationProviderSessionOptions): Thenable<AuthenticationSession[]>;
 
 		/**
 		 * Prompts a user to login.
@@ -18229,10 +18223,7 @@ declare module "vscode" {
 		 * @param options Additional options for creating a session.
 		 * @returns A promise that resolves to an authentication session.
 		 */
-		createSession(
-			scopes: readonly string[],
-			options: AuthenticationProviderSessionOptions,
-		): Thenable<AuthenticationSession>;
+		createSession(scopes: readonly string[], options: AuthenticationProviderSessionOptions): Thenable<AuthenticationSession>;
 
 		/**
 		 * Removes the session corresponding to session id.

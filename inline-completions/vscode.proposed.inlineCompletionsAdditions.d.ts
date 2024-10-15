@@ -73,12 +73,7 @@ declare module "vscode" {
 			info: PartialAcceptInfo,
 		): void;
 
-		provideInlineEditsForRange?(
-			document: TextDocument,
-			range: Range,
-			context: InlineCompletionContext,
-			token: CancellationToken,
-		): ProviderResult<InlineCompletionItem[] | InlineCompletionList>;
+		provideInlineEditsForRange?(document: TextDocument, range: Range, context: InlineCompletionContext, token: CancellationToken): ProviderResult<InlineCompletionItem[] | InlineCompletionList>;
 	}
 
 	export interface InlineCompletionContext {
