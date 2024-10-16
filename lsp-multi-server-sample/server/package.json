@@ -1,6 +1,6 @@
 {
-	"dependencies": {},
-	"description": "Example implementation of a language server in node.",
 	"name": "lsp-sample-server",
-	"scripts": {}
+	"description": "Example implementation of a language server in node.",
+	"scripts": {},
+	"dependencies": {}
 }
