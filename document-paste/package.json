@@ -1,9 +1,9 @@
 {
+	"description": "Shows use of the document paste API proposal",
+	"contributes": {},
 	"activationEvents": [
 		"onLanguage:plaintext"
 	],
-	"contributes": {},
-	"description": "Shows use of the document paste API proposal",
 	"devDependencies": {
 		"@types/node": "22"
 	}

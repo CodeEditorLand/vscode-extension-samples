@@ -1,5 +1,5 @@
 {
-	"activationEvents": [],
+	"description": "Examples of notification types and various configurations",
 	"contributes": {
 		"commands": [
 			{
@@ -39,7 +39,7 @@
 			}
 		]
 	},
-	"description": "Examples of notification types and various configurations",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/glob": "8.1.0",
 		"@types/node": "22",

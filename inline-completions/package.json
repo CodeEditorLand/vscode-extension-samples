@@ -1,7 +1,5 @@
 {
-	"activationEvents": [
-		"*"
-	],
+	"description": "Sample showing how to implement an inline completion provider",
 	"contributes": {
 		"commands": [
 			{
@@ -17,7 +15,9 @@
 			]
 		}
 	},
-	"description": "Sample showing how to implement an inline completion provider",
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
 		"@types/node": "22"
 	}

@@ -1,7 +1,5 @@
 {
-	"activationEvents": [
-		"onLanguage:html1"
-	],
+	"description": "A language server example using language services to support embedded languages",
 	"contributes": {
 		"grammars": [
 			{
@@ -19,7 +17,9 @@
 			}
 		]
 	},
-	"description": "A language server example using language services to support embedded languages",
+	"activationEvents": [
+		"onLanguage:html1"
+	],
 	"devDependencies": {
 		"@types/node": "22"
 	}

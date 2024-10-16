@@ -1,5 +1,5 @@
 {
-	"activationEvents": [],
+	"description": "How to contribute and use configurations in VS Code",
 	"contributes": {
 		"commands": [
 			{
@@ -131,7 +131,7 @@
 			}
 		]
 	},
-	"description": "How to contribute and use configurations in VS Code",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "22"
 	}

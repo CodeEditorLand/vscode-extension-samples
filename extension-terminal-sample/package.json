@@ -1,5 +1,5 @@
 {
-	"activationEvents": [],
+	"description": "An example usage of the extension terminal API",
 	"contributes": {
 		"commands": [
 			{
@@ -12,7 +12,7 @@
 			}
 		]
 	},
-	"description": "An example usage of the extension terminal API",
+	"activationEvents": [],
 	"devDependencies": {
 		"@types/node": "22"
 	}

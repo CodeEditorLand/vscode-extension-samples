@@ -1,8 +1,5 @@
 {
-	"activationEvents": [
-		"onNotebook:jupyter-notebook",
-		"onNotebook:interactive"
-	],
+	"description": "Sample extension using Jupyter API to execute code against the Python Kernel",
 	"contributes": {
 		"commands": [
 			{
@@ -20,7 +17,10 @@
 			]
 		}
 	},
-	"description": "Sample extension using Jupyter API to execute code against the Python Kernel",
+	"activationEvents": [
+		"onNotebook:jupyter-notebook",
+		"onNotebook:interactive"
+	],
 	"devDependencies": {
 		"@types/node": "22"
 	}

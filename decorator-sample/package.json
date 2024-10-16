@@ -1,7 +1,5 @@
 {
-	"activationEvents": [
-		"*"
-	],
+	"description": "Sample for the decorator API",
 	"contributes": {
 		"colors": [
 			{
@@ -15,7 +13,9 @@
 			}
 		]
 	},
-	"description": "Sample for the decorator API",
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
 		"@types/node": "22"
 	}
