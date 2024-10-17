@@ -1,11 +1,5 @@
 {
-	"name": "code-tutor",
-	"displayName": "Code Tutor",
-	"description": "Your personal AI code tutor",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -23,8 +17,14 @@
 			]
 		}
 	},
-	"activationEvents": [],
+	"description": "Your personal AI code tutor",
 	"devDependencies": {
 		"@types/node": "22.x"
+	},
+	"displayName": "Code Tutor",
+	"main": "./out/extension.js",
+	"name": "code-tutor",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

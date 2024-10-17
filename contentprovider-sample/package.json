@@ -1,5 +1,5 @@
 {
-	"description": "Show the results of 'Find References' as formatted text in an editor",
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -35,7 +35,7 @@
 			]
 		}
 	},
-	"activationEvents": [],
+	"description": "Show the results of 'Find References' as formatted text in an editor",
 	"devDependencies": {
 		"@types/node": "22"
 	}

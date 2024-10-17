@@ -1,5 +1,7 @@
 {
-	"description": "A language server in a web extension",
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"browser": "./client/dist/browserClientMain",
 	"contributes": {
 		"configuration": [
@@ -23,9 +25,7 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
+	"description": "A language server in a web extension",
 	"devDependencies": {
 		"path-browserify": "1.0.1",
 		"ts-loader": "9.5.1"

@@ -1,8 +1,8 @@
 {
-	"description": "Call hierarchy provider sample",
 	"activationEvents": [
 		"onLanguage:plaintext"
 	],
+	"description": "Call hierarchy provider sample",
 	"devDependencies": {
 		"@types/node": "22"
 	}

@@ -1,8 +1,8 @@
 {
-	"description": "Sample showing how to use the test APIs",
 	"activationEvents": [
 		"workspaceContains:*.md"
 	],
+	"description": "Sample showing how to use the test APIs",
 	"devDependencies": {
 		"@types/node": "22"
 	}

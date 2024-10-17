@@ -1,5 +1,7 @@
 {
-	"description": "Samples for VS Code's QuickInput API",
+	"activationEvents": [
+		"onCommand:samples.quickInput"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -8,9 +10,7 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onCommand:samples.quickInput"
-	],
+	"description": "Samples for VS Code's QuickInput API",
 	"devDependencies": {
 		"@types/node": "22"
 	}

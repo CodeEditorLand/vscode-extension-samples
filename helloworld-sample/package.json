@@ -1,5 +1,5 @@
 {
-	"description": "HelloWorld example for VS Code",
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -8,7 +8,7 @@
 			}
 		]
 	},
-	"activationEvents": [],
+	"description": "HelloWorld example for VS Code",
 	"devDependencies": {
 		"@types/node": "22"
 	}

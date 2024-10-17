@@ -1,5 +1,5 @@
 {
-	"description": "A sample for virtual document",
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -27,10 +27,10 @@
 			]
 		}
 	},
-	"activationEvents": [],
 	"dependencies": {
 		"cowsay": "1.6.0"
 	},
+	"description": "A sample for virtual document",
 	"devDependencies": {
 		"@types/node": "22"
 	}

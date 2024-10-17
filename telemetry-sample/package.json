@@ -1,5 +1,4 @@
 {
-	"description": "Sample showing how to use Telemetry API",
 	"contributes": {
 		"commands": [
 			{
@@ -12,6 +11,7 @@
 			}
 		]
 	},
+	"description": "Sample showing how to use Telemetry API",
 	"devDependencies": {
 		"@types/node": "22"
 	}

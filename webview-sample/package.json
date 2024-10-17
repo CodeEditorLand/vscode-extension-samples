@@ -1,5 +1,7 @@
 {
-	"description": "Cat Coding - A Webview API Sample",
+	"activationEvents": [
+		"onWebviewPanel:catCoding"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -14,9 +16,7 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onWebviewPanel:catCoding"
-	],
+	"description": "Cat Coding - A Webview API Sample",
 	"devDependencies": {
 		"@types/node": "22"
 	}

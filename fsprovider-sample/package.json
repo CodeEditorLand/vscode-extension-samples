@@ -1,5 +1,7 @@
 {
-	"description": "Showcase for the file system provider API, also useful for testing again document that are not on disk.",
+	"activationEvents": [
+		"onFileSystem:memfs"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -53,9 +55,7 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"onFileSystem:memfs"
-	],
+	"description": "Showcase for the file system provider API, also useful for testing again document that are not on disk.",
 	"devDependencies": {
 		"@types/node": "22"
 	}

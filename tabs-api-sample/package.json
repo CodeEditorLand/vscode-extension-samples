@@ -1,5 +1,7 @@
 {
-	"description": "Sample showing how to use the tabs api",
+	"activationEvents": [
+		"onStartupFinished"
+	],
 	"browser": "./out/extension.js",
 	"contributes": {
 		"configuration": {
@@ -14,9 +16,7 @@
 			"title": "Tabs API Sample"
 		}
 	},
-	"activationEvents": [
-		"onStartupFinished"
-	],
+	"description": "Sample showing how to use the tabs api",
 	"devDependencies": {
 		"@types/node": "22"
 	}

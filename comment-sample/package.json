@@ -1,5 +1,7 @@
 {
-	"description": "Comment API Sample",
+	"activationEvents": [
+		"*"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -132,9 +134,7 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"*"
-	],
+	"description": "Comment API Sample",
 	"devDependencies": {
 		"@types/node": "22"
 	}

@@ -1,5 +1,7 @@
 {
-	"description": "Show a long running operation in the notification area",
+	"activationEvents": [
+		"*"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -8,9 +10,7 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"*"
-	],
+	"description": "Show a long running operation in the notification area",
 	"devDependencies": {
 		"@types/node": "22"
 	}

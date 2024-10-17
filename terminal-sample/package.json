@@ -1,5 +1,7 @@
 {
-	"description": "abc",
+	"activationEvents": [
+		"onTerminalProfile:terminalTest.terminal-profile"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -85,9 +87,7 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"onTerminalProfile:terminalTest.terminal-profile"
-	],
+	"description": "abc",
 	"devDependencies": {
 		"@types/node": "22"
 	}

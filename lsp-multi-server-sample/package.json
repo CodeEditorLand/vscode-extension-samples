@@ -1,5 +1,7 @@
 {
-	"description": "A multi server LSP example",
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"contributes": {
 		"configuration": {
 			"properties": {
@@ -31,9 +33,7 @@
 			"type": "object"
 		}
 	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
+	"description": "A multi server LSP example",
 	"devDependencies": {
 		"@types/node": "22"
 	}

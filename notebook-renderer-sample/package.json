@@ -1,9 +1,4 @@
 {
-	"scripts": {
-		"test-compile": "tsc -p ./",
-		"webpack": "webpack --mode development",
-		"webpack-dev": "webpack --mode development --watch"
-	},
 	"contributes": {
 		"notebookRenderer": [
 			{
@@ -20,5 +15,10 @@
 		"css-loader": "7.1.2",
 		"style-loader": "4.0.0",
 		"ts-loader": "9.5.1"
+	},
+	"scripts": {
+		"test-compile": "tsc -p ./",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
 	}
 }
