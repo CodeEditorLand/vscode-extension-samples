@@ -49,7 +49,7 @@
 		]
 	},
 	"dependencies": {
-		"@vscode/prompt-tsx": "0.3.0-alpha.11"
+		"@vscode/prompt-tsx": "0.3.0-alpha.12"
 	},
 	"devDependencies": {
 		"@types/node": "22"
