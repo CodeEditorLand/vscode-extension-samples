@@ -8,8 +8,6 @@
 	"main": "./out/extension",
 	"scripts": {
 		"compile": "tsc -b",
-		"watch": "tsc -b -w",
-		"lint": "eslint",
 		"esbuild": "node ./bin/esbuild"
 	}
 }

@@ -3,22 +3,13 @@
 		"*"
 	],
 	"description": "Shows the number of selected lines in the status bar",
-	"devDependencies": {},
+	"devDependencies": {
+		"@stylistic/eslint-plugin": "^2.9.0"
+	},
 	"displayName": "Selected Line Numbers",
 	"main": "./out/extension.js",
 	"name": "status-ts",
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint",
-		"watch": "tsc -watch -p ./"
-	},
-	"devDependencies": {
-		"@eslint/js": "^9.13.0",
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/vscode": "^1.73.0",
-		"eslint": "^9.13.0",
-		"typescript": "^5.6.2",
-		"typescript-eslint": "^8.11.0"
+		"compile": "tsc -p ./"
 	}
 }

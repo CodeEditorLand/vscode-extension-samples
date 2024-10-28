@@ -2,20 +2,12 @@
 	"activationEvents": [
 		"workspaceContains:*.md"
 	],
+	"devDependencies": {
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/node": "^20"
+	},
 	"main": "./out/extension.js",
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint",
-		"watch": "tsc -watch -p ./"
-	},
-	"devDependencies": {
-		"@eslint/js": "^9.13.0",
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20",
-		"@types/vscode": "^1.88.0",
-		"eslint": "^9.13.0",
-		"typescript": "^5.6.2",
-		"typescript-eslint": "^8.11.0"
+		"compile": "tsc -p ./"
 	}
 }
