@@ -2,9 +2,6 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-"use strict";
-
-import { TextDocument } from "vscode-languageserver-textdocument";
 import {
 	CodeAction,
 	CodeActionKind,
@@ -23,7 +20,7 @@ import {
 const connection = createConnection();
 connection.console.info(`Sample server running in node ${process.version}`);
 
-const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+const documents = new TextDocuments(TextDocument);
 documents.listen(connection);
 
 connection.onInitialize(() => {

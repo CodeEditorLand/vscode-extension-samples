@@ -59,7 +59,7 @@ export function getLanguageModes(): LanguageModes {
 		(document) => getDocumentRegions(htmlLanguageService, document),
 	);
 
-	let modelCaches: LanguageModelCache<any>[] = [];
+	let modelCaches: LanguageModelCache<unknown>[] = [];
 	modelCaches.push(documentRegions);
 
 	let modes = Object.create(null);
@@ -86,8 +86,8 @@ export function getLanguageModes(): LanguageModes {
 			return documentRegions
 				.get(document)
 				.getLanguageRanges(range)
-				.map((r) => {
-					return <LanguageModeRange>{
+				.map((r): LanguageModeRange => {
+					return {
 						start: r.start,
 						end: r.end,
 						mode: r.languageId && modes[r.languageId],

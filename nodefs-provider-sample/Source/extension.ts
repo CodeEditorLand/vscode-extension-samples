@@ -3,65 +3,43 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 
-import * as fs from "fs";
-import * as path from "path";
-import * as mkdirp from "mkdirp";
-import * as rimraf from "rimraf";
-import * as vscode from "vscode";
+import * as fs from 'fs';
+import * as mkdirp from 'mkdirp';
+import * as path from 'path';
+import * as rimraf from 'rimraf';
+import * as vscode from 'vscode';
 
-export function activate(context: vscode.ExtensionContext) {
-	vscode.workspace.registerFileSystemProvider(
-		"datei",
-		new DateiFileSystemProvider(),
-		{
-			isCaseSensitive: process.platform === "linux",
-		},
-	);
+export function activate(_context: vscode.ExtensionContext) {
+	vscode.workspace.registerFileSystemProvider('datei', new DateiFileSystemProvider(), {
+		isCaseSensitive: process.platform === 'linux'
+	});
 }
 
 class DateiFileSystemProvider implements vscode.FileSystemProvider {
+
 	private _onDidChangeFile: vscode.EventEmitter<vscode.FileChangeEvent[]>;
 
 	constructor() {
-		this._onDidChangeFile = new vscode.EventEmitter<
-			vscode.FileChangeEvent[]
-		>();
+		this._onDidChangeFile = new vscode.EventEmitter<vscode.FileChangeEvent[]>();
 	}
 
 	get onDidChangeFile(): vscode.Event<vscode.FileChangeEvent[]> {
 		return this._onDidChangeFile.event;
 	}
 
-	watch(
-		uri: vscode.Uri,
-		options: { recursive: boolean; excludes: string[] },
-	): vscode.Disposable {
-		const watcher = fs.watch(
-			uri.fsPath,
-			{ recursive: options.recursive },
-			async (event, filename) => {
-				if (filename) {
-					const filepath = path.join(
-						uri.fsPath,
-						_.normalizeNFC(filename.toString()),
-					);
+	watch(uri: vscode.Uri, options: { recursive: boolean; excludes: string[]; }): vscode.Disposable {
+		const watcher = fs.watch(uri.fsPath, { recursive: options.recursive }, async (event, filename) => {
+			if (filename) {
+				const filepath = path.join(uri.fsPath, _.normalizeNFC(filename.toString()));
 
-					// TODO support excludes (using minimatch library?)
+				// TODO support excludes (using minimatch library?)
 
-					this._onDidChangeFile.fire([
-						{
-							type:
-								event === "change"
-									? vscode.FileChangeType.Changed
-									: (await _.exists(filepath))
-										? vscode.FileChangeType.Created
-										: vscode.FileChangeType.Deleted,
-							uri: uri.with({ path: filepath }),
-						} as vscode.FileChangeEvent,
-					]);
-				}
-			},
-		);
+				this._onDidChangeFile.fire([{
+					type: event === 'change' ? vscode.FileChangeType.Changed : await _.exists(filepath) ? vscode.FileChangeType.Created : vscode.FileChangeType.Deleted,
+					uri: uri.with({ path: filepath })
+				} as vscode.FileChangeEvent]);
+			}
+		});
 
 		return { dispose: () => watcher.close() };
 	}
@@ -75,20 +53,15 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 		return new FileStat(res.stat, res.isSymbolicLink);
 	}
 
-	readDirectory(
-		uri: vscode.Uri,
-	): [string, vscode.FileType][] | Thenable<[string, vscode.FileType][]> {
+	readDirectory(uri: vscode.Uri): [string, vscode.FileType][] | Thenable<[string, vscode.FileType][]> {
 		return this._readDirectory(uri);
 	}
 
-	async _readDirectory(
-		uri: vscode.Uri,
-	): Promise<[string, vscode.FileType][]> {
+	async _readDirectory(uri: vscode.Uri): Promise<[string, vscode.FileType][]> {
 		const children = await _.readdir(uri.fsPath);
 
 		const result: [string, vscode.FileType][] = [];
-		for (let i = 0; i < children.length; i++) {
-			const child = children[i];
+		for (const child of children) {
 			const stat = await this._stat(path.join(uri.fsPath, child));
 			result.push([child, stat.type]);
 		}
@@ -104,19 +77,11 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 		return _.readfile(uri.fsPath);
 	}
 
-	writeFile(
-		uri: vscode.Uri,
-		content: Uint8Array,
-		options: { create: boolean; overwrite: boolean },
-	): void | Thenable<void> {
+	writeFile(uri: vscode.Uri, content: Uint8Array, options: { create: boolean; overwrite: boolean; }): void | Thenable<void> {
 		return this._writeFile(uri, content, options);
 	}
 
-	async _writeFile(
-		uri: vscode.Uri,
-		content: Uint8Array,
-		options: { create: boolean; overwrite: boolean },
-	): Promise<void> {
+	async _writeFile(uri: vscode.Uri, content: Uint8Array, options: { create: boolean; overwrite: boolean; }): Promise<void> {
 		const exists = await _.exists(uri.fsPath);
 		if (!exists) {
 			if (!options.create) {
@@ -133,10 +98,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 		return _.writefile(uri.fsPath, content as Buffer);
 	}
 
-	delete(
-		uri: vscode.Uri,
-		options: { recursive: boolean },
-	): void | Thenable<void> {
+	delete(uri: vscode.Uri, options: { recursive: boolean; }): void | Thenable<void> {
 		if (options.recursive) {
 			return _.rmrf(uri.fsPath);
 		}
@@ -144,19 +106,11 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 		return _.unlink(uri.fsPath);
 	}
 
-	rename(
-		oldUri: vscode.Uri,
-		newUri: vscode.Uri,
-		options: { overwrite: boolean },
-	): void | Thenable<void> {
+	rename(oldUri: vscode.Uri, newUri: vscode.Uri, options: { overwrite: boolean; }): void | Thenable<void> {
 		return this._rename(oldUri, newUri, options);
 	}
 
-	async _rename(
-		oldUri: vscode.Uri,
-		newUri: vscode.Uri,
-		options: { overwrite: boolean },
-	): Promise<void> {
+	async _rename(oldUri: vscode.Uri, newUri: vscode.Uri, options: { overwrite: boolean; }): Promise<void> {
 		const exists = await _.exists(newUri.fsPath);
 		if (exists) {
 			if (!options.overwrite) {
@@ -184,13 +138,10 @@ export interface IStatAndLink {
 	isSymbolicLink: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 namespace _ {
-	function handleResult<T>(
-		resolve: (result: T) => void,
-		reject: (error: Error) => void,
-		error: Error | null | undefined,
-		result: T | undefined,
-	): void {
+
+	function handleResult<T>(resolve: (result: T) => void, reject: (error: Error) => void, error: Error | null | undefined, result: T | undefined): void {
 		if (error) {
 			reject(messageError(error));
 		} else {
@@ -199,19 +150,19 @@ namespace _ {
 	}
 
 	function messageError(error: Error & { code?: string }): Error {
-		if (error.code === "ENOENT") {
+		if (error.code === 'ENOENT') {
 			return vscode.FileSystemError.FileNotFound();
 		}
 
-		if (error.code === "EISDIR") {
+		if (error.code === 'EISDIR') {
 			return vscode.FileSystemError.FileIsADirectory();
 		}
 
-		if (error.code === "EEXIST") {
+		if (error.code === 'EEXIST') {
 			return vscode.FileSystemError.FileExists();
 		}
 
-		if (error.code === "EPERM" || error.code === "EACCES") {
+		if (error.code === 'EPERM' || error.code === 'EACCES') {
 			return vscode.FileSystemError.NoPermissions();
 		}
 
@@ -220,85 +171,69 @@ namespace _ {
 
 	export function checkCancellation(token: vscode.CancellationToken): void {
 		if (token.isCancellationRequested) {
-			throw new Error("Operation cancelled");
+			throw new Error('Operation cancelled');
 		}
 	}
 
 	export function normalizeNFC(items: string): string;
 	export function normalizeNFC(items: string[]): string[];
 	export function normalizeNFC(items: string | string[]): string | string[] {
-		if (process.platform !== "darwin") {
+		if (process.platform !== 'darwin') {
 			return items;
 		}
 
 		if (Array.isArray(items)) {
-			return items.map((item) => item.normalize("NFC"));
+			return items.map(item => item.normalize('NFC'));
 		}
 
-		return items.normalize("NFC");
+		return items.normalize('NFC');
 	}
 
 	export function readdir(path: string): Promise<string[]> {
 		return new Promise<string[]>((resolve, reject) => {
-			fs.readdir(path, (error, children) =>
-				handleResult(resolve, reject, error, normalizeNFC(children)),
-			);
+			fs.readdir(path, (error, children) => handleResult(resolve, reject, error, normalizeNFC(children)));
 		});
 	}
 
 	export function readfile(path: string): Promise<Buffer> {
 		return new Promise<Buffer>((resolve, reject) => {
-			fs.readFile(path, (error, buffer) =>
-				handleResult(resolve, reject, error, buffer),
-			);
+			fs.readFile(path, (error, buffer) => handleResult(resolve, reject, error, buffer));
 		});
 	}
 
 	export function writefile(path: string, content: Buffer): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
-			fs.writeFile(path, content, (error) =>
-				handleResult(resolve, reject, error, void 0),
-			);
+			fs.writeFile(path, content, error => handleResult(resolve, reject, error, void 0));
 		});
 	}
 
 	export function exists(path: string): Promise<boolean> {
 		return new Promise<boolean>((resolve, reject) => {
-			fs.exists(path, (exists) =>
-				handleResult(resolve, reject, null, exists),
-			);
+			fs.exists(path, exists => handleResult(resolve, reject, null, exists));
 		});
 	}
 
 	export function rmrf(path: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
-			rimraf(path, (error) =>
-				handleResult(resolve, reject, error, void 0),
-			);
+			rimraf(path, error => handleResult(resolve, reject, error, void 0));
 		});
 	}
 
 	export function mkdir(path: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
-			mkdirp(path, (error) =>
-				handleResult(resolve, reject, error, void 0),
-			);
+			mkdirp(path, error => handleResult(resolve, reject, error, void 0));
 		});
 	}
 
 	export function rename(oldPath: string, newPath: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
-			fs.rename(oldPath, newPath, (error) =>
-				handleResult(resolve, reject, error, void 0),
-			);
+			fs.rename(oldPath, newPath, error => handleResult(resolve, reject, error, void 0));
 		});
 	}
 
 	export function unlink(path: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
-			fs.unlink(path, (error) =>
-				handleResult(resolve, reject, error, void 0),
-			);
+			fs.unlink(path, error => handleResult(resolve, reject, error, void 0));
 		});
 	}
 
@@ -311,42 +246,27 @@ namespace _ {
 							return handleResult(resolve, reject, error, void 0);
 						}
 
-						handleResult(resolve, reject, error, {
-							stat,
-							isSymbolicLink: lstat && lstat.isSymbolicLink(),
-						});
+						handleResult(resolve, reject, error, { stat, isSymbolicLink: lstat && lstat.isSymbolicLink() });
 					});
 				} else {
-					handleResult(resolve, reject, error, {
-						stat: lstat,
-						isSymbolicLink: false,
-					});
+					handleResult(resolve, reject, error, { stat: lstat, isSymbolicLink: false });
 				}
 			});
+
 		});
 	}
 }
 
 export class FileStat implements vscode.FileStat {
-	constructor(
-		private fsStat: fs.Stats,
-		private _isSymbolicLink: boolean,
-	) {}
+
+	constructor(private fsStat: fs.Stats, private _isSymbolicLink: boolean) { }
 
 	get type(): vscode.FileType {
 		let type: number;
 		if (this._isSymbolicLink) {
-			type =
-				vscode.FileType.SymbolicLink |
-				(this.fsStat.isDirectory()
-					? vscode.FileType.Directory
-					: vscode.FileType.File);
+			type = vscode.FileType.SymbolicLink | (this.fsStat.isDirectory() ? vscode.FileType.Directory : vscode.FileType.File);
 		} else {
-			type = this.fsStat.isFile()
-				? vscode.FileType.File
-				: this.fsStat.isDirectory()
-					? vscode.FileType.Directory
-					: vscode.FileType.Unknown;
+			type = this.fsStat.isFile() ? vscode.FileType.File : this.fsStat.isDirectory() ? vscode.FileType.Directory : vscode.FileType.Unknown;
 		}
 
 		return type;

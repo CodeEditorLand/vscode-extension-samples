@@ -11,9 +11,10 @@ import {
 	QuickPickItem,
 	window,
 	workspace,
-} from "vscode";
-
-import path = require("path");
+} from 'vscode';
+import { Jupyter, Kernel } from '@vscode/jupyter-extension';
+import * as path from 'path';
+import { TextDecoder } from 'util';
 
 export function activate(context: ExtensionContext) {
 	const jupyterExt = extensions.getExtension<Jupyter>("ms-toolsai.jupyter");
@@ -43,11 +44,11 @@ export function activate(context: ExtensionContext) {
 	);
 }
 
-const ErrorMimeType = NotebookCellOutputItem.error(new Error("")).mime;
-const StdOutMimeType = NotebookCellOutputItem.stdout("").mime;
-const StdErrMimeType = NotebookCellOutputItem.stderr("").mime;
-const MarkdownMimeType = "text/markdown";
-const HtmlMimeType = "text/html";
+const ErrorMimeType = NotebookCellOutputItem.error(new Error('')).mime;
+// const StdOutMimeType = NotebookCellOutputItem.stdout('').mime;
+// const StdErrMimeType = NotebookCellOutputItem.stderr('').mime;
+// const MarkdownMimeType = 'text/markdown';
+// const HtmlMimeType = 'text/html';
 const textDecoder = new TextDecoder();
 async function executeCode(
 	kernel: Kernel,
@@ -159,7 +160,7 @@ async function selectKernel(): Promise<Kernel | undefined> {
 		Promise.all(
 			workspace.notebookDocuments.map(async (document) => {
 				const kernel = await api.kernels.getKernel(document.uri);
-				if (kernel && (kernel as any).language === "python") {
+				if (kernel && kernel.language === 'python') {
 					quickPickItems.push({
 						label: `Kernel for ${path.basename(document.uri.fsPath)}`,
 						kernel,

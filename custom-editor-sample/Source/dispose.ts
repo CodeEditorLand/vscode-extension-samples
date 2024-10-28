@@ -1,4 +1,4 @@
-import * as vscode from "vscode";
+import * as vscode from 'vscode';
 
 export function disposeAll(disposables: vscode.Disposable[]): void {
 	while (disposables.length) {
@@ -14,7 +14,7 @@ export abstract class Disposable {
 
 	protected _disposables: vscode.Disposable[] = [];
 
-	public dispose(): any {
+	public dispose() {
 		if (this._isDisposed) {
 			return;
 		}

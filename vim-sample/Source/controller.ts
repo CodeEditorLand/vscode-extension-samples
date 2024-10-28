@@ -3,26 +3,12 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import {
-	Position,
-	Range,
-	Selection,
-	TextEditor,
-	TextEditorCursorStyle,
-	TextEditorRevealType,
-	window,
-} from "vscode";
+import { TextEditorCursorStyle, Position, Range, Selection, TextEditor, TextEditorRevealType, window } from 'vscode';
 
-import {
-	Command,
-	DeleteRegister,
-	IController,
-	Mode,
-	ModifierKeys,
-} from "./common";
-import { Mappings } from "./mappings";
-import { Motion, MotionState } from "./motions";
-import { Words } from "./words";
+import { Words } from './words';
+import { MotionState, Motion } from './motions';
+import { Mode, IController, DeleteRegister, Command, ModifierKeys } from './common';
+import { Mappings } from './mappings';
 
 export interface ITypeResult {
 	hasConsumedInput: boolean;
@@ -30,28 +16,19 @@ export interface ITypeResult {
 }
 
 export class Controller implements IController {
+
 	private _currentMode: Mode;
 	private _currentInput: string;
 	private _motionState: MotionState;
 	private _isVisual: boolean;
 
-	public get motionState(): MotionState {
-		return this._motionState;
-	}
-	public findMotion(input: string): Motion {
-		return Mappings.findMotion(input);
-	}
-	public isMotionPrefix(input: string): boolean {
-		return Mappings.isMotionPrefix(input);
-	}
+	public get motionState(): MotionState { return this._motionState; }
+	public findMotion(input: string): Motion { return Mappings.findMotion(input); }
+	public isMotionPrefix(input: string): boolean { return Mappings.isMotionPrefix(input); }
 
 	private _deleteRegister: DeleteRegister;
-	public setDeleteRegister(register: DeleteRegister): void {
-		this._deleteRegister = register;
-	}
-	public getDeleteRegister(): DeleteRegister {
-		return this._deleteRegister;
-	}
+	public setDeleteRegister(register: DeleteRegister): void { this._deleteRegister = register; }
+	public getDeleteRegister(): DeleteRegister { return this._deleteRegister; }
 
 	constructor() {
 		this._motionState = new MotionState();
@@ -61,8 +38,7 @@ export class Controller implements IController {
 	}
 
 	public setWordSeparators(wordSeparators: string): void {
-		this._motionState.wordCharacterClass =
-			Words.createWordCharacters(wordSeparators);
+		this._motionState.wordCharacterClass = Words.createWordCharacters(wordSeparators);
 	}
 
 	public ensureNormalModePosition(editor: TextEditor): void {
@@ -90,7 +66,7 @@ export class Controller implements IController {
 	}
 
 	public clearInput(): void {
-		this._currentInput = "";
+		this._currentInput = '';
 	}
 
 	public getMode(): Mode {
@@ -101,7 +77,7 @@ export class Controller implements IController {
 		if (newMode !== this._currentMode) {
 			this._currentMode = newMode;
 			this._motionState.cursorDesiredCharacter = -1; // uninitialized
-			this._currentInput = "";
+			this._currentInput = '';
 		}
 	}
 
@@ -131,67 +107,57 @@ export class Controller implements IController {
 	private _getModeLabel(): string {
 		if (this._currentMode === Mode.NORMAL) {
 			if (this._isVisual) {
-				return "-- VISUAL --";
+				return '-- VISUAL --';
 			}
-			return "-- NORMAL --";
+			return '-- NORMAL --';
 		}
 
 		if (this._currentMode === Mode.REPLACE) {
 			if (this._isVisual) {
-				return "-- (replace) VISUAL --";
+				return '-- (replace) VISUAL --';
 			}
-			return "-- REPLACE --";
+			return '-- REPLACE --';
 		}
 
 		if (this._isVisual) {
-			return "-- (insert) VISUAL --";
+			return '-- (insert) VISUAL --';
 		}
-		return "-- INSERT --";
+		return '-- INSERT --';
 	}
 
 	public getStatusText(): string {
 		const label = this._getModeLabel();
-		return (
-			`VIM:> ${label}` +
-			(this._currentInput ? ` >${this._currentInput}` : ``)
-		);
+		return `VIM:> ${label}` + (this._currentInput ? ` >${this._currentInput}` : ``);
 	}
 
 	private _isInComposition = false;
-	private _composingText = "";
+	private _composingText = '';
 
-	public compositionStart(editor: TextEditor): void {
+	public compositionStart(_editor: TextEditor): void {
 		this._isInComposition = true;
-		this._composingText = "";
+		this._composingText = '';
 	}
 
 	public compositionEnd(editor: TextEditor): Thenable<ITypeResult> {
 		this._isInComposition = false;
 		const text = this._composingText;
-		this._composingText = "";
+		this._composingText = '';
 
 		if (text.length === 0) {
 			return Promise.resolve({
 				hasConsumedInput: true,
-				executeEditorCommand: null,
+				executeEditorCommand: null
 			});
 		}
 
 		return this.type(editor, text, {});
 	}
 
-	public type(
-		editor: TextEditor,
-		text: string,
-		modifierKeys: ModifierKeys,
-	): Thenable<ITypeResult> {
-		if (
-			this._currentMode !== Mode.NORMAL &&
-			this._currentMode !== Mode.REPLACE
-		) {
+	public type(editor: TextEditor, text: string, modifierKeys: ModifierKeys): Thenable<ITypeResult> {
+		if (this._currentMode !== Mode.NORMAL && this._currentMode !== Mode.REPLACE) {
 			return Promise.resolve({
 				hasConsumedInput: false,
-				executeEditorCommand: null,
+				executeEditorCommand: null
 			});
 		}
 
@@ -199,70 +165,41 @@ export class Controller implements IController {
 			this._composingText += text;
 			return Promise.resolve({
 				hasConsumedInput: true,
-				executeEditorCommand: null,
+				executeEditorCommand: null
 			});
 		}
 
 		if (this._currentMode === Mode.REPLACE) {
 			const pos = editor.selection.active;
-			editor
-				.edit((builder) => {
-					builder.replace(
-						new Range(
-							pos.line,
-							pos.character,
-							pos.line,
-							pos.character + 1,
-						),
-						text,
-					);
-				})
-				.then(() => {
-					setPositionAndReveal(editor, pos.line, pos.character + 1);
-				});
+			editor.edit((builder) => {
+				builder.replace(new Range(pos.line, pos.character, pos.line, pos.character + 1), text);
+			}).then(() => {
+				setPositionAndReveal(editor, pos.line, pos.character + 1);
+			});
 
 			return Promise.resolve({
 				hasConsumedInput: true,
-				executeEditorCommand: null,
+				executeEditorCommand: null
 			});
 		}
 		this._currentInput += text;
 		return this._interpretNormalModeInput(editor, modifierKeys);
 	}
 
-	public replacePrevChar(
-		editor: TextEditor,
-		text: string,
-		replaceCharCnt: number,
-	): boolean {
-		if (
-			this._currentMode !== Mode.NORMAL &&
-			this._currentMode !== Mode.REPLACE
-		) {
+	public replacePrevChar(editor: TextEditor, text: string, replaceCharCnt: number): boolean {
+		if (this._currentMode !== Mode.NORMAL && this._currentMode !== Mode.REPLACE) {
 			return false;
 		}
 
 		if (this._isInComposition) {
-			this._composingText =
-				this._composingText.substr(
-					0,
-					this._composingText.length - replaceCharCnt,
-				) + text;
+			this._composingText = this._composingText.substr(0, this._composingText.length - replaceCharCnt) + text;
 			return true;
 		}
 
 		if (this._currentMode === Mode.REPLACE) {
 			const pos = editor.selection.active;
 			editor.edit((builder) => {
-				builder.replace(
-					new Range(
-						pos.line,
-						pos.character - replaceCharCnt,
-						pos.line,
-						pos.character,
-					),
-					text,
-				);
+				builder.replace(new Range(pos.line, pos.character - replaceCharCnt, pos.line, pos.character), text);
 			});
 
 			return true;
@@ -271,34 +208,23 @@ export class Controller implements IController {
 		return true;
 	}
 
-	private _interpretNormalModeInput(
-		editor: TextEditor,
-		modifierKeys: ModifierKeys,
-	): Thenable<ITypeResult> {
-		if (this._currentInput.startsWith(":")) {
-			return window.showInputBox({ value: "tabm" }).then((value) => {
-				return this._findMapping(value || "", editor, modifierKeys);
+	private _interpretNormalModeInput(editor: TextEditor, modifierKeys: ModifierKeys): Thenable<ITypeResult> {
+		if (this._currentInput.startsWith(':')) {
+			return window.showInputBox({ value: 'tabm' }).then((value) => {
+				return this._findMapping(value || '', editor, modifierKeys);
 			});
 		}
-		const result = this._findMapping(
-			this._currentInput,
-			editor,
-			modifierKeys,
-		);
+		const result = this._findMapping(this._currentInput, editor, modifierKeys);
 		return Promise.resolve(result);
 	}
 
-	private _findMapping(
-		input: string,
-		editor: TextEditor,
-		modifierKeys: ModifierKeys,
-	): ITypeResult {
+	private _findMapping(input: string, editor: TextEditor, modifierKeys: ModifierKeys): ITypeResult {
 		const command = Mappings.findCommand(input, modifierKeys);
 		if (command) {
-			this._currentInput = "";
+			this._currentInput = '';
 			return {
 				hasConsumedInput: true,
-				executeEditorCommand: command,
+				executeEditorCommand: command
 			};
 		}
 
@@ -306,55 +232,42 @@ export class Controller implements IController {
 		if (operator) {
 			if (this._isVisual) {
 				if (operator.runVisual(this, editor)) {
-					this._currentInput = "";
+					this._currentInput = '';
 				}
 			} else {
 				// Mode.NORMAL
 				if (operator.runNormal(this, editor)) {
-					this._currentInput = "";
+					this._currentInput = '';
 				}
 			}
 			return {
 				hasConsumedInput: true,
-				executeEditorCommand: null,
+				executeEditorCommand: null
 			};
 		}
 
-		const motionCommand = Mappings.findMotionCommand(
-			input,
-			this._isVisual,
-			modifierKeys,
-		);
+		const motionCommand = Mappings.findMotionCommand(input, this._isVisual, modifierKeys);
 		if (motionCommand) {
-			this._currentInput = "";
+			this._currentInput = '';
 			return {
 				hasConsumedInput: true,
-				executeEditorCommand: motionCommand,
+				executeEditorCommand: motionCommand
 			};
 		}
 
 		const motion = Mappings.findMotion(input);
 		if (motion) {
-			const newPos = motion.run(
-				editor.document,
-				editor.selection.active,
-				this._motionState,
-			);
+			const newPos = motion.run(editor.document, editor.selection.active, this._motionState);
 			if (this._isVisual) {
-				setSelectionAndReveal(
-					editor,
-					this._motionState.anchor,
-					newPos.line,
-					newPos.character,
-				);
+				setSelectionAndReveal(editor, this._motionState.anchor, newPos.line, newPos.character);
 			} else {
 				// Mode.NORMAL
 				setPositionAndReveal(editor, newPos.line, newPos.character);
 			}
-			this._currentInput = "";
+			this._currentInput = '';
 			return {
 				hasConsumedInput: true,
-				executeEditorCommand: null,
+				executeEditorCommand: null
 			};
 		}
 
@@ -362,44 +275,29 @@ export class Controller implements IController {
 		if (this.isMotionPrefix(input)) {
 			return {
 				hasConsumedInput: true,
-				executeEditorCommand: null,
+				executeEditorCommand: null
 			};
 		}
 
 		// INVALID INPUT - beep!!
-		this._currentInput = "";
+		this._currentInput = '';
 		return {
 			hasConsumedInput: true,
-			executeEditorCommand: null,
+			executeEditorCommand: null
 		};
 	}
 }
 
-function setSelectionAndReveal(
-	editor: TextEditor,
-	anchor: Position,
-	line: number,
-	char: number,
-): void {
+function setSelectionAndReveal(editor: TextEditor, anchor: Position, line: number, char: number): void {
 	editor.selection = new Selection(anchor, new Position(line, char));
 	revealPosition(editor, line, char);
 }
 
-function setPositionAndReveal(
-	editor: TextEditor,
-	line: number,
-	char: number,
-): void {
-	editor.selection = new Selection(
-		new Position(line, char),
-		new Position(line, char),
-	);
+function setPositionAndReveal(editor: TextEditor, line: number, char: number): void {
+	editor.selection = new Selection(new Position(line, char), new Position(line, char));
 	revealPosition(editor, line, char);
 }
 
 function revealPosition(editor: TextEditor, line: number, char: number): void {
-	editor.revealRange(
-		new Range(line, char, line, char),
-		TextEditorRevealType.Default,
-	);
+	editor.revealRange(new Range(line, char, line, char), TextEditorRevealType.Default);
 }

@@ -22,7 +22,7 @@ import {
 // Also include all preview / proposed LSP features.
 const connection = createConnection(ProposedFeatures.all);
 
-const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+const documents = new TextDocuments(TextDocument);
 
 let hasConfigurationCapability = false;
 let hasWorkspaceFolderCapability = false;
@@ -81,14 +81,14 @@ const defaultSettings: ExampleSettings = { maxNumberOfProblems: 1000 };
 let globalSettings: ExampleSettings = defaultSettings;
 
 // Cache the settings of all open documents
-const documentSettings: Map<string, Thenable<ExampleSettings>> = new Map();
+const documentSettings = new Map<string, Thenable<ExampleSettings>>();
 
 connection.onDidChangeConfiguration((change) => {
 	if (hasConfigurationCapability) {
 		// Reset all cached document settings
 		documentSettings.clear();
 	} else {
-		globalSettings = <ExampleSettings>(
+		globalSettings = (
 			(change.settings.languageServerExample || defaultSettings)
 		);
 	}
@@ -201,13 +201,16 @@ connection.onCompletion(
 
 // This handler resolves additional information for the item selected in
 // the completion list.
-connection.onCompletionResolve((item: CompletionItem): CompletionItem => {
-	if (item.data === 1) {
-		(item.detail = "TypeScript details"),
-			(item.documentation = "TypeScript documentation");
-	} else if (item.data === 2) {
-		(item.detail = "JavaScript details"),
-			(item.documentation = "JavaScript documentation");
+connection.onCompletionResolve(
+	(item: CompletionItem): CompletionItem => {
+		if (item.data === 1) {
+			item.detail = 'TypeScript details';
+			item.documentation = 'TypeScript documentation';
+		} else if (item.data === 2) {
+			item.detail = 'JavaScript details';
+			item.documentation = 'JavaScript documentation';
+		}
+		return item;
 	}
 	return item;
 });

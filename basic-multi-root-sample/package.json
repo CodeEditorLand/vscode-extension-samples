@@ -2,6 +2,13 @@
 	"activationEvents": [
 		"*"
 	],
+	"main": "./out/src/extension",
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"configuration": {
 			"properties": {
@@ -20,6 +27,12 @@
 	},
 	"description": "Samples for VSCode's multi root API",
 	"devDependencies": {
-		"@types/node": "22"
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/node": "^20",
+		"@types/vscode": "^1.73.0",
+		"eslint": "^9.13.0",
+		"typescript": "^5.6.2",
+		"typescript-eslint": "^8.11.0"
 	}
 }
