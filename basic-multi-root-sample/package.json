@@ -21,7 +21,7 @@
 	"description": "Samples for VSCode's multi root API",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20"
+		"@types/node": "^22"
 	},
 	"main": "./out/src/extension",
 	"scripts": {

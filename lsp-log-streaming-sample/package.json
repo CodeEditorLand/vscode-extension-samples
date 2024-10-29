@@ -57,7 +57,7 @@
 	"description": "A language server example demonstrating log streaming",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20"
+		"@types/node": "^22"
 	},
 	"main": "./client/out/extension",
 	"name": "lsp-log-streaming-sample",

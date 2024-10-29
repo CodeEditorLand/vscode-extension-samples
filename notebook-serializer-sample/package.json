@@ -25,7 +25,7 @@
 	"description": "Notebook using Serializer API sample",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20"
+		"@types/node": "^22"
 	},
 	"displayName": "notebook-serializer-sample",
 	"main": "./out/extension.js",

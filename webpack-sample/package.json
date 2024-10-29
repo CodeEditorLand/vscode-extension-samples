@@ -10,8 +10,8 @@
 	},
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20",
-		"ts-loader": "^7.0.5"
+		"@types/node": "^22",
+		"ts-loader": "^9.5.1"
 	},
 	"scripts": {
 		"test-compile": "tsc -p ./",

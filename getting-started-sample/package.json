@@ -184,7 +184,7 @@
 	"description": "Example extension contribution to Getting Started page",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20"
+		"@types/node": "^22"
 	},
 	"scripts": {
 		"compile": "tsc -p ./"

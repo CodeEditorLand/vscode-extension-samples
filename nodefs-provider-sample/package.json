@@ -9,10 +9,10 @@
 	"description": "",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/mkdirp": "^0.5.2",
-		"@types/node": "^20",
-		"@types/promisify-node": "^0.4.0",
-		"@types/rimraf": "^2.0.2"
+		"@types/mkdirp": "^2.0.0",
+		"@types/node": "^22",
+		"@types/promisify-node": "^0.4.3",
+		"@types/rimraf": "^4.0.5"
 	},
 	"main": "./out/extension.js",
 	"scripts": {

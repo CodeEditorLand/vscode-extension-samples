@@ -41,6 +41,6 @@
 	"description": "Samples for VSCode's view API",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20"
+		"@types/node": "^22"
 	}
 }
