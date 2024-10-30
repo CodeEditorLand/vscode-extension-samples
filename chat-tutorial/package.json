@@ -19,9 +19,9 @@
 	},
 	"description": "",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "22.x",
-		"glob": "^11.0.0"
+		"@stylistic/eslint-plugin": "2.9.0",
+		"@types/node": "22.8.4",
+		"glob": "11.0.0"
 	},
 	"displayName": "Code Tutor",
 	"main": "./out/extension.js",

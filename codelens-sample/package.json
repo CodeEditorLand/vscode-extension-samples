@@ -26,8 +26,8 @@
 	},
 	"description": "Samples for VS Code's CodeLens API",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20"
+		"@stylistic/eslint-plugin": "2.9.0",
+		"@types/node": "22"
 	},
 	"displayName": "CodeLens Sample",
 	"main": "./out/extension",

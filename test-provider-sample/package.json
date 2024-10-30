@@ -4,8 +4,8 @@
 	],
 	"description": "Sample showing how to use the test APIs",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20"
+		"@stylistic/eslint-plugin": "2.9.0",
+		"@types/node": "22"
 	},
 	"displayName": "test-provider-sample",
 	"main": "./out/extension.js",
