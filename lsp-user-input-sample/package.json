@@ -5,9 +5,9 @@
 	"description": "Sample to demonstrate code actions with UI",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^22",
+		"@types/node": "^20",
 		"merge-options": "^3.0.4",
-		"rimraf": "^6.0.1",
+		"rimraf": "^5.0.5",
 		"ts-loader": "^9.5.1"
 	},
 	"displayName": "Code Action UI Sample",
@@ -17,23 +17,6 @@
 		"clean": "rimraf client/out && rimraf server/out",
 		"compile": "tsc -b",
 		"compile:client": "tsc -b ./client/tsconfig.json",
-		"compile:server": "tsc -b ./server/tsconfig.json",
-		"watch": "tsc -b -w",
-		"lint": "eslint",
-		"clean": "rimraf client/out && rimraf server/out",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd .."
-	},
-	"devDependencies": {
-		"@eslint/js": "^9.13.0",
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20",
-		"eslint": "^9.13.0",
-		"merge-options": "^3.0.4",
-		"rimraf": "^5.0.5",
-		"ts-loader": "^9.5.1",
-		"typescript": "^5.6.2",
-		"typescript-eslint": "^8.11.0",
-		"webpack": "^5.89.0",
-		"webpack-cli": "^5.1.4"
+		"compile:server": "tsc -b ./server/tsconfig.json"
 	}
 }

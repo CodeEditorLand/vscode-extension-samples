@@ -2,9 +2,6 @@
 	"activationEvents": [
 		"onLanguage:plaintext"
 	],
-	"extensionDependencies": [
-		"ms-vscode.wasm-wasi-core"
-	],
 	"contributes": {
 		"commands": [
 			{
@@ -18,10 +15,7 @@
 		"@stylistic/eslint-plugin": "^2.9.0",
 		"@types/node": "^20",
 		"esbuild": "^0.21.3",
-		"eslint": "^9.13.0",
-		"serve": "^14.2.3",
-		"typescript": "^5.6.2",
-		"typescript-eslint": "^8.11.0"
+		"serve": "^14.2.3"
 	},
 	"extensionDependencies": [
 		"ms-vscode.wasm-wasi-core"
@@ -30,7 +24,6 @@
 	"name": "wasm-language-server",
 	"scripts": {
 		"build": "cd client && npm run compile && cd ../server && npm run build && cd ..",
-		"lint": "cd client && npm run lint && cd ..",
 		"esbuild": "node ./bin/esbuild.js",
 		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
 	}

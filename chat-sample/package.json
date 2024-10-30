@@ -1,20 +1,4 @@
 {
-	"name": "chat-sample",
-	"publisher": "vscode-samples",
-	"displayName": "Copilot Chat Sample",
-	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"version": "0.1.0",
-	"engines": {
-		"vscode": "^1.95.0"
-	},
-	"categories": [
-		"AI",
-		"Chat"
-	],
 	"activationEvents": [],
 	"contributes": {
 		"chatParticipants": [
@@ -53,93 +37,93 @@
 				]
 			},
 			{
-				"id": "chat-tools-sample.tools",
-				"fullName": "Tool User",
-				"name": "tools",
-				"description": "I use tools",
-				"isSticky": true,
 				"commands": [
 					{
-						"name": "list",
-						"description": "List all available tools"
+						"description": "List all available tools",
+						"name": "list"
 					},
 					{
-						"name": "all",
-						"description": "Use all registered tools. By default, only this extension's tools are used."
+						"description": "Use all registered tools. By default, only this extension's tools are used.",
+						"name": "all"
 					}
-				]
-			}
-		],
-		"languageModelTools": [
-			{
-				"name": "chat-tools-sample_tabCount",
-				"tags": [
-					"editors",
-					"chat-tools-sample"
 				],
-				"toolReferenceName": "tabCount",
-				"displayName": "Tab Count",
-				"modelDescription": "The number of active tabs in a tab group",
-				"icon": "$(files)",
-				"inputSchema": {
-					"type": "object",
-					"properties": {
-						"tabGroup": {
-							"type": "number",
-							"description": "The index of the tab group to check. This is optional- if not specified, the active tab group will be checked.",
-							"default": 0
-						}
-					}
-				}
-			},
-			{
-				"name": "chat-tools-sample_findFiles",
-				"tags": [
-					"files",
-					"search",
-					"chat-tools-sample"
-				],
-				"displayName": "Find Files",
-				"modelDescription": "Search for files in the current workspace",
-				"inputSchema": {
-					"type": "object",
-					"properties": {
-						"pattern": {
-							"type": "string",
-							"description": "Search for files that match this glob pattern"
-						}
-					},
-					"required": [
-						"pattern"
-					]
-				}
-			},
-			{
-				"name": "chat-tools-sample_runInTerminal",
-				"tags": [
-					"terminal",
-					"chat-tools-sample"
-				],
-				"displayName": "Run in Terminal",
-				"modelDescription": "Run a command in a terminal and return the output",
-				"inputSchema": {
-					"type": "object",
-					"properties": {
-						"command": {
-							"type": "string",
-							"description": "The command to run"
-						}
-					},
-					"required": [
-						"command"
-					]
-				}
+				"description": "I use tools",
+				"fullName": "Tool User",
+				"id": "chat-tools-sample.tools",
+				"isSticky": true,
+				"name": "tools"
 			}
 		],
 		"commands": [
 			{
 				"command": "cat.namesInEditor",
 				"title": "Use Cat Names in Editor"
+			}
+		],
+		"languageModelTools": [
+			{
+				"displayName": "Tab Count",
+				"icon": "$(files)",
+				"inputSchema": {
+					"properties": {
+						"tabGroup": {
+							"default": 0,
+							"description": "The index of the tab group to check. This is optional- if not specified, the active tab group will be checked.",
+							"type": "number"
+						}
+					},
+					"type": "object"
+				},
+				"modelDescription": "The number of active tabs in a tab group",
+				"name": "chat-tools-sample_tabCount",
+				"tags": [
+					"editors",
+					"chat-tools-sample"
+				],
+				"toolReferenceName": "tabCount"
+			},
+			{
+				"displayName": "Find Files",
+				"inputSchema": {
+					"properties": {
+						"pattern": {
+							"description": "Search for files that match this glob pattern",
+							"type": "string"
+						}
+					},
+					"required": [
+						"pattern"
+					],
+					"type": "object"
+				},
+				"modelDescription": "Search for files in the current workspace",
+				"name": "chat-tools-sample_findFiles",
+				"tags": [
+					"files",
+					"search",
+					"chat-tools-sample"
+				]
+			},
+			{
+				"displayName": "Run in Terminal",
+				"inputSchema": {
+					"properties": {
+						"command": {
+							"description": "The command to run",
+							"type": "string"
+						}
+					},
+					"required": [
+						"command"
+					],
+					"type": "object"
+				},
+				"modelDescription": "Run a command in a terminal and return the output",
+				"name": "chat-tools-sample_runInTerminal",
+				"tags": [
+					"terminal",
+					"chat-tools-sample"
+				]
 			}
 		]
 	},
@@ -149,9 +133,8 @@
 	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20",
-		"eslint": "^9.13.0",
-		"typescript": "^5.6.2",
-		"typescript-eslint": "^8.11.0"
-	}
+		"@types/node": "^20"
+	},
+	"displayName": "Copilot Chat Sample",
+	"name": "chat-sample"
 }

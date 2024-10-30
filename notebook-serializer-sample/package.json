@@ -1,54 +1,36 @@
 {
-  "name": "notebook-serializer-sample",
-  "displayName": "notebook-serializer-sample",
-  "description": "Notebook using Serializer API sample",
-  "publisher": "vscode-samples",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.74.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onNotebook:test-notebook-serializer",
-    "onCommand:notebook-serializer-sample.createJsonNotebook"
-  ],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "notebook-serializer-sample.createJsonNotebook",
-        "title": "Create JSON Notebook"
-      }
-    ],
-    "notebooks": [
-      {
-        "type": "test-notebook-serializer",
-        "displayName": "Sample Notebook",
-        "selector": [
-          {
-            "filenamePattern": "*.sample-json-notebook"
-          }
-        ]
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -b",
-    "lint": "eslint",
-    "watch": "tsc -b --watch"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.13.0",
-    "@stylistic/eslint-plugin": "^2.9.0",
-    "@types/mocha": "^8.2.2",
-    "@types/node": "^20",
-    "@types/vscode": "^1.74.0",
-    "eslint": "^9.13.0",
-    "mocha": "^10.2.0",
-    "typescript": "^5.6.2",
-    "typescript-eslint": "^8.11.0"
-  }
+	"activationEvents": [
+		"onNotebook:test-notebook-serializer",
+		"onCommand:notebook-serializer-sample.createJsonNotebook"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"command": "notebook-serializer-sample.createJsonNotebook",
+				"title": "Create JSON Notebook"
+			}
+		],
+		"notebooks": [
+			{
+				"displayName": "Sample Notebook",
+				"selector": [
+					{
+						"filenamePattern": "*.sample-json-notebook"
+					}
+				],
+				"type": "test-notebook-serializer"
+			}
+		]
+	},
+	"description": "Notebook using Serializer API sample",
+	"devDependencies": {
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/node": "^20"
+	},
+	"displayName": "notebook-serializer-sample",
+	"main": "./out/extension.js",
+	"name": "notebook-serializer-sample",
+	"scripts": {
+		"compile": "tsc -b"
+	}
 }
