@@ -6807,6 +6807,26 @@ declare module "vscode" {
 					workspaceFolderValue?: T;
 
 			/**
+			 * The fully qualified key of the configuration value
+			 */
+			key: string;
+
+			/**
+			 * The default value which is used when no other value is defined
+			 */
+			defaultValue?: T;
+
+			/**
+			 * The global or installation-wide value.
+			 */
+			globalValue?: T;
+
+			/**
+			 * The workspace-specific value.
+			 */
+			workspaceValue?: T;
+
+			/**
 			 * The workspace-folder-specific value.
 			 */
 			workspaceFolderValue?: T;
@@ -12731,10 +12751,7 @@ declare module "vscode" {
 		/**
 		 * The {@link TerminalLocation} or {@link TerminalEditorLocationOptions} or {@link TerminalSplitLocationOptions} for the terminal.
 		 */
-		location?:
-			| TerminalLocation
-			| TerminalEditorLocationOptions
-			| TerminalSplitLocationOptions;
+		location?: TerminalLocation | TerminalEditorLocationOptions | TerminalSplitLocationOptions;
 
 		/**
 		 * Opt-out of the default terminal persistence on restart and reload.
@@ -16526,9 +16543,7 @@ declare module "vscode" {
 		 * @param rendererId The renderer ID to communicate with
 		 * @returns A new notebook renderer messaging object.
 		 */
-		export function createRendererMessaging(
-			rendererId: string,
-		): NotebookRendererMessaging;
+		export function createRendererMessaging(rendererId: string): NotebookRendererMessaging;
 	}
 
 	/**
@@ -17590,9 +17605,7 @@ declare module "vscode" {
 		 * Add breakpoints.
 		 * @param breakpoints The breakpoints to add.
 		 */
-		export function addBreakpoints(
-			breakpoints: readonly Breakpoint[],
-		): void;
+		export function addBreakpoints(breakpoints: readonly Breakpoint[]): void;
 
 		/**
 		 * Remove breakpoints.
@@ -18446,10 +18459,7 @@ declare module "vscode" {
 		 * @param label A human-readable label for the controller.
 		 * @returns An instance of the {@link TestController}.
 		 */
-		export function createTestController(
-			id: string,
-			label: string,
-		): TestController;
+		export function createTestController(id: string, label: string): TestController;
 	}
 
 	/**
@@ -18806,13 +18816,7 @@ declare module "vscode" {
 		 * @param continuous Whether to run tests continuously as source changes.
 		 * @param preserveFocus Whether to preserve the user's focus when the run is started
 		 */
-		constructor(
-			include?: readonly TestItem[],
-			exclude?: readonly TestItem[],
-			profile?: TestRunProfile,
-			continuous?: boolean,
-			preserveFocus?: boolean,
-		);
+		constructor(include?: readonly TestItem[], exclude?: readonly TestItem[], profile?: TestRunProfile, continuous?: boolean, preserveFocus?: boolean);
 	}
 
 	/**

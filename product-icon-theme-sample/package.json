@@ -9,13 +9,11 @@
 		]
 	},
 	"devDependencies": {
+		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"open": "^10.1.0",
-		"webfont": "^11.2.26"
-	},
-	"name": "product-icon-theme-sample",
-	"scripts": {
-		"showFont": "open ./theme/vscode-10.html",
-		"updateFont": "node ./build/updateFont.js"
+		"eslint": "^9.13.0",
+		"open": "^7.0.3",
+		"typescript-eslint": "^8.11.0",
+		"webfont": "^11.2.4"
 	}
 }

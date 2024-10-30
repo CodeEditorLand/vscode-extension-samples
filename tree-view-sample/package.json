@@ -188,15 +188,36 @@
 				}
 			]
 		},
-		"viewsContainers": {
-			"activitybar": [
-				{
-					"icon": "media/dep.svg",
-					"id": "package-explorer",
-					"title": "Package Explorer"
+		"configuration": [
+			{
+				"title": "JSON Outline",
+				"properties": {
+					"jsonOutline.autorefresh": {
+						"type": "boolean",
+						"description": "Auto refresh the JSON outline view when the contents of the json file change.",
+						"default": false
+					}
 				}
-			]
-		}
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/ftp": "^0.3.33",
+		"@types/mkdirp": "^0.5.2",
+		"@types/node": "^20",
+		"@types/rimraf": "^2.0.2",
+		"@types/vscode": "^1.73.0",
+		"eslint": "^9.13.0",
+		"typescript": "^5.6.2",
+		"typescript-eslint": "^8.11.0"
 	},
 	"dependencies": {
 		"ftp": "^0.3.10",

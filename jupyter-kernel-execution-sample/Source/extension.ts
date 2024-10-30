@@ -81,10 +81,8 @@ async function executeCode(
 				}
 			}
 		}
-		logger.appendLine("Code execution completed");
-		logger.appendLine(
-			`<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<`,
-		);
+		logger.appendLine('Code execution completed');
+		logger.appendLine(`<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<`);
 	} catch (ex) {
 		logger.appendLine(`Code execution failed with an error '${ex}'`);
 		logger.appendLine(

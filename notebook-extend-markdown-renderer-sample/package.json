@@ -1,28 +1,47 @@
 {
-	"contributes": {
-		"notebookRenderer": [
-			{
-				"displayName": "Markdown it Emoji renderer",
-				"entrypoint": {
-					"extends": "vscode.markdown-it-renderer",
-					"path": "./out/emoji.js"
-				},
-				"id": "vscode-samples.markdown-it.emoji-extension"
-			}
-		]
-	},
-	"description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
-	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/markdown-it": "^14.1.2",
-		"markdown-it-emoji": "^3.0.0",
-		"ts-loader": "^9.5.1"
-	},
-	"displayName": "notebook-extend-markdown-renderer-sample",
-	"name": "notebook-extend-markdown-renderer-sample",
-	"scripts": {
-		"test-compile": "tsc -p ./",
-		"webpack": "webpack --mode development",
-		"webpack-dev": "webpack --mode development --watch"
-	}
+  "name": "notebook-extend-markdown-renderer-sample",
+  "displayName": "notebook-extend-markdown-renderer-sample",
+  "description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.69.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "notebookRenderer": [
+      {
+        "id": "vscode-samples.markdown-it.emoji-extension",
+        "displayName": "Markdown it Emoji renderer",
+        "entrypoint": {
+          "extends": "vscode.markdown-it-renderer",
+          "path": "./out/emoji.js"
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "webpack --mode production",
+    "webpack": "webpack --mode development",
+    "webpack-dev": "webpack --mode development --watch",
+    "test-compile": "tsc -p ./",
+    "lint": "eslint"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@stylistic/eslint-plugin": "^2.9.0",
+    "@types/markdown-it": "^12.2.3",
+    "@types/vscode-notebook-renderer": "^1.57.8",
+    "@types/webpack-env": "^1.17.0",
+    "eslint": "^9.13.0",
+    "markdown-it-emoji": "^2.0.2",
+    "ts-loader": "^9.2.2",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.11.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
+  }
 }
