@@ -13,7 +13,7 @@
 	},
 	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook that doesn't use any frontend frameworks.",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "2.9.0",
+		"@stylistic/eslint-plugin": "2.10.0",
 		"css-loader": "7.1.2",
 		"style-loader": "4.0.0",
 		"ts-loader": "9.5.1"

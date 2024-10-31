@@ -4,7 +4,7 @@
 	],
 	"description": "Shows the number of selected lines in the status bar",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "2.9.0"
+		"@stylistic/eslint-plugin": "2.10.0"
 	},
 	"displayName": "Selected Line Numbers",
 	"main": "./out/extension.js",

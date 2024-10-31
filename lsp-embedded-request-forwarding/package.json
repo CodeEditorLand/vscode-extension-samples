@@ -21,7 +21,7 @@
 	},
 	"description": "A language server example using language services to support embedded languages",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "2.9.0",
+		"@stylistic/eslint-plugin": "2.10.0",
 		"@types/node": "22"
 	},
 	"main": "./client/out/extension",

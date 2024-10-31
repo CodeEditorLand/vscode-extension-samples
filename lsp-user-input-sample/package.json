@@ -4,7 +4,7 @@
 	],
 	"description": "Sample to demonstrate code actions with UI",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "2.9.0",
+		"@stylistic/eslint-plugin": "2.10.0",
 		"@types/node": "22",
 		"merge-options": "3.0.4",
 		"rimraf": "6.0.1",

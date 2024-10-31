@@ -10,7 +10,7 @@
 	},
 	"description": "HelloWorld example for VS Code",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "2.9.0",
+		"@stylistic/eslint-plugin": "2.10.0",
 		"@types/node": "22"
 	}
 }
