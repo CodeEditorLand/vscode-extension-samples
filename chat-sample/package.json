@@ -132,7 +132,7 @@
 	},
 	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "2.10.0",
+		"@stylistic/eslint-plugin": "2.10.1",
 		"@types/node": "22"
 	},
 	"displayName": "Copilot Chat Sample",

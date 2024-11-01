@@ -198,7 +198,7 @@
 	},
 	"description": "Samples for VSCode's view API",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "2.10.0",
+		"@stylistic/eslint-plugin": "2.10.1",
 		"@types/ftp": "0.3.36",
 		"@types/mkdirp": "2.0.0",
 		"@types/node": "22",
