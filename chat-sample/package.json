@@ -128,7 +128,7 @@
 		]
 	},
 	"dependencies": {
-		"@vscode/prompt-tsx": "0.3.0-alpha.12"
+		"@vscode/prompt-tsx": "0.3.0-alpha.13"
 	},
 	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"devDependencies": {
