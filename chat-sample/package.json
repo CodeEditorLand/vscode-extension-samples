@@ -46,6 +46,28 @@
 						"description": "Use all registered tools. By default, only this extension's tools are used.",
 						"name": "all"
 					}
+				]
+			},
+			{
+				"id": "chat-tools-sample.catTools",
+				"fullName": "Cat (Tools)",
+				"name": "catTools",
+				"description": "I use tools, implemented using @vscode/chat-extension-utils, and am also a cat",
+				"isSticky": true,
+				"commands": [
+					{
+						"name": "all",
+						"description": "Use all registered tools. By default, only this extension's tools are used."
+					}
+				]
+			}
+		],
+		"languageModelTools": [
+			{
+				"name": "chat-tools-sample_tabCount",
+				"tags": [
+					"editors",
+					"chat-tools-sample"
 				],
 				"description": "I use tools",
 				"fullName": "Tool User",
@@ -128,13 +150,17 @@
 		]
 	},
 	"dependencies": {
-		"@vscode/prompt-tsx": "0.3.0-alpha.13"
+		"@vscode/chat-extension-utils": "^0.0.0-alpha.1",
+		"@vscode/prompt-tsx": "^0.3.0-alpha.12"
 	},
 	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "2.10.1",
-		"@types/node": "22"
-	},
-	"displayName": "Copilot Chat Sample",
-	"name": "chat-sample"
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/node": "^20",
+		"@types/vscode": "^1.95.0",
+		"eslint": "^9.13.0",
+		"typescript": "^5.6.2",
+		"typescript-eslint": "^8.11.0"
+	}
 }
