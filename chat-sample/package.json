@@ -137,11 +137,11 @@
 	},
 	"dependencies": {
 		"@vscode/chat-extension-utils": "^0.0.0-alpha.1",
-		"@vscode/prompt-tsx": "^0.3.0-alpha.12"
+		"@vscode/prompt-tsx": "^0.3.0-alpha.13"
 	},
 	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20"
+		"@stylistic/eslint-plugin": "^2.11.0",
+		"@types/node": "^22"
 	}
 }

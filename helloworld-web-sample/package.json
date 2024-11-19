@@ -10,7 +10,7 @@
 		]
 	},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "2.10.1",
+		"@stylistic/eslint-plugin": "2.11.0",
 		"assert": "2.1.0",
 		"process": "0.11.10",
 		"ts-loader": "9.5.1"
