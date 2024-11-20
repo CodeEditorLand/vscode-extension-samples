@@ -1,13 +1,13 @@
 {
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"activationEvents": [
 		"*"
 	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
-	},
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

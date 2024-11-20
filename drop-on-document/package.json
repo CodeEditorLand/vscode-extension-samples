@@ -1,13 +1,13 @@
 {
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
+	"contributes": {},
 	"activationEvents": [
 		"onLanguage:plaintext"
 	],
-	"contributes": {},
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
-	},
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

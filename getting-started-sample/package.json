@@ -1,11 +1,8 @@
 {
-	"activationEvents": [
-		"onCommand:getting-started-sample.runCommand",
-		"onCommand:getting-started-sample.changeSetting",
-		"onCommand:getting-started-sample.setContext",
-		"onCommand:getting-started-sample.sayHello",
-		"onCommand:getting-started-sample.viewSources"
-	],
+	"description": "Example extension contribution to Getting Started page",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -181,12 +178,15 @@
 			}
 		]
 	},
-	"description": "Example extension contribution to Getting Started page",
+	"activationEvents": [
+		"onCommand:getting-started-sample.runCommand",
+		"onCommand:getting-started-sample.changeSetting",
+		"onCommand:getting-started-sample.setContext",
+		"onCommand:getting-started-sample.sayHello",
+		"onCommand:getting-started-sample.viewSources"
+	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
-	},
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

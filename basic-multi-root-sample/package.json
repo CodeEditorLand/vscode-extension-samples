@@ -1,7 +1,9 @@
 {
-	"activationEvents": [
-		"*"
-	],
+	"description": "Samples for VSCode's multi root API",
+	"main": "./out/src/extension",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"configuration": {
 			"properties": {
@@ -18,13 +20,11 @@
 			"type": "object"
 		}
 	},
-	"description": "Samples for VSCode's multi root API",
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
-	},
-	"main": "./out/src/extension",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }
