@@ -1,7 +1,7 @@
 {
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
+	"scripts": {
+		"compile": "tsc -b"
+	},
 	"contributes": {
 		"configuration": {
 			"properties": {
@@ -33,11 +33,11 @@
 			"type": "object"
 		}
 	},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
-	},
-	"scripts": {
-		"compile": "tsc -b"
 	}
 }

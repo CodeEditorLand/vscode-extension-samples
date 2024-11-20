@@ -1,6 +1,10 @@
 {
-	"activationEvents": [],
 	"browser": "./dist/web/extension.js",
+	"scripts": {
+		"compile-web": "webpack",
+		"package-web": "webpack --mode production --devtool hidden-source-map",
+		"watch-web": "webpack --watch"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -9,15 +13,11 @@
 			}
 		]
 	},
+	"activationEvents": [],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"assert": "2.1.0",
 		"process": "0.11.10",
 		"ts-loader": "9.5.1"
-	},
-	"scripts": {
-		"compile-web": "webpack",
-		"package-web": "webpack --mode production --devtool hidden-source-map",
-		"watch-web": "webpack --watch"
 	}
 }

@@ -1,4 +1,9 @@
 {
+	"description": "",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"activationEvents": [
 		"onFileSystem:datei"
 	],
@@ -6,16 +11,11 @@
 		"mkdirp": "3.0.1",
 		"rimraf": "6.0.1"
 	},
-	"description": "",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/mkdirp": "2.0.0",
 		"@types/node": "22",
 		"@types/promisify-node": "0.4.3",
 		"@types/rimraf": "4.0.5"
-	},
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

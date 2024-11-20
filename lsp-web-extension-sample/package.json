@@ -1,8 +1,9 @@
 {
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
 	"browser": "./client/dist/browserClientMain",
+	"scripts": {
+		"chrome": "npm run compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./test-data",
+		"compile": "webpack"
+	},
 	"contributes": {
 		"configuration": [
 			{
@@ -25,13 +26,12 @@
 			}
 		]
 	},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"path-browserify": "1.0.1",
 		"ts-loader": "9.5.1"
-	},
-	"scripts": {
-		"chrome": "npm run compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./test-data",
-		"compile": "webpack"
 	}
 }

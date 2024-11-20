@@ -1,7 +1,10 @@
 {
-	"activationEvents": [
-		"onLanguage:html1"
-	],
+	"name": "lsp-embedded-language-service-sample",
+	"description": "A language server example using language services to support embedded languages",
+	"main": "./client/out/extension",
+	"scripts": {
+		"compile": "tsc -b"
+	},
 	"contributes": {
 		"grammars": [
 			{
@@ -19,14 +22,11 @@
 			}
 		]
 	},
-	"description": "A language server example using language services to support embedded languages",
+	"activationEvents": [
+		"onLanguage:html1"
+	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
-	},
-	"main": "./client/out/extension",
-	"name": "lsp-embedded-language-service-sample",
-	"scripts": {
-		"compile": "tsc -b"
 	}
 }

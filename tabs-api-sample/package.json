@@ -1,8 +1,8 @@
 {
-	"activationEvents": [
-		"onStartupFinished"
-	],
 	"browser": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"configuration": {
 			"id": "tabsSample",
@@ -16,11 +16,11 @@
 			"title": "Tabs API Sample"
 		}
 	},
+	"activationEvents": [
+		"onStartupFinished"
+	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
-	},
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

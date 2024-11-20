@@ -1,4 +1,12 @@
 {
+	"name": "notebook-renderer-sample",
+	"displayName": "notebook-renderer-sample",
+	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook that doesn't use any frontend frameworks.",
+	"scripts": {
+		"test-compile": "tsc -p ./",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	},
 	"contributes": {
 		"notebookRenderer": [
 			{
@@ -11,18 +19,10 @@
 			}
 		]
 	},
-	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook that doesn't use any frontend frameworks.",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"css-loader": "7.1.2",
 		"style-loader": "4.0.0",
 		"ts-loader": "9.5.1"
-	},
-	"displayName": "notebook-renderer-sample",
-	"name": "notebook-renderer-sample",
-	"scripts": {
-		"test-compile": "tsc -p ./",
-		"webpack": "webpack --mode development",
-		"webpack-dev": "webpack --mode development --watch"
 	}
 }

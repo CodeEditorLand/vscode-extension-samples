@@ -1,4 +1,7 @@
 {
+	"name": "snippet-sample",
+	"displayName": "Snippet Sample",
+	"description": "Snippet Sample",
 	"contributes": {
 		"snippets": [
 			{
@@ -6,8 +9,5 @@
 				"path": "./snippets.json"
 			}
 		]
-	},
-	"description": "Snippet Sample",
-	"displayName": "Snippet Sample",
-	"name": "snippet-sample"
+	}
 }

@@ -1,7 +1,8 @@
 {
-	"activationEvents": [
-		"*"
-	],
+	"scripts": {
+		"compile": "tsc -p ./",
+		"download-api": "dts dev"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -17,12 +18,11 @@
 			]
 		}
 	},
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
-	},
-	"scripts": {
-		"compile": "tsc -p ./",
-		"download-api": "dts dev"
 	}
 }

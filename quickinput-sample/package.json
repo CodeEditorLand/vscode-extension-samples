@@ -1,7 +1,7 @@
 {
-	"activationEvents": [
-		"onCommand:samples.quickInput"
-	],
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -10,11 +10,11 @@
 			}
 		]
 	},
+	"activationEvents": [
+		"onCommand:samples.quickInput"
+	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
-	},
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }

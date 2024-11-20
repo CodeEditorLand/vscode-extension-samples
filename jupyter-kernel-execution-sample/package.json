@@ -1,8 +1,7 @@
 {
-	"activationEvents": [
-		"onNotebook:jupyter-notebook",
-		"onNotebook:interactive"
-	],
+	"scripts": {
+		"compile": "tsc -b"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -20,11 +19,12 @@
 			]
 		}
 	},
+	"activationEvents": [
+		"onNotebook:jupyter-notebook",
+		"onNotebook:interactive"
+	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
-	},
-	"scripts": {
-		"compile": "tsc -b"
 	}
 }

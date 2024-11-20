@@ -1,4 +1,8 @@
 {
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"activationEvents": [
 		"onStartupFinished"
 	],
@@ -6,9 +10,5 @@
 		"@types/glob": "8.1.0",
 		"@types/node": "22",
 		"glob": "11.0.0"
-	},
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }
