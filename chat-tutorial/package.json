@@ -25,8 +25,8 @@
 	},
 	"activationEvents": [],
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.11.0",
+		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22.x",
-		"glob": "^11.0.0"
+		"glob": "11.0.0"
 	}
 }
