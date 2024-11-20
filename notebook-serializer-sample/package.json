@@ -1,11 +1,8 @@
 {
-	"name": "notebook-serializer-sample",
-	"displayName": "notebook-serializer-sample",
-	"description": "Notebook using Serializer API sample",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -b"
-	},
+	"activationEvents": [
+		"onNotebook:test-notebook-serializer",
+		"onCommand:notebook-serializer-sample.createJsonNotebook"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -25,12 +22,15 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onNotebook:test-notebook-serializer",
-		"onCommand:notebook-serializer-sample.createJsonNotebook"
-	],
+	"description": "Notebook using Serializer API sample",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
+	},
+	"displayName": "notebook-serializer-sample",
+	"main": "./out/extension.js",
+	"name": "notebook-serializer-sample",
+	"scripts": {
+		"compile": "tsc -b"
 	}
 }

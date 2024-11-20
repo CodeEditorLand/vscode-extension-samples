@@ -1,5 +1,7 @@
 {
-	"description": "Samples for VSCode's view API",
+	"activationEvents": [
+		"onCommand:workbench.action.tasks.runTask"
+	],
 	"contributes": {
 		"taskDefinitions": [
 			{
@@ -36,9 +38,7 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onCommand:workbench.action.tasks.runTask"
-	],
+	"description": "Samples for VSCode's view API",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"

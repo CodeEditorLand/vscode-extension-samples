@@ -1,15 +1,15 @@
 {
-	"name": "status-ts",
-	"displayName": "Selected Line Numbers",
-	"description": "Shows the number of selected lines in the status bar",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
 	"activationEvents": [
 		"*"
 	],
+	"description": "Shows the number of selected lines in the status bar",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0"
+	},
+	"displayName": "Selected Line Numbers",
+	"main": "./out/extension.js",
+	"name": "status-ts",
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

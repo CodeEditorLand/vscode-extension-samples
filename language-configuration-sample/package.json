@@ -1,7 +1,4 @@
 {
-	"name": "language-configuration-sample",
-	"displayName": "Language Configuration Sample",
-	"description": "Language Configuration Sample",
 	"contributes": {
 		"languages": [
 			{
@@ -16,5 +13,8 @@
 				"id": "javascript"
 			}
 		]
-	}
+	},
+	"description": "Language Configuration Sample",
+	"displayName": "Language Configuration Sample",
+	"name": "language-configuration-sample"
 }

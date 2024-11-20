@@ -1,7 +1,7 @@
 {
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [
+		"onTerminalProfile:terminalTest.terminal-profile"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -87,11 +87,11 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"onTerminalProfile:terminalTest.terminal-profile"
-	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
+	},
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

@@ -1,14 +1,5 @@
 {
-	"name": "wasm-component-model",
-	"main": "./out/extension",
 	"browser": "./dist/web/extension",
-	"scripts": {
-		"build": "npm run compile && cargo build --target wasm32-unknown-unknown",
-		"compile": "tsc -b",
-		"esbuild": "node ./bin/esbuild.js",
-		"generate:model": "wit2ts --outDir ./src ./wit",
-		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
-	},
 	"contributes": {
 		"commands": [
 			{
@@ -24,5 +15,14 @@
 		"@types/node": "22",
 		"esbuild": "0.24.0",
 		"serve": "14.2.4"
+	},
+	"main": "./out/extension",
+	"name": "wasm-component-model",
+	"scripts": {
+		"build": "npm run compile && cargo build --target wasm32-unknown-unknown",
+		"compile": "tsc -b",
+		"esbuild": "node ./bin/esbuild.js",
+		"generate:model": "wit2ts --outDir ./src ./wit",
+		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
 	}
 }

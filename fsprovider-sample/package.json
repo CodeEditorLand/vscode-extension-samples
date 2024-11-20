@@ -1,7 +1,7 @@
 {
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [
+		"onFileSystem:memfs"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -55,11 +55,11 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"onFileSystem:memfs"
-	],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
+	},
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

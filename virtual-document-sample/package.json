@@ -1,8 +1,5 @@
 {
-	"description": "A sample for virtual document",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -30,12 +27,15 @@
 			]
 		}
 	},
-	"activationEvents": [],
 	"dependencies": {
 		"cowsay": "1.6.0"
 	},
+	"description": "A sample for virtual document",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/node": "22"
+	},
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }

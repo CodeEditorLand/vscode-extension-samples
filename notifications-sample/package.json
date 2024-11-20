@@ -1,7 +1,5 @@
 {
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -41,11 +39,13 @@
 			}
 		]
 	},
-	"activationEvents": [],
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "2.11.0",
 		"@types/glob": "8.1.0",
 		"@types/node": "22",
 		"glob": "11.0.0"
+	},
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }
