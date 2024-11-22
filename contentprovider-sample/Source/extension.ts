@@ -38,6 +38,7 @@ export function activate(context: ExtensionContext) {
 				editor.document.uri,
 				editor.selection.active,
 			);
+
 			return workspace
 				.openTextDocument(uri)
 				.then((doc) =>

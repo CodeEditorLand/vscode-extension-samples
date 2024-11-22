@@ -25,6 +25,7 @@ export class SampleContentSerializer implements vscode.NotebookSerializer {
 
 		// Read file contents
 		let raw: RawNotebookData;
+
 		try {
 			raw = JSON.parse(contents);
 		} catch {

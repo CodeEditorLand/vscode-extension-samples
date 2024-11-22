@@ -8,6 +8,7 @@ import { CustomBuildTaskProvider } from "./customTaskProvider";
 import { RakeTaskProvider } from "./rakeTaskProvider";
 
 let rakeTaskProvider: vscode.Disposable | undefined;
+
 let customTaskProvider: vscode.Disposable | undefined;
 
 export function activate(_context: vscode.ExtensionContext): void {
@@ -16,6 +17,7 @@ export function activate(_context: vscode.ExtensionContext): void {
 		vscode.workspace.workspaceFolders.length > 0
 			? vscode.workspace.workspaceFolders[0].uri.fsPath
 			: undefined;
+
 	if (!workspaceRoot) {
 		return;
 	}

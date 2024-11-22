@@ -8,7 +8,9 @@ import { lspSamples, Sample, samples } from './samples';
 
 function tryRun(scriptName: string, sample: Sample) {
 	const packageJsonPath = path.join(sample.path, 'package.json');
+
 	const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
+
 	if (Object.keys(packageJson['scripts'] || {}).includes(scriptName)) {
 		console.log(`=== Running ${scriptName} on ${path.basename(sample.path)} ===`)
 		child_process.execSync(`npm run ${scriptName}`, {
@@ -20,7 +22,9 @@ function tryRun(scriptName: string, sample: Sample) {
 
 if (require.main === module) {
 	const scriptName = process.argv[2];
+
 	for (const sample of [...samples, ...lspSamples]) {
 		tryRun(scriptName, sample);
 	}
 }
+

@@ -41,6 +41,7 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 
 		// already loaded?
 		const document = this._documents.get(uri.toString());
+
 		if (document) {
 			return document.value;
 		}
@@ -50,6 +51,7 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 		// From the result create a references document which is in charge of loading,
 		// printing, and formatting references
 		const [target, pos] = decodeLocation(uri);
+
 		return vscode.commands.executeCommand<vscode.Location[]>('vscode.executeReferenceProvider', target, pos).then(locations => {
 			locations = locations || [];
 
@@ -61,6 +63,7 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 			// create document and return its early state
 			const document = new ReferencesDocument(uri, locations, this._onDidChange);
 			this._documents.set(uri.toString(), document);
+
 			return document.value;
 		});
 	}
@@ -80,6 +83,7 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 		// Those are composed from the range inside the document and a target uri
 		// to which they point
 		const doc = this._documents.get(document.uri.toString());
+
 		if (doc) {
 			return doc.links;
 		}
@@ -90,10 +94,12 @@ let seq = 0;
 
 export function encodeLocation(uri: vscode.Uri, pos: vscode.Position): vscode.Uri {
 	const query = JSON.stringify([uri.toString(), pos.line, pos.character]);
+
 	return vscode.Uri.parse(`${Provider.scheme}:References.locations?${query}#${seq++}`);
 }
 
 export function decodeLocation(uri: vscode.Uri): [vscode.Uri, vscode.Position] {
 	const [target, line, character] = JSON.parse(uri.query) as [string, number, number];
+
 	return [vscode.Uri.parse(target), new vscode.Position(line, character)];
 }

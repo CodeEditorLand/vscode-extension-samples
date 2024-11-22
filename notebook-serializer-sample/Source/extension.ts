@@ -11,12 +11,15 @@ export function activate(context: vscode.ExtensionContext) {
 			"notebook-serializer-sample.createJsonNotebook",
 			async () => {
 				const language = "json";
+
 				const defaultValue = `{ "hello_world": 123 }`;
+
 				const cell = new vscode.NotebookCellData(
 					vscode.NotebookCellKind.Code,
 					defaultValue,
 					language,
 				);
+
 				const data = new vscode.NotebookData([cell]);
 				data.metadata = {
 					custom: {
@@ -28,6 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 						nbformat_minor: 2,
 					},
 				};
+
 				const doc = await vscode.workspace.openNotebookDocument(
 					NOTEBOOK_TYPE,
 					data,

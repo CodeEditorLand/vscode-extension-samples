@@ -7,10 +7,12 @@ export function activate(context: vscode.ExtensionContext) {
 
 		if (editor) {
 			const document = editor.document;
+
 			const selection = editor.selection;
 
 			// Get the word within the selection
 			const word = document.getText(selection);
+
 			const reversed = word.split('').reverse().join('');
 			editor.edit(editBuilder => {
 				editBuilder.replace(selection, reversed);
@@ -20,3 +22,4 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(disposable);
 }
+

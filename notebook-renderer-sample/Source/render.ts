@@ -27,7 +27,9 @@ export function render({ container, value }: IRenderInfo) {
 	// Create a simple table with issue titles and links
 	const table = document.createElement("table");
 	table.className = "issues-list";
+
 	const headerRow = document.createElement("tr");
+
 	const tableHeaders = ["Issue", "Description"];
 
 	tableHeaders.forEach((label) => {
@@ -42,6 +44,7 @@ export function render({ container, value }: IRenderInfo) {
 		const row = document.createElement("tr");
 
 		const title = document.createElement("td");
+
 		const link = document.createElement("a");
 		link.href = item.url;
 		link.textContent = item.title;

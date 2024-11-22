@@ -21,6 +21,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 	getChildren(element?: Dependency): Thenable<Dependency[]> {
 		if (!this.workspaceRoot) {
 			vscode.window.showInformationMessage('No dependency in empty workspace');
+
 			return Promise.resolve([]);
 		}
 
@@ -28,10 +29,12 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 			return Promise.resolve(this.getDepsInPackageJson(path.join(this.workspaceRoot, 'node_modules', element.label, 'package.json')));
 		} else {
 			const packageJsonPath = path.join(this.workspaceRoot, 'package.json');
+
 			if (this.pathExists(packageJsonPath)) {
 				return Promise.resolve(this.getDepsInPackageJson(packageJsonPath));
 			} else {
 				vscode.window.showInformationMessage('Workspace has no package.json');
+
 				return Promise.resolve([]);
 			}
 		}
@@ -43,6 +46,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 	 */
 	private getDepsInPackageJson(packageJsonPath: string): Dependency[] {
 		const workspaceRoot = this.workspaceRoot;
+
 		if (this.pathExists(packageJsonPath) && workspaceRoot) {
 			const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 
@@ -61,9 +65,11 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 			const deps = packageJson.dependencies
 				? Object.keys(packageJson.dependencies).map(dep => toDep(dep, packageJson.dependencies[dep]))
 				: [];
+
 			const devDeps = packageJson.devDependencies
 				? Object.keys(packageJson.devDependencies).map(dep => toDep(dep, packageJson.devDependencies[dep]))
 				: [];
+
 			return deps.concat(devDeps);
 		} else {
 			return [];

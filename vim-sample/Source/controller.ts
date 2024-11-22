@@ -49,13 +49,18 @@ export class Controller implements IController {
 			return;
 		}
 		const sel = editor.selection;
+
 		const pos = sel.active;
+
 		const doc = editor.document;
+
 		const lineContent = doc.lineAt(pos.line).text;
+
 		if (lineContent.length === 0) {
 			return;
 		}
 		const maxCharacter = lineContent.length - 1;
+
 		if (pos.character > maxCharacter) {
 			setPositionAndReveal(editor, pos.line, maxCharacter);
 		}
@@ -127,6 +132,7 @@ export class Controller implements IController {
 
 	public getStatusText(): string {
 		const label = this._getModeLabel();
+
 		return `VIM:> ${label}` + (this._currentInput ? ` >${this._currentInput}` : ``);
 	}
 
@@ -140,6 +146,7 @@ export class Controller implements IController {
 
 	public compositionEnd(editor: TextEditor): Thenable<ITypeResult> {
 		this._isInComposition = false;
+
 		const text = this._composingText;
 		this._composingText = '';
 
@@ -163,6 +170,7 @@ export class Controller implements IController {
 
 		if (this._isInComposition) {
 			this._composingText += text;
+
 			return Promise.resolve({
 				hasConsumedInput: true,
 				executeEditorCommand: null
@@ -183,6 +191,7 @@ export class Controller implements IController {
 			});
 		}
 		this._currentInput += text;
+
 		return this._interpretNormalModeInput(editor, modifierKeys);
 	}
 
@@ -193,6 +202,7 @@ export class Controller implements IController {
 
 		if (this._isInComposition) {
 			this._composingText = this._composingText.substr(0, this._composingText.length - replaceCharCnt) + text;
+
 			return true;
 		}
 
@@ -215,13 +225,16 @@ export class Controller implements IController {
 			});
 		}
 		const result = this._findMapping(this._currentInput, editor, modifierKeys);
+
 		return Promise.resolve(result);
 	}
 
 	private _findMapping(input: string, editor: TextEditor, modifierKeys: ModifierKeys): ITypeResult {
 		const command = Mappings.findCommand(input, modifierKeys);
+
 		if (command) {
 			this._currentInput = '';
+
 			return {
 				hasConsumedInput: true,
 				executeEditorCommand: command
@@ -229,6 +242,7 @@ export class Controller implements IController {
 		}
 
 		const operator = Mappings.findOperator(input, modifierKeys);
+
 		if (operator) {
 			if (this._isVisual) {
 				if (operator.runVisual(this, editor)) {
@@ -247,8 +261,10 @@ export class Controller implements IController {
 		}
 
 		const motionCommand = Mappings.findMotionCommand(input, this._isVisual, modifierKeys);
+
 		if (motionCommand) {
 			this._currentInput = '';
+
 			return {
 				hasConsumedInput: true,
 				executeEditorCommand: motionCommand
@@ -256,8 +272,10 @@ export class Controller implements IController {
 		}
 
 		const motion = Mappings.findMotion(input);
+
 		if (motion) {
 			const newPos = motion.run(editor.document, editor.selection.active, this._motionState);
+
 			if (this._isVisual) {
 				setSelectionAndReveal(editor, this._motionState.anchor, newPos.line, newPos.character);
 			} else {
@@ -265,6 +283,7 @@ export class Controller implements IController {
 				setPositionAndReveal(editor, newPos.line, newPos.character);
 			}
 			this._currentInput = '';
+
 			return {
 				hasConsumedInput: true,
 				executeEditorCommand: null
@@ -281,6 +300,7 @@ export class Controller implements IController {
 
 		// INVALID INPUT - beep!!
 		this._currentInput = '';
+
 		return {
 			hasConsumedInput: true,
 			executeEditorCommand: null

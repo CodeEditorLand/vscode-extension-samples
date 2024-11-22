@@ -43,7 +43,9 @@ namespace _ {
 	}
 
 	export function normalizeNFC(items: string): string;
+
 	export function normalizeNFC(items: string[]): string[];
+
 	export function normalizeNFC(items: string | string[]): string | string[] {
 		if (process.platform !== 'darwin') {
 			return items;
@@ -196,6 +198,7 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 		const children = await _.readdir(uri.fsPath);
 
 		const result: [string, vscode.FileType][] = [];
+
 		for (const child of children) {
 			const stat = await this._stat(path.join(uri.fsPath, child));
 			result.push([child, stat.type]);
@@ -218,6 +221,7 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 
 	async _writeFile(uri: vscode.Uri, content: Uint8Array, options: { create: boolean; overwrite: boolean; }): Promise<void> {
 		const exists = await _.exists(uri.fsPath);
+
 		if (!exists) {
 			if (!options.create) {
 				throw vscode.FileSystemError.FileNotFound();
@@ -247,6 +251,7 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 
 	async _rename(oldUri: vscode.Uri, newUri: vscode.Uri, options: { overwrite: boolean; }): Promise<void> {
 		const exists = await _.exists(newUri.fsPath);
+
 		if (exists) {
 			if (!options.overwrite) {
 				throw vscode.FileSystemError.FileExists();
@@ -256,6 +261,7 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 		}
 
 		const parentExists = await _.exists(path.dirname(newUri.fsPath));
+
 		if (!parentExists) {
 			await _.mkdir(path.dirname(newUri.fsPath));
 		}
@@ -268,10 +274,12 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 	async getChildren(element?: Entry): Promise<Entry[]> {
 		if (element) {
 			const children = await this.readDirectory(element.uri);
+
 			return children.map(([name, type]) => ({ uri: vscode.Uri.file(path.join(element.uri.fsPath, name)), type }));
 		}
 
 		const workspaceFolder = (vscode.workspace.workspaceFolders ?? []).filter(folder => folder.uri.scheme === 'file')[0];
+
 		if (workspaceFolder) {
 			const children = await this.readDirectory(workspaceFolder.uri);
 			children.sort((a, b) => {
@@ -280,6 +288,7 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 				}
 				return a[1] === vscode.FileType.Directory ? -1 : 1;
 			});
+
 			return children.map(([name, type]) => ({ uri: vscode.Uri.file(path.join(workspaceFolder.uri.fsPath, name)), type }));
 		}
 
@@ -288,6 +297,7 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 
 	getTreeItem(element: Entry): vscode.TreeItem {
 		const treeItem = new vscode.TreeItem(element.uri, element.type === vscode.FileType.Directory ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None);
+
 		if (element.type === vscode.FileType.File) {
 			treeItem.command = { command: 'fileExplorer.openFile', title: "Open File", arguments: [element.uri], };
 			treeItem.contextValue = 'file';
@@ -307,3 +317,4 @@ export class FileExplorer {
 		vscode.window.showTextDocument(resource);
 	}
 }
+

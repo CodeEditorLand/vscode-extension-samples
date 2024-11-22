@@ -26,22 +26,30 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
 	// Load the Wasm module
 	const filename = vscode.Uri.joinPath(context.extensionUri, 'target', 'wasm32-unknown-unknown', 'debug', 'calculator.wasm');
+
 	const bits = await vscode.workspace.fs.readFile(filename);
+
 	const module = await WebAssembly.compile(bits);
 
 	const worker = new Worker(vscode.Uri.joinPath(context.extensionUri, './out/worker.js').fsPath);
+
 	const api = await calculator._.bind(service, module, worker);
 
 	context.subscriptions.push(vscode.commands.registerCommand('vscode-samples.wasm-component-model-async.run', async () => {
 		channel.show();
 		channel.appendLine('Running calculator example');
+
 		const add = Types.Operation.Add({ left: 1, right: 2 });
 		channel.appendLine(`Add ${await api.calc(add)}`);
+
 		const sub = Types.Operation.Sub({ left: 10, right: 8 });
 		channel.appendLine(`Sub ${await api.calc(sub)}`);
+
 		const mul = Types.Operation.Mul({ left: 3, right: 7 });
 		channel.appendLine(`Mul ${await api.calc(mul)}`);
+
 		const div = Types.Operation.Div({ left: 10, right: 2 });
 		channel.appendLine(`Div ${await api.calc(div)}`);
 	}));
 }
+

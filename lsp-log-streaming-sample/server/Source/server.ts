@@ -25,7 +25,9 @@ const connection = createConnection(ProposedFeatures.all);
 const documents = new TextDocuments(TextDocument);
 
 let hasConfigurationCapability = false;
+
 let hasWorkspaceFolderCapability = false;
+
 let hasDiagnosticRelatedInformationCapability = false;
 
 connection.onInitialize((params: InitializeParams) => {
@@ -78,6 +80,7 @@ interface ExampleSettings {
 // Please note that this is not the case when using this server with the client provided in this example
 // but could happen with other clients.
 const defaultSettings: ExampleSettings = { maxNumberOfProblems: 1000 };
+
 let globalSettings: ExampleSettings = defaultSettings;
 
 // Cache the settings of all open documents
@@ -102,11 +105,13 @@ function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
 		return Promise.resolve(globalSettings);
 	}
 	let result = documentSettings.get(resource);
+
 	if (!result) {
 		result = connection.workspace.getConfiguration({
 			scopeUri: resource,
 			section: "languageServerExample",
 		});
+
 		documentSettings.set(resource, result);
 	}
 	return result;
@@ -129,16 +134,21 @@ async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 
 	// The validator creates diagnostics for all uppercase words length 2 and more
 	const text = textDocument.getText();
+
 	const pattern = /\b[A-Z]{2,}\b/g;
+
 	let m: RegExpExecArray | null;
 
 	let problems = 0;
+
 	const diagnostics: Diagnostic[] = [];
+
 	while (
 		(m = pattern.exec(text)) &&
 		problems < settings.maxNumberOfProblems
 	) {
 		problems++;
+
 		const diagnostic: Diagnostic = {
 			severity: DiagnosticSeverity.Warning,
 			range: {
@@ -148,6 +158,7 @@ async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 			message: `${m[0]} is all uppercase.`,
 			source: "ex",
 		};
+
 		if (hasDiagnosticRelatedInformationCapability) {
 			diagnostic.relatedInformation = [
 				{

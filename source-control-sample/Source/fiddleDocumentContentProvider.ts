@@ -55,9 +55,11 @@ export class JSFiddleDocumentContentProvider
 		let fiddleSlug = basename(uri.fsPath);
 		// strip off the file extension
 		fiddleSlug = fiddleSlug.split(".").slice(0, -1).join(".");
+
 		const fiddlePart = toExtension(uri);
 
 		const fiddle = this.fiddles.get(fiddleSlug);
+
 		if (!fiddle) {
 			return "Resource not found: " + uri.toString();
 		}

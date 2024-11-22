@@ -35,6 +35,7 @@ export class AzureDevOpsAuthenticationProvider implements AuthenticationProvider
 	private initializedDisposable: Disposable | undefined;
 
 	private _onDidChangeSessions = new EventEmitter<AuthenticationProviderAuthenticationSessionsChangeEvent>();
+
 	get onDidChangeSessions(): Event<AuthenticationProviderAuthenticationSessionsChangeEvent> {
 		return this._onDidChangeSessions.event;
 	}
@@ -71,10 +72,13 @@ export class AzureDevOpsAuthenticationProvider implements AuthenticationProvider
 	// a different window of VS Code and sends the necessary event if it has.
 	private async checkForUpdates(): Promise<void> {
 		const added: AuthenticationSession[] = [];
+
 		const removed: AuthenticationSession[] = [];
+
 		const changed: AuthenticationSession[] = [];
 
 		const previousToken = await this.currentToken;
+
 		const session = (await this.getSessions())[0];
 
 		if (session?.accessToken && !previousToken) {
@@ -93,13 +97,16 @@ export class AzureDevOpsAuthenticationProvider implements AuthenticationProvider
 
 	private cacheTokenFromStorage() {
 		this.currentToken = this.secretStorage.get(AzureDevOpsAuthenticationProvider.secretKey) as Promise<string | undefined>;
+
 		return this.currentToken;
 	}
 
 	// This function is called first when `vscode.authentication.getSessions` is called.
 	async getSessions(_scopes?: string[]): Promise<readonly AuthenticationSession[]> {
 		this.ensureInitialized();
+
 		const token = await this.cacheTokenFromStorage();
+
 		return token ? [new AzureDevOpsPatSession(token)] : [];
 	}
 
@@ -133,6 +140,7 @@ export class AzureDevOpsAuthenticationProvider implements AuthenticationProvider
 	// This function is called when the end user signs out of the account.
 	async removeSession(_sessionId: string): Promise<void> {
 		const token = await this.currentToken;
+
 		if (!token) {
 			return;
 		}

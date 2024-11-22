@@ -18,8 +18,10 @@ export function activate(context: vscode.ExtensionContext) {
 			// honored by the editor.
 			const snippetCompletion = new vscode.CompletionItem('Good part of the day');
 			snippetCompletion.insertText = new vscode.SnippetString('Good ${1|morning,afternoon,evening|}. It is ${1}, right?');
+
 			const docs = new vscode.MarkdownString("Inserts a snippet that lets you select [link](x.ts).");
 			snippetCompletion.documentation = docs;
+
 			docs.baseUri = vscode.Uri.parse('http://example.com/a/b/c/');
 
 			// a completion item that can be accepted by a commit character,
@@ -56,6 +58,7 @@ export function activate(context: vscode.ExtensionContext) {
 				// get all text until the `position` and check if it reads `console.`
 				// and if so then complete if `log`, `warn`, and `error`
 				const linePrefix = document.lineAt(position).text.slice(0, position.character);
+
 				if (!linePrefix.endsWith('console.')) {
 					return undefined;
 				}

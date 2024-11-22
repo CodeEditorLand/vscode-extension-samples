@@ -18,11 +18,13 @@ class ReverseTextOnDropProvider implements vscode.DocumentDropEditProvider {
 	): Promise<vscode.DocumentDropEdit | undefined> {
 		// Check the data transfer to see if we have some kind of text data
 		const dataTransferItem = dataTransfer.get("text/plain");
+
 		if (!dataTransferItem) {
 			return undefined;
 		}
 
 		const text = await dataTransferItem.asString();
+
 		if (token.isCancellationRequested) {
 			return undefined;
 		}
@@ -54,6 +56,7 @@ class FileNameListOnDropProvider implements vscode.DocumentDropEditProvider {
 	): Promise<vscode.DocumentDropEdit | undefined> {
 		// Check the data transfer to see if we have dropped a list of uris
 		const dataTransferItem = dataTransfer.get(uriListMime);
+
 		if (!dataTransferItem) {
 			return undefined;
 		}
@@ -61,11 +64,13 @@ class FileNameListOnDropProvider implements vscode.DocumentDropEditProvider {
 		// 'text/uri-list' contains a list of uris separated by new lines.
 		// Parse this to an array of uris.
 		const urlList = await dataTransferItem.asString();
+
 		if (token.isCancellationRequested) {
 			return undefined;
 		}
 
 		const uris: vscode.Uri[] = [];
+
 		for (const resource of urlList.split("\n")) {
 			try {
 				uris.push(vscode.Uri.parse(resource));

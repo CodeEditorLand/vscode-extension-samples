@@ -26,7 +26,9 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 	): Promise<PawDrawDocument | PromiseLike<PawDrawDocument>> {
 		// If we have a backup, read that. Otherwise read the resource from the workspace
 		const dataFile = typeof backupId === 'string' ? vscode.Uri.parse(backupId) : uri;
+
 		const fileData = await PawDrawDocument.readFile(dataFile);
+
 		return new PawDrawDocument(uri, fileData, delegate);
 	}
 
@@ -94,6 +96,7 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 	 */
 	dispose(): void {
 		this._onDidDispose.fire();
+
 		super.dispose();
 	}
 
@@ -135,6 +138,7 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 	 */
 	async saveAs(targetResource: vscode.Uri, cancellation: vscode.CancellationToken): Promise<void> {
 		const fileData = await this._delegate.getFileData();
+
 		if (cancellation.isCancellationRequested) {
 			return;
 		}
@@ -197,8 +201,10 @@ export class PawDrawEditorProvider implements vscode.CustomEditorProvider<PawDra
 	public static register(context: vscode.ExtensionContext): vscode.Disposable {
 		vscode.commands.registerCommand('catCustoms.pawDraw.new', () => {
 			const workspaceFolders = vscode.workspace.workspaceFolders;
+
 			if (!workspaceFolders) {
 				vscode.window.showErrorMessage("Creating new Paw Draw files currently requires opening a workspace");
+
 				return;
 			}
 
@@ -243,11 +249,14 @@ export class PawDrawEditorProvider implements vscode.CustomEditorProvider<PawDra
 		const document: PawDrawDocument = await PawDrawDocument.create(uri, openContext.backupId, {
 			getFileData: async () => {
 				const webviewsForDocument = Array.from(this.webviews.get(document.uri));
+
 				if (!webviewsForDocument.length) {
 					throw new Error('Could not find webview to save for');
 				}
 				const panel = webviewsForDocument[0];
+
 				const response = await this.postMessageWithResponse<number[]>(panel, 'getFileData', {});
+
 				return new Uint8Array(response);
 			}
 		});
@@ -395,8 +404,10 @@ export class PawDrawEditorProvider implements vscode.CustomEditorProvider<PawDra
 
 	private postMessageWithResponse<R = unknown>(panel: vscode.WebviewPanel, type: string, body: any): Promise<R> {
 		const requestId = this._requestId++;
+
 		const p = new Promise<R>(resolve => this._callbacks.set(requestId, resolve));
 		panel.webview.postMessage({ type, requestId, body });
+
 		return p;
 	}
 
@@ -408,12 +419,14 @@ export class PawDrawEditorProvider implements vscode.CustomEditorProvider<PawDra
 		switch (message.type) {
 			case 'stroke':
 				document.makeEdit(message as PawDrawEdit);
+
 				return;
 
 			case 'response':
 				{
 					const callback = this._callbacks.get(message.requestId);
 					callback?.(message.body);
+
 					return;
 				}
 		}
@@ -435,6 +448,7 @@ class WebviewCollection {
 	 */
 	public *get(uri: vscode.Uri): Iterable<vscode.WebviewPanel> {
 		const key = uri.toString();
+
 		for (const entry of this._webviews) {
 			if (entry.resource === key) {
 				yield entry.webviewPanel;

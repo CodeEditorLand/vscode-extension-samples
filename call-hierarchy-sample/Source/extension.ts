@@ -28,7 +28,9 @@ async function showSampleText(context: vscode.ExtensionContext): Promise<void> {
 	const sampleTextEncoded = await vscode.workspace.fs.readFile(
 		vscode.Uri.file(context.asAbsolutePath("sample.txt")),
 	);
+
 	const sampleText = new TextDecoder("utf-8").decode(sampleTextEncoded);
+
 	const doc = await vscode.workspace.openTextDocument({
 		language: "plaintext",
 		content: sampleText,

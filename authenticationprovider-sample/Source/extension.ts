@@ -31,6 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 					'content-type': 'application/json',
 				},
 			});
+
 			if (!req.ok) {
 				throw new Error(req.statusText);
 			}

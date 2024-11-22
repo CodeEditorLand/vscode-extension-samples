@@ -36,22 +36,26 @@ class CopyCountPasteEditProvider implements vscode.DocumentPasteEditProvider {
 	): Promise<vscode.DocumentPasteEdit[] | undefined> {
 		// Read our custom metadata
 		const countDataTransferItem = dataTransfer.get(CopyCountPasteEditProvider.countMimeType);
+
 		if (!countDataTransferItem) {
 			return;
 		}
 
 		const count = await countDataTransferItem.asString();
+
 		if (token.isCancellationRequested) {
 			return;
 		}
 
 		// Also read the text data in the clipboard
 		const textDataTransferItem = dataTransfer.get('text/plain');
+
 		if (!textDataTransferItem) {
 			return;
 		}
 
 		const text = await textDataTransferItem.asString();
+
 		if (token.isCancellationRequested) {
 			return;
 		}

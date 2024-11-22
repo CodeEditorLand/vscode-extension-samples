@@ -11,6 +11,7 @@ interface MarkdownItRenderer {
 
 export async function activate(ctx: RendererContext<void>) {
 	const markdownItRenderer = await ctx.getRenderer('vscode.markdown-it-renderer') as MarkdownItRenderer | undefined;
+
 	if (!markdownItRenderer) {
 		throw new Error(`Could not load 'vscode.markdown-it-renderer'`);
 	}

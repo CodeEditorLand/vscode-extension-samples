@@ -22,6 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 		// Update activity map last active time on changed tabs
 		const changedTabs = [...tabChangeEvent.opened, ...tabChangeEvent.changed];
+
 		for (const tab of changedTabs) {
 			// Reset the timer for the tabs last activity
 			activityMap.set(tab, Date.now());
@@ -30,6 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// Check every second for inactive tabs
 	const interval = setInterval(() => {
 		const activeTab = vscode.window.tabGroups.activeTabGroup.activeTab;
+
 		if (activeTab) {
 			// Update the activity map for the active tab, since it's still being used.
 			activityMap.set(activeTab, Date.now());

@@ -85,6 +85,7 @@ export class FoodRelation {
 
 	involves(noun: string): boolean {
 		const needle = noun.toLowerCase();
+
 		return this._subject === needle || this._object === needle;
 	}
 
@@ -92,6 +93,7 @@ export class FoodRelation {
 		const indexOfWord = new RegExp("\\b" + word + "\\b", "i").exec(
 			this.originalText,
 		)!.index;
+
 		return new vscode.Range(
 			this.range.start.translate({ characterDelta: indexOfWord }),
 			this.range.start.translate({

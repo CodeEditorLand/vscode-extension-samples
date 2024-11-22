@@ -6,6 +6,7 @@ class MyUriHandler implements vscode.UriHandler {
 	// with your extension id as the authority.
 	handleUri(uri: vscode.Uri): vscode.ProviderResult<void> {
 		let message = "Handled a Uri!";
+
 		if (uri.query) {
 			message += ` It came with this query: ${uri.query}`;
 		}

@@ -18,6 +18,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			 * Documentation on GitHub's REST API can be found here: https://docs.github.com/en/rest
 			 */
 			const octokit = await credentials.getOctokit();
+
 			const userInfo = await octokit.users.getAuthenticated();
 
 			vscode.window.showInformationMessage(

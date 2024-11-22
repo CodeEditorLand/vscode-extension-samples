@@ -36,6 +36,7 @@ class CatCodiconsPanel {
 		const styleUri = webview.asWebviewUri(
 			vscode.Uri.joinPath(extensionUri, "media", "styles.css"),
 		);
+
 		const codiconsUri = webview.asWebviewUri(
 			vscode.Uri.joinPath(
 				extensionUri,

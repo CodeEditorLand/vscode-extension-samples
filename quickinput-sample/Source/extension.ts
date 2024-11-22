@@ -16,6 +16,7 @@ export function activate(context: ExtensionContext) {
 			multiStepInput,
 			quickOpen,
 		};
+
 		const quickPick = window.createQuickPick();
 		quickPick.items = Object.keys(options).map(label => ({ label }));
 		quickPick.onDidChangeSelection(selection => {

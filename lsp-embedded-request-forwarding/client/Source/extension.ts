@@ -46,7 +46,9 @@ export function activate(context: ExtensionContext) {
 	workspace.registerTextDocumentContentProvider("embedded-content", {
 		provideTextDocumentContent: (uri) => {
 			const originalUri = uri.path.slice(1).slice(0, -4);
+
 			const decodedUri = decodeURIComponent(originalUri);
+
 			return virtualDocumentContents.get(decodedUri);
 		},
 	});
@@ -84,7 +86,9 @@ export function activate(context: ExtensionContext) {
 				const vdocUriString = `embedded-content://css/${encodeURIComponent(
 					originalUri,
 				)}.css`;
+
 				const vdocUri = Uri.parse(vdocUriString);
+
 				return await commands.executeCommand<CompletionList>(
 					"vscode.executeCompletionItemProvider",
 					vdocUri,

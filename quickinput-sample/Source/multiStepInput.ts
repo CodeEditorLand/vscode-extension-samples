@@ -37,6 +37,7 @@ export async function multiStepInput(context: ExtensionContext) {
 	async function collectInputs() {
 		const state = {} as Partial<State>;
 		await MultiStepInput.run(input => pickResourceGroup(input, state));
+
 		return state as State;
 	}
 
@@ -53,10 +54,12 @@ export async function multiStepInput(context: ExtensionContext) {
 			buttons: [createResourceGroupButton],
 			shouldResume: shouldResume
 		});
+
 		if (pick instanceof MyButton) {
 			return (input: MultiStepInput) => inputResourceGroupName(input, state);
 		}
 		state.resourceGroup = pick;
+
 		return (input: MultiStepInput) => inputName(input, state);
 	}
 
@@ -70,6 +73,7 @@ export async function multiStepInput(context: ExtensionContext) {
 			validate: validateNameIsUnique,
 			shouldResume: shouldResume
 		});
+
 		return (input: MultiStepInput) => inputName(input, state);
 	}
 
@@ -85,11 +89,13 @@ export async function multiStepInput(context: ExtensionContext) {
 			validate: validateNameIsUnique,
 			shouldResume: shouldResume
 		});
+
 		return (input: MultiStepInput) => pickRuntime(input, state);
 	}
 
 	async function pickRuntime(input: MultiStepInput, state: Partial<State>) {
 		const additionalSteps = typeof state.resourceGroup === 'string' ? 1 : 0;
+
 		const runtimes = await getAvailableRuntimes(state.resourceGroup!, undefined /* TODO: token */);
 		// TODO: Remember currently active item when navigating back.
 		state.runtime = await input.showQuickPick({
@@ -113,12 +119,14 @@ export async function multiStepInput(context: ExtensionContext) {
 	async function validateNameIsUnique(name: string) {
 		// ...validate...
 		await new Promise(resolve => setTimeout(resolve, 1000));
+
 		return name === 'vscode' ? 'Name not unique' : undefined;
 	}
 
 	async function getAvailableRuntimes(_resourceGroup: QuickPickItem | string, _token?: CancellationToken): Promise<QuickPickItem[]> {
 		// ...retrieve...
 		await new Promise(resolve => setTimeout(resolve, 1000));
+
 		return ['Node 8.9', 'Node 6.11', 'Node 4.5']
 			.map(label => ({ label }));
 	}
@@ -170,6 +178,7 @@ class MultiStepInput {
 
 	static async run(start: InputStep) {
 		const input = new MultiStepInput();
+
 		return input.stepThrough(start);
 	}
 
@@ -178,8 +187,10 @@ class MultiStepInput {
 
 	private async stepThrough(start: InputStep) {
 		let step: InputStep | void = start;
+
 		while (step) {
 			this.steps.push(step);
+
 			if (this.current) {
 				this.current.enabled = false;
 				this.current.busy = true;
@@ -206,6 +217,7 @@ class MultiStepInput {
 
 	async showQuickPick<T extends QuickPickItem, P extends QuickPickParameters<T>>({ title, step, totalSteps, items, activeItem, ignoreFocusOut, placeholder, buttons, shouldResume }: P) {
 		const disposables: Disposable[] = [];
+
 		try {
 			return await new Promise<T | (P extends { buttons: (infer I)[] } ? I : never)>((resolve, reject) => {
 				const input = window.createQuickPick<T>();
@@ -215,6 +227,7 @@ class MultiStepInput {
 				input.ignoreFocusOut = ignoreFocusOut ?? false;
 				input.placeholder = placeholder;
 				input.items = items;
+
 				if (activeItem) {
 					input.activeItems = [activeItem];
 				}
@@ -239,6 +252,7 @@ class MultiStepInput {
 							.catch(reject);
 					})
 				);
+
 				if (this.current) {
 					this.current.dispose();
 				}
@@ -252,6 +266,7 @@ class MultiStepInput {
 
 	async showInputBox<P extends InputBoxParameters>({ title, step, totalSteps, value, prompt, validate, buttons, ignoreFocusOut, placeholder, shouldResume }: P) {
 		const disposables: Disposable[] = [];
+
 		try {
 			return await new Promise<string | (P extends { buttons: (infer I)[] } ? I : never)>((resolve, reject) => {
 				const input = window.createInputBox();
@@ -266,6 +281,7 @@ class MultiStepInput {
 					...(this.steps.length > 1 ? [QuickInputButtons.Back] : []),
 					...(buttons || [])
 				];
+
 				let validating = validate('');
 				disposables.push(
 					input.onDidTriggerButton(item => {
@@ -280,6 +296,7 @@ class MultiStepInput {
 						const value = input.value;
 						input.enabled = false;
 						input.busy = true;
+
 						if (!(await validate(value))) {
 							resolve(value);
 						}
@@ -289,7 +306,9 @@ class MultiStepInput {
 					input.onDidChangeValue(async text => {
 						const current = validate(text);
 						validating = current;
+
 						const validationMessage = await current;
+
 						if (current === validating) {
 							input.validationMessage = validationMessage;
 						}
@@ -301,6 +320,7 @@ class MultiStepInput {
 							.catch(reject);
 					})
 				);
+
 				if (this.current) {
 					this.current.dispose();
 				}

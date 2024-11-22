@@ -19,7 +19,9 @@ export function activate(_context: vscode.ExtensionContext) {
 		}
 
 		const tsUri = vscode.window.activeTextEditor.document.uri;
+
 		const jsPath = posix.join(tsUri.path, '..', posix.basename(tsUri.path, '.ts') + '.js');
+
 		const jsUri = tsUri.with({ path: jsPath });
 
 		try {
@@ -38,10 +40,13 @@ export function activate(_context: vscode.ExtensionContext) {
 
 		async function countAndTotalOfFilesInFolder(folder: vscode.Uri): Promise<{ total: number, count: number }> {
 			let total = 0;
+
 			let count = 0;
+
 			for (const [name, type] of await vscode.workspace.fs.readDirectory(folder)) {
 				if (type === vscode.FileType.File) {
 					const filePath = posix.join(folder.path, name);
+
 					const stat = await vscode.workspace.fs.stat(folder.with({ path: filePath }));
 					total += stat.size;
 					count += 1;
@@ -55,10 +60,13 @@ export function activate(_context: vscode.ExtensionContext) {
 		}
 
 		const fileUri = vscode.window.activeTextEditor.document.uri;
+
 		const folderPath = posix.dirname(fileUri.path);
+
 		const folderUri = fileUri.with({ path: folderPath });
 
 		const info = await countAndTotalOfFilesInFolder(folderUri);
+
 		const doc = await vscode.workspace.openTextDocument({ content: `${info.count} files in ${folderUri.toString(true)} with a total of ${info.total} bytes` });
 		vscode.window.showTextDocument(doc, { viewColumn: vscode.ViewColumn.Beside });
 	});
@@ -73,14 +81,17 @@ export function activate(_context: vscode.ExtensionContext) {
 		}
 
 		const writeStr = '1€ is 1.12$ is 0.9£';
+
 		const writeData = Buffer.from(writeStr, 'utf8');
 
 		const folderUri = vscode.workspace.workspaceFolders[0].uri;
+
 		const fileUri = folderUri.with({ path: posix.join(folderUri.path, 'test.txt') });
 
 		await vscode.workspace.fs.writeFile(fileUri, writeData);
 
 		const readData = await vscode.workspace.fs.readFile(fileUri);
+
 		const readStr = Buffer.from(readData).toString('utf8');
 
 		vscode.window.showInformationMessage(readStr);

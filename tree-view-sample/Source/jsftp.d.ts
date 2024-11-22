@@ -29,7 +29,9 @@ interface JSFtp extends EventEmitter {
 	ls(path: string, callback: JSFtp.Callback<JSFtp.Entry[]>): void;
 	list(path: string, callback: JSFtp.Callback<any>): void;
 	put(buffer: Buffer, path: string, callback: JSFtp.Callback<void>): void;
+
 	get(path: string, callback: JSFtp.Callback<Readable>): void;
+
 	setType(type: 'A' | 'AN' | 'AT' | 'AC' | 'E' | 'I' | 'L', callback: JSFtp.Callback<any>): void;
 	raw(command: string, args: any[], callback: JSFtp.Callback<void>): void;
 	raw<T>(command: string, args: any[], callback: JSFtp.Callback<T>): void;

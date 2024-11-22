@@ -7,6 +7,7 @@ import { l10n, window } from "vscode";
 export function sayByeCommand() {
 	const message = l10n.t("Bye");
 	window.showInformationMessage(message);
+
 	const message2 = l10n.t({
 		message: "Bye {0}",
 		args: ["Joey"],

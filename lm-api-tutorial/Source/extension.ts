@@ -61,6 +61,7 @@ async function parseChatResponse(chatResponse: vscode.LanguageModelChatResponse,
 function getVisibleCodeWithLineNumbers(textEditor: vscode.TextEditor) {
 	// get the position of the first and last visible lines
 	let currentLine = textEditor.visibleRanges[0].start.line;
+
 	const endLine = textEditor.visibleRanges[0].end.line;
 
 	let code = '';
@@ -86,6 +87,7 @@ function applyDecoration(editor: vscode.TextEditor, line: number, suggestion: st
 
 	// get the end of the line with the specified line number
 	const lineLength = editor.document.lineAt(line - 1).text.length;
+
 	const range = new vscode.Range(
 		new vscode.Position(line - 1, lineLength),
 		new vscode.Position(line - 1, lineLength),

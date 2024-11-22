@@ -15,6 +15,7 @@ function defineBinding(char: string, value: any, modifierKeys: ModifierKeys): vo
 }
 function getBinding(char: string, modifierKeys: ModifierKeys): any {
 	const key = modifierKeys.ctrl ? 'CTRL + ' + char : char;
+
 	return CHAR_TO_BINDING[key];
 }
 
@@ -129,9 +130,12 @@ export class Mappings {
 
 	public static findMotion(input: string): Motion {
 		const parsed = _parseNumberAndString(input);
+
 		let motion = getMotion(parsed.input.substr(0, 1));
+
 		if (!motion) {
 			motion = getMotion(parsed.input.substr(0, 2));
+
 			if (!motion) {
 				return null;
 			}
@@ -141,7 +145,9 @@ export class Mappings {
 
 	public static findMotionCommand(input: string, isVisual: boolean, modifierKeys: ModifierKeys): Command {
 		let parsed = _parseNumberAndString(input);
+
 		let command = Mappings.findMotionCommandFromNumberAndString(parsed, isVisual, modifierKeys);
+
 		if (!command) {
 			parsed = _parseNumberAndString(input, false);
 			command = Mappings.findMotionCommandFromNumberAndString(parsed, isVisual, modifierKeys);
@@ -151,6 +157,7 @@ export class Mappings {
 
 	private static findMotionCommandFromNumberAndString(numberAndString: INumberAndString, isVisual: boolean, modifierKeys: ModifierKeys): Command {
 		let motionCommand = getMotionCommand(numberAndString.input.substr(0, 1), modifierKeys);
+
 		if (!motionCommand) {
 			motionCommand = getMotionCommand(numberAndString.input.substr(0, 2), modifierKeys);
 		}
@@ -168,11 +175,14 @@ export class Mappings {
 
 	public static findOperator(input: string, modifierKeys: ModifierKeys): IFoundOperator {
 		const parsed = _parseNumberAndString(input);
+
 		const operator = getOperator(parsed.input.substr(0, 1), modifierKeys);
+
 		if (!operator) {
 			return null;
 		}
 		const operatorArgs = parsed.input.substr(1);
+
 		return {
 			runNormal: (controller: IController, editor: TextEditor) => {
 				return operator.runNormalMode(controller, editor, parsed.repeatCount, operatorArgs);
@@ -201,6 +211,7 @@ export class Mappings {
 function _parseNumberAndString(input: string, numberAtBeginning = true): INumberAndString {
 	if (numberAtBeginning) {
 		const repeatCountMatch = input.match(/^([1-9]\d*)/);
+
 		if (repeatCountMatch) {
 			return {
 				hasRepeatCount: true,
@@ -210,6 +221,7 @@ function _parseNumberAndString(input: string, numberAtBeginning = true): INumber
 		}
 	} else {
 		const repeatCountMatch = input.match(/(\d+)$/);
+
 		if (repeatCountMatch) {
 			return {
 				hasRepeatCount: true,

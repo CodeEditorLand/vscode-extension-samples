@@ -61,10 +61,14 @@ documents.onDidChangeContent((change) => {
 async function validateTextDocument(textDocument: TextDocument) {
 	try {
 		const version = textDocument.version;
+
 		const diagnostics: Diagnostic[] = [];
+
 		if (textDocument.languageId === "html1") {
 			const modes = languageModes.getAllModesInDocument(textDocument);
+
 			const latestTextDocument = documents.get(textDocument.uri);
+
 			if (latestTextDocument && latestTextDocument.version === version) {
 				// check no new version has come in after in after the async op
 				modes.forEach((mode) => {
@@ -88,6 +92,7 @@ async function validateTextDocument(textDocument: TextDocument) {
 
 connection.onCompletion(async (textDocumentPosition, _token) => {
 	const document = documents.get(textDocumentPosition.textDocument.uri);
+
 	if (!document) {
 		return null;
 	}
@@ -96,6 +101,7 @@ connection.onCompletion(async (textDocumentPosition, _token) => {
 		document,
 		textDocumentPosition.position,
 	);
+
 	if (!mode || !mode.doComplete) {
 		return CompletionList.create();
 	}

@@ -29,6 +29,7 @@ documents.listen(connection);
 connection.onInitialize((params) => {
 	workspaceFolder = params.rootUri;
 	connection.console.log(`[Server(${process.pid}) ${workspaceFolder}] Started and initialize received`);
+
 	return {
 		capabilities: {
 			textDocumentSync: {

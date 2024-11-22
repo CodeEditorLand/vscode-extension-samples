@@ -51,11 +51,14 @@ export class Words {
 		wordCharacterClass: WordCharacters,
 	): IWord | null {
 		const lineContent = doc.lineAt(pos.line).text;
+
 		let wordType = WordType.NONE;
+
 		const len = lineContent.length;
 
 		for (let chIndex = pos.character; chIndex < len; chIndex++) {
 			const chCode = lineContent.charCodeAt(chIndex);
+
 			const chClass =
 				wordCharacterClass[chCode] || CharacterClass.REGULAR;
 
@@ -131,6 +134,7 @@ export class Words {
 	): number {
 		for (let chIndex = startIndex; chIndex >= 0; chIndex--) {
 			const chCode = lineContent.charCodeAt(chIndex);
+
 			const chClass =
 				wordCharacterClass[chCode] || CharacterClass.REGULAR;
 
@@ -160,6 +164,7 @@ export class Words {
 		end: number,
 	): IWord {
 		// console.log('WORD ==> ' + start + ' => ' + end + ':::: <<<' + lineContent.substring(start, end) + '>>>');
+
 		return { start: start, end: end, wordType: wordType };
 	}
 }

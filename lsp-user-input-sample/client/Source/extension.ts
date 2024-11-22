@@ -9,6 +9,7 @@ import { LanguageClient, LanguageClientOptions, RevealOutputChannelOn, ServerOpt
 let client: LanguageClient;
 export async function activate(context: ExtensionContext): Promise<void> {
 	const serverModule = context.asAbsolutePath(path.join('server', 'out', 'sampleServer.js'));
+
 	const serverOptions: ServerOptions = {
 		run: { module: serverModule, transport: TransportKind.ipc, options: { cwd: process.cwd() } },
 		debug: { module: serverModule, transport: TransportKind.ipc, options: { cwd: process.cwd() } }
@@ -25,11 +26,13 @@ export async function activate(context: ExtensionContext): Promise<void> {
 					"Visual Studio",
 					"Visual Studio Code",
 				]);
+
 				if (selected === undefined) {
 					return next(command, args);
 				}
 				args = args.slice(0);
 				args.push(selected);
+
 				return next(command, args);
 			},
 		},
@@ -39,9 +42,11 @@ export async function activate(context: ExtensionContext): Promise<void> {
 		client = new LanguageClient('UI Sample', serverOptions, clientOptions);
 	} catch {
 		Window.showErrorMessage(`The extension couldn't be started. See the output channel for details.`);
+
 		return;
 	}
 	client.registerProposedFeatures();
+
 	return client.start();
 }
 

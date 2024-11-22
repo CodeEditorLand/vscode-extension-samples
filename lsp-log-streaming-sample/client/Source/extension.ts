@@ -19,6 +19,7 @@ export async function activate(context: ExtensionContext) {
 	const socketPort = workspace
 		.getConfiguration("languageServerExample")
 		.get("port", 7000);
+
 	let socket: WebSocket | null = null;
 
 	commands.registerCommand("languageServerExample.startStreaming", () => {
@@ -43,6 +44,7 @@ export async function activate(context: ExtensionContext) {
 
 	// The log to send
 	let log = "";
+
 	const websocketOutputChannel: OutputChannel = {
 		name: "websocket",
 		// Only append the logs but send them later

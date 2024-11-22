@@ -134,6 +134,7 @@ export class FtpTreeDataProvider implements vscode.TreeDataProvider<FtpNode>, vs
 
 	public getParent(element: FtpNode): FtpNode | undefined {
 		const parent = element.resource.with({ path: dirname(element.resource.path) });
+
 		return parent.path !== '//' ? { resource: parent, isDirectory: true } : undefined;
 	}
 
@@ -149,6 +150,7 @@ export class FtpExplorer {
 	constructor(context: vscode.ExtensionContext) {
 		/* Please note that login information is hardcoded only for this example purpose and recommended not to do it in general. */
 		const ftpModel = new FtpModel('mirror.switch.ch', 'anonymous', 'anonymous@anonymous.de');
+
 		const treeDataProvider = new FtpTreeDataProvider(ftpModel);
 		context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('ftp', treeDataProvider));
 
@@ -165,6 +167,7 @@ export class FtpExplorer {
 
 	private async reveal(): Promise<void> {
 		const node = this.getNode();
+
 		if (node) {
 			return this.ftpViewer.reveal(node);
 		}
@@ -179,3 +182,4 @@ export class FtpExplorer {
 		return undefined;
 	}
 }
+

@@ -19,10 +19,15 @@ class LanguageServiceHost implements ts.LanguageServiceHost {
 	// for ts.LanguageServiceHost
 
 	getCompilationSettings = () => ts.getDefaultCompilerOptions();
+
 	getScriptFileNames = () => Object.keys(this.files);
+
 	getScriptVersion = (_fileName: string) => '0';
+
 	getScriptSnapshot = (fileName: string) => this.files[fileName];
+
 	getCurrentDirectory = () => process.cwd();
+
 	getDefaultLibFileName = (options: ts.CompilerOptions) => ts.getDefaultLibFilePath(options);
 }
 
@@ -57,12 +62,14 @@ function format(fileName: string, text: string) {
 	host.addFile(fileName, text);
 
 	const languageService = ts.createLanguageService(host);
+
 	const edits = languageService.getFormattingEditsForDocument(fileName, { ...defaults });
 	edits
 		.sort((a, b) => a.span.start - b.span.start)
 		.reverse()
 		.forEach(edit => {
 			const head = text.slice(0, edit.span.start);
+
 			const tail = text.slice(edit.span.start + edit.span.length);
 			text = `${head}${edit.newText}${tail}`;
 		});
@@ -80,3 +87,4 @@ if (require.main === module) {
 		fs.writeFileSync(file, out);
 	});
 }
+

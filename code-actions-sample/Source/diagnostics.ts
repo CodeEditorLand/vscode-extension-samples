@@ -26,6 +26,7 @@ export function refreshDiagnostics(
 
 	for (let lineIndex = 0; lineIndex < doc.lineCount; lineIndex++) {
 		const lineOfText = doc.lineAt(lineIndex);
+
 		if (lineOfText.text.includes(EMOJI)) {
 			diagnostics.push(createDiagnostic(doc, lineOfText, lineIndex));
 		}
@@ -56,6 +57,7 @@ function createDiagnostic(
 		vscode.DiagnosticSeverity.Information,
 	);
 	diagnostic.code = EMOJI_MENTION;
+
 	return diagnostic;
 }
 

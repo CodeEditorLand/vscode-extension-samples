@@ -5,21 +5,31 @@ export function activate(context: vscode.ExtensionContext) {
 	const configuredView = vscode.workspace
 		.getConfiguration()
 		.get("conf.view.showOnWindowOpen");
+
 	switch (configuredView) {
 		case "explorer":
 			vscode.commands.executeCommand("workbench.view.explorer");
+
 			break;
+
 		case "search":
 			vscode.commands.executeCommand("workbench.view.search");
+
 			break;
+
 		case "scm":
 			vscode.commands.executeCommand("workbench.view.scm");
+
 			break;
+
 		case "debug":
 			vscode.commands.executeCommand("workbench.view.debug");
+
 			break;
+
 		case "extensions":
 			vscode.commands.executeCommand("workbench.view.extensions");
+
 			break;
 	}
 
@@ -190,6 +200,7 @@ export function activate(context: vscode.ExtensionContext) {
 								placeHolder:
 									"Pick Workspace Folder to which this setting should be applied",
 							});
+
 						if (workspaceFolder) {
 							// 4) Get the configuration for the workspace folder
 							const configuration =

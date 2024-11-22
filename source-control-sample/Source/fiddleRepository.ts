@@ -30,6 +30,7 @@ export class FiddleRepository implements QuickDiffProvider {
 	provideOriginalResource?(uri: Uri, _token: CancellationToken): ProviderResult<Uri> {
 		// converts the local file uri to jsfiddle:file.ext
 		const relativePath = workspace.asRelativePath(uri.fsPath);
+
 		return Uri.parse(`${JSFIDDLE_SCHEME}:${relativePath}`);
 	}
 
@@ -73,12 +74,15 @@ export async function downloadFiddle(slug: string, version: number | undefined):
 		if (demoVersionOffset === undefined && version === undefined) { version = 0; }
 		if (demoVersionOffset === undefined) { demoVersionOffset = version; }
 		const maxDemoVersion = DEMO.length - 1 + demoVersionOffset;
+
 		if (version === undefined) { version = maxDemoVersion; }
 
 		if (version >= 0 && version <= maxDemoVersion) {
 			// mock all versions committed in previous sessions by the first version
 			const index = Math.max(0, version - demoVersionOffset);
+
 			const fiddleData = DEMO[index];
+
 			return new Fiddle(slug, version, fiddleData);
 		}
 		else {
@@ -106,6 +110,7 @@ export async function uploadFiddle(slug: string, version: number, html: string, 
 		// using mock fiddle
 		const fiddleData: FiddleData = { html: html, js: js, css: css };
 		DEMO.push(fiddleData);
+
 		return new Fiddle(slug, version, fiddleData);
 	}
 	else {
@@ -115,6 +120,7 @@ export async function uploadFiddle(slug: string, version: number, html: string, 
 
 		if (answer && answer.toLowerCase().startsWith("yes")) {
 			env.openExternal(Uri.parse(`https://jsfiddle.net/${slug}/`));
+
 			return undefined;
 		}
 
@@ -165,3 +171,4 @@ export function toFiddleId(slug: string, version: number | undefined): string {
 export function toExtension(uri: Uri): string {
 	return path.extname(uri.fsPath).substr(1);
 }
+

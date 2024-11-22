@@ -15,6 +15,7 @@ import { findLocallyRunningServers } from "./jupyter";
 
 export function activate(context: ExtensionContext) {
 	const jupyterExt = extensions.getExtension<Jupyter>("ms-toolsai.jupyter");
+
 	if (!jupyterExt) {
 		throw new Error("Jupyter Extension not installed");
 	}
@@ -58,6 +59,7 @@ export function activate(context: ExtensionContext) {
 				case "Configure and start JupyterLab": {
 					// This is a sample of how to use QuickPick to get additional user input and ensure a back button is displayed.
 					const disposables: Disposable[] = [];
+
 					const options = await new Promise<
 						| { emptyToken: boolean; allowOtherWebsites: boolean }
 						| undefined
@@ -148,6 +150,7 @@ export function activate(context: ExtensionContext) {
 
 async function provideJupyterServers(type: "lab" | "notebook") {
 	const servers = await findLocallyRunningServers(type);
+
 	return servers.map((server) => {
 		return {
 			id: `${server.pid}:${server.port}`,
@@ -174,12 +177,16 @@ async function startJupyterInTerminal(
 		},
 		async () => {
 			const servers = await findLocallyRunningServers(type);
+
 			const existingPids = new Set(servers.map((s) => s.pid));
+
 			const terminal = window.createTerminal(
 				type === "lab" ? "JupyterLab" : "Jupyter Notebook",
 			);
 			terminal.show();
+
 			const args: string[] = [type, "--no-browser"];
+
 			if (options?.emptyToken) {
 				args.push('--NotebookApp.token=""');
 			}
@@ -193,11 +200,13 @@ async function startJupyterInTerminal(
 			const newServers = (await findLocallyRunningServers(type)).filter(
 				(s) => !existingPids.has(s.pid),
 			);
+
 			if (token.isCancellationRequested) {
 				return;
 			}
 			if (newServers.length) {
 				const server = newServers[0];
+
 				return {
 					id: `${server.pid}:${server.port}`,
 					label: new URL(server.url).hostname,

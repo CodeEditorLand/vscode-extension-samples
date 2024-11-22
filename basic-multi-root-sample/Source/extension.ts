@@ -49,14 +49,18 @@ function getEditorInfo(): { text?: string; tooltip?: string; color?: string; } |
 	}
 
 	let text: string | undefined;
+
 	let tooltip: string | undefined;
+
 	let color: string | undefined;
 
 	// If we have a file:// resource we resolve the WorkspaceFolder this file is from and update
 	// the status accordingly.
 	const resource = editor.document.uri;
+
 	if (resource.scheme === 'file') {
 		const folder = workspace.getWorkspaceFolder(resource);
+
 		if (!folder) {
 			text = `$(alert) <outside workspace> → ${basename(resource.fsPath)}`;
 		} else {

@@ -58,10 +58,12 @@ documents.onDidChangeContent((event) => {
 
 connection.onCodeAction((params) => {
 	const textDocument = documents.get(params.textDocument.uri);
+
 	if (textDocument === undefined) {
 		return undefined;
 	}
 	const title = "With User Input";
+
 	return [
 		CodeAction.create(
 			title,
@@ -77,6 +79,7 @@ connection.onExecuteCommand(async (params) => {
 	}
 
 	const textDocument = documents.get(params.arguments[0]);
+
 	if (textDocument === undefined) {
 		return;
 	}

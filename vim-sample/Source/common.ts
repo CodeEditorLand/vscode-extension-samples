@@ -31,11 +31,13 @@ export interface IController {
 	motionState: MotionState;
 
 	setMode(mode: Mode): void;
+
 	setVisual(newVisual: boolean): void;
 	findMotion(input: string): Motion;
 	isMotionPrefix(input: string): boolean;
 
 	setDeleteRegister(register: DeleteRegister): void;
+
 	getDeleteRegister(): DeleteRegister;
 }
 

@@ -27,8 +27,10 @@ export function activate(context: vscode.ExtensionContext) {
 				return;
 			}
 			const targetUri = vscode.Uri.file(dirname(e.fileName));
+
 			for (const terminal of trackedTerminals) {
 				const cwd = terminal.shellIntegration?.cwd;
+
 				if (cwd && cwd.toString() !== targetUri.toString()) {
 					terminal.shellIntegration.executeCommand('cd', [targetUri.fsPath]);
 				}

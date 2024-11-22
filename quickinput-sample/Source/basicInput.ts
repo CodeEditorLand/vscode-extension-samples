@@ -10,6 +10,7 @@ import { window } from "vscode";
  */
 export async function showQuickPick() {
 	let i = 0;
+
 	const result = await window.showQuickPick(["one", "two", "three"], {
 		placeHolder: "one, two or three",
 		onDidSelectItem: (item) =>
@@ -28,6 +29,7 @@ export async function showInputBox() {
 		placeHolder: "For example: fedcba. But not: 123",
 		validateInput: (text) => {
 			window.showInformationMessage(`Validating: ${text}`);
+
 			return text === "123" ? "Not 123!" : null;
 		},
 	});

@@ -6,7 +6,9 @@ export interface FiddleConfiguration {
 
 export function parseFiddleId(id: string): FiddleConfiguration {
 	const idFragments = id.split("/");
+
 	const fiddleSlug = idFragments[0];
+
 	const fiddleVersion =
 		idFragments.length > 1 ? parseInt(id.split("/")[1]) : undefined;
 

@@ -160,6 +160,7 @@ export function activate(context: vscode.ExtensionContext) {
 			provideTerminalLinks: (context, _token) => {
 				// Detect the first instance of the word "link" if it exists and linkify it
 				const startIndex = (context.line as string).indexOf('link');
+
 				if (startIndex === -1) {
 					return [];
 				}
@@ -196,12 +197,14 @@ function selectTerminal(): Thenable<vscode.Terminal | undefined> {
 		terminal: vscode.Terminal;
 	}
 	const terminals = vscode.window.terminals;
+
 	const items: TerminalQuickPickItem[] = terminals.map(t => {
 		return {
 			label: `name: ${t.name}`,
 			terminal: t
 		};
 	});
+
 	return vscode.window.showQuickPick(items).then(item => {
 		return item ? item.terminal : undefined;
 	});
@@ -210,6 +213,7 @@ function selectTerminal(): Thenable<vscode.Terminal | undefined> {
 function ensureTerminalExists(): boolean {
 	if (vscode.window.terminals.length === 0) {
 		vscode.window.showErrorMessage('No active terminals');
+
 		return false;
 	}
 	return true;

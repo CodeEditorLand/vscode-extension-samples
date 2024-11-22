@@ -21,10 +21,12 @@ export class CatScratchEditorProvider
 		context: vscode.ExtensionContext,
 	): vscode.Disposable {
 		const provider = new CatScratchEditorProvider(context);
+
 		const providerRegistration = vscode.window.registerCustomEditorProvider(
 			CatScratchEditorProvider.viewType,
 			provider,
 		);
+
 		return providerRegistration;
 	}
 
@@ -95,10 +97,12 @@ export class CatScratchEditorProvider
 			switch (e.type) {
 				case "add":
 					this.addNewScratch(document);
+
 					return;
 
 				case "delete":
 					this.deleteScratch(document, e.id);
+
 					return;
 			}
 		});
@@ -183,6 +187,7 @@ export class CatScratchEditorProvider
 	 */
 	private addNewScratch(document: vscode.TextDocument) {
 		const json = this.getDocumentAsJson(document);
+
 		const character =
 			CatScratchEditorProvider.scratchCharacters[
 				Math.floor(
@@ -207,6 +212,7 @@ export class CatScratchEditorProvider
 	 */
 	private deleteScratch(document: vscode.TextDocument, id: string) {
 		const json = this.getDocumentAsJson(document);
+
 		if (!Array.isArray(json.scratches)) {
 			return;
 		}
@@ -221,6 +227,7 @@ export class CatScratchEditorProvider
 	 */
 	private getDocumentAsJson(document: vscode.TextDocument): any {
 		const text = document.getText();
+
 		if (text.trim().length === 0) {
 			return {};
 		}

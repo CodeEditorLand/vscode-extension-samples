@@ -8,6 +8,7 @@ import * as vscode from "vscode";
 export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// register a content provider for the cowsay-scheme
 	const myScheme = "cowsay";
+
 	const myProvider = new (class
 		implements vscode.TextDocumentContentProvider
 	{
@@ -33,8 +34,10 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 			const what = await vscode.window.showInputBox({
 				placeHolder: "cowsay...",
 			});
+
 			if (what) {
 				const uri = vscode.Uri.parse("cowsay:" + what);
+
 				const doc = await vscode.workspace.openTextDocument(uri); // calls back into the provider
 				await vscode.window.showTextDocument(doc, { preview: false });
 			}
@@ -48,12 +51,15 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 				return; // no editor
 			}
 			const { document } = vscode.window.activeTextEditor;
+
 			if (document.uri.scheme !== myScheme) {
 				return; // not my scheme
 			}
 			// get path-components, reverse it, and create a new uri
 			const say = document.uri.path;
+
 			const newSay = say.split("").reverse().join("");
+
 			const newUri = document.uri.with({ path: newSay });
 			await vscode.window.showTextDocument(newUri, { preview: false });
 		}),

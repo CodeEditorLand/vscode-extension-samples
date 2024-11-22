@@ -23,7 +23,9 @@ export function getCSSMode(
 			const embedded = documentRegions
 				.get(document)
 				.getEmbeddedDocument("css");
+
 			const stylesheet = cssLanguageService.parseStylesheet(embedded);
+
 			return cssLanguageService.doValidation(embedded, stylesheet);
 		},
 		doComplete(document: TextDocument, position: Position) {
@@ -31,7 +33,9 @@ export function getCSSMode(
 			const embedded = documentRegions
 				.get(document)
 				.getEmbeddedDocument("css");
+
 			const stylesheet = cssLanguageService.parseStylesheet(embedded);
+
 			return cssLanguageService.doComplete(
 				embedded,
 				position,

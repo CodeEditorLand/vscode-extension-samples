@@ -7,7 +7,9 @@ const homeDir = getUserHomeDir();
 
 export async function findLocallyRunningServers(type: "lab" | "notebook") {
 	const runtimeDir = path.join(getDataDirectory(), "runtime");
+
 	const files = await promisify(fs.readdir)(runtimeDir);
+
 	const servers: {
 		url: string;
 		token: string;
@@ -15,6 +17,7 @@ export async function findLocallyRunningServers(type: "lab" | "notebook") {
 		pid: number;
 		port: number;
 	}[] = [];
+
 	const prefix = type === "lab" ? "jpserver-" : "nbserver";
 	await Promise.all(
 		files.map(async (file) => {
@@ -25,6 +28,7 @@ export async function findLocallyRunningServers(type: "lab" | "notebook") {
 			const contents = await promisify(fs.readFile)(
 				path.join(runtimeDir, file),
 			).then((c) => c.toString());
+
 			const json: {
 				url: string;
 				token: string;
@@ -33,6 +37,7 @@ export async function findLocallyRunningServers(type: "lab" | "notebook") {
 				pid: number;
 				port: number;
 			} = JSON.parse(contents);
+
 			if (json.secure) {
 				return;
 			}
@@ -55,14 +60,17 @@ function getDataDirectory() {
 	switch (getOSType()) {
 		case "osx":
 			return path.join(homeDir, "Library", "Jupyter");
+
 		case "windows": {
 			const appData = process.env["APPDATA"]
 				? path.normalize(process.env["APPDATA"])
 				: "";
+
 			if (appData) {
 				return path.join(appData, "jupyter");
 			}
 			const configDir = getJupyterConfigDir();
+
 			if (configDir) {
 				return path.join(configDir, "data");
 			}
@@ -73,6 +81,7 @@ function getDataDirectory() {
 			const xdgDataHome = process.env["XDG_DATA_HOME"]
 				? path.normalize(process.env["XDG_DATA_HOME"])
 				: path.join(homeDir, ".local", "share");
+
 			return path.join(xdgDataHome, "jupyter");
 		}
 	}
@@ -87,6 +96,7 @@ function getJupyterConfigDir() {
 
 function getOSType() {
 	const platform = process.platform;
+
 	if (/^win/.test(platform)) {
 		return "windows";
 	} else if (/^darwin/.test(platform)) {
@@ -98,6 +108,7 @@ function getOSType() {
 
 function getUserHomeDir() {
 	const homePath = os.homedir();
+
 	if (getOSType() === "windows") {
 		return process.env["USERPROFILE"] || homePath;
 	}

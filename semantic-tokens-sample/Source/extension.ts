@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 
 const tokenTypes = new Map<string, number>();
+
 const tokenModifiers = new Map<string, number>();
 
 const legend = (function() {
@@ -35,10 +36,12 @@ interface IParsedToken {
 class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensProvider {
 	async provideDocumentSemanticTokens(document: vscode.TextDocument, _token: vscode.CancellationToken): Promise<vscode.SemanticTokens> {
 		const allTokens = this._parseText(document.getText());
+
 		const builder = new vscode.SemanticTokensBuilder();
 		allTokens.forEach((token) => {
 			builder.push(token.line, token.startCharacter, token.length, this._encodeTokenType(token.tokenType), this._encodeTokenModifiers(token.tokenModifiers));
 		});
+
 		return builder.build();
 	}
 
@@ -53,6 +56,7 @@ class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensPro
 
 	private _encodeTokenModifiers(strTokenModifiers: string[]): number {
 		let result = 0;
+
 		for (const tokenModifier of strTokenModifiers) {
 			if (tokenModifiers.has(tokenModifier)) {
 				result = result | (1 << tokenModifiers.get(tokenModifier)!);
@@ -65,16 +69,22 @@ class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensPro
 
 	private _parseText(text: string): IParsedToken[] {
 		const r: IParsedToken[] = [];
+
 		const lines = text.split(/\r\n|\r|\n/);
+
 		for (let i = 0; i < lines.length; i++) {
 			const line = lines[i];
+
 			let currentOffset = 0;
+
 			do {
 				const openOffset = line.indexOf('[', currentOffset);
+
 				if (openOffset === -1) {
 					break;
 				}
 				const closeOffset = line.indexOf(']', openOffset);
+
 				if (closeOffset === -1) {
 					break;
 				}
@@ -95,6 +105,7 @@ class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensPro
 
 	private _parseTextToken(text: string): { tokenType: string; tokenModifiers: string[]; } {
 		const parts = text.split('.');
+
 		return {
 			tokenType: parts[0],
 			tokenModifiers: parts.slice(1)

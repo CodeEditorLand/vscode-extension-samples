@@ -75,6 +75,7 @@ export function deactivate() {
 
 function getConfiguredWordSeparators(): string {
 	const editorConfig = vscode.workspace.getConfiguration('editor');
+
 	return editorConfig['wordSeparators'];
 }
 
@@ -118,6 +119,7 @@ class VimExt {
 			} else {
 				// a collapsed selection in the editor brings us to normal mode
 				let leaveVisualMode = false;
+
 				if (e.selections.length === 1) {
 					leaveVisualMode = e.selections[0].isEmpty;
 				}
@@ -152,6 +154,7 @@ class VimExt {
 		this._controller.type(vscode.window.activeTextEditor, text, modifierKeys).then((r) => {
 			if (r.hasConsumedInput) {
 				this._ensureState();
+
 				if (r.executeEditorCommand) {
 					let args = [r.executeEditorCommand.commandId];
 					args = args.concat(r.executeEditorCommand.args);
@@ -168,6 +171,7 @@ class VimExt {
 	public replacePrevChar(text: string, replaceCharCnt: number): void {
 		if (this._controller.replacePrevChar(vscode.window.activeTextEditor, text, replaceCharCnt)) {
 			this._ensureState();
+
 			return;
 		}
 		vscode.commands.executeCommand('default:replacePreviousChar', {
@@ -184,6 +188,7 @@ class VimExt {
 		this._controller.compositionEnd(vscode.window.activeTextEditor).then((r) => {
 			if (r.hasConsumedInput) {
 				this._ensureState();
+
 				if (r.executeEditorCommand) {
 					let args = [r.executeEditorCommand.commandId];
 					args = args.concat(r.executeEditorCommand.args);
@@ -222,6 +227,7 @@ class VimExt {
 			return;
 		}
 		const currentCursorStyle = vscode.window.activeTextEditor.options.cursorStyle;
+
 		if (currentCursorStyle !== cursorStyle) {
 			vscode.window.activeTextEditor.options = {
 				cursorStyle: cursorStyle

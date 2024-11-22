@@ -38,12 +38,14 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 		_token: vscode.CancellationToken,
 	): vscode.CodeAction[] | undefined {
 		const notebookDocument = this.getNotebookDocument(document);
+
 		if (!notebookDocument) {
 			return;
 		}
 
 		const edits: (vscode.NotebookEdit | vscode.TextEdit)[] =
 			this.extractImportsAndCreateCellEdits(notebookDocument);
+
 		if (!edits) {
 			return;
 		}
@@ -68,6 +70,7 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 		notebookDocument: vscode.NotebookDocument,
 	): (vscode.NotebookEdit | vscode.TextEdit)[] {
 		const nbEdits: (vscode.NotebookEdit | vscode.TextEdit)[] = [];
+
 		let importStatements: string[] = [];
 
 		notebookDocument.getCells().forEach((cell, index) => {
@@ -76,6 +79,7 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 			}
 
 			let cellHasImports = false;
+
 			let nonImportText = "";
 			cell.document
 				.getText()

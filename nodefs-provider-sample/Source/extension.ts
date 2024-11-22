@@ -50,6 +50,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 
 	async _stat(path: string): Promise<vscode.FileStat> {
 		const res = await _.statLink(path);
+
 		return new FileStat(res.stat, res.isSymbolicLink);
 	}
 
@@ -61,6 +62,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 		const children = await _.readdir(uri.fsPath);
 
 		const result: [string, vscode.FileType][] = [];
+
 		for (const child of children) {
 			const stat = await this._stat(path.join(uri.fsPath, child));
 			result.push([child, stat.type]);
@@ -83,6 +85,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 
 	async _writeFile(uri: vscode.Uri, content: Uint8Array, options: { create: boolean; overwrite: boolean; }): Promise<void> {
 		const exists = await _.exists(uri.fsPath);
+
 		if (!exists) {
 			if (!options.create) {
 				throw vscode.FileSystemError.FileNotFound();
@@ -112,6 +115,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 
 	async _rename(oldUri: vscode.Uri, newUri: vscode.Uri, options: { overwrite: boolean; }): Promise<void> {
 		const exists = await _.exists(newUri.fsPath);
+
 		if (exists) {
 			if (!options.overwrite) {
 				throw vscode.FileSystemError.FileExists();
@@ -121,6 +125,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 		}
 
 		const parentExists = await _.exists(path.dirname(newUri.fsPath));
+
 		if (!parentExists) {
 			await _.mkdir(path.dirname(newUri.fsPath));
 		}
@@ -176,7 +181,9 @@ namespace _ {
 	}
 
 	export function normalizeNFC(items: string): string;
+
 	export function normalizeNFC(items: string[]): string[];
+
 	export function normalizeNFC(items: string | string[]): string | string[] {
 		if (process.platform !== 'darwin') {
 			return items;
@@ -263,6 +270,7 @@ export class FileStat implements vscode.FileStat {
 
 	get type(): vscode.FileType {
 		let type: number;
+
 		if (this._isSymbolicLink) {
 			type = vscode.FileType.SymbolicLink | (this.fsStat.isDirectory() ? vscode.FileType.Directory : vscode.FileType.File);
 		} else {
@@ -298,3 +306,4 @@ export class FileStat implements vscode.FileStat {
 }
 
 //#endregion
+

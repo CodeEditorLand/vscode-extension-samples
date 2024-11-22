@@ -18,6 +18,7 @@ import { TextDecoder } from 'util';
 
 export function activate(context: ExtensionContext) {
 	const jupyterExt = extensions.getExtension<Jupyter>("ms-toolsai.jupyter");
+
 	if (!jupyterExt) {
 		throw new Error("Jupyter Extension not installed");
 	}
@@ -31,10 +32,12 @@ export function activate(context: ExtensionContext) {
 			"jupyterKernelExecution.listKernels",
 			async () => {
 				const kernel = await selectKernel();
+
 				if (!kernel) {
 					return;
 				}
 				const code = await selectCodeToRunAgainstKernel();
+
 				if (!code) {
 					return;
 				}
@@ -49,6 +52,7 @@ const ErrorMimeType = NotebookCellOutputItem.error(new Error('')).mime;
 // const StdErrMimeType = NotebookCellOutputItem.stderr('').mime;
 // const MarkdownMimeType = 'text/markdown';
 // const HtmlMimeType = 'text/html';
+
 const textDecoder = new TextDecoder();
 async function executeCode(
 	kernel: Kernel,
@@ -60,7 +64,9 @@ async function executeCode(
 		`>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>`,
 	);
 	logger.appendLine(`Executing code against kernel ${code}`);
+
 	const tokenSource = new CancellationTokenSource();
+
 	try {
 		for await (const output of kernel.executeCode(
 			code,
@@ -94,13 +100,18 @@ async function executeCode(
 }
 
 const printHelloWorld = `print('Hello World')`;
+
 const throwAnError = `raise Exception('Hello World')`;
+
 const displayMarkdown = `from IPython.display import display, Markdown
 display(Markdown('*some markdown*'))`;
+
 const displayHtml = `from IPython.display import display, HTML
 display(HTML('<div>Hello World</div>'))`;
+
 const printToStdErr = `import sys
 print('Hello World', file=sys.stderr)`;
+
 const streamOutput = `import time
 for i in range(10):
 	print(i)
@@ -122,6 +133,7 @@ async function selectCodeToRunAgainstKernel() {
 			placeHolder: "Select code to execute against the kernel",
 		},
 	);
+
 	if (!selection) {
 		return;
 	}
@@ -130,6 +142,7 @@ async function selectCodeToRunAgainstKernel() {
 
 async function selectKernel(): Promise<Kernel | undefined> {
 	const extension = extensions.getExtension<Jupyter>("ms-toolsai.jupyter");
+
 	if (!extension) {
 		throw new Error("Jupyter extension not installed");
 	}
@@ -139,6 +152,7 @@ async function selectKernel(): Promise<Kernel | undefined> {
 		window.showErrorMessage(
 			"No notebooks open. Open a notebook, run a cell and then try this command",
 		);
+
 		return;
 	}
 	const toDispose: Disposable[] = [];
@@ -148,6 +162,7 @@ async function selectKernel(): Promise<Kernel | undefined> {
 			QuickPickItem & { kernel: Kernel }
 		>();
 		toDispose.push(quickPick);
+
 		const quickPickItems: (QuickPickItem & { kernel: Kernel })[] = [];
 		quickPick.title = "Select a Kernel";
 		quickPick.placeholder = "Select a Python Kernel to execute some code";
@@ -158,6 +173,7 @@ async function selectKernel(): Promise<Kernel | undefined> {
 		Promise.all(
 			workspace.notebookDocuments.map(async (document) => {
 				const kernel = await api.kernels.getKernel(document.uri);
+
 				if (kernel && kernel.language === 'python') {
 					quickPickItems.push({
 						label: `Kernel for ${path.basename(document.uri.fsPath)}`,
@@ -168,11 +184,13 @@ async function selectKernel(): Promise<Kernel | undefined> {
 			}),
 		).finally(() => {
 			quickPick.busy = false;
+
 			if (quickPickItems.length === 0) {
 				quickPick.hide();
 				window.showErrorMessage(
 					"No active kernels associated with any of the open notebooks, try opening a notebook and running a Python cell",
 				);
+
 				return resolve(undefined);
 			}
 		});
@@ -180,6 +198,7 @@ async function selectKernel(): Promise<Kernel | undefined> {
 		quickPick.onDidAccept(
 			() => {
 				quickPick.hide();
+
 				if (quickPick.selectedItems.length > 0) {
 					return resolve(quickPick.selectedItems[0].kernel);
 				}

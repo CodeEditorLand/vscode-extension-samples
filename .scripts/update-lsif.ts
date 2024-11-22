@@ -6,9 +6,11 @@ const root = path.join(__dirname, '..');
 
 async function main() {
 	const references = [];
+
 	for (const sample of samples) {
 		try {
 			const stat = await fs.stat(path.join(root, sample.path, 'tsconfig.json'));
+
 			if (stat.isFile()) {
 				references.push(`./${sample.path}/tsconfig.json`);
 			}
@@ -29,3 +31,4 @@ async function main() {
 if (require.main === module) {
 	main().catch(console.error);
 }
+

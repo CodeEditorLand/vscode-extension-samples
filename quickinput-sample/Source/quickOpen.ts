@@ -17,6 +17,7 @@ import { workspace } from 'vscode';
  */
 export async function quickOpen() {
 	const uri = await pickFile();
+
 	if (uri) {
 		const document = await workspace.openTextDocument(uri);
 		await window.showTextDocument(document);
@@ -48,24 +49,31 @@ class MessageItem implements QuickPickItem {
 
 async function pickFile() {
 	const disposables: Disposable[] = [];
+
 	try {
 		return await new Promise<Uri | undefined>((resolve) => {
 			const input = window.createQuickPick<FileItem | MessageItem>();
 			input.placeholder = 'Type to search for files';
+
 			let rgs: cp.ChildProcess[] = [];
 			disposables.push(
 				input.onDidChangeValue(value => {
 					rgs.forEach(rg => rg.kill());
+
 					if (!value) {
 						input.items = [];
+
 						return;
 					}
 					input.busy = true;
+
 					const cwds = workspace.workspaceFolders ? workspace.workspaceFolders.map(f => f.uri.fsPath) : [process.cwd()];
+
 					const q = process.platform === 'win32' ? '"' : '\'';
 					rgs = cwds.map(cwd => {
 						const rg = cp.exec(`rg --files -g ${q}*${value}*${q}`, { cwd }, (err, stdout) => {
 							const i = rgs.indexOf(rg);
+
 							if (i !== -1) {
 								if (rgs.length === cwds.length) {
 									input.items = [];
@@ -84,16 +92,19 @@ async function pickFile() {
 									]);
 								}
 								rgs.splice(i, 1);
+
 								if (!rgs.length) {
 									input.busy = false;
 								}
 							}
 						});
+
 						return rg;
 					});
 				}),
 				input.onDidChangeSelection(items => {
 					const item = items[0];
+
 					if (item instanceof FileItem) {
 						resolve(item.uri);
 						input.hide();

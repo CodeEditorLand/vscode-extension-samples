@@ -67,6 +67,7 @@ class CatCodingPanel {
 		// If we already have a panel, show it.
 		if (CatCodingPanel.currentPanel) {
 			CatCodingPanel.currentPanel._panel.reveal(column);
+
 			return;
 		}
 
@@ -113,6 +114,7 @@ class CatCodingPanel {
 				switch (message.command) {
 					case 'alert':
 						vscode.window.showErrorMessage(message.text);
+
 						return;
 				}
 			},
@@ -135,6 +137,7 @@ class CatCodingPanel {
 
 		while (this._disposables.length) {
 			const x = this._disposables.pop();
+
 			if (x) {
 				x.dispose();
 			}
@@ -148,15 +151,18 @@ class CatCodingPanel {
 		switch (this._panel.viewColumn) {
 			case vscode.ViewColumn.Two:
 				this._updateForCat(webview, 'Compiling Cat');
+
 				return;
 
 			case vscode.ViewColumn.Three:
 				this._updateForCat(webview, 'Testing Cat');
+
 				return;
 
 			case vscode.ViewColumn.One:
 			default:
 				this._updateForCat(webview, 'Coding Cat');
+
 				return;
 		}
 	}
@@ -175,10 +181,12 @@ class CatCodingPanel {
 
 		// Local path to css styles
 		const styleResetPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css');
+
 		const stylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css');
 
 		// Uri to load styles into webview
 		const stylesResetUri = webview.asWebviewUri(styleResetPath);
+
 		const stylesMainUri = webview.asWebviewUri(stylesPathMainPath);
 
 		// Use a nonce to only allow specific scripts to be run
@@ -214,7 +222,9 @@ class CatCodingPanel {
 
 function getNonce() {
 	let text = '';
+
 	const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
 	for (let i = 0; i < 32; i++) {
 		text += possible.charAt(Math.floor(Math.random() * possible.length));
 	}

@@ -16,8 +16,10 @@ export class TabCountTool implements vscode.LanguageModelTool<ITabCountParameter
 		_token: vscode.CancellationToken
 	) {
 		const params = options.input;
+
 		if (typeof params.tabGroup === 'number') {
 			const group = vscode.window.tabGroups.all[Math.max(params.tabGroup - 1, 0)];
+
 			const nth =
 				params.tabGroup === 1
 					? '1st'
@@ -26,9 +28,11 @@ export class TabCountTool implements vscode.LanguageModelTool<ITabCountParameter
 						: params.tabGroup === 3
 							? '3rd'
 							: `${params.tabGroup}th`;
+
 			return new vscode.LanguageModelToolResult([new vscode.LanguageModelTextPart(`There are ${group.tabs.length} tabs open in the ${nth} tab group.`)]);
 		} else {
 			const group = vscode.window.tabGroups.activeTabGroup;
+
 			return new vscode.LanguageModelToolResult([new vscode.LanguageModelTextPart(`There are ${group.tabs.length} tabs open.`)]);
 		}
 	}
@@ -64,6 +68,7 @@ export class FindFilesTool implements vscode.LanguageModelTool<IFindFilesParamet
 		token: vscode.CancellationToken
 	) {
 		const params = options.input as IFindFilesParameters;
+
 		const files = await vscode.workspace.findFiles(
 			params.pattern,
 			'**/node_modules/**',
@@ -72,6 +77,7 @@ export class FindFilesTool implements vscode.LanguageModelTool<IFindFilesParamet
 		);
 
 		const strFiles = files.map((f) => f.fsPath).join('\n');
+
 		return new vscode.LanguageModelToolResult([new vscode.LanguageModelTextPart(`Found ${files.length} files matching "${params.pattern}":\n${strFiles}`)]);
 	}
 
@@ -94,7 +100,9 @@ async function waitForShellIntegration(
 	timeout: number
 ): Promise<void> {
 	let resolve: () => void;
+
 	let reject: (e: Error) => void;
+
 	const p = new Promise<void>((_resolve, _reject) => {
 		resolve = _resolve;
 		reject = _reject;
@@ -123,6 +131,7 @@ export class RunInTerminalTool
 
 		const terminal = vscode.window.createTerminal('Language Model Tool User');
 		terminal.show();
+
 		try {
 			await waitForShellIntegration(terminal, 5000);
 		} catch (e) {
@@ -130,9 +139,11 @@ export class RunInTerminalTool
 		}
 
 		const execution = terminal.shellIntegration!.executeCommand(params.command);
+
 		const terminalStream = execution.read();
 
 		let terminalResult = '';
+
 		for await (const chunk of terminalStream) {
 			terminalResult += chunk;
 		}

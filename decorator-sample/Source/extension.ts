@@ -37,14 +37,22 @@ export function activate(context: vscode.ExtensionContext) {
 			return;
 		}
 		const regEx = /\d+/g;
+
 		const text = activeEditor.document.getText();
+
 		const smallNumbers: vscode.DecorationOptions[] = [];
+
 		const largeNumbers: vscode.DecorationOptions[] = [];
+
 		let match;
+
 		while ((match = regEx.exec(text))) {
 			const startPos = activeEditor.document.positionAt(match.index);
+
 			const endPos = activeEditor.document.positionAt(match.index + match[0].length);
+
 			const decoration = { range: new vscode.Range(startPos, endPos), hoverMessage: 'Number **' + match[0] + '**' };
+
 			if (match[0].length < 3) {
 				smallNumbers.push(decoration);
 			} else {
@@ -73,6 +81,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	vscode.window.onDidChangeActiveTextEditor(editor => {
 		activeEditor = editor;
+
 		if (editor) {
 			triggerUpdateDecorations();
 		}

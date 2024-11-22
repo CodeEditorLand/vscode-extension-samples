@@ -26,6 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.commands.registerCommand('jsonOutline.refreshNode', offset => jsonOutlineProvider.refresh(offset));
 	vscode.commands.registerCommand('jsonOutline.renameNode', args => {
 		let offset = undefined;
+
 		if (args.selectedTreeItems && args.selectedTreeItems.length) {
 			offset = args.selectedTreeItems[0];
 		} else if (typeof args === 'number') {
@@ -46,3 +47,4 @@ export function activate(context: vscode.ExtensionContext) {
 
 	new TestViewDragAndDrop(context);
 }
+

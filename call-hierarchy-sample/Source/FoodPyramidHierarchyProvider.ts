@@ -5,8 +5,10 @@ export class FoodPyramidHierarchyProvider implements vscode.CallHierarchyProvide
 
 	prepareCallHierarchy(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken): vscode.CallHierarchyItem | undefined {
 		const range = document.getWordRangeAtPosition(position);
+
 		if (range) {
 			const word = document.getText(range);
+
 			return this.createCallHierarchyItem(word, '', document, range);
 		} else {
 			return undefined;
@@ -15,9 +17,12 @@ export class FoodPyramidHierarchyProvider implements vscode.CallHierarchyProvide
 
 	async provideCallHierarchyOutgoingCalls(item: vscode.CallHierarchyItem, _token: vscode.CancellationToken): Promise<vscode.CallHierarchyOutgoingCall[] | undefined> {
 		const document = await vscode.workspace.openTextDocument(item.uri);
+
 		const parser = new FoodPyramidParser();
 		parser.parse(document);
+
 		const model = parser.getModel();
+
 		const originRelation = model.getRelationAt(item.range);
 
 		const outgoingCallItems: vscode.CallHierarchyOutgoingCall[] = [];
@@ -28,7 +33,9 @@ export class FoodPyramidHierarchyProvider implements vscode.CallHierarchyProvide
 
 			outgoingCalls.forEach(relation => {
 				const outgoingCallRange = relation.getRangeOf(relation.object);
+
 				const verbItem = this.createCallHierarchyItem(relation.object, 'noun', document, outgoingCallRange);
+
 				const outgoingCallItem = new vscode.CallHierarchyOutgoingCall(verbItem, [outgoingCallRange]);
 				outgoingCallItems.push(outgoingCallItem);
 			});
@@ -37,7 +44,9 @@ export class FoodPyramidHierarchyProvider implements vscode.CallHierarchyProvide
 
 			outgoingCallMap.forEach((relations, verb) => {
 				const outgoingCallRanges = relations.map(relation => relation.getRangeOf(verb));
+
 				const verbItem = this.createCallHierarchyItem(verb, 'verb', document, outgoingCallRanges[0]);
+
 				const outgoingCallItem = new vscode.CallHierarchyOutgoingCall(verbItem, outgoingCallRanges);
 				outgoingCallItems.push(outgoingCallItem);
 			});
@@ -48,9 +57,12 @@ export class FoodPyramidHierarchyProvider implements vscode.CallHierarchyProvide
 
 	async provideCallHierarchyIncomingCalls(item: vscode.CallHierarchyItem, _token: vscode.CancellationToken): Promise<vscode.CallHierarchyIncomingCall[]> {
 		const document = await vscode.workspace.openTextDocument(item.uri);
+
 		const parser = new FoodPyramidParser();
 		parser.parse(document);
+
 		const model = parser.getModel();
+
 		const originRelation = model.getRelationAt(item.range);
 
 		const outgoingCallItems: vscode.CallHierarchyIncomingCall[] = [];
@@ -61,7 +73,9 @@ export class FoodPyramidHierarchyProvider implements vscode.CallHierarchyProvide
 
 			outgoingCalls.forEach(relation => {
 				const outgoingCallRange = relation.getRangeOf(relation.subject);
+
 				const verbItem = this.createCallHierarchyItem(relation.subject, 'noun', document, outgoingCallRange);
+
 				const outgoingCallItem = new vscode.CallHierarchyIncomingCall(verbItem, [outgoingCallRange]);
 				outgoingCallItems.push(outgoingCallItem);
 			});
@@ -70,7 +84,9 @@ export class FoodPyramidHierarchyProvider implements vscode.CallHierarchyProvide
 
 			outgoingCallMap.forEach((relations, verb) => {
 				const outgoingCallRanges = relations.map(relation => relation.getRangeOf(verb));
+
 				const verbItem = this.createCallHierarchyItem(verb, 'verb-inverted', document, outgoingCallRanges[0]);
+
 				const outgoingCallItem = new vscode.CallHierarchyIncomingCall(verbItem, outgoingCallRanges);
 				outgoingCallItems.push(outgoingCallItem);
 			});
@@ -97,9 +113,12 @@ class FoodPyramidParser {
 
 	parse(textDocument: vscode.TextDocument): void {
 		const pattern = /^(\w+)\s+(\w+)\s+(\w+).$/gm;
+
 		let match: RegExpExecArray | null;
+
 		while ((match = pattern.exec(textDocument.getText()))) {
 			const startPosition = textDocument.positionAt(match.index);
+
 			const range = new vscode.Range(startPosition, startPosition.translate({ characterDelta: match[0].length }));
 			this._model.addRelation(new FoodRelation(match[1], match[2], match[3], match[0], range));
 		}
@@ -115,9 +134,11 @@ function groupBy<K, V>(array: V[], keyGetter: (value: V) => K): Map<K, V[]> {
 	const map = new Map();
 	array.forEach((item) => {
 		const key = keyGetter(item);
+
 		const groupForKey = map.get(key) || [];
 		groupForKey.push(item);
 		map.set(key, groupForKey);
 	});
+
 	return map;
 }

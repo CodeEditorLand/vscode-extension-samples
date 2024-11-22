@@ -12,6 +12,7 @@ function validateSamplesAreListed() {
 	const allSamples = samples.concat(lspSamples);
 
 	const samplesByPath = new Map();
+
 	for (const sample of allSamples) {
 		samplesByPath.set(sample.path, sample);
 	}
@@ -25,6 +26,7 @@ function validateSamplesAreListed() {
 		}
 
 		const sampleEntry = samplesByPath.get(fileName);
+
 		if (!sampleEntry) {
 			throw new Error(`Sample '${fileName}' is not listed in samples.js`);
 		}
@@ -36,6 +38,7 @@ function validateSamplesAreListed() {
  */
 function validateReadmeUpdated() {
 	const { updateReadme } = require('./update-readme');
+
 	if (updateReadme(true)) {
 		throw new Error(`Readme not updated. Run 'node .scripts/update-readme.js' to update the readme.`);
 	}
@@ -43,3 +46,4 @@ function validateReadmeUpdated() {
 
 validateSamplesAreListed();
 validateReadmeUpdated();
+

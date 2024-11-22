@@ -43,6 +43,7 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 	public getTreeItem(element: Node): vscode.TreeItem {
 		const treeItem = this._getTreeItem(element.key);
 		treeItem.id = element.key;
+
 		return treeItem;
 	}
 	public getParent(element: Node): Node {
@@ -57,13 +58,16 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 
 	public async handleDrop(target: Node | undefined, sources: vscode.DataTransfer, _token: vscode.CancellationToken): Promise<void> {
 		const transferItem = sources.get('application/vnd.code.tree.testViewDragAndDrop');
+
 		if (!transferItem) {
 			return;
 		}
 		const treeItems: Node[] = transferItem.value;
+
 		let roots = this._getLocalRoots(treeItems);
 		// Remove nodes that are already target's parent nodes
 		roots = roots.filter(r => !this._isChild(this._getTreeElement(r.key), target));
+
 		if (roots.length > 0) {
 			// Reload parents of the moving elements
 			const parents = roots.map(r => this.getParent(r));
@@ -87,6 +91,7 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 				return true;
 			} else {
 				const isChild = this._isChild((node as any)[prop], child);
+
 				if (isChild) {
 					return isChild;
 				}
@@ -98,10 +103,13 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 	// From the given nodes, filter out all nodes who's parent is already in the the array of Nodes.
 	_getLocalRoots(nodes: Node[]): Node[] {
 		const localRoots = [];
+
 		for (const node of nodes) {
 			const parent = this.getParent(node);
+
 			if (parent) {
 				const isInList = nodes.find(n => n.key === parent.key);
+
 				if (isInList === undefined) {
 					localRoots.push(node);
 				}
@@ -116,9 +124,12 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 	_reparentNode(node: Node, target: Node | undefined): void {
 		const element: any = {};
 		element[node.key] = this._getTreeElement(node.key);
+
 		const elementCopy = { ...element };
 		this._removeNode(node);
+
 		const targetElement = this._getTreeElement(target?.key);
+
 		if (Object.keys(element).length === 0) {
 			targetElement[node.key] = {};
 		} else {
@@ -129,9 +140,11 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 	// Remove node from tree
 	_removeNode(element: Node, tree?: any): void {
 		const subTree = tree ? tree : this.tree;
+
 		for (const prop in subTree) {
 			if (prop === element.key) {
 				const parent = this.getParent(element);
+
 				if (parent) {
 					const parentObject = this._getTreeElement(parent.key);
 					delete parentObject[prop];
@@ -149,6 +162,7 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 			return Object.keys(this.tree);
 		}
 		const treeElement = this._getTreeElement(key);
+
 		if (treeElement) {
 			return Object.keys(treeElement);
 		}
@@ -159,6 +173,7 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 		const treeElement = this._getTreeElement(key);
 		// An example of how to use codicons in a MarkdownString in a tree item tooltip.
 		const tooltip = new vscode.MarkdownString(`$(zap) Tooltip for ${key}`, true);
+
 		return {
 			label: /**vscode.TreeItemLabel**/{ label: key, highlights: key.length > 1 ? [[key.length - 2, key.length - 1]] : void 0 } as any,
 			tooltip,
@@ -172,11 +187,13 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 			return this.tree;
 		}
 		const currentNode = tree ?? this.tree;
+
 		for (const prop in currentNode) {
 			if (prop === element) {
 				return currentNode[prop];
 			} else {
 				const treeElement = this._getTreeElement(element, currentNode[prop]);
+
 				if (treeElement) {
 					return treeElement;
 				}
@@ -186,11 +203,13 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 
 	_getParent(element: string, parent?: string, tree?: any): any {
 		const currentNode = tree ?? this.tree;
+
 		for (const prop in currentNode) {
 			if (prop === element && parent) {
 				return this._getNode(parent);
 			} else {
 				const parent = this._getParent(element, prop, currentNode[prop]);
+
 				if (parent) {
 					return parent;
 				}
@@ -213,3 +232,4 @@ interface Node {
 class Key {
 	constructor(readonly key: string) { }
 }
+

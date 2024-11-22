@@ -19,7 +19,9 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
 	// Load the Wasm module
 	const filename = vscode.Uri.joinPath(context.extensionUri, 'target', 'wasm32-unknown-unknown', 'debug', 'calculator.wasm');
+
 	const bits = await vscode.workspace.fs.readFile(filename);
+
 	const module = await WebAssembly.compile(bits);
 
 	// The implementation of the log function that is called from WASM
@@ -46,14 +48,19 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 	context.subscriptions.push(vscode.commands.registerCommand('vscode-samples.wasm-component-model.run', () => {
 		channel.show();
 		channel.appendLine('Running calculator example');
+
 		const add = Types.Operation.Add({ left: 1, right: 2 });
 		channel.appendLine(`Add ${api.calc(add)}`);
+
 		const sub = Types.Operation.Sub({ left: 10, right: 8 });
 		channel.appendLine(`Sub ${api.calc(sub)}`);
+
 		const mul = Types.Operation.Mul({ left: 3, right: 7 });
 		channel.appendLine(`Mul ${api.calc(mul)}`);
+
 		const div = Types.Operation.Div({ left: 10, right: 2 });
 		channel.appendLine(`Div ${api.calc(div)}`);
+
 		try {
 			channel.appendLine(`Divide by Zero ${api.calc(Types.Operation.Div({ left: 10, right: 0 }))}`);
 		} catch (error) {
@@ -63,3 +70,4 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 		}
 	}));
 }
+

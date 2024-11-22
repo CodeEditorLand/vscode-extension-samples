@@ -64,7 +64,9 @@ export class Emojizer implements vscode.CodeActionProvider {
 
 	private isAtStartOfSmiley(document: vscode.TextDocument, range: vscode.Range) {
 		const start = range.start;
+
 		const line = document.lineAt(start.line);
+
 		return line.text[start.character] === ':' && line.text[start.character + 1] === ')';
 	}
 
@@ -72,12 +74,14 @@ export class Emojizer implements vscode.CodeActionProvider {
 		const fix = new vscode.CodeAction(`Convert to ${emoji}`, vscode.CodeActionKind.QuickFix);
 		fix.edit = new vscode.WorkspaceEdit();
 		fix.edit.replace(document.uri, new vscode.Range(range.start, range.start.translate(0, 2)), emoji);
+
 		return fix;
 	}
 
 	private createCommand(): vscode.CodeAction {
 		const action = new vscode.CodeAction('Learn more...', vscode.CodeActionKind.Empty);
 		action.command = { command: COMMAND, title: 'Learn more about emojis', tooltip: 'This will open the unicode emoji page.' };
+
 		return action;
 	}
 }
@@ -103,6 +107,8 @@ export class Emojinfo implements vscode.CodeActionProvider {
 		action.command = { command: COMMAND, title: 'Learn more about emojis', tooltip: 'This will open the unicode emoji page.' };
 		action.diagnostics = [diagnostic];
 		action.isPreferred = true;
+
 		return action;
 	}
 }
+

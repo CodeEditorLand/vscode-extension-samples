@@ -14,9 +14,11 @@ let generationCounter = 0;
 export const getContentFromFilesystem = async (uri: vscode.Uri) => {
 	try {
 		const rawContent = await vscode.workspace.fs.readFile(uri);
+
 		return textDecoder.decode(rawContent);
 	} catch (e) {
 		console.warn(`Error providing tests for ${uri.fsPath}`, e);
+
 		return "";
 	}
 };
@@ -47,6 +49,7 @@ export class TestFile {
 		item: vscode.TestItem,
 	) {
 		const ancestors = [{ item, children: [] as vscode.TestItem[] }];
+
 		const thisGeneration = generationCounter++;
 		this.didResolve = true;
 
@@ -60,6 +63,7 @@ export class TestFile {
 		parseMarkdown(content, {
 			onTest: (range, a, operator, b, expected) => {
 				const parent = ancestors[ancestors.length - 1];
+
 				const data = new TestCase(
 					a,
 					operator as Operator,
@@ -67,6 +71,7 @@ export class TestFile {
 					expected,
 					thisGeneration,
 				);
+
 				const id = `${item.uri}/${data.getLabel()}`;
 
 				const tcase = controller.createTestItem(
@@ -81,7 +86,9 @@ export class TestFile {
 
 			onHeading: (range, name, depth) => {
 				ascend(depth);
+
 				const parent = ancestors[ancestors.length - 1];
+
 				const id = `${item.uri}/${name}`;
 
 				const thead = controller.createTestItem(id, name, item.uri);
@@ -120,7 +127,9 @@ export class TestCase {
 		await new Promise((resolve) =>
 			setTimeout(resolve, 1000 + Math.random() * 1000),
 		);
+
 		const actual = this.evaluate();
+
 		const duration = Date.now() - start;
 
 		if (actual === this.expected) {
@@ -140,10 +149,13 @@ export class TestCase {
 		switch (this.operator) {
 			case "-":
 				return this.a - this.b;
+
 			case "+":
 				return this.a + this.b;
+
 			case "/":
 				return Math.floor(this.a / this.b);
+
 			case "*":
 				return this.a * this.b;
 		}

@@ -7,6 +7,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const memFs = new MemFS();
 	context.subscriptions.push(vscode.workspace.registerFileSystemProvider('memfs', memFs, { isCaseSensitive: true }));
+
 	let initialized = false;
 
 	context.subscriptions.push(vscode.commands.registerCommand('memfs.reset', _ => {
@@ -71,8 +72,10 @@ export function activate(context: vscode.ExtensionContext) {
 
 function randomData(lineCnt: number, lineLen = 155): Buffer {
 	const lines: string[] = [];
+
 	for (let i = 0; i < lineCnt; i++) {
 		let line = '';
+
 		while (line.length < lineLen) {
 			line += Math.random().toString(2 + (i % 34)).substr(2);
 		}

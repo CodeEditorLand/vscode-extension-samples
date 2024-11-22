@@ -27,6 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 	commentController.commentingRangeProvider = {
 		provideCommentingRanges: (document: vscode.TextDocument, _token: vscode.CancellationToken) => {
 			const lineCount = document.lineCount;
+
 			return [new vscode.Range(0, 0, lineCount - 1, 0)];
 		}
 	};
@@ -42,6 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('mywiki.startDraft', (reply: vscode.CommentReply) => {
 		const thread = reply.thread;
 		thread.contextValue = 'draft';
+
 		const newComment = new NoteComment(reply.text, vscode.CommentMode.Preview, { name: 'vscode' }, thread);
 		newComment.label = 'pending';
 		thread.comments = [...thread.comments, newComment];
@@ -56,10 +58,12 @@ export function activate(context: vscode.ExtensionContext) {
 
 		thread.contextValue = undefined;
 		thread.collapsibleState = vscode.CommentThreadCollapsibleState.Collapsed;
+
 		if (reply.text) {
 			const newComment = new NoteComment(reply.text, vscode.CommentMode.Preview, { name: 'vscode' }, thread);
 			thread.comments = [...thread.comments, newComment].map(comment => {
 				comment.label = undefined;
+
 				return comment;
 			});
 		}
@@ -67,6 +71,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(vscode.commands.registerCommand('mywiki.deleteNoteComment', (comment: NoteComment) => {
 		const thread = comment.parent;
+
 		if (!thread) {
 			return;
 		}
@@ -132,7 +137,9 @@ export function activate(context: vscode.ExtensionContext) {
 
 	function replyNote(reply: vscode.CommentReply) {
 		const thread = reply.thread;
+
 		const newComment = new NoteComment(reply.text, vscode.CommentMode.Preview, { name: 'vscode' }, thread, thread.comments.length ? 'canDelete' : undefined);
+
 		if (thread.contextValue === 'draft') {
 			newComment.label = 'pending';
 		}

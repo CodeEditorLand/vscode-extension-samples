@@ -3,6 +3,7 @@ import * as vscode from 'vscode';
 import { PlayPrompt } from './play';
 
 const CAT_NAMES_COMMAND_ID = 'cat.namesInEditor';
+
 const CAT_PARTICIPANT_ID = 'chat-sample.cat';
 
 interface ICatChatResult extends vscode.ChatResult {
@@ -20,7 +21,9 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
         // The GitHub Copilot Chat extension implements this provider.
         if (request.command === 'randomTeach') {
             stream.progress('Picking the right topic to teach...');
+
             const topic = getTopic(context.history);
+
             try {
                 const messages = [
                     vscode.LanguageModelChatMessage.User('You are a cat! Your job is to explain computer science concepts in the funny manner of a cat. Always start your response by stating what concept you are explaining. Always include code samples.'),
@@ -28,6 +31,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
                 ];
 
                 const chatResponse = await request.model.sendRequest(messages, {}, token);
+
                 for await (const fragment of chatResponse.text) {
                     stream.markdown(fragment);
                 }
@@ -42,9 +46,11 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
             });
 
             logger.logUsage('request', { kind: 'randomTeach' });
+
             return { metadata: { command: 'randomTeach' } };
         } else if (request.command === 'play') {
             stream.progress('Throwing away the computer science books and preparing to play with some Python code...');
+
             try {
                 // Here's an example of how to use the prompt-tsx library to build a prompt
                 const { messages } = await renderPrompt(
@@ -54,6 +60,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
                     request.model);
 
                 const chatResponse = await request.model.sendRequest(messages, {}, token);
+
                 for await (const fragment of chatResponse.text) {
                     stream.markdown(fragment);
                 }
@@ -63,6 +70,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
             }
 
             logger.logUsage('request', { kind: 'play' });
+
             return { metadata: { command: 'play' } };
         } else {
             try {
@@ -73,6 +81,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
                 ];
 
                 const chatResponse = await request.model.sendRequest(messages, {}, token);
+
                 for await (const fragment of chatResponse.text) {
                     // Process the output from the language model
                     // Replace all python function definitions with cat sounds to make the user stop looking at the code and start playing with the cat
@@ -84,6 +93,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
             }
 
             logger.logUsage('request', { kind: '' });
+
             return { metadata: { command: '' } };
         }
     };
@@ -132,11 +142,14 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
             const text = textEditor.document.getText();
 
             let chatResponse: vscode.LanguageModelChatResponse | undefined;
+
             try {
                 // Use gpt-4o since it is fast and high quality.
                 const [model] = await vscode.lm.selectChatModels({ vendor: 'copilot', family: 'gpt-4o' });
+
                 if (!model) {
                     console.log('Model not found. Please make sure the GitHub Copilot Chat extension is installed and enabled.');
+
                     return;
                 }
 
@@ -159,6 +172,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
             // Clear the editor content before inserting new content
             await textEditor.edit(edit => {
                 const start = new vscode.Position(0, 0);
+
                 const end = new vscode.Position(textEditor.document.lineCount - 1, textEditor.document.lineAt(textEditor.document.lineCount - 1).text.length);
                 edit.delete(new vscode.Range(start, end));
             });
@@ -168,6 +182,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
                 for await (const fragment of chatResponse.text) {
                     await textEditor.edit(edit => {
                         const lastLine = textEditor.document.lineAt(textEditor.document.lineCount - 1);
+
                         const position = new vscode.Position(lastLine.lineNumber, lastLine.text.length);
                         edit.insert(position, fragment);
                     });
@@ -176,6 +191,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
                 // async response stream may fail, e.g network interruption or server side error
                 await textEditor.edit(edit => {
                     const lastLine = textEditor.document.lineAt(textEditor.document.lineCount - 1);
+
                     const position = new vscode.Position(lastLine.lineNumber, lastLine.text.length);
                     edit.insert(position, (err as Error).message);
                 });
@@ -194,6 +210,7 @@ function handleError(logger: vscode.TelemetryLogger, err: any, stream: vscode.Ch
 
     if (err instanceof vscode.LanguageModelError) {
         console.log(err.message, err.code, err.cause);
+
         if (err.cause instanceof Error && err.cause.message.includes('off_topic')) {
             stream.markdown(vscode.l10n.t('I\'m sorry, I can only explain computer science concepts.'));
         }

@@ -12,10 +12,13 @@ function setVersion(
 	sample: Sample
 ) {
 	const packageJsonPath = path.join(sample.path, 'package.json');
+
 	const packageJsonContents = fs.readFileSync(packageJsonPath).toString();
+
 	const packageJson = JSON.parse(packageJsonContents);
 
 	let changed = false;
+
 	if (packageJson.dependencies?.[dependencyName]) {
 		packageJson.dependencies[dependencyName] = version;
 		changed = true;
@@ -30,6 +33,7 @@ function setVersion(
 	}
 
 	console.log(`Updated ${dependencyName} in ${packageJson.name}`);
+
 	const space = packageJsonContents.includes('\t') ? '\t' : '  ';
 	fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, undefined, space) + '\n');
 

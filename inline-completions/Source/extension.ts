@@ -10,7 +10,9 @@ export function activate(_context: vscode.ExtensionContext) {
 	const provider: vscode.InlineCompletionItemProvider = {
 		async provideInlineCompletionItems(document, position, _context, _token) {
 			console.log('provideInlineCompletionItems triggered');
+
 			const regexp = /\/\/ \[(.+?),(.+?)\)(.*?):(.*)/;
+
 			if (position.line <= 0) {
 				return;
 			}
@@ -21,28 +23,38 @@ export function activate(_context: vscode.ExtensionContext) {
 			};
 
 			let offset = 1;
+
 			while (offset > 0) {
 				if (position.line - offset < 0) {
 					break;
 				}
 
 				const lineBefore = document.lineAt(position.line - offset).text;
+
 				const matches = lineBefore.match(regexp);
+
 				if (!matches) {
 					break;
 				}
 				offset++;
 
 				const start = matches[1];
+
 				const startInt = parseInt(start, 10);
+
 				const end = matches[2];
+
 				const endInt =
 					end === '*'
 						? document.lineAt(position.line).text.length
 						: parseInt(end, 10);
+
 				const flags = matches[3];
+
 				const completeBracketPairs = flags.includes('b');
+
 				const isSnippet = flags.includes('s');
+
 				const text = matches[4].replace(/\\n/g, '\n');
 
 				result.items.push({

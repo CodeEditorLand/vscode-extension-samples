@@ -9,9 +9,11 @@ import { lspSamples, Sample, samples } from './samples';
 
 async function tryRunCommand(command: string, sample: Sample) {
 	const packageJsonPath = path.join(sample.path, 'package.json');
+
 	if (fs.existsSync(packageJsonPath)) {
 		try {
 			const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
+
 			if (packageJson['devDependencies'] || packageJson['dependencies']) {
 				console.log(`=== Running ${command} on ${path.basename(sample.path)} ===`);
 				child_process.execSync(command, {
@@ -27,6 +29,7 @@ async function tryRunCommand(command: string, sample: Sample) {
 
 if (require.main === module) {
 	const command = process.argv.slice(2).join(' ');
+
 	for (const sample of [...samples, ...lspSamples]) {
 		tryRunCommand(command, sample);
 	}

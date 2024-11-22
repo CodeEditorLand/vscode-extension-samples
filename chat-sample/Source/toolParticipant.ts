@@ -22,10 +22,12 @@ export function registerToolUserChatParticipant(context: vscode.ExtensionContext
     const handler: vscode.ChatRequestHandler = async (request: vscode.ChatRequest, chatContext: vscode.ChatContext, stream: vscode.ChatResponseStream, token: vscode.CancellationToken) => {
         if (request.command === 'list') {
             stream.markdown(`Available tools: ${vscode.lm.tools.map(tool => tool.name).join(', ')}\n\n`);
+
             return;
         }
 
         let model = request.model;
+
         if (model.vendor === 'copilot' && model.family.startsWith('o1')) {
             // The o1 models do not currently support tools
             const models = await vscode.lm.selectChatModels({
@@ -39,6 +41,7 @@ export function registerToolUserChatParticipant(context: vscode.ExtensionContext
         const tools = request.command === 'all' ?
             vscode.lm.tools :
             vscode.lm.tools.filter(tool => tool.tags.includes('chat-tools-sample'));
+
         const options: vscode.LanguageModelChatRequestOptions = {
             justification: 'To make a request to @toolsTSX',
         };
@@ -54,6 +57,7 @@ export function registerToolUserChatParticipant(context: vscode.ExtensionContext
             },
             { modelMaxPromptTokens: model.maxInputTokens },
             model);
+
         let messages = result.messages;
         result.references.forEach(ref => {
             if (ref.anchor instanceof vscode.Uri || ref.anchor instanceof vscode.Location) {
@@ -62,11 +66,15 @@ export function registerToolUserChatParticipant(context: vscode.ExtensionContext
         });
 
         const toolReferences = [...request.toolReferences];
+
         const accumulatedToolResults: Record<string, vscode.LanguageModelToolResult> = {};
+
         const toolCallRounds: ToolCallRound[] = [];
+
         const runWithTools = async (): Promise<void> => {
             // If a toolReference is present, force the model to call that tool
             const requestedTool = toolReferences.shift();
+
             if (requestedTool) {
                 options.toolMode = vscode.LanguageModelChatToolMode.Required;
                 options.tools = vscode.lm.tools.filter(tool => tool.name === requestedTool.name);
@@ -80,7 +88,9 @@ export function registerToolUserChatParticipant(context: vscode.ExtensionContext
 
             // Stream text output and collect tool calls from the response
             const toolCalls: vscode.LanguageModelToolCallPart[] = [];
+
             let responseStr = '';
+
             for await (const part of response.stream) {
                 if (part instanceof vscode.LanguageModelTextPart) {
                     stream.markdown(part.value);
@@ -97,6 +107,7 @@ export function registerToolUserChatParticipant(context: vscode.ExtensionContext
                     response: responseStr,
                     toolCalls
                 });
+
                 const result = (await renderPrompt(
                     ToolUserPrompt,
                     {
@@ -108,7 +119,9 @@ export function registerToolUserChatParticipant(context: vscode.ExtensionContext
                     { modelMaxPromptTokens: model.maxInputTokens },
                     model));
                 messages = result.messages;
+
                 const toolResultMetadata = result.metadatas.getAll(ToolResultMetadata);
+
                 if (toolResultMetadata?.length) {
                     // Cache tool results for later, so they can be incorporated into later prompts without calling the tool again
                     toolResultMetadata.forEach(meta => accumulatedToolResults[meta.toolCallId] = meta.result);
@@ -136,3 +149,4 @@ export function registerToolUserChatParticipant(context: vscode.ExtensionContext
     toolUser.iconPath = new vscode.ThemeIcon('tools');
     context.subscriptions.push(toolUser);
 }
+

@@ -18,7 +18,9 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
 	// Load the Wasm module
 	const filename = vscode.Uri.joinPath(context.extensionUri, 'target', 'wasm32-unknown-unknown', 'debug', 'calculator.wasm');
+
 	const bits = await vscode.workspace.fs.readFile(filename);
+
 	const module = await WebAssembly.compile(bits);
 
 	// The context for the WASM module
@@ -51,3 +53,4 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 		channel.appendLine(`Result: ${result}`);
 	}));
 }
+

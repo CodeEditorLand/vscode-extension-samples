@@ -14,6 +14,7 @@ export async function activate(context: ExtensionContext) {
 	const wasm: Wasm = await Wasm.load();
 
 	const channel = window.createOutputChannel('LSP WASM Server');
+
 	const serverOptions: ServerOptions = async () => {
 		const options: ProcessOptions = {
 			stdio: createStdioOptions(),
@@ -21,9 +22,13 @@ export async function activate(context: ExtensionContext) {
 				{ kind: 'workspaceFolder' },
 			]
 		};
+
 		const filename = Uri.joinPath(context.extensionUri, 'server', 'target', 'wasm32-wasip1-threads', 'release', 'server.wasm');
+
 		const bits = await workspace.fs.readFile(filename);
+
 		const module = await WebAssembly.compile(bits);
+
 		const process = await wasm.createProcess('lsp-server', module, { initial: 160, maximum: 160, shared: true }, options);
 
 		const decoder = new TextDecoder('utf-8');
@@ -41,6 +46,7 @@ export async function activate(context: ExtensionContext) {
 	};
 
 	client = new LanguageClient('lspClient', 'LSP Client', serverOptions, clientOptions);
+
 	try {
 		await client.start();
 	} catch (error) {
@@ -50,6 +56,7 @@ export async function activate(context: ExtensionContext) {
 	interface CountFileParams {
 		readonly folder: string
 	};
+
 	const CountFilesRequest = new RequestType<CountFileParams, number, void>('wasm-language-server/countFiles');
 	context.subscriptions.push(commands.registerCommand('vscode-samples.wasm-language-server.countFiles', async () => {
 		// We assume we do have a folder.
@@ -64,3 +71,4 @@ export async function activate(context: ExtensionContext) {
 export function deactivate() {
 	return client.stop();
 }
+

@@ -24,6 +24,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 
 	refresh(offset?: number): void {
 		this.parseTree();
+
 		if (offset) {
 			this._onDidChangeTreeData.fire(offset);
 		} else {
@@ -34,17 +35,22 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 	rename(offset: number): void {
 		vscode.window.showInputBox({ placeHolder: 'Enter the new label' }).then(value => {
 			const editor = this.editor;
+
 			const tree = this.tree;
+
 			if (value !== null && value !== undefined && editor && tree) {
 				editor.edit(editBuilder => {
 					const path = json.getLocation(this.text, offset).path;
+
 					let propertyNode: json.Node | undefined = json.findNodeAtLocation(tree, path);
+
 					if (propertyNode.parent?.type !== 'array') {
 						propertyNode = propertyNode.parent?.children ? propertyNode.parent.children[0] : undefined;
 					}
 					if (propertyNode) {
 						const range = new vscode.Range(editor.document.positionAt(propertyNode.offset), editor.document.positionAt(propertyNode.offset + propertyNode.length));
 						editBuilder.replace(range, `"${value}"`);
+
 						setTimeout(() => {
 							this.parseTree();
 							this.refresh(offset);
@@ -60,6 +66,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 			if (vscode.window.activeTextEditor.document.uri.scheme === 'file') {
 				const enabled = vscode.window.activeTextEditor.document.languageId === 'json' || vscode.window.activeTextEditor.document.languageId === 'jsonc';
 				vscode.commands.executeCommand('setContext', 'jsonOutlineEnabled', enabled);
+
 				if (enabled) {
 					this.refresh();
 				}
@@ -74,6 +81,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 			for (const change of changeEvent.contentChanges) {
 				const path = json.getLocation(this.text, this.editor.document.offsetAt(change.range.start)).path;
 				path.pop();
+
 				const node = path.length ? json.findNodeAtLocation(this.tree, path) : void 0;
 				this.parseTree();
 				this._onDidChangeTreeData.fire(node ? node.offset : void 0);
@@ -85,6 +93,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 		this.text = '';
 		this.tree = undefined;
 		this.editor = vscode.window.activeTextEditor;
+
 		if (this.editor && this.editor.document) {
 			this.text = this.editor.document.getText();
 			this.tree = json.parseTree(this.text);
@@ -94,7 +103,9 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 	getChildren(offset?: number): Thenable<number[]> {
 		if (offset && this.tree) {
 			const path = json.getLocation(this.text, offset).path;
+
 			const node = json.findNodeAtLocation(this.tree, path);
+
 			return Promise.resolve(this.getChildrenOffsets(node));
 		} else {
 			return Promise.resolve(this.tree ? this.getChildrenOffsets(this.tree) : []);
@@ -103,10 +114,13 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 
 	private getChildrenOffsets(node: json.Node): number[] {
 		const offsets: number[] = [];
+
 		if (node.children && this.tree) {
 			for (const child of node.children) {
 				const childPath = json.getLocation(this.text, child.offset).path;
+
 				const childNode = json.findNodeAtLocation(this.tree, childPath);
+
 				if (childNode) {
 					offsets.push(childNode.offset);
 				}
@@ -124,9 +138,12 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 		}
 
 		const path = json.getLocation(this.text, offset).path;
+
 		const valueNode = json.findNodeAtLocation(this.tree, path);
+
 		if (valueNode) {
 			const hasChildren = valueNode.type === 'object' || valueNode.type === 'array';
+
 			const treeItem: vscode.TreeItem = new vscode.TreeItem(this.getLabel(valueNode), hasChildren ? valueNode.type === 'object' ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None);
 			treeItem.command = {
 				command: 'extension.openJsonSelection',
@@ -135,6 +152,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 			};
 			treeItem.iconPath = this.getIcon(valueNode);
 			treeItem.contextValue = valueNode.type;
+
 			return treeItem;
 		}
 		throw (new Error(`Could not find json node at ${path}`));
@@ -148,6 +166,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 
 	private getIcon(node: json.Node): any {
 		const nodeType = node.type;
+
 		if (nodeType === 'boolean') {
 			return {
 				light: this.context.asAbsolutePath(path.join('resources', 'light', 'boolean.svg')),
@@ -172,6 +191,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 	private getLabel(node: json.Node): string {
 		if (node.parent?.type === 'array') {
 			const prefix = node.parent.children?.indexOf(node).toString();
+
 			if (node.type === 'object') {
 				return prefix + ':{ }';
 			}
@@ -181,6 +201,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 			return prefix + ':' + node.value.toString();
 		} else {
 			const property = node.parent?.children ? node.parent.children[0].value.toString() : '';
+
 			if (node.type === 'array' || node.type === 'object') {
 				if (node.type === 'object') {
 					return '{ } ' + property;
@@ -190,6 +211,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 				}
 			}
 			const value = this.editor?.document.getText(new vscode.Range(this.editor.document.positionAt(node.offset), this.editor.document.positionAt(node.offset + node.length)));
+
 			return `${property}: ${value}`;
 		}
 	}
