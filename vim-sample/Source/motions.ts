@@ -3,12 +3,12 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { Position, TextDocument, window } from 'vscode';
-import { Words, WordCharacters } from './words';
-import { Command, AbstractCommandDescriptor } from './common';
+import { Position, TextDocument, window } from "vscode";
+
+import { AbstractCommandDescriptor, Command } from "./common";
+import { WordCharacters, Words } from "./words";
 
 export class MotionState {
-
 	public anchor: Position | null;
 	public cursorDesiredCharacter: number;
 	public wordCharacterClass: WordCharacters | null;
@@ -18,11 +18,14 @@ export class MotionState {
 		this.wordCharacterClass = null;
 		this.anchor = null;
 	}
-
 }
 
 export abstract class Motion {
-	public abstract run(doc: TextDocument, pos: Position, state: MotionState): Position;
+	public abstract run(
+		doc: TextDocument,
+		pos: Position,
+		state: MotionState,
+	): Position;
 
 	public repeat(hasRepeatCount: boolean, count: number): Motion {
 		if (!hasRepeatCount) {
@@ -33,7 +36,6 @@ export abstract class Motion {
 }
 
 class RepeatingMotion extends Motion {
-
 	private _actual: Motion;
 	private _repeatCount: number;
 
@@ -52,10 +54,16 @@ class RepeatingMotion extends Motion {
 }
 
 class NextCharacterMotion extends Motion {
-	public run(doc: TextDocument, pos: Position, _state: MotionState): Position {
+	public run(
+		doc: TextDocument,
+		pos: Position,
+		_state: MotionState,
+	): Position {
 		if (pos.character === doc.lineAt(pos.line).text.length) {
 			// on last character
-			return ((pos.line + 1 < doc.lineCount) ? new Position(pos.line + 1, 0) : pos);
+			return pos.line + 1 < doc.lineCount
+				? new Position(pos.line + 1, 0)
+				: pos;
 		}
 
 		return new Position(pos.line, pos.character + 1);
@@ -64,7 +72,11 @@ class NextCharacterMotion extends Motion {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 class LeftMotion extends Motion {
-	public run(_doc: TextDocument, pos: Position, state: MotionState): Position {
+	public run(
+		_doc: TextDocument,
+		pos: Position,
+		state: MotionState,
+	): Position {
 		const line = pos.line;
 
 		if (pos.character > 0) {
@@ -82,12 +94,21 @@ class DownMotion extends Motion {
 	public run(doc: TextDocument, pos: Position, state: MotionState): Position {
 		let line = pos.line;
 
-		state.cursorDesiredCharacter = (state.cursorDesiredCharacter === -1 ? pos.character : state.cursorDesiredCharacter);
+		state.cursorDesiredCharacter =
+			state.cursorDesiredCharacter === -1
+				? pos.character
+				: state.cursorDesiredCharacter;
 
 		if (line < doc.lineCount - 1) {
 			line++;
 
-			return new Position(line, Math.min(state.cursorDesiredCharacter, doc.lineAt(line).text.length));
+			return new Position(
+				line,
+				Math.min(
+					state.cursorDesiredCharacter,
+					doc.lineAt(line).text.length,
+				),
+			);
 		}
 
 		return pos;
@@ -99,12 +120,21 @@ class UpMotion extends Motion {
 	public run(doc: TextDocument, pos: Position, state: MotionState): Position {
 		let line = pos.line;
 
-		state.cursorDesiredCharacter = (state.cursorDesiredCharacter === -1 ? pos.character : state.cursorDesiredCharacter);
+		state.cursorDesiredCharacter =
+			state.cursorDesiredCharacter === -1
+				? pos.character
+				: state.cursorDesiredCharacter;
 
 		if (line > 0) {
 			line--;
 
-			return new Position(line, Math.min(state.cursorDesiredCharacter, doc.lineAt(line).text.length));
+			return new Position(
+				line,
+				Math.min(
+					state.cursorDesiredCharacter,
+					doc.lineAt(line).text.length,
+				),
+			);
 		}
 
 		return pos;
@@ -128,13 +158,21 @@ class RightMotion extends Motion {
 }
 
 class EndOfLineMotion extends Motion {
-	public run(doc: TextDocument, pos: Position, _state: MotionState): Position {
+	public run(
+		doc: TextDocument,
+		pos: Position,
+		_state: MotionState,
+	): Position {
 		return new Position(pos.line, doc.lineAt(pos.line).text.length);
 	}
 }
 
 class StartOfLineMotion extends Motion {
-	public run(_doc: TextDocument, pos: Position, _state: MotionState): Position {
+	public run(
+		_doc: TextDocument,
+		pos: Position,
+		_state: MotionState,
+	): Position {
 		return new Position(pos.line, 0);
 	}
 }
@@ -145,7 +183,9 @@ class NextWordStartMotion extends Motion {
 
 		if (pos.character >= lineContent.length - 1) {
 			// cursor at end of line
-			return ((pos.line + 1 < doc.lineCount) ? new Position(pos.line + 1, 0) : pos);
+			return pos.line + 1 < doc.lineCount
+				? new Position(pos.line + 1, 0)
+				: pos;
 		}
 
 		const nextWord = Words.findNextWord(doc, pos, state.wordCharacterClass);
@@ -157,7 +197,11 @@ class NextWordStartMotion extends Motion {
 
 		if (nextWord.start <= pos.character && pos.character < nextWord.end) {
 			// Sitting on a word
-			const nextNextWord = Words.findNextWord(doc, new Position(pos.line, nextWord.end), state.wordCharacterClass);
+			const nextNextWord = Words.findNextWord(
+				doc,
+				new Position(pos.line, nextWord.end),
+				state.wordCharacterClass,
+			);
 
 			if (nextNextWord) {
 				// return start of the next next word
@@ -179,7 +223,9 @@ class NextWordEndMotion extends Motion {
 
 		if (pos.character >= lineContent.length - 1) {
 			// no content on this line or cursor at end of line
-			return ((pos.line + 1 < doc.lineCount) ? new Position(pos.line + 1, 0) : pos);
+			return pos.line + 1 < doc.lineCount
+				? new Position(pos.line + 1, 0)
+				: pos;
 		}
 
 		const nextWord = Words.findNextWord(doc, pos, state.wordCharacterClass);
@@ -195,7 +241,11 @@ class NextWordEndMotion extends Motion {
 }
 
 class GoToLineUndefinedMotion extends Motion {
-	public run(_doc: TextDocument, pos: Position, _state: MotionState): Position {
+	public run(
+		_doc: TextDocument,
+		pos: Position,
+		_state: MotionState,
+	): Position {
 		// does not do anything
 		return pos;
 	}
@@ -209,7 +259,6 @@ class GoToLineUndefinedMotion extends Motion {
 }
 
 abstract class GoToLineMotion extends Motion {
-
 	protected firstNonWhitespaceChar(doc: TextDocument, line: number): number {
 		const lineContent = doc.lineAt(line).text;
 
@@ -218,27 +267,37 @@ abstract class GoToLineMotion extends Motion {
 		while (character < lineContent.length) {
 			const ch = lineContent.charAt(character);
 
-			if (ch !== ' ' && ch !== '\t') {
+			if (ch !== " " && ch !== "\t") {
 				break;
 			}
 			character++;
 		}
 		return character;
 	}
-
 }
 
 class GoToFirstLineMotion extends GoToLineMotion {
-	public run(doc: TextDocument, _pos: Position, _state: MotionState): Position {
+	public run(
+		doc: TextDocument,
+		_pos: Position,
+		_state: MotionState,
+	): Position {
 		return new Position(0, this.firstNonWhitespaceChar(doc, 0));
 	}
 }
 
 class GoToLastLineMotion extends GoToLineMotion {
-	public run(doc: TextDocument, _pos: Position, _state: MotionState): Position {
+	public run(
+		doc: TextDocument,
+		_pos: Position,
+		_state: MotionState,
+	): Position {
 		const lastLine = doc.lineCount - 1;
 
-		return new Position(lastLine, this.firstNonWhitespaceChar(doc, lastLine));
+		return new Position(
+			lastLine,
+			this.firstNonWhitespaceChar(doc, lastLine),
+		);
 	}
 }
 
@@ -250,16 +309,25 @@ class GoToLineDefinedMotion extends GoToLineMotion {
 		this._lineNumber = lineNumber;
 	}
 
-	public run(doc: TextDocument, _pos: Position, _state: MotionState): Position {
-		const line = Math.min(doc.lineCount - 1, Math.max(0, this._lineNumber - 1));
+	public run(
+		doc: TextDocument,
+		_pos: Position,
+		_state: MotionState,
+	): Position {
+		const line = Math.min(
+			doc.lineCount - 1,
+			Math.max(0, this._lineNumber - 1),
+		);
 
 		return new Position(line, this.firstNonWhitespaceChar(doc, line));
 	}
 }
 
 class CursorMoveCommand extends AbstractCommandDescriptor {
-
-	constructor(private to: string, private by?: string) {
+	constructor(
+		private to: string,
+		private by?: string,
+	) {
 		super();
 	}
 
@@ -268,19 +336,21 @@ class CursorMoveCommand extends AbstractCommandDescriptor {
 			to: this.to,
 			by: this.by,
 			value: args.repeat || 1,
-			select: !!args.isVisual
+			select: !!args.isVisual,
 		};
 
 		return {
-			commandId: 'cursorMove',
-			args: cursorMoveArgs
+			commandId: "cursorMove",
+			args: cursorMoveArgs,
 		};
 	}
 }
 
 class EditorScrollCommand extends AbstractCommandDescriptor {
-
-	constructor(private to: string, private by?: string) {
+	constructor(
+		private to: string,
+		private by?: string,
+	) {
 		super();
 	}
 
@@ -289,18 +359,17 @@ class EditorScrollCommand extends AbstractCommandDescriptor {
 			to: this.to,
 			by: this.by,
 			value: args.repeat || 1,
-			revealCursor: true
+			revealCursor: true,
 		};
 
 		return {
-			commandId: 'editorScroll',
-			args: editorScrollArgs
+			commandId: "editorScroll",
+			args: editorScrollArgs,
 		};
 	}
 }
 
 class RevealCurrentLineCommand extends AbstractCommandDescriptor {
-
 	constructor(private at: string) {
 		super();
 	}
@@ -310,37 +379,35 @@ class RevealCurrentLineCommand extends AbstractCommandDescriptor {
 
 		const revealLineArgs: any = {
 			lineNumber,
-			at: this.at
+			at: this.at,
 		};
 
 		return {
-			commandId: 'revealLine',
-			args: revealLineArgs
+			commandId: "revealLine",
+			args: revealLineArgs,
 		};
 	}
 }
 
 class MoveActiveEditorCommandByPosition extends AbstractCommandDescriptor {
-
 	constructor() {
 		super();
 	}
 
 	public createCommand(args?: any): Command {
 		const moveActiveEditorArgs: any = {
-			to: args.repeat === void 0 ? 'last' : 'position',
-			value: args.repeat !== void 0 ? args.repeat + 1 : undefined
+			to: args.repeat === void 0 ? "last" : "position",
+			value: args.repeat !== void 0 ? args.repeat + 1 : undefined,
 		};
 
 		return {
-			commandId: 'moveActiveEditor',
-			args: moveActiveEditorArgs
+			commandId: "moveActiveEditor",
+			args: moveActiveEditorArgs,
 		};
 	}
 }
 
 class MoveActiveEditorCommand extends AbstractCommandDescriptor {
-
 	constructor(private to: string) {
 		super();
 	}
@@ -348,17 +415,16 @@ class MoveActiveEditorCommand extends AbstractCommandDescriptor {
 	public createCommand(args?: any): Command {
 		const moveActiveEditorArgs: any = {
 			to: this.to,
-			value: args.repeat ? args.repeat : 1
+			value: args.repeat ? args.repeat : 1,
 		};
 
 		return {
-			commandId: 'moveActiveEditor',
-			args: moveActiveEditorArgs
+			commandId: "moveActiveEditor",
+			args: moveActiveEditorArgs,
 		};
 	}
 }
 class FoldCommand extends AbstractCommandDescriptor {
-
 	constructor() {
 		super();
 	}
@@ -366,18 +432,17 @@ class FoldCommand extends AbstractCommandDescriptor {
 	public createCommand(args?: any): Command {
 		const foldEditorArgs: any = {
 			levels: args.repeat ? args.repeat : 1,
-			direction: 'up'
+			direction: "up",
 		};
 
 		return {
-			commandId: 'editor.fold',
-			args: foldEditorArgs
+			commandId: "editor.fold",
+			args: foldEditorArgs,
 		};
 	}
 }
 
 class UnfoldCommand extends AbstractCommandDescriptor {
-
 	constructor() {
 		super();
 	}
@@ -385,12 +450,12 @@ class UnfoldCommand extends AbstractCommandDescriptor {
 	public createCommand(args?: any): Command {
 		const foldEditorArgs: any = {
 			levels: args.repeat ? args.repeat : 1,
-			direction: 'up'
+			direction: "up",
 		};
 
 		return {
-			commandId: 'editor.unfold',
-			args: foldEditorArgs
+			commandId: "editor.unfold",
+			args: foldEditorArgs,
 		};
 	}
 }
@@ -400,10 +465,10 @@ export const Motions = {
 
 	NextCharacter: new NextCharacterMotion(),
 
-	Left: new CursorMoveCommand('left'),
-	Right: new CursorMoveCommand('right'),
-	Down: new CursorMoveCommand('down'),
-	Up: new CursorMoveCommand('up'),
+	Left: new CursorMoveCommand("left"),
+	Right: new CursorMoveCommand("right"),
+	Down: new CursorMoveCommand("down"),
+	Up: new CursorMoveCommand("up"),
 
 	EndOfLine: new EndOfLineMotion(),
 	StartOfLine: new StartOfLineMotion(),
@@ -413,42 +478,46 @@ export const Motions = {
 	GoToFirstLine: new GoToFirstLineMotion(),
 	GoToLastLine: new GoToLastLineMotion(),
 
-	CursorScrollLeft: new CursorMoveCommand('left'),
-	CursorScrollRight: new CursorMoveCommand('right'),
-	CursorScrollLeftByHalfLine: new CursorMoveCommand('left', 'halfLine'),
-	CursorScrollRightByHalfLine: new CursorMoveCommand('right', 'halfLine'),
+	CursorScrollLeft: new CursorMoveCommand("left"),
+	CursorScrollRight: new CursorMoveCommand("right"),
+	CursorScrollLeftByHalfLine: new CursorMoveCommand("left", "halfLine"),
+	CursorScrollRightByHalfLine: new CursorMoveCommand("right", "halfLine"),
 
-	WrappedLineUp: new CursorMoveCommand('up', 'wrappedLine'),
-	WrappedLineDown: new CursorMoveCommand('down', 'wrappedLine'),
+	WrappedLineUp: new CursorMoveCommand("up", "wrappedLine"),
+	WrappedLineDown: new CursorMoveCommand("down", "wrappedLine"),
 
-	WrappedLineStart: new CursorMoveCommand('wrappedLineStart'),
-	WrappedLineFirstNonWhiteSpaceCharacter: new CursorMoveCommand('wrappedLineFirstNonWhitespaceCharacter'),
-	WrappedLineColumnCenter: new CursorMoveCommand('wrappedLineColumnCenter'),
-	WrappedLineEnd: new CursorMoveCommand('wrappedLineEnd'),
-	WrappedLineLastNonWhiteSpaceCharacter: new CursorMoveCommand('wrappedLineLastNonWhitespaceCharacter'),
+	WrappedLineStart: new CursorMoveCommand("wrappedLineStart"),
+	WrappedLineFirstNonWhiteSpaceCharacter: new CursorMoveCommand(
+		"wrappedLineFirstNonWhitespaceCharacter",
+	),
+	WrappedLineColumnCenter: new CursorMoveCommand("wrappedLineColumnCenter"),
+	WrappedLineEnd: new CursorMoveCommand("wrappedLineEnd"),
+	WrappedLineLastNonWhiteSpaceCharacter: new CursorMoveCommand(
+		"wrappedLineLastNonWhitespaceCharacter",
+	),
 
-	ViewPortTop: new CursorMoveCommand('viewPortTop'),
-	ViewPortBottom: new CursorMoveCommand('viewPortBottom'),
-	ViewPortCenter: new CursorMoveCommand('viewPortCenter'),
+	ViewPortTop: new CursorMoveCommand("viewPortTop"),
+	ViewPortBottom: new CursorMoveCommand("viewPortBottom"),
+	ViewPortCenter: new CursorMoveCommand("viewPortCenter"),
 
 	MoveActiveEditor: new MoveActiveEditorCommandByPosition(),
-	MoveActiveEditorLeft: new MoveActiveEditorCommand('left'),
-	MoveActiveEditorRight: new MoveActiveEditorCommand('right'),
-	MoveActiveEditorFirst: new MoveActiveEditorCommand('first'),
-	MoveActiveEditorLast: new MoveActiveEditorCommand('last'),
-	MoveActiveEditorCenter: new MoveActiveEditorCommand('center'),
+	MoveActiveEditorLeft: new MoveActiveEditorCommand("left"),
+	MoveActiveEditorRight: new MoveActiveEditorCommand("right"),
+	MoveActiveEditorFirst: new MoveActiveEditorCommand("first"),
+	MoveActiveEditorLast: new MoveActiveEditorCommand("last"),
+	MoveActiveEditorCenter: new MoveActiveEditorCommand("center"),
 
-	ScrollDownByLine: new EditorScrollCommand('down', 'line'),
-	ScrollDownByHalfPage: new EditorScrollCommand('down', 'halfPage'),
-	ScrollDownByPage: new EditorScrollCommand('down', 'page'),
-	ScrollUpByLine: new EditorScrollCommand('up', 'line'),
-	ScrollUpByHalfPage: new EditorScrollCommand('up', 'halfPage'),
-	ScrollUpByPage: new EditorScrollCommand('up', 'page'),
+	ScrollDownByLine: new EditorScrollCommand("down", "line"),
+	ScrollDownByHalfPage: new EditorScrollCommand("down", "halfPage"),
+	ScrollDownByPage: new EditorScrollCommand("down", "page"),
+	ScrollUpByLine: new EditorScrollCommand("up", "line"),
+	ScrollUpByHalfPage: new EditorScrollCommand("up", "halfPage"),
+	ScrollUpByPage: new EditorScrollCommand("up", "page"),
 
-	RevealCurrentLineAtTop: new RevealCurrentLineCommand('top'),
-	RevealCurrentLineAtCenter: new RevealCurrentLineCommand('center'),
-	RevealCurrentLineAtBottom: new RevealCurrentLineCommand('bottom'),
+	RevealCurrentLineAtTop: new RevealCurrentLineCommand("top"),
+	RevealCurrentLineAtCenter: new RevealCurrentLineCommand("center"),
+	RevealCurrentLineAtBottom: new RevealCurrentLineCommand("bottom"),
 
 	FoldUnder: new FoldCommand(),
-	UnfoldUnder: new UnfoldCommand()
+	UnfoldUnder: new UnfoldCommand(),
 };

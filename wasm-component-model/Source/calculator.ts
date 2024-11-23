@@ -2,8 +2,8 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import * as $wcm from '@vscode/wasm-component-model';
-import type { u32, i32, ptr, result } from '@vscode/wasm-component-model';
+import * as $wcm from "@vscode/wasm-component-model";
+import type { i32, ptr, result, u32 } from "@vscode/wasm-component-model";
 
 export namespace Types {
 	export type Operands = {
@@ -194,14 +194,22 @@ export namespace calculator.$ {
 	export const ErrorCode = Types.$.ErrorCode;
 
 	export namespace imports {
-		export const log = new $wcm.FunctionType<calculator.Imports['log']>('log', [
-			['msg', $wcm.wstring],
-		], undefined);
+		export const log = new $wcm.FunctionType<calculator.Imports["log"]>(
+			"log",
+			[["msg", $wcm.wstring]],
+			undefined,
+		);
 	}
 	export namespace exports {
-		export const calc = new $wcm.FunctionType<calculator.Exports['calc']>('calc', [
-			['o', Operation],
-		], new $wcm.ResultType<u32, calculator.ErrorCode>($wcm.u32, ErrorCode, Types.ErrorCode.Error_));
+		export const calc = new $wcm.FunctionType<calculator.Exports["calc"]>(
+			"calc",
+			[["o", Operation]],
+			new $wcm.ResultType<u32, calculator.ErrorCode>(
+				$wcm.u32,
+				ErrorCode,
+				Types.ErrorCode.Error_,
+			),
+		);
 	}
 }
 export namespace calculator._ {

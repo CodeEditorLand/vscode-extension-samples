@@ -2,8 +2,8 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import * as $wcm from '@vscode/wasm-component-model';
-import type { u32, i32 } from '@vscode/wasm-component-model';
+import * as $wcm from "@vscode/wasm-component-model";
+import type { i32, u32 } from "@vscode/wasm-component-model";
 
 export namespace Types {
 	export type Operands = {
@@ -165,14 +165,18 @@ export namespace calculator.$ {
 	export const Operation = Types.$.Operation;
 
 	export namespace imports {
-		export const log = new $wcm.FunctionType<calculator.Imports['log']>('log', [
-			['msg', $wcm.wstring],
-		], undefined);
+		export const log = new $wcm.FunctionType<calculator.Imports["log"]>(
+			"log",
+			[["msg", $wcm.wstring]],
+			undefined,
+		);
 	}
 	export namespace exports {
-		export const calc = new $wcm.FunctionType<calculator.Exports['calc']>('calc', [
-			['o', Operation],
-		], $wcm.u32);
+		export const calc = new $wcm.FunctionType<calculator.Exports["calc"]>(
+			"calc",
+			[["o", Operation]],
+			$wcm.u32,
+		);
 	}
 }
 export namespace calculator._ {

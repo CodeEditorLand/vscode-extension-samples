@@ -6806,30 +6806,30 @@ declare module "vscode" {
 					 */
 					workspaceFolderValue?: T;
 
-			/**
-			 * The fully qualified key of the configuration value
-			 */
-			key: string;
+					/**
+					 * The fully qualified key of the configuration value
+					 */
+					key: string;
 
-			/**
-			 * The default value which is used when no other value is defined
-			 */
-			defaultValue?: T;
+					/**
+					 * The default value which is used when no other value is defined
+					 */
+					defaultValue?: T;
 
-			/**
-			 * The global or installation-wide value.
-			 */
-			globalValue?: T;
+					/**
+					 * The global or installation-wide value.
+					 */
+					globalValue?: T;
 
-			/**
-			 * The workspace-specific value.
-			 */
-			workspaceValue?: T;
+					/**
+					 * The workspace-specific value.
+					 */
+					workspaceValue?: T;
 
-			/**
-			 * The workspace-folder-specific value.
-			 */
-			workspaceFolderValue?: T;
+					/**
+					 * The workspace-folder-specific value.
+					 */
+					workspaceFolderValue?: T;
 
 					/**
 					 * Language specific global value when this configuration value is created for a {@link ConfigurationScope language scope}.
@@ -12403,20 +12403,23 @@ declare module "vscode" {
 		 * * *NOTE:* You can expand only to 3 levels maximum.
 		 * * *NOTE:* The {@link TreeDataProvider} that the `TreeView` {@link window.createTreeView is registered with} with must implement {@link TreeDataProvider.getParent getParent} method to access this API.
 		 */
-		reveal(element: T, options?: {
-			/**
-			 * If true, then the element will be selected.
-			 */
-			readonly select?: boolean;
-			/**
-			 * If true, then the element will be focused.
-			 */
-			readonly focus?: boolean;
-			/**
-			 * If true, then the element will be expanded. If a number is passed, then up to that number of levels of children will be expanded
-			 */
-			readonly expand?: boolean | number;
-		}): Thenable<void>;
+		reveal(
+			element: T,
+			options?: {
+				/**
+				 * If true, then the element will be selected.
+				 */
+				readonly select?: boolean;
+				/**
+				 * If true, then the element will be focused.
+				 */
+				readonly focus?: boolean;
+				/**
+				 * If true, then the element will be expanded. If a number is passed, then up to that number of levels of children will be expanded
+				 */
+				readonly expand?: boolean | number;
+			},
+		): Thenable<void>;
 	}
 
 	/**
@@ -12751,7 +12754,10 @@ declare module "vscode" {
 		/**
 		 * The {@link TerminalLocation} or {@link TerminalEditorLocationOptions} or {@link TerminalSplitLocationOptions} for the terminal.
 		 */
-		location?: TerminalLocation | TerminalEditorLocationOptions | TerminalSplitLocationOptions;
+		location?:
+			| TerminalLocation
+			| TerminalEditorLocationOptions
+			| TerminalSplitLocationOptions;
 
 		/**
 		 * Opt-out of the default terminal persistence on restart and reload.
@@ -16543,7 +16549,9 @@ declare module "vscode" {
 		 * @param rendererId The renderer ID to communicate with
 		 * @returns A new notebook renderer messaging object.
 		 */
-		export function createRendererMessaging(rendererId: string): NotebookRendererMessaging;
+		export function createRendererMessaging(
+			rendererId: string,
+		): NotebookRendererMessaging;
 	}
 
 	/**
@@ -17605,7 +17613,9 @@ declare module "vscode" {
 		 * Add breakpoints.
 		 * @param breakpoints The breakpoints to add.
 		 */
-		export function addBreakpoints(breakpoints: readonly Breakpoint[]): void;
+		export function addBreakpoints(
+			breakpoints: readonly Breakpoint[],
+		): void;
 
 		/**
 		 * Remove breakpoints.
@@ -18221,7 +18231,10 @@ declare module "vscode" {
 		 * @param options Additional options for getting sessions.
 		 * @returns A promise that resolves to an array of authentication sessions.
 		 */
-		getSessions(scopes: readonly string[] | undefined, options: AuthenticationProviderSessionOptions): Thenable<AuthenticationSession[]>;
+		getSessions(
+			scopes: readonly string[] | undefined,
+			options: AuthenticationProviderSessionOptions,
+		): Thenable<AuthenticationSession[]>;
 
 		/**
 		 * Prompts a user to login.
@@ -18237,7 +18250,10 @@ declare module "vscode" {
 		 * @param options Additional options for creating a session.
 		 * @returns A promise that resolves to an authentication session.
 		 */
-		createSession(scopes: readonly string[], options: AuthenticationProviderSessionOptions): Thenable<AuthenticationSession>;
+		createSession(
+			scopes: readonly string[],
+			options: AuthenticationProviderSessionOptions,
+		): Thenable<AuthenticationSession>;
 
 		/**
 		 * Removes the session corresponding to session id.
@@ -18459,7 +18475,10 @@ declare module "vscode" {
 		 * @param label A human-readable label for the controller.
 		 * @returns An instance of the {@link TestController}.
 		 */
-		export function createTestController(id: string, label: string): TestController;
+		export function createTestController(
+			id: string,
+			label: string,
+		): TestController;
 	}
 
 	/**
@@ -18816,7 +18835,13 @@ declare module "vscode" {
 		 * @param continuous Whether to run tests continuously as source changes.
 		 * @param preserveFocus Whether to preserve the user's focus when the run is started
 		 */
-		constructor(include?: readonly TestItem[], exclude?: readonly TestItem[], profile?: TestRunProfile, continuous?: boolean, preserveFocus?: boolean);
+		constructor(
+			include?: readonly TestItem[],
+			exclude?: readonly TestItem[],
+			profile?: TestRunProfile,
+			continuous?: boolean,
+			preserveFocus?: boolean,
+		);
 	}
 
 	/**
@@ -19859,7 +19884,13 @@ declare module "vscode" {
 		/**
 		 * @hidden
 		 */
-		private constructor(prompt: string, command: string | undefined, references: ChatPromptReference[], participant: string, toolReferences: ChatLanguageModelToolReference[]);
+		private constructor(
+			prompt: string,
+			command: string | undefined,
+			references: ChatPromptReference[],
+			participant: string,
+			toolReferences: ChatLanguageModelToolReference[],
+		);
 	}
 
 	/**
@@ -20460,7 +20491,12 @@ declare module "vscode" {
 		 * @param content The content of the message.
 		 * @param name The optional name of a user for the message.
 		 */
-		static User(content: string | (LanguageModelTextPart | LanguageModelToolResultPart)[], name?: string): LanguageModelChatMessage;
+		static User(
+			content:
+				| string
+				| (LanguageModelTextPart | LanguageModelToolResultPart)[],
+			name?: string,
+		): LanguageModelChatMessage;
 
 		/**
 		 * Utility to create a new assistant message.
@@ -20468,7 +20504,12 @@ declare module "vscode" {
 		 * @param content The content of the message.
 		 * @param name The optional name of a user for the message.
 		 */
-		static Assistant(content: string | (LanguageModelTextPart | LanguageModelToolCallPart)[], name?: string): LanguageModelChatMessage;
+		static Assistant(
+			content:
+				| string
+				| (LanguageModelTextPart | LanguageModelToolCallPart)[],
+			name?: string,
+		): LanguageModelChatMessage;
 
 		/**
 		 * The role of this message.
@@ -20479,7 +20520,11 @@ declare module "vscode" {
 		 * A string or heterogeneous array of things that a message can contain as content. Some parts may be message-type
 		 * specific for some models.
 		 */
-		content: (LanguageModelTextPart | LanguageModelToolResultPart | LanguageModelToolCallPart)[];
+		content: (
+			| LanguageModelTextPart
+			| LanguageModelToolResultPart
+			| LanguageModelToolCallPart
+		)[];
 
 		/**
 		 * The optional name of a user for this message.
@@ -20493,7 +20538,17 @@ declare module "vscode" {
 		 * @param content The content of the message.
 		 * @param name The optional name of a user for the message.
 		 */
-		constructor(role: LanguageModelChatMessageRole, content: string | (LanguageModelTextPart | LanguageModelToolResultPart | LanguageModelToolCallPart)[], name?: string);
+		constructor(
+			role: LanguageModelChatMessageRole,
+			content:
+				| string
+				| (
+						| LanguageModelTextPart
+						| LanguageModelToolResultPart
+						| LanguageModelToolCallPart
+				  )[],
+			name?: string,
+		);
 	}
 
 	/**
@@ -20533,7 +20588,9 @@ declare module "vscode" {
 		 * }
 		 * ```
 		 */
-		stream: AsyncIterable<LanguageModelTextPart | LanguageModelToolCallPart | unknown>;
+		stream: AsyncIterable<
+			LanguageModelTextPart | LanguageModelToolCallPart | unknown
+		>;
 
 		/**
 		 * This is equivalent to filtering everything except for text parts from a {@link LanguageModelChatResponse.stream}.
@@ -20762,7 +20819,9 @@ declare module "vscode" {
 		 * @param selector A chat model selector. When omitted all chat models are returned.
 		 * @returns An array of chat models, can be empty!
 		 */
-		export function selectChatModels(selector?: LanguageModelChatSelector): Thenable<LanguageModelChat[]>;
+		export function selectChatModels(
+			selector?: LanguageModelChatSelector,
+		): Thenable<LanguageModelChat[]>;
 
 		/**
 		 * Register a LanguageModelTool. The tool must also be registered in the package.json `languageModelTools` contribution
@@ -20770,7 +20829,10 @@ declare module "vscode" {
 		 * be seen by a language model, it must be passed in the list of available tools in {@link LanguageModelChatRequestOptions.tools}.
 		 * @returns A {@link Disposable} that unregisters the tool when disposed.
 		 */
-		export function registerTool<T>(name: string, tool: LanguageModelTool<T>): Disposable;
+		export function registerTool<T>(
+			name: string,
+			tool: LanguageModelTool<T>,
+		): Disposable;
 
 		/**
 		 * A list of all available tools that were registered by all extensions using {@link lm.registerTool}. They can be called
@@ -20804,7 +20866,11 @@ declare module "vscode" {
 		 * @param token A cancellation token. See {@link CancellationTokenSource} for how to create one.
 		 * @returns The result of the tool invocation.
 		 */
-		export function invokeTool(name: string, options: LanguageModelToolInvocationOptions<object>, token?: CancellationToken): Thenable<LanguageModelToolResult>;
+		export function invokeTool(
+			name: string,
+			options: LanguageModelToolInvocationOptions<object>,
+			token?: CancellationToken,
+		): Thenable<LanguageModelToolResult>;
 	}
 
 	/**
@@ -20862,7 +20928,7 @@ declare module "vscode" {
 		 * The language model must call one of the provided tools. Note- some models only support a single tool when using this
 		 * mode.
 		 */
-		Required = 2
+		Required = 2,
 	}
 
 	/**
@@ -20910,13 +20976,24 @@ declare module "vscode" {
 		/**
 		 * The value of the tool result.
 		 */
-		content: (LanguageModelTextPart | LanguageModelPromptTsxPart | unknown)[];
+		content: (
+			| LanguageModelTextPart
+			| LanguageModelPromptTsxPart
+			| unknown
+		)[];
 
 		/**
 		 * @param callId The ID of the tool call.
 		 * @param content The content of the tool result.
 		 */
-		constructor(callId: string, content: (LanguageModelTextPart | LanguageModelPromptTsxPart | unknown)[]);
+		constructor(
+			callId: string,
+			content: (
+				| LanguageModelTextPart
+				| LanguageModelPromptTsxPart
+				| unknown
+			)[],
+		);
 	}
 
 	/**
@@ -20961,13 +21038,23 @@ declare module "vscode" {
 		 * the future.
 		 * @see {@link lm.invokeTool}.
 		 */
-		content: (LanguageModelTextPart | LanguageModelPromptTsxPart | unknown)[];
+		content: (
+			| LanguageModelTextPart
+			| LanguageModelPromptTsxPart
+			| unknown
+		)[];
 
 		/**
 		 * Create a LanguageModelToolResult
 		 * @param content A list of tool result content parts
 		 */
-		constructor(content: (LanguageModelTextPart | LanguageModelPromptTsxPart | unknown)[]);
+		constructor(
+			content: (
+				| LanguageModelTextPart
+				| LanguageModelPromptTsxPart
+				| unknown
+			)[],
+		);
 	}
 
 	/**
@@ -21069,7 +21156,10 @@ declare module "vscode" {
 		 *
 		 * The provided {@link LanguageModelToolInvocationOptions.parameters} have been validated against the declared schema.
 		 */
-		invoke(options: LanguageModelToolInvocationOptions<T>, token: CancellationToken): ProviderResult<LanguageModelToolResult>;
+		invoke(
+			options: LanguageModelToolInvocationOptions<T>,
+			token: CancellationToken,
+		): ProviderResult<LanguageModelToolResult>;
 
 		/**
 		 * Called once before a tool is invoked. It's recommended to implement this to customize the progress message that appears
@@ -21079,7 +21169,10 @@ declare module "vscode" {
 		 * * *Note 1:* Must be free of side-effects.
 		 * * *Note 2:* A call to `prepareInvocation` is not necessarily followed by a call to `invoke`.
 		 */
-		prepareInvocation?(options: LanguageModelToolInvocationPrepareOptions<T>, token: CancellationToken): ProviderResult<PreparedToolInvocation>;
+		prepareInvocation?(
+			options: LanguageModelToolInvocationPrepareOptions<T>,
+			token: CancellationToken,
+		): ProviderResult<PreparedToolInvocation>;
 	}
 
 	/**

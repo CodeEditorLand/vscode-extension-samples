@@ -3,17 +3,22 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
-import { Mode, ModifierKeys } from './common';
-import { Controller } from './controller';
+import { Mode, ModifierKeys } from "./common";
+import { Controller } from "./controller";
 
 export function activate(context: vscode.ExtensionContext) {
-	function registerCommandNice(commandId: string, run: (...args: any[]) => void): void {
-		context.subscriptions.push(vscode.commands.registerCommand(commandId, run));
+	function registerCommandNice(
+		commandId: string,
+		run: (...args: any[]) => void,
+	): void {
+		context.subscriptions.push(
+			vscode.commands.registerCommand(commandId, run),
+		);
 	}
 	function registerCtrlKeyBinding(key: string): void {
-		registerCommandNice(key, function() {
+		registerCommandNice(key, function () {
 			if (!vscode.window.activeTextEditor) {
 				return;
 			}
@@ -23,34 +28,34 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const vimExt = new VimExt();
 
-	registerCommandNice('type', function(args) {
+	registerCommandNice("type", function (args) {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
 		vimExt.type(args.text);
 	});
-	registerCommandNice('replacePreviousChar', function(args) {
+	registerCommandNice("replacePreviousChar", function (args) {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
 		vimExt.replacePrevChar(args.text, args.replaceCharCnt);
 	});
-	registerCommandNice('compositionStart', function() {
+	registerCommandNice("compositionStart", function () {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
 		vimExt.compositionStart();
 	});
-	registerCommandNice('compositionEnd', function() {
+	registerCommandNice("compositionEnd", function () {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
 		vimExt.compositionEnd();
 	});
-	registerCommandNice('vim.goToNormalMode', function() {
+	registerCommandNice("vim.goToNormalMode", function () {
 		vimExt.goToNormalMode();
 	});
-	registerCommandNice('vim.clearInput', function() {
+	registerCommandNice("vim.clearInput", function () {
 		vimExt.clearInput();
 	});
 	// registerCommandNice('paste', function(args) {
@@ -60,12 +65,12 @@ export function activate(context: vscode.ExtensionContext) {
 	// 	console.log('cut (no args)');
 	// });
 
-	registerCtrlKeyBinding('e');
-	registerCtrlKeyBinding('d');
-	registerCtrlKeyBinding('f');
-	registerCtrlKeyBinding('y');
-	registerCtrlKeyBinding('u');
-	registerCtrlKeyBinding('b');
+	registerCtrlKeyBinding("e");
+	registerCtrlKeyBinding("d");
+	registerCtrlKeyBinding("f");
+	registerCtrlKeyBinding("y");
+	registerCtrlKeyBinding("u");
+	registerCtrlKeyBinding("b");
 }
 
 export function deactivate() {
@@ -74,21 +79,20 @@ export function deactivate() {
 }
 
 function getConfiguredWordSeparators(): string {
-	const editorConfig = vscode.workspace.getConfiguration('editor');
+	const editorConfig = vscode.workspace.getConfiguration("editor");
 
-	return editorConfig['wordSeparators'];
+	return editorConfig["wordSeparators"];
 }
 
 class VimExt {
-
 	private _inNormalMode: ContextKey;
 	private _hasInput: ContextKey;
 	private _statusBar: StatusBar;
 	private _controller: Controller;
 
 	constructor() {
-		this._inNormalMode = new ContextKey('vim.inNormalMode');
-		this._hasInput = new ContextKey('vim.hasInput');
+		this._inNormalMode = new ContextKey("vim.inNormalMode");
+		this._hasInput = new ContextKey("vim.hasInput");
 		this._statusBar = new StatusBar();
 
 		this._controller = new Controller();
@@ -150,33 +154,44 @@ class VimExt {
 		this._ensureState();
 	}
 
-	public type(text: string, modifierKeys: ModifierKeys = { ctrl: false, shifit: false, alt: false }): void {
-		this._controller.type(vscode.window.activeTextEditor, text, modifierKeys).then((r) => {
-			if (r.hasConsumedInput) {
-				this._ensureState();
+	public type(
+		text: string,
+		modifierKeys: ModifierKeys = { ctrl: false, shifit: false, alt: false },
+	): void {
+		this._controller
+			.type(vscode.window.activeTextEditor, text, modifierKeys)
+			.then((r) => {
+				if (r.hasConsumedInput) {
+					this._ensureState();
 
-				if (r.executeEditorCommand) {
-					let args = [r.executeEditorCommand.commandId];
-					args = args.concat(r.executeEditorCommand.args);
-					vscode.commands.executeCommand.apply(this, args);
+					if (r.executeEditorCommand) {
+						let args = [r.executeEditorCommand.commandId];
+						args = args.concat(r.executeEditorCommand.args);
+						vscode.commands.executeCommand.apply(this, args);
+					}
+					return;
 				}
-				return;
-			}
-			vscode.commands.executeCommand('default:type', {
-				text: text
+				vscode.commands.executeCommand("default:type", {
+					text: text,
+				});
 			});
-		});
 	}
 
 	public replacePrevChar(text: string, replaceCharCnt: number): void {
-		if (this._controller.replacePrevChar(vscode.window.activeTextEditor, text, replaceCharCnt)) {
+		if (
+			this._controller.replacePrevChar(
+				vscode.window.activeTextEditor,
+				text,
+				replaceCharCnt,
+			)
+		) {
 			this._ensureState();
 
 			return;
 		}
-		vscode.commands.executeCommand('default:replacePreviousChar', {
+		vscode.commands.executeCommand("default:replacePreviousChar", {
 			text: text,
-			replaceCharCnt: replaceCharCnt
+			replaceCharCnt: replaceCharCnt,
 		});
 	}
 
@@ -185,17 +200,19 @@ class VimExt {
 	}
 
 	public compositionEnd(): void {
-		this._controller.compositionEnd(vscode.window.activeTextEditor).then((r) => {
-			if (r.hasConsumedInput) {
-				this._ensureState();
+		this._controller
+			.compositionEnd(vscode.window.activeTextEditor)
+			.then((r) => {
+				if (r.hasConsumedInput) {
+					this._ensureState();
 
-				if (r.executeEditorCommand) {
-					let args = [r.executeEditorCommand.commandId];
-					args = args.concat(r.executeEditorCommand.args);
-					vscode.commands.executeCommand.apply(this, args);
+					if (r.executeEditorCommand) {
+						let args = [r.executeEditorCommand.commandId];
+						args = args.concat(r.executeEditorCommand.args);
+						vscode.commands.executeCommand.apply(this, args);
+					}
 				}
-			}
-		});
+			});
 	}
 
 	private _ensureState(): void {
@@ -219,18 +236,23 @@ class VimExt {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
-		this._controller.ensureNormalModePosition(vscode.window.activeTextEditor);
+		this._controller.ensureNormalModePosition(
+			vscode.window.activeTextEditor,
+		);
 	}
 
-	private _ensureCursorStyle(cursorStyle: vscode.TextEditorCursorStyle): void {
+	private _ensureCursorStyle(
+		cursorStyle: vscode.TextEditorCursorStyle,
+	): void {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
-		const currentCursorStyle = vscode.window.activeTextEditor.options.cursorStyle;
+		const currentCursorStyle =
+			vscode.window.activeTextEditor.options.cursorStyle;
 
 		if (currentCursorStyle !== cursorStyle) {
 			vscode.window.activeTextEditor.options = {
-				cursorStyle: cursorStyle
+				cursorStyle: cursorStyle,
 			};
 		}
 	}
@@ -249,7 +271,11 @@ class ContextKey {
 			return;
 		}
 		this._lastValue = value;
-		vscode.commands.executeCommand('setContext', this._name, this._lastValue);
+		vscode.commands.executeCommand(
+			"setContext",
+			this._name,
+			this._lastValue,
+		);
 	}
 }
 
@@ -258,7 +284,9 @@ class StatusBar {
 	private _lastText: string;
 
 	constructor() {
-		this._actual = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+		this._actual = vscode.window.createStatusBarItem(
+			vscode.StatusBarAlignment.Left,
+		);
 		this._actual.show();
 	}
 

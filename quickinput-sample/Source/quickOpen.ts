@@ -3,15 +3,13 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as path from 'path';
-import * as cp from 'child_process';
-import { Uri, window, Disposable } from 'vscode';
-import { QuickPickItem } from 'vscode';
-import { workspace } from 'vscode';
+import * as cp from "child_process";
+import * as path from "path";
+import { Disposable, QuickPickItem, Uri, window, workspace } from "vscode";
 
 /**
  * A file opener using window.createQuickPick().
- * 
+ *
  * It shows how the list of items can be dynamically updated based on
  * the user's input in the filter field.
  */
@@ -25,24 +23,28 @@ export async function quickOpen() {
 }
 
 class FileItem implements QuickPickItem {
-
 	label: string;
 	description: string;
 
-	constructor(public base: Uri, public uri: Uri) {
+	constructor(
+		public base: Uri,
+		public uri: Uri,
+	) {
 		this.label = path.basename(uri.fsPath);
 		this.description = path.dirname(path.relative(base.fsPath, uri.fsPath));
 	}
 }
 
 class MessageItem implements QuickPickItem {
-
 	label: string;
-	description = '';
+	description = "";
 	detail: string;
 
-	constructor(public base: Uri, public message: string) {
-		this.label = message.replace(/\r?\n/g, ' ');
+	constructor(
+		public base: Uri,
+		public message: string,
+	) {
+		this.label = message.replace(/\r?\n/g, " ");
 		this.detail = base.fsPath;
 	}
 }
@@ -53,12 +55,12 @@ async function pickFile() {
 	try {
 		return await new Promise<Uri | undefined>((resolve) => {
 			const input = window.createQuickPick<FileItem | MessageItem>();
-			input.placeholder = 'Type to search for files';
+			input.placeholder = "Type to search for files";
 
 			let rgs: cp.ChildProcess[] = [];
 			disposables.push(
-				input.onDidChangeValue(value => {
-					rgs.forEach(rg => rg.kill());
+				input.onDidChangeValue((value) => {
+					rgs.forEach((rg) => rg.kill());
 
 					if (!value) {
 						input.items = [];
@@ -67,42 +69,68 @@ async function pickFile() {
 					}
 					input.busy = true;
 
-					const cwds = workspace.workspaceFolders ? workspace.workspaceFolders.map(f => f.uri.fsPath) : [process.cwd()];
+					const cwds = workspace.workspaceFolders
+						? workspace.workspaceFolders.map((f) => f.uri.fsPath)
+						: [process.cwd()];
 
-					const q = process.platform === 'win32' ? '"' : '\'';
-					rgs = cwds.map(cwd => {
-						const rg = cp.exec(`rg --files -g ${q}*${value}*${q}`, { cwd }, (err, stdout) => {
-							const i = rgs.indexOf(rg);
+					const q = process.platform === "win32" ? '"' : "'";
+					rgs = cwds.map((cwd) => {
+						const rg = cp.exec(
+							`rg --files -g ${q}*${value}*${q}`,
+							{ cwd },
+							(err, stdout) => {
+								const i = rgs.indexOf(rg);
 
-							if (i !== -1) {
-								if (rgs.length === cwds.length) {
-									input.items = [];
-								}
-								if (!err) {
-									input.items = input.items.concat(
-										stdout
-											.split('\n').slice(0, 50)
-											.map(relative => new FileItem(Uri.file(cwd), Uri.file(path.join(cwd, relative))))
-									);
-								}
-								// eslint-disable-next-line @typescript-eslint/no-explicit-any
-								if (err && !(err as any).killed && (err as any).code !== 1 && err.message) {
-									input.items = input.items.concat([
-										new MessageItem(Uri.file(cwd), err.message)
-									]);
-								}
-								rgs.splice(i, 1);
+								if (i !== -1) {
+									if (rgs.length === cwds.length) {
+										input.items = [];
+									}
+									if (!err) {
+										input.items = input.items.concat(
+											stdout
+												.split("\n")
+												.slice(0, 50)
+												.map(
+													(relative) =>
+														new FileItem(
+															Uri.file(cwd),
+															Uri.file(
+																path.join(
+																	cwd,
+																	relative,
+																),
+															),
+														),
+												),
+										);
+									}
+									// eslint-disable-next-line @typescript-eslint/no-explicit-any
+									if (
+										err &&
+										!(err as any).killed &&
+										(err as any).code !== 1 &&
+										err.message
+									) {
+										input.items = input.items.concat([
+											new MessageItem(
+												Uri.file(cwd),
+												err.message,
+											),
+										]);
+									}
+									rgs.splice(i, 1);
 
-								if (!rgs.length) {
-									input.busy = false;
+									if (!rgs.length) {
+										input.busy = false;
+									}
 								}
-							}
-						});
+							},
+						);
 
 						return rg;
 					});
 				}),
-				input.onDidChangeSelection(items => {
+				input.onDidChangeSelection((items) => {
 					const item = items[0];
 
 					if (item instanceof FileItem) {
@@ -111,14 +139,14 @@ async function pickFile() {
 					}
 				}),
 				input.onDidHide(() => {
-					rgs.forEach(rg => rg.kill());
+					rgs.forEach((rg) => rg.kill());
 					resolve(undefined);
 					input.dispose();
-				})
+				}),
 			);
 			input.show();
 		});
 	} finally {
-		disposables.forEach(d => d.dispose());
+		disposables.forEach((d) => d.dispose());
 	}
 }

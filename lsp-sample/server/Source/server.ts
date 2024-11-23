@@ -109,9 +109,8 @@ connection.onDidChangeConfiguration((change) => {
 		// Reset all cached document settings
 		documentSettings.clear();
 	} else {
-		globalSettings = (
-			(change.settings.languageServerExample || defaultSettings)
-		);
+		globalSettings =
+			change.settings.languageServerExample || defaultSettings;
 	}
 	// Refresh the diagnostics since the `maxNumberOfProblems` could have changed.
 	// We could optimize things here and re-fetch the setting first can compare it

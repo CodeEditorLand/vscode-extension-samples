@@ -106,7 +106,11 @@ export async function activate(context: vscode.ExtensionContext) {
 					await discoverTests(gatherTestItems(test.children));
 				}
 
-				if (test.uri && !coveredLines.has(test.uri.toString()) && request.profile?.kind === vscode.TestRunProfileKind.Coverage) {
+				if (
+					test.uri &&
+					!coveredLines.has(test.uri.toString()) &&
+					request.profile?.kind === vscode.TestRunProfileKind.Coverage
+				) {
 					try {
 						const lines = (
 							await getContentFromFilesystem(test.uri)
@@ -182,7 +186,14 @@ export async function activate(context: vscode.ExtensionContext) {
 		true,
 	);
 
-	const coverageProfile = ctrl.createRunProfile('Run with Coverage', vscode.TestRunProfileKind.Coverage, runHandler, true, undefined, true);
+	const coverageProfile = ctrl.createRunProfile(
+		"Run with Coverage",
+		vscode.TestRunProfileKind.Coverage,
+		runHandler,
+		true,
+		undefined,
+		true,
+	);
 	coverageProfile.loadDetailedCoverage = async (_testRun, coverage) => {
 		if (coverage instanceof MarkdownFileCoverage) {
 			return coverage.coveredLines.filter(
@@ -193,7 +204,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		return [];
 	};
 
-	ctrl.resolveHandler = async item => {
+	ctrl.resolveHandler = async (item) => {
 		if (!item) {
 			context.subscriptions.push(
 				...startWatchingWorkspace(ctrl, fileChangedEmitter),
@@ -283,7 +294,10 @@ async function findInitialFiles(
 	}
 }
 
-function startWatchingWorkspace(controller: vscode.TestController, fileChangedEmitter: vscode.EventEmitter<vscode.Uri>) {
+function startWatchingWorkspace(
+	controller: vscode.TestController,
+	fileChangedEmitter: vscode.EventEmitter<vscode.Uri>,
+) {
 	return getWorkspaceTestPatterns().map(({ pattern }) => {
 		const watcher = vscode.workspace.createFileSystemWatcher(pattern);
 

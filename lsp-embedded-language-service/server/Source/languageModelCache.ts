@@ -11,8 +11,15 @@ export interface LanguageModelCache<T> {
 	dispose(): void;
 }
 
-export function getLanguageModelCache<T>(maxEntries: number, cleanupIntervalTimeInSec: number, parse: (document: TextDocument) => T): LanguageModelCache<T> {
-	let languageModels: Record</* uri */ string, { version: number, languageId: string, cTime: number, languageModel: T }> = {};
+export function getLanguageModelCache<T>(
+	maxEntries: number,
+	cleanupIntervalTimeInSec: number,
+	parse: (document: TextDocument) => T,
+): LanguageModelCache<T> {
+	let languageModels: Record<
+		/* uri */ string,
+		{ version: number; languageId: string; cTime: number; languageModel: T }
+	> = {};
 
 	let nModels = 0;
 

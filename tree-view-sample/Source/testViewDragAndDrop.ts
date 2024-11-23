@@ -1,43 +1,55 @@
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
-export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscode.TreeDragAndDropController<Node> {
-	dropMimeTypes = ['application/vnd.code.tree.testViewDragAndDrop'];
-	dragMimeTypes = ['text/uri-list'];
-	private _onDidChangeTreeData: vscode.EventEmitter<(Node | undefined)[] | undefined> = new vscode.EventEmitter<Node[] | undefined>();
+export class TestViewDragAndDrop
+	implements
+		vscode.TreeDataProvider<Node>,
+		vscode.TreeDragAndDropController<Node>
+{
+	dropMimeTypes = ["application/vnd.code.tree.testViewDragAndDrop"];
+	dragMimeTypes = ["text/uri-list"];
+	private _onDidChangeTreeData: vscode.EventEmitter<
+		(Node | undefined)[] | undefined
+	> = new vscode.EventEmitter<Node[] | undefined>();
 	// We want to use an array as the event type, but the API for this is currently being finalized. Until it's finalized, use any.
-	public onDidChangeTreeData: vscode.Event<any> = this._onDidChangeTreeData.event;
+	public onDidChangeTreeData: vscode.Event<any> =
+		this._onDidChangeTreeData.event;
 	public tree: any = {
-		'a': {
-			'aa': {
-				'aaa': {
-					'aaaa': {
-						'aaaaa': {
-							'aaaaaa': {
-
-							}
-						}
-					}
-				}
+		"a": {
+			"aa": {
+				"aaa": {
+					"aaaa": {
+						"aaaaa": {
+							"aaaaaa": {},
+						},
+					},
+				},
 			},
-			'ab': {}
+			"ab": {},
 		},
-		'b': {
-			'ba': {},
-			'bb': {}
-		}
+		"b": {
+			"ba": {},
+			"bb": {},
+		},
 	};
 	// Keep track of any nodes we create so that we can re-use the same objects.
 	private nodes: any = {};
 
 	constructor(context: vscode.ExtensionContext) {
-		const view = vscode.window.createTreeView('testViewDragAndDrop', { treeDataProvider: this, showCollapseAll: true, canSelectMany: true, dragAndDropController: this });
+		const view = vscode.window.createTreeView("testViewDragAndDrop", {
+			treeDataProvider: this,
+			showCollapseAll: true,
+			canSelectMany: true,
+			dragAndDropController: this,
+		});
 		context.subscriptions.push(view);
 	}
 
-	// Tree data provider 
+	// Tree data provider
 
 	public getChildren(element: Node): Node[] {
-		return this._getChildren(element ? element.key : undefined).map(key => this._getNode(key));
+		return this._getChildren(element ? element.key : undefined).map((key) =>
+			this._getNode(key),
+		);
 	}
 
 	public getTreeItem(element: Node): vscode.TreeItem {
@@ -56,8 +68,14 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 
 	// Drag and drop controller
 
-	public async handleDrop(target: Node | undefined, sources: vscode.DataTransfer, _token: vscode.CancellationToken): Promise<void> {
-		const transferItem = sources.get('application/vnd.code.tree.testViewDragAndDrop');
+	public async handleDrop(
+		target: Node | undefined,
+		sources: vscode.DataTransfer,
+		_token: vscode.CancellationToken,
+	): Promise<void> {
+		const transferItem = sources.get(
+			"application/vnd.code.tree.testViewDragAndDrop",
+		);
 
 		if (!transferItem) {
 			return;
@@ -66,18 +84,27 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 
 		let roots = this._getLocalRoots(treeItems);
 		// Remove nodes that are already target's parent nodes
-		roots = roots.filter(r => !this._isChild(this._getTreeElement(r.key), target));
+		roots = roots.filter(
+			(r) => !this._isChild(this._getTreeElement(r.key), target),
+		);
 
 		if (roots.length > 0) {
 			// Reload parents of the moving elements
-			const parents = roots.map(r => this.getParent(r));
-			roots.forEach(r => this._reparentNode(r, target));
+			const parents = roots.map((r) => this.getParent(r));
+			roots.forEach((r) => this._reparentNode(r, target));
 			this._onDidChangeTreeData.fire([...parents, target]);
 		}
 	}
 
-	public async handleDrag(source: Node[], treeDataTransfer: vscode.DataTransfer, _token: vscode.CancellationToken): Promise<void> {
-		treeDataTransfer.set('application/vnd.code.tree.testViewDragAndDrop', new vscode.DataTransferItem(source));
+	public async handleDrag(
+		source: Node[],
+		treeDataTransfer: vscode.DataTransfer,
+		_token: vscode.CancellationToken,
+	): Promise<void> {
+		treeDataTransfer.set(
+			"application/vnd.code.tree.testViewDragAndDrop",
+			new vscode.DataTransferItem(source),
+		);
 	}
 
 	// Helper methods
@@ -108,7 +135,7 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 			const parent = this.getParent(node);
 
 			if (parent) {
-				const isInList = nodes.find(n => n.key === parent.key);
+				const isInList = nodes.find((n) => n.key === parent.key);
 
 				if (isInList === undefined) {
 					localRoots.push(node);
@@ -172,12 +199,24 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 	_getTreeItem(key: string): vscode.TreeItem {
 		const treeElement = this._getTreeElement(key);
 		// An example of how to use codicons in a MarkdownString in a tree item tooltip.
-		const tooltip = new vscode.MarkdownString(`$(zap) Tooltip for ${key}`, true);
+		const tooltip = new vscode.MarkdownString(
+			`$(zap) Tooltip for ${key}`,
+			true,
+		);
 
 		return {
-			label: /**vscode.TreeItemLabel**/{ label: key, highlights: key.length > 1 ? [[key.length - 2, key.length - 1]] : void 0 } as any,
+			label: /**vscode.TreeItemLabel**/ {
+				label: key,
+				highlights:
+					key.length > 1
+						? [[key.length - 2, key.length - 1]]
+						: void 0,
+			} as any,
 			tooltip,
-			collapsibleState: treeElement && Object.keys(treeElement).length ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None,
+			collapsibleState:
+				treeElement && Object.keys(treeElement).length
+					? vscode.TreeItemCollapsibleState.Collapsed
+					: vscode.TreeItemCollapsibleState.None,
 			resourceUri: vscode.Uri.parse(`/tmp/${key}`),
 		};
 	}
@@ -192,7 +231,10 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 			if (prop === element) {
 				return currentNode[prop];
 			} else {
-				const treeElement = this._getTreeElement(element, currentNode[prop]);
+				const treeElement = this._getTreeElement(
+					element,
+					currentNode[prop],
+				);
 
 				if (treeElement) {
 					return treeElement;
@@ -208,7 +250,11 @@ export class TestViewDragAndDrop implements vscode.TreeDataProvider<Node>, vscod
 			if (prop === element && parent) {
 				return this._getNode(parent);
 			} else {
-				const parent = this._getParent(element, prop, currentNode[prop]);
+				const parent = this._getParent(
+					element,
+					prop,
+					currentNode[prop],
+				);
 
 				if (parent) {
 					return parent;
@@ -230,6 +276,5 @@ interface Node {
 }
 
 class Key {
-	constructor(readonly key: string) { }
+	constructor(readonly key: string) {}
 }
-

@@ -43,8 +43,12 @@ function validate(document: TextDocument): void {
 		uri: document.uri,
 		version: document.version,
 		diagnostics: [
-			Diagnostic.create(Range.create(0, 0, 0, 10), 'Something is wrong here', DiagnosticSeverity.Warning)
-		]
+			Diagnostic.create(
+				Range.create(0, 0, 0, 10),
+				"Something is wrong here",
+				DiagnosticSeverity.Warning,
+			),
+		],
 	});
 }
 
@@ -74,7 +78,7 @@ connection.onCodeAction((params) => {
 });
 
 connection.onExecuteCommand(async (params) => {
-	if (params.command !== 'sample.fixMe' || params.arguments === undefined) {
+	if (params.command !== "sample.fixMe" || params.arguments === undefined) {
 		return;
 	}
 

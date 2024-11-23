@@ -2,23 +2,28 @@
  * Copyright (C) Microsoft Corporation. All rights reserved.
  *--------------------------------------------------------*/
 
-import * as vscode from 'vscode';
-import ReferencesDocument from './referencesDocument';
+import * as vscode from "vscode";
 
-export default class Provider implements vscode.TextDocumentContentProvider, vscode.DocumentLinkProvider {
+import ReferencesDocument from "./referencesDocument";
 
-	static scheme = 'references';
+export default class Provider
+	implements vscode.TextDocumentContentProvider, vscode.DocumentLinkProvider
+{
+	static scheme = "references";
 
 	private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
 	private _documents = new Map<string, ReferencesDocument>();
-	private _editorDecoration = vscode.window.createTextEditorDecorationType({ textDecoration: 'underline' });
+	private _editorDecoration = vscode.window.createTextEditorDecorationType({
+		textDecoration: "underline",
+	});
 	private _subscriptions: vscode.Disposable;
 
 	constructor() {
-
 		// Listen to the `closeTextDocument`-event which means we must
 		// clear the corresponding model object - `ReferencesDocument`
-		this._subscriptions = vscode.workspace.onDidCloseTextDocument(doc => this._documents.delete(doc.uri.toString()));
+		this._subscriptions = vscode.workspace.onDidCloseTextDocument((doc) =>
+			this._documents.delete(doc.uri.toString()),
+		);
 	}
 
 	dispose() {
@@ -38,7 +43,6 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 	// resolves its content by (1) running the reference search command
 	// and (2) formatting the results
 	provideTextDocumentContent(uri: vscode.Uri): string | Thenable<string> {
-
 		// already loaded?
 		const document = this._documents.get(uri.toString());
 
@@ -52,23 +56,41 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 		// printing, and formatting references
 		const [target, pos] = decodeLocation(uri);
 
-		return vscode.commands.executeCommand<vscode.Location[]>('vscode.executeReferenceProvider', target, pos).then(locations => {
-			locations = locations || [];
+		return vscode.commands
+			.executeCommand<
+				vscode.Location[]
+			>("vscode.executeReferenceProvider", target, pos)
+			.then((locations) => {
+				locations = locations || [];
 
-			// sort by locations and shuffle to begin from target resource
-			let idx = 0;
-			locations.sort(Provider._compareLocations).find((loc, i) => loc.uri.toString() === target.toString() && !!(idx = i) && true);
-			locations.push(...locations.splice(0, idx));
+				// sort by locations and shuffle to begin from target resource
+				let idx = 0;
+				locations
+					.sort(Provider._compareLocations)
+					.find(
+						(loc, i) =>
+							loc.uri.toString() === target.toString() &&
+							!!(idx = i) &&
+							true,
+					);
+				locations.push(...locations.splice(0, idx));
 
-			// create document and return its early state
-			const document = new ReferencesDocument(uri, locations, this._onDidChange);
-			this._documents.set(uri.toString(), document);
+				// create document and return its early state
+				const document = new ReferencesDocument(
+					uri,
+					locations,
+					this._onDidChange,
+				);
+				this._documents.set(uri.toString(), document);
 
-			return document.value;
-		});
+				return document.value;
+			});
 	}
 
-	private static _compareLocations(a: vscode.Location, b: vscode.Location): number {
+	private static _compareLocations(
+		a: vscode.Location,
+		b: vscode.Location,
+	): number {
 		if (a.uri.toString() < b.uri.toString()) {
 			return -1;
 		} else if (a.uri.toString() > b.uri.toString()) {
@@ -78,7 +100,10 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 		}
 	}
 
-	provideDocumentLinks(document: vscode.TextDocument, _token: vscode.CancellationToken): vscode.DocumentLink[] | undefined {
+	provideDocumentLinks(
+		document: vscode.TextDocument,
+		_token: vscode.CancellationToken,
+	): vscode.DocumentLink[] | undefined {
 		// While building the virtual document we have already created the links.
 		// Those are composed from the range inside the document and a target uri
 		// to which they point
@@ -92,14 +117,23 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 
 let seq = 0;
 
-export function encodeLocation(uri: vscode.Uri, pos: vscode.Position): vscode.Uri {
+export function encodeLocation(
+	uri: vscode.Uri,
+	pos: vscode.Position,
+): vscode.Uri {
 	const query = JSON.stringify([uri.toString(), pos.line, pos.character]);
 
-	return vscode.Uri.parse(`${Provider.scheme}:References.locations?${query}#${seq++}`);
+	return vscode.Uri.parse(
+		`${Provider.scheme}:References.locations?${query}#${seq++}`,
+	);
 }
 
 export function decodeLocation(uri: vscode.Uri): [vscode.Uri, vscode.Position] {
-	const [target, line, character] = JSON.parse(uri.query) as [string, number, number];
+	const [target, line, character] = JSON.parse(uri.query) as [
+		string,
+		number,
+		number,
+	];
 
 	return [vscode.Uri.parse(target), new vscode.Position(line, character)];
 }

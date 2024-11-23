@@ -1,28 +1,65 @@
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
 const tokenTypes = new Map<string, number>();
 
 const tokenModifiers = new Map<string, number>();
 
-const legend = (function() {
+const legend = (function () {
 	const tokenTypesLegend = [
-		'comment', 'string', 'keyword', 'number', 'regexp', 'operator', 'namespace',
-		'type', 'struct', 'class', 'interface', 'enum', 'typeParameter', 'function',
-		'method', 'decorator', 'macro', 'variable', 'parameter', 'property', 'label'
+		"comment",
+		"string",
+		"keyword",
+		"number",
+		"regexp",
+		"operator",
+		"namespace",
+		"type",
+		"struct",
+		"class",
+		"interface",
+		"enum",
+		"typeParameter",
+		"function",
+		"method",
+		"decorator",
+		"macro",
+		"variable",
+		"parameter",
+		"property",
+		"label",
 	];
-	tokenTypesLegend.forEach((tokenType, index) => tokenTypes.set(tokenType, index));
+	tokenTypesLegend.forEach((tokenType, index) =>
+		tokenTypes.set(tokenType, index),
+	);
 
 	const tokenModifiersLegend = [
-		'declaration', 'documentation', 'readonly', 'static', 'abstract', 'deprecated',
-		'modification', 'async'
+		"declaration",
+		"documentation",
+		"readonly",
+		"static",
+		"abstract",
+		"deprecated",
+		"modification",
+		"async",
 	];
-	tokenModifiersLegend.forEach((tokenModifier, index) => tokenModifiers.set(tokenModifier, index));
+	tokenModifiersLegend.forEach((tokenModifier, index) =>
+		tokenModifiers.set(tokenModifier, index),
+	);
 
-	return new vscode.SemanticTokensLegend(tokenTypesLegend, tokenModifiersLegend);
+	return new vscode.SemanticTokensLegend(
+		tokenTypesLegend,
+		tokenModifiersLegend,
+	);
 })();
 
 export function activate(context: vscode.ExtensionContext) {
-	context.subscriptions.push(vscode.languages.registerDocumentSemanticTokensProvider({ language: 'semanticLanguage' }, new DocumentSemanticTokensProvider(), legend));
+	context.subscriptions.push(
+		vscode.languages.registerDocumentSemanticTokensProvider(
+			{ language: "semanticLanguage" },
+			new DocumentSemanticTokensProvider(),
+			legend,
+		),
+	);
 }
 
 interface IParsedToken {
@@ -33,13 +70,24 @@ interface IParsedToken {
 	tokenModifiers: string[];
 }
 
-class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensProvider {
-	async provideDocumentSemanticTokens(document: vscode.TextDocument, _token: vscode.CancellationToken): Promise<vscode.SemanticTokens> {
+class DocumentSemanticTokensProvider
+	implements vscode.DocumentSemanticTokensProvider
+{
+	async provideDocumentSemanticTokens(
+		document: vscode.TextDocument,
+		_token: vscode.CancellationToken,
+	): Promise<vscode.SemanticTokens> {
 		const allTokens = this._parseText(document.getText());
 
 		const builder = new vscode.SemanticTokensBuilder();
 		allTokens.forEach((token) => {
-			builder.push(token.line, token.startCharacter, token.length, this._encodeTokenType(token.tokenType), this._encodeTokenModifiers(token.tokenModifiers));
+			builder.push(
+				token.line,
+				token.startCharacter,
+				token.length,
+				this._encodeTokenType(token.tokenType),
+				this._encodeTokenModifiers(token.tokenModifiers),
+			);
 		});
 
 		return builder.build();
@@ -48,7 +96,7 @@ class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensPro
 	private _encodeTokenType(tokenType: string): number {
 		if (tokenTypes.has(tokenType)) {
 			return tokenTypes.get(tokenType)!;
-		} else if (tokenType === 'notInLegend') {
+		} else if (tokenType === "notInLegend") {
 			return tokenTypes.size + 2;
 		}
 		return 0;
@@ -60,8 +108,8 @@ class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensPro
 		for (const tokenModifier of strTokenModifiers) {
 			if (tokenModifiers.has(tokenModifier)) {
 				result = result | (1 << tokenModifiers.get(tokenModifier)!);
-			} else if (tokenModifier === 'notInLegend') {
-				result = result | (1 << tokenModifiers.size + 2);
+			} else if (tokenModifier === "notInLegend") {
+				result = result | (1 << (tokenModifiers.size + 2));
 			}
 		}
 		return result;
@@ -78,23 +126,25 @@ class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensPro
 			let currentOffset = 0;
 
 			do {
-				const openOffset = line.indexOf('[', currentOffset);
+				const openOffset = line.indexOf("[", currentOffset);
 
 				if (openOffset === -1) {
 					break;
 				}
-				const closeOffset = line.indexOf(']', openOffset);
+				const closeOffset = line.indexOf("]", openOffset);
 
 				if (closeOffset === -1) {
 					break;
 				}
-				const tokenData = this._parseTextToken(line.substring(openOffset + 1, closeOffset));
+				const tokenData = this._parseTextToken(
+					line.substring(openOffset + 1, closeOffset),
+				);
 				r.push({
 					line: i,
 					startCharacter: openOffset + 1,
 					length: closeOffset - openOffset - 1,
 					tokenType: tokenData.tokenType,
-					tokenModifiers: tokenData.tokenModifiers
+					tokenModifiers: tokenData.tokenModifiers,
 				});
 				currentOffset = closeOffset;
 				// eslint-disable-next-line no-constant-condition
@@ -103,12 +153,15 @@ class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensPro
 		return r;
 	}
 
-	private _parseTextToken(text: string): { tokenType: string; tokenModifiers: string[]; } {
-		const parts = text.split('.');
+	private _parseTextToken(text: string): {
+		tokenType: string;
+		tokenModifiers: string[];
+	} {
+		const parts = text.split(".");
 
 		return {
 			tokenType: parts[0],
-			tokenModifiers: parts.slice(1)
+			tokenModifiers: parts.slice(1),
 		};
 	}
 }
