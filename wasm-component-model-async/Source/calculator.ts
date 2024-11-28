@@ -99,6 +99,7 @@ export namespace Types {
 		| Operation.Div;
 }
 export type Types = {};
+
 export namespace calculator {
 	export type Operation = Types.Operation;
 

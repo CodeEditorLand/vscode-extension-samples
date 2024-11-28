@@ -112,6 +112,7 @@ export namespace Types {
 	}
 }
 export type Types = {};
+
 export namespace calculator {
 	export type Operation = Types.Operation;
 

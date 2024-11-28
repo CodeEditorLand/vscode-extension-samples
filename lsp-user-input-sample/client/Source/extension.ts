@@ -13,6 +13,7 @@ import {
 } from "vscode-languageclient/node";
 
 let client: LanguageClient;
+
 export async function activate(context: ExtensionContext): Promise<void> {
 	const serverModule = context.asAbsolutePath(
 		path.join("server", "out", "sampleServer.js"),

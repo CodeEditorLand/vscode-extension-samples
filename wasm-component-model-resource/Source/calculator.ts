@@ -32,6 +32,7 @@ export namespace Types {
 export type Types = {
 	Engine: Types.Engine.Class;
 };
+
 export namespace calculator {
 	export type Imports = {};
 
