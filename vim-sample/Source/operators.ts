@@ -22,6 +22,7 @@ export abstract class Operator {
 		repeatCount: number,
 		args: string,
 	): boolean;
+
 	public abstract runVisualMode(
 		ctrl: IController,
 		ed: TextEditor,
@@ -45,6 +46,7 @@ export abstract class Operator {
 			new Position(line, char),
 			new Position(line, char),
 		);
+
 		ed.revealRange(ed.selection, TextEditorRevealType.Default);
 	}
 
@@ -57,6 +59,7 @@ export abstract class Operator {
 		ctrl.setDeleteRegister(
 			new DeleteRegister(isWholeLine, ed.document.getText(range)),
 		);
+
 		ed.edit((builder) => {
 			builder.delete(range);
 		});
@@ -74,6 +77,7 @@ abstract class OperatorWithNoArgs extends Operator {
 
 		return true;
 	}
+
 	public runVisualMode(
 		ctrl: IController,
 		ed: TextEditor,
@@ -83,6 +87,7 @@ abstract class OperatorWithNoArgs extends Operator {
 
 		return true;
 	}
+
 	protected abstract _run(ctrl: IController, ed: TextEditor): void;
 }
 
@@ -99,7 +104,9 @@ class AppendOperator extends OperatorWithNoArgs {
 			this.pos(ed),
 			ctrl.motionState,
 		);
+
 		this.setPosReveal(ed, newPos.line, newPos.character);
+
 		ctrl.setMode(Mode.INSERT);
 	}
 }
@@ -111,7 +118,9 @@ class AppendEndOfLineOperator extends OperatorWithNoArgs {
 			this.pos(ed),
 			ctrl.motionState,
 		);
+
 		this.setPosReveal(ed, newPos.line, newPos.character);
+
 		ctrl.setMode(Mode.INSERT);
 	}
 }
@@ -119,6 +128,7 @@ class AppendEndOfLineOperator extends OperatorWithNoArgs {
 class VisualOperator extends OperatorWithNoArgs {
 	protected _run(ctrl: IController, ed: TextEditor): void {
 		ctrl.motionState.anchor = this.pos(ed);
+
 		ctrl.setVisual(true);
 	}
 }
@@ -153,6 +163,7 @@ class DeleteCharUnderCursorOperator extends Operator {
 		_args: string,
 	): boolean {
 		const sel = this.sel(ed);
+
 		this.delete(ctrl, ed, false, sel);
 
 		return true;
@@ -181,10 +192,12 @@ class DeleteLineOperator extends Operator {
 		if (toLine >= doc.lineCount - 1) {
 			// Deleting last line
 			toLine = doc.lineCount - 1;
+
 			toCharacter = doc.lineAt(toLine).text.length;
 
 			if (fromLine > 0) {
 				fromLine = fromLine - 1;
+
 				fromCharacter = doc.lineAt(fromLine).text.length;
 			}
 		}
@@ -205,6 +218,7 @@ class DeleteLineOperator extends Operator {
 		_args: string,
 	): boolean {
 		const sel = this.sel(ed);
+
 		this.delete(ctrl, ed, false, sel);
 
 		return true;
@@ -260,6 +274,7 @@ class DeleteToOperator extends OperatorWithMotion {
 				args,
 			);
 		}
+
 		return super.runNormalMode(ctrl, ed, repeatCount, args);
 	}
 
@@ -288,6 +303,7 @@ class DeleteToOperator extends OperatorWithMotion {
 		_args: string,
 	): boolean {
 		const sel = this.sel(ed);
+
 		this.delete(ctrl, ed, false, sel);
 
 		return true;
@@ -329,7 +345,9 @@ class PutOperator extends Operator {
 		if (insertLine >= doc.lineCount) {
 			// on last line
 			insertLine = doc.lineCount - 1;
+
 			insertCharacter = doc.lineAt(insertLine).text.length;
+
 			str = "\n" + str;
 		}
 
@@ -355,6 +373,7 @@ class PutOperator extends Operator {
 		const str = register.content;
 
 		const sel = this.sel(ed);
+
 		ed.edit((builder) => {
 			builder.replace(sel, str);
 		});
@@ -450,6 +469,7 @@ class ReplaceModeOperator extends Operator {
 		_args: string,
 	): boolean {
 		this.delete(ctrl, ed, false, this.sel(ed));
+
 		ctrl.setMode(Mode.INSERT);
 
 		return true;
@@ -499,6 +519,7 @@ function repeatString(str: string, repeatCount: number): string {
 	for (let i = 0; i < repeatCount; i++) {
 		result += str;
 	}
+
 	return result;
 }
 

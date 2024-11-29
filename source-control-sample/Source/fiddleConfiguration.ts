@@ -1,6 +1,8 @@
 export interface FiddleConfiguration {
 	readonly slug: string;
+
 	readonly version?: number;
+
 	readonly downloaded: boolean;
 }
 

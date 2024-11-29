@@ -20,6 +20,7 @@ export async function activate(ctx: RendererContext<void>) {
 
 	// eslint-disable-next-line @typescript-eslint/no-require-imports
 	const emoji = require("markdown-it-emoji");
+
 	markdownItRenderer.extendMarkdownIt((md: MarkdownIt) => {
 		return md.use(emoji, {});
 	});

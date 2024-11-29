@@ -54,6 +54,7 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 			"Extract cell level imports to single cell.",
 			ExtractNotebookImports.providedKind,
 		);
+
 		fix.edit = new vscode.WorkspaceEdit();
 
 		for (const edit of edits) {
@@ -63,6 +64,7 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 				fix.edit.set(document.uri, [edit]);
 			}
 		}
+
 		return [fix];
 	}
 
@@ -81,12 +83,14 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 			let cellHasImports = false;
 
 			let nonImportText = "";
+
 			cell.document
 				.getText()
 				.split("\n")
 				.forEach((line) => {
 					if (line.startsWith("import") || line.startsWith("from")) {
 						importStatements.push(line);
+
 						cellHasImports = true;
 					} else {
 						nonImportText += line + "\n";
@@ -102,6 +106,7 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 						cell.document.lineCount,
 						0,
 					);
+
 					nbEdits.push(new vscode.TextEdit(range, nonImportText));
 				} else {
 					// Cell is empty after removing imports, mark for deletion
@@ -122,6 +127,7 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 				importStatements.join("\n") + "\n",
 				"python",
 			);
+
 			nbEdits.push(vscode.NotebookEdit.insertCells(0, [newCell]));
 		}
 
@@ -136,6 +142,7 @@ export class ExtractNotebookImports implements vscode.CodeActionProvider {
 				return nb;
 			}
 		}
+
 		return undefined;
 	}
 }

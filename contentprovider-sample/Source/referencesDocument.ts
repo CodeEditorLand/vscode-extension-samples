@@ -6,10 +6,13 @@ import * as vscode from "vscode";
 
 export default class ReferencesDocument {
 	private readonly _uri: vscode.Uri;
+
 	private readonly _emitter: vscode.EventEmitter<vscode.Uri>;
+
 	private readonly _locations: vscode.Location[];
 
 	private readonly _lines: string[];
+
 	private readonly _links: vscode.DocumentLink[];
 
 	constructor(
@@ -18,6 +21,7 @@ export default class ReferencesDocument {
 		emitter: vscode.EventEmitter<vscode.Uri>,
 	) {
 		this._uri = uri;
+
 		this._locations = locations;
 
 		// The ReferencesDocument has access to the event emitter from
@@ -26,7 +30,9 @@ export default class ReferencesDocument {
 
 		// Start with printing a header and start resolving
 		this._lines = [`Found ${this._locations.length} references`];
+
 		this._links = [];
+
 		this._populate();
 	}
 
@@ -50,8 +56,10 @@ export default class ReferencesDocument {
 				group[0].uri.toString() !== loc.uri.toString()
 			) {
 				group = [];
+
 				groups.push(group);
 			}
+
 			group.push(loc);
 		}
 
@@ -60,7 +68,9 @@ export default class ReferencesDocument {
 			const uri = group[0].uri;
 
 			const ranges = group.map((loc) => loc.range);
+
 			await this._fetchAndFormatLocations(uri, ranges);
+
 			this._emitter.fire(this._uri);
 		}
 	}
@@ -74,14 +84,18 @@ export default class ReferencesDocument {
 		// to not duplicate lines
 		try {
 			const doc = await vscode.workspace.openTextDocument(uri);
+
 			this._lines.push("", uri.toString());
 
 			for (let i = 0; i < ranges.length; i++) {
 				const {
 					start: { line },
 				} = ranges[i];
+
 				this._appendLeading(doc, line, ranges[i - 1]);
+
 				this._appendMatch(doc, line, ranges[i], uri);
+
 				this._appendTrailing(doc, line, ranges[i + 1]);
 			}
 		} catch (err) {
@@ -102,6 +116,7 @@ export default class ReferencesDocument {
 
 		while (++from < line) {
 			const text = doc.lineAt(from).text;
+
 			this._lines.push(`  ${from + 1}` + (text && `  ${text}`));
 		}
 	}
@@ -131,6 +146,7 @@ export default class ReferencesDocument {
 		const linkTarget = target.with({
 			fragment: String(1 + match.start.line),
 		});
+
 		this._links.push(new vscode.DocumentLink(linkRange, linkTarget));
 	}
 
@@ -144,10 +160,13 @@ export default class ReferencesDocument {
 		if (next && next.start.line - to <= 2) {
 			return; // next is too close, _appendLeading does the work
 		}
+
 		while (++line < to) {
 			const text = doc.lineAt(line).text;
+
 			this._lines.push(`  ${line + 1}` + (text && `  ${text}`));
 		}
+
 		if (next) {
 			this._lines.push(`  ...`);
 		}

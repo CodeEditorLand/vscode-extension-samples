@@ -13,16 +13,20 @@ export enum Mode {
 
 export interface ModifierKeys {
 	ctrl?: boolean;
+
 	alt?: boolean;
+
 	shifit?: boolean;
 }
 
 export class DeleteRegister {
 	public isWholeLine: boolean;
+
 	public content: string;
 
 	constructor(isWholeLine: boolean, content: string) {
 		this.isWholeLine = isWholeLine;
+
 		this.content = content;
 	}
 }
@@ -33,7 +37,9 @@ export interface IController {
 	setMode(mode: Mode): void;
 
 	setVisual(newVisual: boolean): void;
+
 	findMotion(input: string): Motion;
+
 	isMotionPrefix(input: string): boolean;
 
 	setDeleteRegister(register: DeleteRegister): void;
@@ -47,5 +53,6 @@ export abstract class AbstractCommandDescriptor {
 
 export interface Command {
 	commandId: string;
+
 	args?: any[];
 }

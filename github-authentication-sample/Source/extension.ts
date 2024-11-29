@@ -6,6 +6,7 @@ import { Credentials } from "./credentials";
 
 export async function activate(context: vscode.ExtensionContext) {
 	const credentials = new Credentials();
+
 	await credentials.initialize(context);
 
 	const disposable = vscode.commands.registerCommand(

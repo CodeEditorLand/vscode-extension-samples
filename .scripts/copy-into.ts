@@ -10,6 +10,7 @@ if (require.main === module) {
 
 	if (!filePath) {
 		console.error('Please provide a file path as the argument.');
+
 		process.exit(1);
 	}
 
@@ -19,7 +20,9 @@ if (require.main === module) {
 
 	for (const sample of [...samples, ...lspSamples]) {
 		const destinationPath = path.join(sample.path, fileName);
+
 		fs.writeFileSync(destinationPath, fileContent);
+
 		console.log(`Copied ${fileName} to ${sample.path}`);
 	}
 }

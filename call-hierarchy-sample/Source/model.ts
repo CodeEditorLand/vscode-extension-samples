@@ -5,7 +5,9 @@ import * as vscode from "vscode";
  */
 export class FoodPyramid {
 	private _relations: FoodRelation[] = [];
+
 	private _nouns = new Set<string>();
+
 	private _verbs = new Set<string>();
 
 	getRelationAt(wordRange: vscode.Range): FoodRelation | undefined {
@@ -16,7 +18,9 @@ export class FoodPyramid {
 
 	addRelation(relation: FoodRelation): void {
 		this._relations.push(relation);
+
 		this._nouns.add(relation.object).add(relation.subject);
+
 		this._verbs.add(relation.verb);
 	}
 
@@ -56,7 +60,9 @@ export class FoodPyramid {
  */
 export class FoodRelation {
 	private _subject: string;
+
 	private _verb: string;
+
 	private _object: string;
 
 	constructor(
@@ -67,7 +73,9 @@ export class FoodRelation {
 		public readonly range: vscode.Range,
 	) {
 		this._subject = subject.toLowerCase();
+
 		this._verb = verb.toLowerCase();
+
 		this._object = object.toLowerCase();
 	}
 

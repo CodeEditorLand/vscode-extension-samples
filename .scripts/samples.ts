@@ -1,9 +1,14 @@
 export interface Sample {
 	readonly description: string;
+
 	readonly path: string;
+
 	readonly guide: string | null;
+
 	readonly apis: readonly string[];
+
 	readonly contributions: readonly string[];
+
 	readonly excludeFromReadme?: boolean;
 }
 

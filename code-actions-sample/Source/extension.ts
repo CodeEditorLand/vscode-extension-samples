@@ -21,6 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const emojiDiagnostics =
 		vscode.languages.createDiagnosticCollection("emoji");
+
 	context.subscriptions.push(emojiDiagnostics);
 
 	subscribeToDocumentChanges(context, emojiDiagnostics);
@@ -104,7 +105,9 @@ export class Emojizer implements vscode.CodeActionProvider {
 			`Convert to ${emoji}`,
 			vscode.CodeActionKind.QuickFix,
 		);
+
 		fix.edit = new vscode.WorkspaceEdit();
+
 		fix.edit.replace(
 			document.uri,
 			new vscode.Range(range.start, range.start.translate(0, 2)),
@@ -119,6 +122,7 @@ export class Emojizer implements vscode.CodeActionProvider {
 			"Learn more...",
 			vscode.CodeActionKind.Empty,
 		);
+
 		action.command = {
 			command: COMMAND,
 			title: "Learn more about emojis",
@@ -156,12 +160,15 @@ export class Emojinfo implements vscode.CodeActionProvider {
 			"Learn more...",
 			vscode.CodeActionKind.QuickFix,
 		);
+
 		action.command = {
 			command: COMMAND,
 			title: "Learn more about emojis",
 			tooltip: "This will open the unicode emoji page.",
 		};
+
 		action.diagnostics = [diagnostic];
+
 		action.isPreferred = true;
 
 		return action;

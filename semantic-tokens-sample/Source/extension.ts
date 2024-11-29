@@ -28,6 +28,7 @@ const legend = (function () {
 		"property",
 		"label",
 	];
+
 	tokenTypesLegend.forEach((tokenType, index) =>
 		tokenTypes.set(tokenType, index),
 	);
@@ -42,6 +43,7 @@ const legend = (function () {
 		"modification",
 		"async",
 	];
+
 	tokenModifiersLegend.forEach((tokenModifier, index) =>
 		tokenModifiers.set(tokenModifier, index),
 	);
@@ -64,9 +66,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 interface IParsedToken {
 	line: number;
+
 	startCharacter: number;
+
 	length: number;
+
 	tokenType: string;
+
 	tokenModifiers: string[];
 }
 
@@ -80,6 +86,7 @@ class DocumentSemanticTokensProvider
 		const allTokens = this._parseText(document.getText());
 
 		const builder = new vscode.SemanticTokensBuilder();
+
 		allTokens.forEach((token) => {
 			builder.push(
 				token.line,
@@ -99,6 +106,7 @@ class DocumentSemanticTokensProvider
 		} else if (tokenType === "notInLegend") {
 			return tokenTypes.size + 2;
 		}
+
 		return 0;
 	}
 
@@ -112,6 +120,7 @@ class DocumentSemanticTokensProvider
 				result = result | (1 << (tokenModifiers.size + 2));
 			}
 		}
+
 		return result;
 	}
 
@@ -131,14 +140,17 @@ class DocumentSemanticTokensProvider
 				if (openOffset === -1) {
 					break;
 				}
+
 				const closeOffset = line.indexOf("]", openOffset);
 
 				if (closeOffset === -1) {
 					break;
 				}
+
 				const tokenData = this._parseTextToken(
 					line.substring(openOffset + 1, closeOffset),
 				);
+
 				r.push({
 					line: i,
 					startCharacter: openOffset + 1,
@@ -146,15 +158,18 @@ class DocumentSemanticTokensProvider
 					tokenType: tokenData.tokenType,
 					tokenModifiers: tokenData.tokenModifiers,
 				});
+
 				currentOffset = closeOffset;
 				// eslint-disable-next-line no-constant-condition
 			} while (true);
 		}
+
 		return r;
 	}
 
 	private _parseTextToken(text: string): {
 		tokenType: string;
+
 		tokenModifiers: string[];
 	} {
 		const parts = text.split(".");

@@ -12,13 +12,18 @@ export async function findLocallyRunningServers(type: "lab" | "notebook") {
 
 	const servers: {
 		url: string;
+
 		token: string;
+
 		root_dir: string;
+
 		pid: number;
+
 		port: number;
 	}[] = [];
 
 	const prefix = type === "lab" ? "jpserver-" : "nbserver";
+
 	await Promise.all(
 		files.map(async (file) => {
 			if (!file.startsWith(prefix) || !file.endsWith(".json")) {
@@ -31,18 +36,25 @@ export async function findLocallyRunningServers(type: "lab" | "notebook") {
 
 			const json: {
 				url: string;
+
 				token: string;
+
 				root_dir: string;
+
 				secure: boolean;
+
 				pid: number;
+
 				port: number;
 			} = JSON.parse(contents);
 
 			if (json.secure) {
 				return;
 			}
+
 			try {
 				process.kill(json.pid, 0);
+
 				servers.push(json);
 			} catch {
 				//
@@ -57,6 +69,7 @@ function getDataDirectory() {
 	if (process.env["JUPYTER_DATA_DIR"]) {
 		return path.normalize(process.env["JUPYTER_DATA_DIR"]);
 	}
+
 	switch (getOSType()) {
 		case "osx":
 			return path.join(homeDir, "Library", "Jupyter");
@@ -69,13 +82,16 @@ function getDataDirectory() {
 			if (appData) {
 				return path.join(appData, "jupyter");
 			}
+
 			const configDir = getJupyterConfigDir();
 
 			if (configDir) {
 				return path.join(configDir, "data");
 			}
+
 			return path.join(homeDir, "Library", "Jupyter");
 		}
+
 		default: {
 			// Linux, non-OS X Unix, AIX, etc.
 			const xdgDataHome = process.env["XDG_DATA_HOME"]
@@ -91,6 +107,7 @@ function getJupyterConfigDir() {
 	if (process.env["JUPYTER_CONFIG_DIR"]) {
 		return path.normalize(process.env["JUPYTER_CONFIG_DIR"]);
 	}
+
 	return path.join(homeDir, ".jupyter");
 }
 
@@ -112,6 +129,7 @@ function getUserHomeDir() {
 	if (getOSType() === "windows") {
 		return process.env["USERPROFILE"] || homePath;
 	}
+
 	const homeVar = process.env["HOME"] || process.env["HOMEPATH"] || homePath;
 
 	// Make sure if linux, it uses linux separators

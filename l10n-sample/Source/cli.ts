@@ -7,4 +7,5 @@ if (process.env["EXTENSION_BUNDLE_PATH"]) {
 }
 
 const message = l10n.t("Hello {0}", "CLI");
+
 console.log(message + "\n");

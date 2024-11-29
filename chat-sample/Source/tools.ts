@@ -7,12 +7,14 @@ export function registerChatTools(context: vscode.ExtensionContext) {
 			new TabCountTool(),
 		),
 	);
+
 	context.subscriptions.push(
 		vscode.lm.registerTool(
 			"chat-tools-sample_findFiles",
 			new FindFilesTool(),
 		),
 	);
+
 	context.subscriptions.push(
 		vscode.lm.registerTool(
 			"chat-tools-sample_runInTerminal",
@@ -137,6 +139,7 @@ async function waitForShellIntegration(
 
 	const p = new Promise<void>((_resolve, _reject) => {
 		resolve = _resolve;
+
 		reject = _reject;
 	});
 
@@ -153,7 +156,9 @@ async function waitForShellIntegration(
 	const listener = vscode.window.onDidChangeTerminalShellIntegration((e) => {
 		if (e.terminal === terminal) {
 			clearTimeout(timer);
+
 			listener.dispose();
+
 			resolve();
 		}
 	});
@@ -173,6 +178,7 @@ export class RunInTerminalTool
 		const terminal = vscode.window.createTerminal(
 			"Language Model Tool User",
 		);
+
 		terminal.show();
 
 		try {

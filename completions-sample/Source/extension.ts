@@ -25,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const snippetCompletion = new vscode.CompletionItem(
 					"Good part of the day",
 				);
+
 				snippetCompletion.insertText = new vscode.SnippetString(
 					"Good ${1|morning,afternoon,evening|}. It is ${1}, right?",
 				);
@@ -32,6 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const docs = new vscode.MarkdownString(
 					"Inserts a snippet that lets you select [link](x.ts).",
 				);
+
 				snippetCompletion.documentation = docs;
 
 				docs.baseUri = vscode.Uri.parse("http://example.com/a/b/c/");
@@ -42,7 +44,9 @@ export function activate(context: vscode.ExtensionContext) {
 				const commitCharacterCompletion = new vscode.CompletionItem(
 					"console",
 				);
+
 				commitCharacterCompletion.commitCharacters = ["."];
+
 				commitCharacterCompletion.documentation =
 					new vscode.MarkdownString("Press `.` to get `console.`");
 
@@ -51,8 +55,11 @@ export function activate(context: vscode.ExtensionContext) {
 				// completion has been inserted. Also, the `insertText` is set so that
 				// a space is inserted after `new`
 				const commandCompletion = new vscode.CompletionItem("new");
+
 				commandCompletion.kind = vscode.CompletionItemKind.Keyword;
+
 				commandCompletion.insertText = "new ";
+
 				commandCompletion.command = {
 					command: "editor.action.triggerSuggest",
 					title: "Re-trigger completions...",

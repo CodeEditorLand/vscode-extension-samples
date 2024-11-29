@@ -16,6 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const word = document.getText(selection);
 
 				const reversed = word.split("").reverse().join("");
+
 				editor.edit((editBuilder) => {
 					editBuilder.replace(selection, reversed);
 				});

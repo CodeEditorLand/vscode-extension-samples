@@ -47,9 +47,11 @@ export function registerChatLibChatParticipant(
 		"chat-tools-sample.catTools",
 		handler,
 	);
+
 	chatLibParticipant.iconPath = vscode.Uri.joinPath(
 		context.extensionUri,
 		"cat.jpeg",
 	);
+
 	context.subscriptions.push(chatLibParticipant);
 }

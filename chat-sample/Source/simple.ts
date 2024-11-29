@@ -107,6 +107,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
 					// Process the output from the language model
 					// Replace all python function definitions with cat sounds to make the user stop looking at the code and start playing with the cat
 					const catFragment = fragment.replaceAll("def", "meow");
+
 					stream.markdown(catFragment);
 				}
 			} catch (err) {
@@ -123,7 +124,9 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
 	// when you type `@`, and can contribute sub-commands in the chat input
 	// that appear when you type `/`.
 	const cat = vscode.chat.createChatParticipant(CAT_PARTICIPANT_ID, handler);
+
 	cat.iconPath = vscode.Uri.joinPath(context.extensionUri, "cat.jpeg");
+
 	cat.followupProvider = {
 		provideFollowups(
 			_result: ICatChatResult,
@@ -144,11 +147,13 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
 		sendEventData(eventName, data) {
 			// Capture event telemetry
 			console.log(`Event: ${eventName}`);
+
 			console.log(`Data: ${JSON.stringify(data)}`);
 		},
 		sendErrorData(error, data) {
 			// Capture error telemetry
 			console.error(`Error: ${error}`);
+
 			console.error(`Data: ${JSON.stringify(data)}`);
 		},
 	});
@@ -195,6 +200,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
                     Your job is to replace all variable names in the following code with funny cat variable names. Be creative. IMPORTANT respond just with code. Do not use markdown!`),
 						vscode.LanguageModelChatMessage.User(text),
 					];
+
 					chatResponse = await model.sendRequest(
 						messages,
 						{},
@@ -206,6 +212,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
 					} else {
 						throw err;
 					}
+
 					return;
 				}
 
@@ -219,6 +226,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
 							textEditor.document.lineCount - 1,
 						).text.length,
 					);
+
 					edit.delete(new vscode.Range(start, end));
 				});
 
@@ -234,6 +242,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
 								lastLine.lineNumber,
 								lastLine.text.length,
 							);
+
 							edit.insert(position, fragment);
 						});
 					}
@@ -248,6 +257,7 @@ export function registerSimpleParticipant(context: vscode.ExtensionContext) {
 							lastLine.lineNumber,
 							lastLine.text.length,
 						);
+
 						edit.insert(position, (err as Error).message);
 					});
 				}

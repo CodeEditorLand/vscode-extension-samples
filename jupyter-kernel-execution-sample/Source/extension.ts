@@ -22,11 +22,15 @@ export function activate(context: ExtensionContext) {
 	if (!jupyterExt) {
 		throw new Error("Jupyter Extension not installed");
 	}
+
 	if (!jupyterExt.isActive) {
 		jupyterExt.activate();
 	}
+
 	const output = window.createOutputChannel("Jupyter Kernel Execution");
+
 	context.subscriptions.push(output);
+
 	context.subscriptions.push(
 		commands.registerCommand(
 			"jupyterKernelExecution.listKernels",
@@ -36,11 +40,13 @@ export function activate(context: ExtensionContext) {
 				if (!kernel) {
 					return;
 				}
+
 				const code = await selectCodeToRunAgainstKernel();
 
 				if (!code) {
 					return;
 				}
+
 				await executeCode(kernel, code, output);
 			},
 		),
@@ -60,9 +66,11 @@ async function executeCode(
 	logger: OutputChannel,
 ) {
 	logger.show();
+
 	logger.appendLine(
 		`>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>`,
 	);
+
 	logger.appendLine(`Executing code against kernel ${code}`);
 
 	const tokenSource = new CancellationTokenSource();
@@ -77,6 +85,7 @@ async function executeCode(
 					const error = JSON.parse(
 						textDecoder.decode(outputItem.data),
 					) as Error;
+
 					logger.appendLine(
 						`Error executing code ${error.name}: ${error.message},/n ${error.stack}`,
 					);
@@ -87,10 +96,13 @@ async function executeCode(
 				}
 			}
 		}
+
 		logger.appendLine('Code execution completed');
+
 		logger.appendLine(`<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<`);
 	} catch (ex) {
 		logger.appendLine(`Code execution failed with an error '${ex}'`);
+
 		logger.appendLine(
 			`<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<`,
 		);
@@ -137,6 +149,7 @@ async function selectCodeToRunAgainstKernel() {
 	if (!selection) {
 		return;
 	}
+
 	return codeSnippets.get(selection);
 }
 
@@ -146,6 +159,7 @@ async function selectKernel(): Promise<Kernel | undefined> {
 	if (!extension) {
 		throw new Error("Jupyter extension not installed");
 	}
+
 	await extension.activate();
 
 	if (workspace.notebookDocuments.length === 0) {
@@ -155,21 +169,28 @@ async function selectKernel(): Promise<Kernel | undefined> {
 
 		return;
 	}
+
 	const toDispose: Disposable[] = [];
 
 	return new Promise<Kernel | undefined>((resolve) => {
 		const quickPick = window.createQuickPick<
 			QuickPickItem & { kernel: Kernel }
 		>();
+
 		toDispose.push(quickPick);
 
 		const quickPickItems: (QuickPickItem & { kernel: Kernel })[] = [];
+
 		quickPick.title = "Select a Kernel";
+
 		quickPick.placeholder = "Select a Python Kernel to execute some code";
+
 		quickPick.busy = true;
+
 		quickPick.show();
 
 		const api = extension.exports;
+
 		Promise.all(
 			workspace.notebookDocuments.map(async (document) => {
 				const kernel = await api.kernels.getKernel(document.uri);
@@ -179,6 +200,7 @@ async function selectKernel(): Promise<Kernel | undefined> {
 						label: `Kernel for ${path.basename(document.uri.fsPath)}`,
 						kernel,
 					});
+
 					quickPick.items = quickPickItems;
 				}
 			}),
@@ -187,6 +209,7 @@ async function selectKernel(): Promise<Kernel | undefined> {
 
 			if (quickPickItems.length === 0) {
 				quickPick.hide();
+
 				window.showErrorMessage(
 					"No active kernels associated with any of the open notebooks, try opening a notebook and running a Python cell",
 				);
@@ -202,11 +225,13 @@ async function selectKernel(): Promise<Kernel | undefined> {
 				if (quickPick.selectedItems.length > 0) {
 					return resolve(quickPick.selectedItems[0].kernel);
 				}
+
 				resolve(undefined);
 			},
 			undefined,
 			toDispose,
 		);
+
 		quickPick.onDidHide(() => resolve(undefined), undefined, toDispose);
 	}).finally(() => Disposable.from(...toDispose).dispose());
 }

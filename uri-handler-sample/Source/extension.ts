@@ -10,6 +10,7 @@ class MyUriHandler implements vscode.UriHandler {
 		if (uri.query) {
 			message += ` It came with this query: ${uri.query}`;
 		}
+
 		vscode.window.showInformationMessage(message);
 	}
 }
@@ -34,6 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
 					`${vscode.env.uriScheme}://vscode-samples.uri-handler-sample`,
 				),
 			);
+
 			vscode.window.showInformationMessage(
 				`Starting to handle Uris. Open ${uri} in your browser to test.`,
 			);

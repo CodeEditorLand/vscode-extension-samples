@@ -5,9 +5,12 @@ import * as vscode from "vscode";
  */
 export class CodelensProvider implements vscode.CodeLensProvider {
 	private codeLenses: vscode.CodeLens[] = [];
+
 	private regex: RegExp;
+
 	private _onDidChangeCodeLenses: vscode.EventEmitter<void> =
 		new vscode.EventEmitter<void>();
+
 	public readonly onDidChangeCodeLenses: vscode.Event<void> =
 		this._onDidChangeCodeLenses.event;
 
@@ -54,8 +57,10 @@ export class CodelensProvider implements vscode.CodeLensProvider {
 					this.codeLenses.push(new vscode.CodeLens(range));
 				}
 			}
+
 			return this.codeLenses;
 		}
+
 		return [];
 	}
 
@@ -77,6 +82,7 @@ export class CodelensProvider implements vscode.CodeLensProvider {
 
 			return codeLens;
 		}
+
 		return null;
 	}
 }

@@ -32,10 +32,13 @@ export function activate(context: vscode.ExtensionContext) {
 		// add the previous messages to the messages array
 		previousMessages.forEach((m) => {
 			let fullMessage = "";
+
 			m.response.forEach((r) => {
 				const mdPart = r as vscode.ChatResponseMarkdownPart;
+
 				fullMessage += mdPart.value.value;
 			});
+
 			messages.push(
 				vscode.LanguageModelChatMessage.Assistant(fullMessage),
 			);

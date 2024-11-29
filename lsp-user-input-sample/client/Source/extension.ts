@@ -47,7 +47,9 @@ export async function activate(context: ExtensionContext): Promise<void> {
 				if (selected === undefined) {
 					return next(command, args);
 				}
+
 				args = args.slice(0);
+
 				args.push(selected);
 
 				return next(command, args);
@@ -64,6 +66,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
 		return;
 	}
+
 	client.registerProposedFeatures();
 
 	return client.start();

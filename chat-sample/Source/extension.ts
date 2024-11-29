@@ -7,7 +7,9 @@ import { registerChatTools } from "./tools";
 
 export function activate(context: vscode.ExtensionContext) {
 	registerSimpleParticipant(context);
+
 	registerToolUserChatParticipant(context);
+
 	registerChatLibChatParticipant(context);
 
 	registerChatTools(context);

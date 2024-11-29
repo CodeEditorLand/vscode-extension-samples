@@ -16,11 +16,13 @@ export function activate(context: vscode.ExtensionContext) {
 			const tabs = vscode.window.tabGroups.all
 				.map((group) => group.tabs)
 				.flat(1);
+
 			activityMap.clear();
 			// Update activity map saying everything is active
 			tabs.forEach((t) => activityMap.set(t, Date.now()));
 		}),
 	);
+
 	context.subscriptions.push(
 		vscode.window.tabGroups.onDidChangeTabs((tabChangeEvent) => {
 			// If tabs are closed no longer track their activity
@@ -47,6 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
 			// Update the activity map for the active tab, since it's still being used.
 			activityMap.set(activeTab, Date.now());
 		}
+
 		const inactiveTime =
 			(vscode.workspace
 				.getConfiguration()
@@ -58,9 +61,11 @@ export function activate(context: vscode.ExtensionContext) {
 				!tab.isActive &&
 				!tab.isDirty,
 		);
+
 		inactiveTabs.forEach(async ([tab]) => {
 			// Close the tab
 			await vscode.window.tabGroups.close(tab);
+
 			activityMap.delete(tab);
 		});
 	}, 1000);

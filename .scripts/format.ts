@@ -4,6 +4,7 @@ import * as ts from 'typescript';
 
 class LanguageServiceHost implements ts.LanguageServiceHost {
 	files: ts.MapLike<ts.IScriptSnapshot> = {};
+
 	addFile(fileName: string, text: string) {
 		this.files[fileName] = ts.ScriptSnapshot.fromString(text);
 	}
@@ -59,11 +60,13 @@ const defaults: ts.FormatCodeSettings = {
 function format(fileName: string, text: string) {
 
 	const host = new LanguageServiceHost();
+
 	host.addFile(fileName, text);
 
 	const languageService = ts.createLanguageService(host);
 
 	const edits = languageService.getFormattingEditsForDocument(fileName, { ...defaults });
+
 	edits
 		.sort((a, b) => a.span.start - b.span.start)
 		.reverse()
@@ -71,6 +74,7 @@ function format(fileName: string, text: string) {
 			const head = text.slice(0, edit.span.start);
 
 			const tail = text.slice(edit.span.start + edit.span.length);
+
 			text = `${head}${edit.newText}${tail}`;
 		});
 
@@ -84,6 +88,7 @@ if (require.main === module) {
 		}
 
 		const out = format(file, fs.readFileSync(file, 'utf8'));
+
 		fs.writeFileSync(file, out);
 	});
 }

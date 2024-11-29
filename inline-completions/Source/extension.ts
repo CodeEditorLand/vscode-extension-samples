@@ -3,6 +3,7 @@ import { Range } from "vscode";
 
 export function activate(_context: vscode.ExtensionContext) {
 	console.log("inline-completions demo started");
+
 	vscode.commands.registerCommand("demo-ext.command1", async (...args) => {
 		vscode.window.showInformationMessage(
 			"command1: " + JSON.stringify(args),
@@ -43,6 +44,7 @@ export function activate(_context: vscode.ExtensionContext) {
 				if (!matches) {
 					break;
 				}
+
 				offset++;
 
 				const start = matches[1];
@@ -85,6 +87,7 @@ export function activate(_context: vscode.ExtensionContext) {
 					arguments: [1, 2],
 				});
 			}
+
 			return result;
 		},
 
@@ -105,6 +108,7 @@ export function activate(_context: vscode.ExtensionContext) {
 			console.log("handleDidPartiallyAcceptCompletionItem");
 		},
 	};
+
 	vscode.languages.registerInlineCompletionItemProvider(
 		{ pattern: "**" },
 		provider,

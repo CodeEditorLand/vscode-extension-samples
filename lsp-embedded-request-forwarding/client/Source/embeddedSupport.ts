@@ -8,6 +8,7 @@ import { Position, Range, TextDocument } from "vscode-languageclient";
 
 export interface LanguageRange extends Range {
 	languageId: string | undefined;
+
 	attributeValue?: boolean;
 }
 
@@ -30,8 +31,11 @@ export const CSS_STYLE_RULE = "__";
 
 interface EmbeddedRegion {
 	languageId: string | undefined;
+
 	start: number;
+
 	end: number;
+
 	attributeValue?: boolean;
 }
 
@@ -54,6 +58,7 @@ export function isInsideStyleRegion(
 					return true;
 				}
 		}
+
 		token = scanner.scan();
 	}
 
@@ -82,7 +87,9 @@ export function getCSSVirtualContent(
 		switch (token) {
 			case TokenType.StartTag:
 				lastTagName = scanner.getTokenText();
+
 				lastAttributeName = null;
+
 				languageIdFromType = "javascript";
 
 				break;
@@ -120,6 +127,7 @@ export function getCSSVirtualContent(
 					if (value[0] === "'" || value[0] === '"') {
 						value = value.substr(1, value.length - 1);
 					}
+
 					importedScripts.push(value);
 				} else if (
 					lastAttributeName === "type" &&
@@ -152,8 +160,10 @@ export function getCSSVirtualContent(
 
 						if (firstChar === "'" || firstChar === '"') {
 							start++;
+
 							end--;
 						}
+
 						regions.push({
 							languageId: attributeLanguageId,
 							start,
@@ -162,10 +172,12 @@ export function getCSSVirtualContent(
 						});
 					}
 				}
+
 				lastAttributeName = null;
 
 				break;
 		}
+
 		token = scanner.scan();
 	}
 
@@ -210,7 +222,9 @@ export function getDocumentRegions(
 		switch (token) {
 			case TokenType.StartTag:
 				lastTagName = scanner.getTokenText();
+
 				lastAttributeName = null;
+
 				languageIdFromType = "javascript";
 
 				break;
@@ -248,6 +262,7 @@ export function getDocumentRegions(
 					if (value[0] === "'" || value[0] === '"') {
 						value = value.substr(1, value.length - 1);
 					}
+
 					importedScripts.push(value);
 				} else if (
 					lastAttributeName === "type" &&
@@ -280,8 +295,10 @@ export function getDocumentRegions(
 
 						if (firstChar === "'" || firstChar === '"') {
 							start++;
+
 							end--;
 						}
+
 						regions.push({
 							languageId: attributeLanguageId,
 							start,
@@ -290,12 +307,15 @@ export function getDocumentRegions(
 						});
 					}
 				}
+
 				lastAttributeName = null;
 
 				break;
 		}
+
 		token = scanner.scan();
 	}
+
 	return {
 		getLanguageRanges: (range: Range) =>
 			getLanguageRanges(document, regions, range),
@@ -344,6 +364,7 @@ function getLanguageRanges(
 					languageId: "html",
 				});
 			}
+
 			const end = Math.min(region.end, endOffset);
 
 			const endPos = document.positionAt(end);
@@ -356,18 +377,23 @@ function getLanguageRanges(
 					attributeValue: region.attributeValue,
 				});
 			}
+
 			currentOffset = end;
+
 			currentPos = endPos;
 		}
 	}
+
 	if (currentOffset < endOffset) {
 		const endPos = range ? range.end : document.positionAt(endOffset);
+
 		result.push({
 			start: currentPos,
 			end: endPos,
 			languageId: "html",
 		});
 	}
+
 	return result;
 }
 
@@ -386,6 +412,7 @@ function getLanguagesInDocument(
 			}
 		}
 	}
+
 	result.push("html");
 
 	return result;
@@ -407,6 +434,7 @@ function getLanguageAtPosition(
 			break;
 		}
 	}
+
 	return "html";
 }
 
@@ -437,11 +465,15 @@ function getEmbeddedDocument(
 				lastSuffix,
 				getPrefix(c),
 			);
+
 			result += oldContent.substring(c.start, c.end);
+
 			currentPos = c.end;
+
 			lastSuffix = getSuffix(c);
 		}
 	}
+
 	result = substituteWithWhitespace(
 		result,
 		currentPos,
@@ -466,6 +498,7 @@ function getPrefix(c: EmbeddedRegion) {
 				return CSS_STYLE_RULE + "{";
 		}
 	}
+
 	return "";
 }
 function getSuffix(c: EmbeddedRegion) {
@@ -478,6 +511,7 @@ function getSuffix(c: EmbeddedRegion) {
 				return ";";
 		}
 	}
+
 	return "";
 }
 
@@ -490,6 +524,7 @@ function substituteWithWhitespace(
 	after: string,
 ) {
 	let accumulatedWS = 0;
+
 	result += before;
 
 	for (let i = start + before.length; i < end; i++) {
@@ -498,12 +533,15 @@ function substituteWithWhitespace(
 		if (ch === "\n" || ch === "\r") {
 			// only write new lines, skip the whitespace
 			accumulatedWS = 0;
+
 			result += ch;
 		} else {
 			accumulatedWS++;
 		}
 	}
+
 	result = append(result, " ", accumulatedWS - after.length);
+
 	result += after;
 
 	return result;
@@ -514,9 +552,12 @@ function append(result: string, str: string, n: number): string {
 		if (n & 1) {
 			result += str;
 		}
+
 		n >>= 1;
+
 		str += str;
 	}
+
 	return result;
 }
 
@@ -526,5 +567,6 @@ function getAttributeLanguage(attributeName: string): string | null {
 	if (!match) {
 		return null;
 	}
+
 	return match[1] ? "css" : "javascript";
 }

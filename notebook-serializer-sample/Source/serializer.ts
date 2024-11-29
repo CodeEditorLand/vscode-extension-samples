@@ -12,8 +12,11 @@ interface RawNotebookData {
 
 interface RawNotebookCell {
 	language: string;
+
 	value: string;
+
 	kind: vscode.NotebookCellKind;
+
 	editable?: boolean;
 }
 

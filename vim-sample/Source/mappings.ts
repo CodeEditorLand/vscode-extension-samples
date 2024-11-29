@@ -21,6 +21,7 @@ function defineBinding(
 	modifierKeys: ModifierKeys,
 ): void {
 	const key = modifierKeys.ctrl ? "CTRL + " + char : char;
+
 	CHAR_TO_BINDING[key] = value;
 }
 function getBinding(char: string, modifierKeys: ModifierKeys): any {
@@ -151,6 +152,7 @@ defineMotionCommand("zo", Motions.UnfoldUnder);
 
 export interface IFoundOperator {
 	runNormal(controller: IController, editor: TextEditor): boolean;
+
 	runVisual(controller: IController, editor: TextEditor): boolean;
 }
 
@@ -167,6 +169,7 @@ export class Mappings {
 				return null;
 			}
 		}
+
 		return motion.repeat(parsed.hasRepeatCount, parsed.repeatCount);
 	}
 
@@ -185,12 +188,14 @@ export class Mappings {
 
 		if (!command) {
 			parsed = _parseNumberAndString(input, false);
+
 			command = Mappings.findMotionCommandFromNumberAndString(
 				parsed,
 				isVisual,
 				modifierKeys,
 			);
 		}
+
 		return command;
 	}
 
@@ -210,24 +215,28 @@ export class Mappings {
 				modifierKeys,
 			);
 		}
+
 		if (!motionCommand) {
 			motionCommand = getMotionCommand(
 				numberAndString.input.substr(1, 2),
 				modifierKeys,
 			);
 		}
+
 		if (!motionCommand) {
 			motionCommand = getMotionCommand(
 				numberAndString.input.substr(1, 3),
 				modifierKeys,
 			);
 		}
+
 		if (!motionCommand) {
 			motionCommand = getMotionCommand(
 				numberAndString.input,
 				modifierKeys,
 			);
 		}
+
 		return motionCommand
 			? motionCommand.createCommand({
 					isVisual: isVisual,
@@ -249,6 +258,7 @@ export class Mappings {
 		if (!operator) {
 			return null;
 		}
+
 		const operatorArgs = parsed.input.substr(1);
 
 		return {
@@ -277,9 +287,11 @@ export class Mappings {
 		if (input.length === 0) {
 			return true;
 		}
+
 		if (input === "g" || input === "v" || input === "z") {
 			return true;
 		}
+
 		return /^[1-9]\d*v?g?z?$/.test(input);
 	}
 }
@@ -312,6 +324,7 @@ function _parseNumberAndString(
 			};
 		}
 	}
+
 	return {
 		hasRepeatCount: false,
 		repeatCount: 1,
@@ -321,6 +334,8 @@ function _parseNumberAndString(
 
 interface INumberAndString {
 	hasRepeatCount: boolean;
+
 	repeatCount: number;
+
 	input: string;
 }

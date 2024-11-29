@@ -63,6 +63,7 @@ export function updateReadme(dryRun = false): boolean {
 		if (!dryRun) {
 			fs.writeFileSync('README.md', newReadme)
 		}
+
 		return true;
 	} else {
 		return false;

@@ -175,6 +175,7 @@ export class FileStat implements vscode.FileStat {
 
 interface Entry {
 	uri: vscode.Uri;
+
 	type: vscode.FileType;
 }
 
@@ -252,6 +253,7 @@ export class FileSystemProvider
 
 		for (const child of children) {
 			const stat = await this._stat(path.join(uri.fsPath, child));
+
 			result.push([child, stat.type]);
 		}
 
@@ -357,10 +359,12 @@ export class FileSystemProvider
 
 		if (workspaceFolder) {
 			const children = await this.readDirectory(workspaceFolder.uri);
+
 			children.sort((a, b) => {
 				if (a[1] === b[1]) {
 					return a[0].localeCompare(b[0]);
 				}
+
 				return a[1] === vscode.FileType.Directory ? -1 : 1;
 			});
 
@@ -389,8 +393,10 @@ export class FileSystemProvider
 				title: "Open File",
 				arguments: [element.uri],
 			};
+
 			treeItem.contextValue = "file";
 		}
+
 		return treeItem;
 	}
 }
@@ -398,9 +404,11 @@ export class FileSystemProvider
 export class FileExplorer {
 	constructor(context: vscode.ExtensionContext) {
 		const treeDataProvider = new FileSystemProvider();
+
 		context.subscriptions.push(
 			vscode.window.createTreeView("fileExplorer", { treeDataProvider }),
 		);
+
 		vscode.commands.registerCommand("fileExplorer.openFile", (resource) =>
 			this.openResource(resource),
 		);

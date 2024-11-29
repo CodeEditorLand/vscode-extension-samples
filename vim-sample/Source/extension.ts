@@ -17,11 +17,13 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.commands.registerCommand(commandId, run),
 		);
 	}
+
 	function registerCtrlKeyBinding(key: string): void {
 		registerCommandNice(key, function () {
 			if (!vscode.window.activeTextEditor) {
 				return;
 			}
+
 			vimExt.type(key, { ctrl: true });
 		});
 	}
@@ -32,29 +34,38 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
+
 		vimExt.type(args.text);
 	});
+
 	registerCommandNice("replacePreviousChar", function (args) {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
+
 		vimExt.replacePrevChar(args.text, args.replaceCharCnt);
 	});
+
 	registerCommandNice("compositionStart", function () {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
+
 		vimExt.compositionStart();
 	});
+
 	registerCommandNice("compositionEnd", function () {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
+
 		vimExt.compositionEnd();
 	});
+
 	registerCommandNice("vim.goToNormalMode", function () {
 		vimExt.goToNormalMode();
 	});
+
 	registerCommandNice("vim.clearInput", function () {
 		vimExt.clearInput();
 	});
@@ -66,10 +77,15 @@ export function activate(context: vscode.ExtensionContext) {
 	// });
 
 	registerCtrlKeyBinding("e");
+
 	registerCtrlKeyBinding("d");
+
 	registerCtrlKeyBinding("f");
+
 	registerCtrlKeyBinding("y");
+
 	registerCtrlKeyBinding("u");
+
 	registerCtrlKeyBinding("b");
 }
 
@@ -86,13 +102,18 @@ function getConfiguredWordSeparators(): string {
 
 class VimExt {
 	private _inNormalMode: ContextKey;
+
 	private _hasInput: ContextKey;
+
 	private _statusBar: StatusBar;
+
 	private _controller: Controller;
 
 	constructor() {
 		this._inNormalMode = new ContextKey("vim.inNormalMode");
+
 		this._hasInput = new ContextKey("vim.hasInput");
+
 		this._statusBar = new StatusBar();
 
 		this._controller = new Controller();
@@ -101,6 +122,7 @@ class VimExt {
 			if (!textEditor) {
 				return;
 			}
+
 			this._ensureState();
 		});
 
@@ -127,6 +149,7 @@ class VimExt {
 				if (e.selections.length === 1) {
 					leaveVisualMode = e.selections[0].isEmpty;
 				}
+
 				if (leaveVisualMode) {
 					this._controller.setVisual(false);
 				}
@@ -138,7 +161,9 @@ class VimExt {
 		const ensureConfig = () => {
 			this._controller.setWordSeparators(getConfiguredWordSeparators());
 		};
+
 		ensureConfig();
+
 		vscode.workspace.onDidChangeConfiguration(ensureConfig);
 
 		this._ensureState();
@@ -146,11 +171,13 @@ class VimExt {
 
 	public goToNormalMode(): void {
 		this._controller.setMode(Mode.NORMAL);
+
 		this._ensureState();
 	}
 
 	public clearInput(): void {
 		this._controller.clearInput();
+
 		this._ensureState();
 	}
 
@@ -166,11 +193,15 @@ class VimExt {
 
 					if (r.executeEditorCommand) {
 						let args = [r.executeEditorCommand.commandId];
+
 						args = args.concat(r.executeEditorCommand.args);
+
 						vscode.commands.executeCommand.apply(this, args);
 					}
+
 					return;
 				}
+
 				vscode.commands.executeCommand("default:type", {
 					text: text,
 				});
@@ -189,6 +220,7 @@ class VimExt {
 
 			return;
 		}
+
 		vscode.commands.executeCommand("default:replacePreviousChar", {
 			text: text,
 			replaceCharCnt: replaceCharCnt,
@@ -208,7 +240,9 @@ class VimExt {
 
 					if (r.executeEditorCommand) {
 						let args = [r.executeEditorCommand.commandId];
+
 						args = args.concat(r.executeEditorCommand.args);
+
 						vscode.commands.executeCommand.apply(this, args);
 					}
 				}
@@ -236,6 +270,7 @@ class VimExt {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
+
 		this._controller.ensureNormalModePosition(
 			vscode.window.activeTextEditor,
 		);
@@ -247,6 +282,7 @@ class VimExt {
 		if (!vscode.window.activeTextEditor) {
 			return;
 		}
+
 		const currentCursorStyle =
 			vscode.window.activeTextEditor.options.cursorStyle;
 
@@ -260,6 +296,7 @@ class VimExt {
 
 class ContextKey {
 	private _name: string;
+
 	private _lastValue: boolean;
 
 	constructor(name: string) {
@@ -270,7 +307,9 @@ class ContextKey {
 		if (this._lastValue === value) {
 			return;
 		}
+
 		this._lastValue = value;
+
 		vscode.commands.executeCommand(
 			"setContext",
 			this._name,
@@ -281,12 +320,14 @@ class ContextKey {
 
 class StatusBar {
 	private _actual: vscode.StatusBarItem;
+
 	private _lastText: string;
 
 	constructor() {
 		this._actual = vscode.window.createStatusBarItem(
 			vscode.StatusBarAlignment.Left,
 		);
+
 		this._actual.show();
 	}
 
@@ -294,7 +335,9 @@ class StatusBar {
 		if (this._lastText === text) {
 			return;
 		}
+
 		this._lastText = text;
+
 		this._actual.text = this._lastText;
 	}
 }

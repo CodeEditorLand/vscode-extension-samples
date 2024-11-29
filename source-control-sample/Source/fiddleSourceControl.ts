@@ -18,11 +18,16 @@ export const CONFIGURATION_FILE = ".jsfiddle";
 
 export class FiddleSourceControl implements vscode.Disposable {
 	private jsFiddleScm: vscode.SourceControl;
+
 	private changedResources: vscode.SourceControlResourceGroup;
+
 	private fiddleRepository: FiddleRepository;
+
 	private latestFiddleVersion: number = Number.POSITIVE_INFINITY; // until actual value is established
 	private _onRepositoryChange = new vscode.EventEmitter<Fiddle>();
+
 	private timeout?: NodeJS.Timeout;
+
 	private fiddle!: Fiddle;
 
 	constructor(
@@ -36,35 +41,43 @@ export class FiddleSourceControl implements vscode.Disposable {
 			"JSFiddle #" + fiddle.slug,
 			workspaceFolder.uri,
 		);
+
 		this.changedResources = this.jsFiddleScm.createResourceGroup(
 			"workingTree",
 			"Changes",
 		);
+
 		this.fiddleRepository = new FiddleRepository(
 			workspaceFolder,
 			fiddle.slug,
 		);
+
 		this.jsFiddleScm.quickDiffProvider = this.fiddleRepository;
+
 		this.jsFiddleScm.inputBox.placeholder =
 			"Message is ignored by JS Fiddle :-]";
 
 		const fileSystemWatcher = vscode.workspace.createFileSystemWatcher(
 			new vscode.RelativePattern(workspaceFolder, "*.*"),
 		);
+
 		fileSystemWatcher.onDidChange(
 			(uri) => this.onResourceChange(uri),
 			context.subscriptions,
 		);
+
 		fileSystemWatcher.onDidCreate(
 			(uri) => this.onResourceChange(uri),
 			context.subscriptions,
 		);
+
 		fileSystemWatcher.onDidDelete(
 			(uri) => this.onResourceChange(uri),
 			context.subscriptions,
 		);
 
 		context.subscriptions.push(this.jsFiddleScm);
+
 		context.subscriptions.push(fileSystemWatcher);
 
 		// clone fiddle to the local workspace
@@ -166,7 +179,9 @@ export class FiddleSourceControl implements vscode.Disposable {
 				if (!newFiddle) {
 					return;
 				}
+
 				this.setFiddle(newFiddle, false);
+
 				this.jsFiddleScm.inputBox.value = "";
 			} catch (ex) {
 				vscode.window.showErrorMessage(
@@ -189,7 +204,9 @@ export class FiddleSourceControl implements vscode.Disposable {
 	 */
 	resetFilesToCheckedOutVersion(): void {
 		this.resetFile("html");
+
 		this.resetFile("css");
+
 		this.resetFile("js");
 	}
 
@@ -197,6 +214,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 	private async resetFile(extension: string): Promise<void> {
 		const filePath =
 			this.fiddleRepository.createLocalResourcePath(extension);
+
 		await afs.writeFile(filePath, this.fiddle.data[extension]);
 	}
 
@@ -239,6 +257,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 					this.fiddle.slug,
 					newVersion,
 				);
+
 				this.setFiddle(newFiddle, true);
 			} catch (ex) {
 				vscode.window.showErrorMessage(ex);
@@ -250,12 +269,14 @@ export class FiddleSourceControl implements vscode.Disposable {
 		if (newFiddle.version > this.latestFiddleVersion) {
 			this.latestFiddleVersion = newFiddle.version;
 		}
+
 		this.fiddle = newFiddle;
 
 		if (overwrite) {
 			this.resetFilesToCheckedOutVersion();
 		} // overwrite local file content
 		this._onRepositoryChange.fire(this.fiddle);
+
 		this.refreshStatusBar();
 
 		this.saveCurrentConfiguration();
@@ -296,6 +317,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 		fiddleConfiguration: FiddleConfiguration,
 	): void {
 		const fiddleConfigurationString = JSON.stringify(fiddleConfiguration);
+
 		afs.writeFile(
 			path.join(workspaceFolderUri.fsPath, CONFIGURATION_FILE),
 			Buffer.from(fiddleConfigurationString, UTF8),
@@ -310,6 +332,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 		if (this.timeout) {
 			clearTimeout(this.timeout);
 		}
+
 		this.timeout = setTimeout(() => this.tryUpdateChangedGroup(), 500);
 	}
 
@@ -337,10 +360,13 @@ export class FiddleSourceControl implements vscode.Disposable {
 
 			if (pathExists) {
 				const document = await vscode.workspace.openTextDocument(uri);
+
 				isDirty = this.isDirty(document);
+
 				wasDeleted = false;
 			} else {
 				isDirty = true;
+
 				wasDeleted = true;
 			}
 
@@ -349,6 +375,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 					uri,
 					wasDeleted,
 				);
+
 				changedResources.push(resourceState);
 			}
 		}
@@ -414,6 +441,7 @@ export class FiddleSourceControl implements vscode.Disposable {
 		while (true) {
 			try {
 				this.latestFiddleVersion = latestVersion;
+
 				latestVersion++;
 			} catch {
 				// typically the ex.statusCode == 404, when there is no further version
@@ -443,7 +471,9 @@ export class FiddleSourceControl implements vscode.Disposable {
 					this.fiddle.slug,
 					version,
 				);
+
 				latestVersion = version;
+
 				version++;
 
 				if (areIdentical(this.fiddle.data, latestFiddle.data)) {
@@ -468,11 +498,13 @@ export class FiddleSourceControl implements vscode.Disposable {
 		const url =
 			"https://jsfiddle.net/" +
 			toFiddleId(this.fiddle.slug, this.fiddle.version);
+
 		vscode.env.openExternal(vscode.Uri.parse(url));
 	}
 
 	dispose() {
 		this._onRepositoryChange.dispose();
+
 		this.jsFiddleScm.dispose();
 	}
 }

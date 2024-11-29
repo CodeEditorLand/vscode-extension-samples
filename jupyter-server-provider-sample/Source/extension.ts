@@ -19,6 +19,7 @@ export function activate(context: ExtensionContext) {
 	if (!jupyterExt) {
 		throw new Error("Jupyter Extension not installed");
 	}
+
 	if (!jupyterExt.isActive) {
 		jupyterExt.activate();
 	}
@@ -35,6 +36,7 @@ export function activate(context: ExtensionContext) {
 	jupyterLab.documentation = Uri.parse(
 		"https://github.com/microsoft/vscode-jupyter-hub/wiki/Connecting-to-JupyterHub-from-VS-Code",
 	);
+
 	context.subscriptions.push(jupyterLab);
 	// // Commands are optional.
 	jupyterLab.commandProvider = {
@@ -56,6 +58,7 @@ export function activate(context: ExtensionContext) {
 					// Upon staring a server, return that server back to the Jupyter Extension.
 					return startJupyterInTerminal("lab", undefined, token);
 				}
+
 				case "Configure and start JupyterLab": {
 					// This is a sample of how to use QuickPick to get additional user input and ensure a back button is displayed.
 					const disposables: Disposable[] = [];
@@ -65,37 +68,48 @@ export function activate(context: ExtensionContext) {
 						| undefined
 					>((resolve, reject) => {
 						const quickPick = window.createQuickPick();
+
 						disposables.push(quickPick);
+
 						quickPick.title = "Start Jupyter Lab";
+
 						quickPick.items = [
 							"Empty Token",
 							"Allow access from other Websites (bypass CORS)",
 						].map((label) => ({ label }));
+
 						quickPick.canSelectMany = true;
+
 						quickPick.buttons = [QuickInputButtons.Back];
+
 						quickPick.onDidTriggerButton((e) => {
 							if (e === QuickInputButtons.Back) {
 								// The user has opted to go back to the previous UI in the workflow,
 								// Returning `undefined` to Jupyter extension as part of `handleCommand`
 								// will trigger Jupyter Exetnsion to display the previous UI
 								resolve(undefined);
+
 								quickPick.hide();
 							}
 						}, disposables);
+
 						quickPick.onDidHide(() => {
 							// The user has opted to get out of this workflow,
 							// Throwing cancellation error will exit the Kernle Picker completely.
 							reject(new CancellationError());
 						}, disposables);
+
 						quickPick.onDidAccept(() => {
 							const options = {
 								allowOtherWebsites: false,
 								emptyToken: false,
 							};
+
 							quickPick.selectedItems.forEach((item) => {
 								if (item.label === "Empty Token") {
 									options.emptyToken = true;
 								}
+
 								if (
 									item.label ===
 									"Allow access from other Websites (bypass CORS)"
@@ -103,8 +117,10 @@ export function activate(context: ExtensionContext) {
 									options.allowOtherWebsites = true;
 								}
 							}, disposables);
+
 							resolve(options);
 						}, disposables);
+
 						quickPick.show();
 					}).finally(() => Disposable.from(...disposables).dispose());
 
@@ -128,6 +144,7 @@ export function activate(context: ExtensionContext) {
 			resolveJupyterServer: (server) => server,
 		},
 	);
+
 	context.subscriptions.push(jupyterNotebook);
 	// Commands are optional.
 	jupyterNotebook.commandProvider = {
@@ -183,6 +200,7 @@ async function startJupyterInTerminal(
 			const terminal = window.createTerminal(
 				type === "lab" ? "JupyterLab" : "Jupyter Notebook",
 			);
+
 			terminal.show();
 
 			const args: string[] = [type, "--no-browser"];
@@ -190,9 +208,11 @@ async function startJupyterInTerminal(
 			if (options?.emptyToken) {
 				args.push('--NotebookApp.token=""');
 			}
+
 			if (options?.allowOtherWebsites) {
 				args.push('--NotebookApp.allow_origin="*"');
 			}
+
 			terminal.sendText(`jupyter ${args.join(" ")}`);
 			// Wait for 5 seconds, then give up, this is only a sample.
 			await new Promise((resolve) => setTimeout(resolve, 5_000));
@@ -204,6 +224,7 @@ async function startJupyterInTerminal(
 			if (token.isCancellationRequested) {
 				return;
 			}
+
 			if (newServers.length) {
 				const server = newServers[0];
 

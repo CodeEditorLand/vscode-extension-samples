@@ -16,13 +16,16 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Samples of `window.registerTreeDataProvider`
 	const nodeDependenciesProvider = new DepNodeProvider(rootPath);
+
 	vscode.window.registerTreeDataProvider(
 		"nodeDependencies",
 		nodeDependenciesProvider,
 	);
+
 	vscode.commands.registerCommand("nodeDependencies.refreshEntry", () =>
 		nodeDependenciesProvider.refresh(),
 	);
+
 	vscode.commands.registerCommand(
 		"extension.openPackageOnNpm",
 		(moduleName) =>
@@ -31,9 +34,11 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.Uri.parse(`https://www.npmjs.com/package/${moduleName}`),
 			),
 	);
+
 	vscode.commands.registerCommand("nodeDependencies.addEntry", () =>
 		vscode.window.showInformationMessage(`Successfully called add entry.`),
 	);
+
 	vscode.commands.registerCommand(
 		"nodeDependencies.editEntry",
 		(node: Dependency) =>
@@ -41,6 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
 				`Successfully called edit entry on ${node.label}.`,
 			),
 	);
+
 	vscode.commands.registerCommand(
 		"nodeDependencies.deleteEntry",
 		(node: Dependency) =>
@@ -50,13 +56,17 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	const jsonOutlineProvider = new JsonOutlineProvider(context);
+
 	vscode.window.registerTreeDataProvider("jsonOutline", jsonOutlineProvider);
+
 	vscode.commands.registerCommand("jsonOutline.refresh", () =>
 		jsonOutlineProvider.refresh(),
 	);
+
 	vscode.commands.registerCommand("jsonOutline.refreshNode", (offset) =>
 		jsonOutlineProvider.refresh(offset),
 	);
+
 	vscode.commands.registerCommand("jsonOutline.renameNode", (args) => {
 		let offset = undefined;
 
@@ -65,16 +75,19 @@ export function activate(context: vscode.ExtensionContext) {
 		} else if (typeof args === "number") {
 			offset = args;
 		}
+
 		if (offset) {
 			jsonOutlineProvider.rename(offset);
 		}
 	});
+
 	vscode.commands.registerCommand("extension.openJsonSelection", (range) =>
 		jsonOutlineProvider.select(range),
 	);
 
 	// Samples of `window.createView`
 	new FtpExplorer(context);
+
 	new FileExplorer(context);
 
 	// Test View

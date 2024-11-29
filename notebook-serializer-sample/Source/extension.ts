@@ -21,6 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 				);
 
 				const data = new vscode.NotebookData([cell]);
+
 				data.metadata = {
 					custom: {
 						cells: [],
@@ -36,6 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 					NOTEBOOK_TYPE,
 					data,
 				);
+
 				await vscode.window.showNotebookDocument(doc);
 			},
 		),

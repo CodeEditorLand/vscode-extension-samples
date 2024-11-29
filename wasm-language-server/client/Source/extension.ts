@@ -51,6 +51,7 @@ export async function activate(context: ExtensionContext) {
 		);
 
 		const decoder = new TextDecoder("utf-8");
+
 		process.stderr!.onData((data) => {
 			channel.append(decoder.decode(data));
 		});
@@ -84,6 +85,7 @@ export async function activate(context: ExtensionContext) {
 	const CountFilesRequest = new RequestType<CountFileParams, number, void>(
 		"wasm-language-server/countFiles",
 	);
+
 	context.subscriptions.push(
 		commands.registerCommand(
 			"vscode-samples.wasm-language-server.countFiles",
@@ -95,6 +97,7 @@ export async function activate(context: ExtensionContext) {
 				const result = await client.sendRequest(CountFilesRequest, {
 					folder: client.code2ProtocolConverter.asUri(folder),
 				});
+
 				window.showInformationMessage(
 					`The workspace contains ${result} files.`,
 				);

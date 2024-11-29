@@ -18,12 +18,14 @@ export async function quickOpen() {
 
 	if (uri) {
 		const document = await workspace.openTextDocument(uri);
+
 		await window.showTextDocument(document);
 	}
 }
 
 class FileItem implements QuickPickItem {
 	label: string;
+
 	description: string;
 
 	constructor(
@@ -31,13 +33,16 @@ class FileItem implements QuickPickItem {
 		public uri: Uri,
 	) {
 		this.label = path.basename(uri.fsPath);
+
 		this.description = path.dirname(path.relative(base.fsPath, uri.fsPath));
 	}
 }
 
 class MessageItem implements QuickPickItem {
 	label: string;
+
 	description = "";
+
 	detail: string;
 
 	constructor(
@@ -45,6 +50,7 @@ class MessageItem implements QuickPickItem {
 		public message: string,
 	) {
 		this.label = message.replace(/\r?\n/g, " ");
+
 		this.detail = base.fsPath;
 	}
 }
@@ -55,9 +61,11 @@ async function pickFile() {
 	try {
 		return await new Promise<Uri | undefined>((resolve) => {
 			const input = window.createQuickPick<FileItem | MessageItem>();
+
 			input.placeholder = "Type to search for files";
 
 			let rgs: cp.ChildProcess[] = [];
+
 			disposables.push(
 				input.onDidChangeValue((value) => {
 					rgs.forEach((rg) => rg.kill());
@@ -67,6 +75,7 @@ async function pickFile() {
 
 						return;
 					}
+
 					input.busy = true;
 
 					const cwds = workspace.workspaceFolders
@@ -74,6 +83,7 @@ async function pickFile() {
 						: [process.cwd()];
 
 					const q = process.platform === "win32" ? '"' : "'";
+
 					rgs = cwds.map((cwd) => {
 						const rg = cp.exec(
 							`rg --files -g ${q}*${value}*${q}`,
@@ -85,6 +95,7 @@ async function pickFile() {
 									if (rgs.length === cwds.length) {
 										input.items = [];
 									}
+
 									if (!err) {
 										input.items = input.items.concat(
 											stdout
@@ -118,6 +129,7 @@ async function pickFile() {
 											),
 										]);
 									}
+
 									rgs.splice(i, 1);
 
 									if (!rgs.length) {
@@ -135,15 +147,19 @@ async function pickFile() {
 
 					if (item instanceof FileItem) {
 						resolve(item.uri);
+
 						input.hide();
 					}
 				}),
 				input.onDidHide(() => {
 					rgs.forEach((rg) => rg.kill());
+
 					resolve(undefined);
+
 					input.dispose();
 				}),
 			);
+
 			input.show();
 		});
 	} finally {

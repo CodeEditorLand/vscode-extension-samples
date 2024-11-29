@@ -3,6 +3,7 @@ import * as path from 'path';
 import { lspSamples, samples } from './samples';
 
 const root = path.join(__dirname, '..');
+
 console.log(root);
 
 /**

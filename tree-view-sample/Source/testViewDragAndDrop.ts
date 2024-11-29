@@ -6,13 +6,16 @@ export class TestViewDragAndDrop
 		vscode.TreeDragAndDropController<Node>
 {
 	dropMimeTypes = ["application/vnd.code.tree.testViewDragAndDrop"];
+
 	dragMimeTypes = ["text/uri-list"];
+
 	private _onDidChangeTreeData: vscode.EventEmitter<
 		(Node | undefined)[] | undefined
 	> = new vscode.EventEmitter<Node[] | undefined>();
 	// We want to use an array as the event type, but the API for this is currently being finalized. Until it's finalized, use any.
 	public onDidChangeTreeData: vscode.Event<any> =
 		this._onDidChangeTreeData.event;
+
 	public tree: any = {
 		"a": {
 			"aa": {
@@ -41,6 +44,7 @@ export class TestViewDragAndDrop
 			canSelectMany: true,
 			dragAndDropController: this,
 		});
+
 		context.subscriptions.push(view);
 	}
 
@@ -54,10 +58,12 @@ export class TestViewDragAndDrop
 
 	public getTreeItem(element: Node): vscode.TreeItem {
 		const treeItem = this._getTreeItem(element.key);
+
 		treeItem.id = element.key;
 
 		return treeItem;
 	}
+
 	public getParent(element: Node): Node {
 		return this._getParent(element.key);
 	}
@@ -80,6 +86,7 @@ export class TestViewDragAndDrop
 		if (!transferItem) {
 			return;
 		}
+
 		const treeItems: Node[] = transferItem.value;
 
 		let roots = this._getLocalRoots(treeItems);
@@ -91,7 +98,9 @@ export class TestViewDragAndDrop
 		if (roots.length > 0) {
 			// Reload parents of the moving elements
 			const parents = roots.map((r) => this.getParent(r));
+
 			roots.forEach((r) => this._reparentNode(r, target));
+
 			this._onDidChangeTreeData.fire([...parents, target]);
 		}
 	}
@@ -113,6 +122,7 @@ export class TestViewDragAndDrop
 		if (!child) {
 			return false;
 		}
+
 		for (const prop in node) {
 			if (prop === child.key) {
 				return true;
@@ -124,6 +134,7 @@ export class TestViewDragAndDrop
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -144,15 +155,18 @@ export class TestViewDragAndDrop
 				localRoots.push(node);
 			}
 		}
+
 		return localRoots;
 	}
 
 	// Remove node from current position and add node to new target element
 	_reparentNode(node: Node, target: Node | undefined): void {
 		const element: any = {};
+
 		element[node.key] = this._getTreeElement(node.key);
 
 		const elementCopy = { ...element };
+
 		this._removeNode(node);
 
 		const targetElement = this._getTreeElement(target?.key);
@@ -174,6 +188,7 @@ export class TestViewDragAndDrop
 
 				if (parent) {
 					const parentObject = this._getTreeElement(parent.key);
+
 					delete parentObject[prop];
 				} else {
 					delete this.tree[prop];
@@ -188,11 +203,13 @@ export class TestViewDragAndDrop
 		if (!key) {
 			return Object.keys(this.tree);
 		}
+
 		const treeElement = this._getTreeElement(key);
 
 		if (treeElement) {
 			return Object.keys(treeElement);
 		}
+
 		return [];
 	}
 
@@ -225,6 +242,7 @@ export class TestViewDragAndDrop
 		if (!element) {
 			return this.tree;
 		}
+
 		const currentNode = tree ?? this.tree;
 
 		for (const prop in currentNode) {
@@ -267,6 +285,7 @@ export class TestViewDragAndDrop
 		if (!this.nodes[key]) {
 			this.nodes[key] = new Key(key);
 		}
+
 		return this.nodes[key];
 	}
 }

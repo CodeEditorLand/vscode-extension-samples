@@ -21,7 +21,9 @@ export type WordCharacters = CharacterClass[];
 
 export interface IWord {
 	start: number;
+
 	end: number;
+
 	wordType: WordType;
 }
 
@@ -40,6 +42,7 @@ export class Words {
 		}
 
 		result[" ".charCodeAt(0)] = CharacterClass.WHITESPACE;
+
 		result["\t".charCodeAt(0)] = CharacterClass.WHITESPACE;
 
 		return result;
@@ -76,6 +79,7 @@ export class Words {
 						chIndex,
 					);
 				}
+
 				wordType = WordType.REGULAR;
 			} else if (chClass === CharacterClass.WORD_SEPARATOR) {
 				if (wordType === WordType.REGULAR) {
@@ -91,6 +95,7 @@ export class Words {
 						chIndex,
 					);
 				}
+
 				wordType = WordType.SEPARATOR;
 			} else if (chClass === CharacterClass.WHITESPACE) {
 				if (wordType !== WordType.NONE) {
@@ -141,12 +146,14 @@ export class Words {
 			if (chClass === CharacterClass.WHITESPACE) {
 				return chIndex + 1;
 			}
+
 			if (
 				wordType === WordType.REGULAR &&
 				chClass === CharacterClass.WORD_SEPARATOR
 			) {
 				return chIndex + 1;
 			}
+
 			if (
 				wordType === WordType.SEPARATOR &&
 				chClass === CharacterClass.REGULAR
@@ -154,6 +161,7 @@ export class Words {
 				return chIndex + 1;
 			}
 		}
+
 		return 0;
 	}
 

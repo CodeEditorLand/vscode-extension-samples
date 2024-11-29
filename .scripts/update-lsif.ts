@@ -18,6 +18,7 @@ async function main() {
 			// Ignore error of stat call.
 		}
 	}
+
 	const tsconfig = {
 		compilerOptions: {
 		},
@@ -25,6 +26,7 @@ async function main() {
 		],
 		references: references.map(reference => { return { path: reference } })
 	}
+
 	await fs.writeFile(path.join(root, 'tsconfig.lsif.json'), JSON.stringify(tsconfig, undefined, '\t'), { encoding: 'utf8' });
 }
 

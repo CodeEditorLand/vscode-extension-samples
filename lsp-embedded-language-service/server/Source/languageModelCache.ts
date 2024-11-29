@@ -7,7 +7,9 @@ import { TextDocument } from "vscode-languageserver-textdocument";
 
 export interface LanguageModelCache<T> {
 	get(document: TextDocument): T;
+
 	onDocumentRemoved(document: TextDocument): void;
+
 	dispose(): void;
 }
 
@@ -36,6 +38,7 @@ export function getLanguageModelCache<T>(
 
 				if (languageModelInfo.cTime < cutoffTime) {
 					delete languageModels[uri];
+
 					nModels--;
 				}
 			}
@@ -59,7 +62,9 @@ export function getLanguageModelCache<T>(
 
 				return languageModelInfo.languageModel;
 			}
+
 			const languageModel = parse(document);
+
 			languageModels[document.uri] = {
 				languageModel,
 				version,
@@ -81,14 +86,18 @@ export function getLanguageModelCache<T>(
 
 					if (languageModelInfo.cTime < oldestTime) {
 						oldestUri = uri;
+
 						oldestTime = languageModelInfo.cTime;
 					}
 				}
+
 				if (oldestUri) {
 					delete languageModels[oldestUri];
+
 					nModels--;
 				}
 			}
+
 			return languageModel;
 		},
 		onDocumentRemoved(document: TextDocument) {
@@ -96,14 +105,18 @@ export function getLanguageModelCache<T>(
 
 			if (languageModels[uri]) {
 				delete languageModels[uri];
+
 				nModels--;
 			}
 		},
 		dispose() {
 			if (typeof cleanupInterval !== "undefined") {
 				clearInterval(cleanupInterval);
+
 				cleanupInterval = undefined;
+
 				languageModels = {};
+
 				nModels = 0;
 			}
 		},

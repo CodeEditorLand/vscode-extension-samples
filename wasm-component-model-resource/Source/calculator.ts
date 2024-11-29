@@ -21,12 +21,14 @@ export namespace Types {
 
 			execute(): u32;
 		}
+
 		export type Statics = {
 			$new?(): Interface;
 		};
 
 		export type Class = Statics & (new () => Interface);
 	}
+
 	export type Engine = Engine.Interface;
 }
 export type Types = {
@@ -39,9 +41,11 @@ export namespace calculator {
 	export namespace Imports {
 		export type Promisified = $wcm.$imports.Promisify<Imports>;
 	}
+
 	export namespace imports {
 		export type Promisify<T> = $wcm.$imports.Promisify<T>;
 	}
+
 	export type Exports = {
 		types: Types;
 	};
@@ -49,6 +53,7 @@ export namespace calculator {
 	export namespace Exports {
 		export type Promisified = $wcm.$exports.Promisify<Exports>;
 	}
+
 	export namespace exports {
 		export type Promisify<T> = $wcm.$exports.Promisify<T>;
 	}
@@ -68,10 +73,12 @@ export namespace Types.$ {
 	);
 
 	export const Engine_Handle = new $wcm.ResourceHandleType("engine");
+
 	Engine.addDestructor(
 		"$drop",
 		new $wcm.DestructorType("[resource-drop]engine", [["inst", Engine]]),
 	);
+
 	Engine.addConstructor(
 		"constructor",
 		new $wcm.ConstructorType<Types.Engine.Class["constructor"]>(
@@ -80,6 +87,7 @@ export namespace Types.$ {
 			new $wcm.OwnType(Engine_Handle),
 		),
 	);
+
 	Engine.addMethod(
 		"pushOperand",
 		new $wcm.MethodType<Types.Engine.Interface["pushOperand"]>(
@@ -88,6 +96,7 @@ export namespace Types.$ {
 			undefined,
 		),
 	);
+
 	Engine.addMethod(
 		"pushOperation",
 		new $wcm.MethodType<Types.Engine.Interface["pushOperation"]>(
@@ -96,6 +105,7 @@ export namespace Types.$ {
 			undefined,
 		),
 	);
+
 	Engine.addMethod(
 		"execute",
 		new $wcm.MethodType<Types.Engine.Interface["execute"]>(
@@ -126,12 +136,14 @@ export namespace Types._ {
 				"[resource-drop]engine": (self: i32) => void;
 			};
 		}
+
 		export namespace exports {
 			export type WasmInterface = Engine.WasmInterface & {
 				"[dtor]engine": (self: i32) => void;
 			};
 		}
 	}
+
 	export const types: Map<string, $wcm.AnyComponentModelType> = new Map<
 		string,
 		$wcm.AnyComponentModelType
@@ -151,6 +163,7 @@ export namespace Types._ {
 		export type WasmInterface = _.WasmInterface &
 			Engine.imports.WasmInterface;
 	}
+
 	export namespace exports {
 		export type WasmInterface = _.WasmInterface &
 			Engine.exports.WasmInterface;
@@ -177,6 +190,7 @@ export namespace calculator._ {
 		): Imports {
 			return $wcm.$imports.create<Imports>(_, service, context);
 		}
+
 		export function loop(
 			service: calculator.Imports,
 			context: $wcm.WasmContext,
@@ -184,6 +198,7 @@ export namespace calculator._ {
 			return $wcm.$imports.loop<calculator.Imports>(_, service, context);
 		}
 	}
+
 	export type Imports = {
 		"[export]vscode:example/types": Types._.exports.imports.WasmInterface;
 	};
@@ -201,6 +216,7 @@ export namespace calculator._ {
 			return $wcm.$exports.bind<calculator.Exports>(_, exports, context);
 		}
 	}
+
 	export type Exports = {
 		"vscode:example/types#[constructor]engine": () => i32;
 		"vscode:example/types#[method]engine.push-operand": (

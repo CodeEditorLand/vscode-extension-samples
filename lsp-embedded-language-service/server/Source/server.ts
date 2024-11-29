@@ -32,6 +32,7 @@ connection.onInitialize((_params: InitializeParams) => {
 	documents.onDidClose((e) => {
 		languageModes.onDocumentRemoved(e.document);
 	});
+
 	connection.onShutdown(() => {
 		languageModes.dispose();
 	});
@@ -78,6 +79,7 @@ async function validateTextDocument(textDocument: TextDocument) {
 						});
 					}
 				});
+
 				connection.sendDiagnostics({
 					uri: latestTextDocument.uri,
 					diagnostics,
@@ -86,6 +88,7 @@ async function validateTextDocument(textDocument: TextDocument) {
 		}
 	} catch (e) {
 		connection.console.error(`Error while validating ${textDocument.uri}`);
+
 		connection.console.error(String(e));
 	}
 }
@@ -105,6 +108,7 @@ connection.onCompletion(async (textDocumentPosition, _token) => {
 	if (!mode || !mode.doComplete) {
 		return CompletionList.create();
 	}
+
 	const doComplete = mode.doComplete!;
 
 	return doComplete(document, textDocumentPosition.position);

@@ -32,7 +32,9 @@ export class TestFile {
 	) {
 		try {
 			const content = await getContentFromFilesystem(item.uri!);
+
 			item.error = undefined;
+
 			this.updateFromContents(controller, content, item);
 		} catch (e) {
 			item.error = (e as Error).stack;
@@ -51,11 +53,13 @@ export class TestFile {
 		const ancestors = [{ item, children: [] as vscode.TestItem[] }];
 
 		const thisGeneration = generationCounter++;
+
 		this.didResolve = true;
 
 		const ascend = (depth: number) => {
 			while (ancestors.length > depth) {
 				const finished = ancestors.pop()!;
+
 				finished.item.children.replace(finished.children);
 			}
 		};
@@ -79,8 +83,11 @@ export class TestFile {
 					data.getLabel(),
 					item.uri,
 				);
+
 				testData.set(tcase, data);
+
 				tcase.range = range;
+
 				parent.children.push(tcase);
 			},
 
@@ -92,9 +99,13 @@ export class TestFile {
 				const id = `${item.uri}/${name}`;
 
 				const thead = controller.createTestItem(id, name, item.uri);
+
 				thead.range = range;
+
 				testData.set(thead, new TestHeading(thisGeneration));
+
 				parent.children.push(thead);
+
 				ancestors.push({ item: thead, children: [] });
 			},
 		});
@@ -124,6 +135,7 @@ export class TestCase {
 
 	async run(item: vscode.TestItem, options: vscode.TestRun): Promise<void> {
 		const start = Date.now();
+
 		await new Promise((resolve) =>
 			setTimeout(resolve, 1000 + Math.random() * 1000),
 		);
@@ -140,7 +152,9 @@ export class TestCase {
 				String(this.expected),
 				String(actual),
 			);
+
 			message.location = new vscode.Location(item.uri!, item.range!);
+
 			options.failed(item, message, duration);
 		}
 	}

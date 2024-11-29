@@ -55,6 +55,7 @@ async function parseChatResponse(
 		if (fragment.includes("}")) {
 			try {
 				const annotation = JSON.parse(accumulatedResponse);
+
 				applyDecoration(
 					textEditor,
 					annotation.line,
@@ -84,6 +85,7 @@ function getVisibleCodeWithLineNumbers(textEditor: vscode.TextEditor) {
 		// move to the next line position
 		currentLine++;
 	}
+
 	return code;
 }
 

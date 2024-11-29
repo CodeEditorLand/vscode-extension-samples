@@ -28,6 +28,7 @@ export async function activate(context: ExtensionContext) {
 	client = createWorkerLanguageClient(context, clientOptions);
 
 	await client.start();
+
 	console.log("lsp-web-extension-sample server is ready");
 }
 

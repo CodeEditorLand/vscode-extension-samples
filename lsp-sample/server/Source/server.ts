@@ -41,9 +41,11 @@ connection.onInitialize((params: InitializeParams) => {
 	hasConfigurationCapability = !!(
 		capabilities.workspace && !!capabilities.workspace.configuration
 	);
+
 	hasWorkspaceFolderCapability = !!(
 		capabilities.workspace && !!capabilities.workspace.workspaceFolders
 	);
+
 	hasDiagnosticRelatedInformationCapability = !!(
 		capabilities.textDocument &&
 		capabilities.textDocument.publishDiagnostics &&
@@ -71,6 +73,7 @@ connection.onInitialize((params: InitializeParams) => {
 			},
 		};
 	}
+
 	return result;
 });
 
@@ -82,6 +85,7 @@ connection.onInitialized(() => {
 			undefined,
 		);
 	}
+
 	if (hasWorkspaceFolderCapability) {
 		connection.workspace.onDidChangeWorkspaceFolders((_event) => {
 			connection.console.log("Workspace folder change event received.");
@@ -122,6 +126,7 @@ function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
 	if (!hasConfigurationCapability) {
 		return Promise.resolve(globalSettings);
 	}
+
 	let result = documentSettings.get(resource);
 
 	if (!result) {
@@ -132,6 +137,7 @@ function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
 
 		documentSettings.set(resource, result);
 	}
+
 	return result;
 }
 
@@ -215,8 +221,10 @@ async function validateTextDocument(
 				},
 			];
 		}
+
 		diagnostics.push(diagnostic);
 	}
+
 	return diagnostics;
 }
 
@@ -251,11 +259,14 @@ connection.onCompletion(
 connection.onCompletionResolve((item: CompletionItem): CompletionItem => {
 	if (item.data === 1) {
 		item.detail = "TypeScript details";
+
 		item.documentation = "TypeScript documentation";
 	} else if (item.data === 2) {
 		item.detail = "JavaScript details";
+
 		item.documentation = "JavaScript documentation";
 	}
+
 	return item;
 });
 

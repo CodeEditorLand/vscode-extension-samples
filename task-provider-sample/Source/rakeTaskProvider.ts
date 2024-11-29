@@ -10,14 +10,18 @@ import * as vscode from "vscode";
 
 export class RakeTaskProvider implements vscode.TaskProvider {
 	static RakeType = "rake";
+
 	private rakePromise: Thenable<vscode.Task[]> | undefined = undefined;
 
 	constructor(workspaceRoot: string) {
 		const pattern = path.join(workspaceRoot, "Rakefile");
 
 		const fileWatcher = vscode.workspace.createFileSystemWatcher(pattern);
+
 		fileWatcher.onDidChange(() => (this.rakePromise = undefined));
+
 		fileWatcher.onDidCreate(() => (this.rakePromise = undefined));
+
 		fileWatcher.onDidDelete(() => (this.rakePromise = undefined));
 	}
 
@@ -25,6 +29,7 @@ export class RakeTaskProvider implements vscode.TaskProvider {
 		if (!this.rakePromise) {
 			this.rakePromise = getRakeTasks();
 		}
+
 		return this.rakePromise;
 	}
 
@@ -44,6 +49,7 @@ export class RakeTaskProvider implements vscode.TaskProvider {
 				new vscode.ShellExecution(`rake ${definition.task}`),
 			);
 		}
+
 		return undefined;
 	}
 }
@@ -66,6 +72,7 @@ function exec(
 				if (error) {
 					reject({ error, stdout, stderr });
 				}
+
 				resolve({ stdout, stderr });
 			});
 		},
@@ -77,6 +84,7 @@ function getOutputChannel(): vscode.OutputChannel {
 	if (!_channel) {
 		_channel = vscode.window.createOutputChannel("Rake Auto Detection");
 	}
+
 	return _channel;
 }
 
@@ -99,6 +107,7 @@ function isBuildTask(name: string): boolean {
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -109,6 +118,7 @@ function isTestTask(name: string): boolean {
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -120,12 +130,14 @@ async function getRakeTasks(): Promise<vscode.Task[]> {
 	if (!workspaceFolders || workspaceFolders.length === 0) {
 		return result;
 	}
+
 	for (const workspaceFolder of workspaceFolders) {
 		const folderString = workspaceFolder.uri.fsPath;
 
 		if (!folderString) {
 			continue;
 		}
+
 		const rakeFile = path.join(folderString, "Rakefile");
 
 		if (!(await exists(rakeFile))) {
@@ -144,6 +156,7 @@ async function getRakeTasks(): Promise<vscode.Task[]> {
 
 				getOutputChannel().show(true);
 			}
+
 			if (stdout) {
 				const lines = stdout.split(/\r{0,1}\n/);
 
@@ -151,6 +164,7 @@ async function getRakeTasks(): Promise<vscode.Task[]> {
 					if (line.length === 0) {
 						continue;
 					}
+
 					const regExp = /rake\s(.*)#/;
 
 					const matches = regExp.exec(line);
@@ -170,6 +184,7 @@ async function getRakeTasks(): Promise<vscode.Task[]> {
 							"rake",
 							new vscode.ShellExecution(`rake ${taskName}`),
 						);
+
 						result.push(task);
 
 						const lowerCaseLine = line.toLowerCase();
@@ -188,12 +203,16 @@ async function getRakeTasks(): Promise<vscode.Task[]> {
 			if (err.stderr) {
 				channel.appendLine(err.stderr);
 			}
+
 			if (err.stdout) {
 				channel.appendLine(err.stdout);
 			}
+
 			channel.appendLine("Auto detecting rake tasks failed.");
+
 			channel.show(true);
 		}
 	}
+
 	return result;
 }

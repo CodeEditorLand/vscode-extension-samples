@@ -12,12 +12,14 @@ export async function activate(
 ): Promise<void> {
 	// The channel for printing the result.
 	const channel = vscode.window.createOutputChannel("Calculator");
+
 	context.subscriptions.push(channel);
 
 	// The channel for printing the log.
 	const log = vscode.window.createOutputChannel("Calculator - Log", {
 		log: true,
 	});
+
 	context.subscriptions.push(log);
 
 	// Load the Wasm module
@@ -55,6 +57,7 @@ export async function activate(
 			"vscode-samples.wasm-component-model.run",
 			() => {
 				channel.show();
+
 				channel.appendLine("Running calculator example");
 
 				// Create a new calculator engine
@@ -62,13 +65,18 @@ export async function activate(
 
 				// Push some operands and operations
 				calculator.pushOperand(10);
+
 				calculator.pushOperand(20);
+
 				calculator.pushOperation(Types.Operation.add);
+
 				calculator.pushOperand(2);
+
 				calculator.pushOperation(Types.Operation.mul);
 
 				// Calculate the result
 				const result = calculator.execute();
+
 				channel.appendLine(`Result: ${result}`);
 			},
 		),

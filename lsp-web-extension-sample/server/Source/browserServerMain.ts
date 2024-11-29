@@ -81,6 +81,7 @@ function getColorInformation(textDocument: TextDocumentIdentifier) {
 			);
 
 			const color = parseColor(text, offset);
+
 			colorInfos.push({ color, range });
 		}
 	}
@@ -102,6 +103,7 @@ function getColorPresentation(color: Color, range: Range) {
 	}
 
 	const label = `#${toTwoDigitHex(red256)}${toTwoDigitHex(green256)}${toTwoDigitHex(blue256)}`;
+
 	result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 	return result;
@@ -122,12 +124,15 @@ function parseHexDigit(charCode: CharCode): number {
 	if (charCode >= CharCode.Digit0 && charCode <= CharCode.Digit9) {
 		return charCode - CharCode.Digit0;
 	}
+
 	if (charCode >= CharCode.A && charCode <= CharCode.F) {
 		return charCode - CharCode.A + 10;
 	}
+
 	if (charCode >= CharCode.a && charCode <= CharCode.f) {
 		return charCode - CharCode.a + 10;
 	}
+
 	return 0;
 }
 

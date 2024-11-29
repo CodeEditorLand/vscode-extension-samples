@@ -13,6 +13,7 @@ export interface TsxToolUserMetadata {
 
 export interface ToolCallsMetadata {
 	toolCallRounds: ToolCallRound[];
+
 	toolCallResults: Record<string, vscode.LanguageModelToolResult>;
 }
 
@@ -54,6 +55,7 @@ export function registerToolUserChatParticipant(
 				vendor: "copilot",
 				family: "gpt-4o",
 			});
+
 			model = models[0];
 		}
 
@@ -83,6 +85,7 @@ export function registerToolUserChatParticipant(
 		);
 
 		let messages = result.messages;
+
 		result.references.forEach((ref) => {
 			if (
 				ref.anchor instanceof vscode.Uri ||
@@ -107,11 +110,13 @@ export function registerToolUserChatParticipant(
 
 			if (requestedTool) {
 				options.toolMode = vscode.LanguageModelChatToolMode.Required;
+
 				options.tools = vscode.lm.tools.filter(
 					(tool) => tool.name === requestedTool.name,
 				);
 			} else {
 				options.toolMode = undefined;
+
 				options.tools = [...tools];
 			}
 
@@ -126,6 +131,7 @@ export function registerToolUserChatParticipant(
 			for await (const part of response.stream) {
 				if (part instanceof vscode.LanguageModelTextPart) {
 					stream.markdown(part.value);
+
 					responseStr += part.value;
 				} else if (part instanceof vscode.LanguageModelToolCallPart) {
 					toolCalls.push(part);
@@ -151,6 +157,7 @@ export function registerToolUserChatParticipant(
 					{ modelMaxPromptTokens: model.maxInputTokens },
 					model,
 				);
+
 				messages = result.messages;
 
 				const toolResultMetadata =
@@ -187,6 +194,8 @@ export function registerToolUserChatParticipant(
 		"chat-tools-sample.tools",
 		handler,
 	);
+
 	toolUser.iconPath = new vscode.ThemeIcon("tools");
+
 	context.subscriptions.push(toolUser);
 }

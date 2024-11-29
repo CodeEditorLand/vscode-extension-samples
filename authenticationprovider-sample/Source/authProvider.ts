@@ -32,11 +32,13 @@ export class AzureDevOpsAuthenticationProvider
 	implements AuthenticationProvider, Disposable
 {
 	static id = "azuredevopspat";
+
 	private static secretKey = "AzureDevOpsPAT";
 
 	// this property is used to determine if the token has been changed in another window of VS Code.
 	// It is used in the checkForUpdates function.
 	private currentToken: Promise<string | undefined> | undefined;
+
 	private initializedDisposable: Disposable | undefined;
 
 	private _onDidChangeSessions =
@@ -100,6 +102,7 @@ export class AzureDevOpsAuthenticationProvider
 		}
 
 		void this.cacheTokenFromStorage();
+
 		this._onDidChangeSessions.fire({
 			added: added,
 			removed: removed,
@@ -151,6 +154,7 @@ export class AzureDevOpsAuthenticationProvider
 			AzureDevOpsAuthenticationProvider.secretKey,
 			token,
 		);
+
 		console.log("Successfully logged in to Azure DevOps");
 
 		return new AzureDevOpsPatSession(token);
@@ -163,9 +167,11 @@ export class AzureDevOpsAuthenticationProvider
 		if (!token) {
 			return;
 		}
+
 		await this.secretStorage.delete(
 			AzureDevOpsAuthenticationProvider.secretKey,
 		);
+
 		this._onDidChangeSessions.fire({
 			removed: [new AzureDevOpsPatSession(token)],
 		});

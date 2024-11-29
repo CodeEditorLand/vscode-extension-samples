@@ -91,6 +91,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 
 		for (const child of children) {
 			const stat = await this._stat(path.join(uri.fsPath, child));
+
 			result.push([child, stat.type]);
 		}
 
@@ -185,6 +186,7 @@ class DateiFileSystemProvider implements vscode.FileSystemProvider {
 
 export interface IStatAndLink {
 	stat: fs.Stats;
+
 	isSymbolicLink: boolean;
 }
 

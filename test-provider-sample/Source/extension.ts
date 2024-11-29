@@ -12,6 +12,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		"mathTestController",
 		"Markdown Math",
 	);
+
 	context.subscriptions.push(ctrl);
 
 	const fileChangedEmitter = new vscode.EventEmitter<vscode.Uri>();
@@ -20,6 +21,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		vscode.TestItem | "ALL",
 		vscode.TestRunProfile | undefined
 	>();
+
 	fileChangedEmitter.event((uri) => {
 		if (watchingTests.has("ALL")) {
 			startTestRun(
@@ -43,6 +45,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 			if (cast.uri?.toString() == uri.toString()) {
 				include.push(cast);
+
 				profile = thisProfile;
 			}
 		}
@@ -64,6 +67,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 		if (request.include === undefined) {
 			watchingTests.set("ALL", request.profile);
+
 			cancellation.onCancellationRequested(() =>
 				watchingTests.delete("ALL"),
 			);
@@ -71,6 +75,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			request.include.forEach((item) =>
 				watchingTests.set(item, request.profile),
 			);
+
 			cancellation.onCancellationRequested(() =>
 				request.include!.forEach((item) => watchingTests.delete(item)),
 			);
@@ -97,6 +102,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 				if (data instanceof TestCase) {
 					run.enqueued(test);
+
 					queue.push({ test, data });
 				} else {
 					if (data instanceof TestFile && !data.didResolve) {
@@ -115,6 +121,7 @@ export async function activate(context: vscode.ExtensionContext) {
 						const lines = (
 							await getContentFromFilesystem(test.uri)
 						).split("\n");
+
 						coveredLines.set(
 							test.uri.toString(),
 							lines.map((lineText, lineNo) =>
@@ -141,6 +148,7 @@ export async function activate(context: vscode.ExtensionContext) {
 					run.skipped(test);
 				} else {
 					run.started(test);
+
 					await data.run(test, run);
 				}
 
@@ -194,6 +202,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		undefined,
 		true,
 	);
+
 	coverageProfile.loadDetailedCoverage = async (_testRun, coverage) => {
 		if (coverage instanceof MarkdownFileCoverage) {
 			return coverage.coveredLines.filter(
@@ -230,6 +239,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		}
 
 		const { file, data } = getOrCreateFile(ctrl, e.uri);
+
 		data.updateFromContents(ctrl, e.getText(), file);
 	}
 
@@ -257,9 +267,11 @@ function getOrCreateFile(controller: vscode.TestController, uri: vscode.Uri) {
 		uri.path.split("/").pop()!,
 		uri,
 	);
+
 	controller.items.add(file);
 
 	const data = new TestFile();
+
 	testData.set(file, data);
 
 	file.canResolveChildren = true;
@@ -269,6 +281,7 @@ function getOrCreateFile(controller: vscode.TestController, uri: vscode.Uri) {
 
 function gatherTestItems(collection: vscode.TestItemCollection) {
 	const items: vscode.TestItem[] = [];
+
 	collection.forEach((item) => items.push(item));
 
 	return items;
@@ -303,16 +316,20 @@ function startWatchingWorkspace(
 
 		watcher.onDidCreate((uri) => {
 			getOrCreateFile(controller, uri);
+
 			fileChangedEmitter.fire(uri);
 		});
+
 		watcher.onDidChange(async (uri) => {
 			const { file, data } = getOrCreateFile(controller, uri);
 
 			if (data.didResolve) {
 				await data.updateFromDisk(controller, file);
 			}
+
 			fileChangedEmitter.fire(uri);
 		});
+
 		watcher.onDidDelete((uri) => controller.items.delete(uri.toString()));
 
 		findInitialFiles(controller, pattern);
@@ -331,6 +348,7 @@ class MarkdownFileCoverage extends vscode.FileCoverage {
 		for (const line of coveredLines) {
 			if (line) {
 				this.statementCoverage.covered += line.executed ? 1 : 0;
+
 				this.statementCoverage.total++;
 			}
 		}

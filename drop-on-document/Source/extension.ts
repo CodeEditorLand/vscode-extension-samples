@@ -85,9 +85,12 @@ class FileNameListOnDropProvider implements vscode.DocumentDropEditProvider {
 
 		// Build a snippet to insert
 		const snippet = new vscode.SnippetString();
+
 		uris.forEach((uri, index) => {
 			const name = path.basename(uri.path);
+
 			snippet.appendText(`${index + 1}. ${name}`);
+
 			snippet.appendTabstop();
 
 			if (index <= uris.length - 1 && uris.length > 1) {
@@ -110,6 +113,7 @@ export function activate(context: vscode.ExtensionContext) {
 			new ReverseTextOnDropProvider(),
 		),
 	);
+
 	context.subscriptions.push(
 		vscode.languages.registerDocumentDropEditProvider(
 			selector,

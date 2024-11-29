@@ -25,7 +25,9 @@ export class Fiddle {
 /** Represents JSFiddle HTML, JavaScript and CSS text. */
 export interface FiddleData {
 	html: string;
+
 	js: string;
+
 	css: string;
 }
 
@@ -101,9 +103,11 @@ export async function downloadFiddle(
 		if (demoVersionOffset === undefined && version === undefined) {
 			version = 0;
 		}
+
 		if (demoVersionOffset === undefined) {
 			demoVersionOffset = version;
 		}
+
 		const maxDemoVersion = DEMO.length - 1 + demoVersionOffset;
 
 		if (version === undefined) {
@@ -148,6 +152,7 @@ export async function uploadFiddle(
 	if (slug === "demo") {
 		// using mock fiddle
 		const fiddleData: FiddleData = { html: html, js: js, css: css };
+
 		DEMO.push(fiddleData);
 
 		return new Fiddle(slug, version, fiddleData);

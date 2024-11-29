@@ -10,7 +10,9 @@ export function activate(context: vscode.ExtensionContext) {
 		"extension.sayHello",
 		async () => {
 			const message = vscode.l10n.t("Hello");
+
 			vscode.window.showInformationMessage(message);
+
 			console.log(context.extensionUri);
 
 			// This is showing how you might pass the vscode.l10n.uri down to
@@ -38,6 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const messageDone = vscode.l10n.t("Hello {done}", {
 				done: "FINISHED",
 			});
+
 			vscode.window.showInformationMessage(messageDone);
 		},
 	);

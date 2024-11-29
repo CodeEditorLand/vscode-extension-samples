@@ -50,6 +50,7 @@ export async function activate(context: ExtensionContext) {
 		// Only append the logs but send them later
 		append(value: string) {
 			log += value;
+
 			console.log(value);
 		},
 		appendLine(value: string) {
@@ -58,6 +59,7 @@ export async function activate(context: ExtensionContext) {
 			if (socket && socket.readyState === WebSocket.OPEN) {
 				socket.send(log);
 			}
+
 			log = "";
 		},
 		clear() {
@@ -105,5 +107,6 @@ export function deactivate(): Thenable<void> {
 	if (!client) {
 		return undefined;
 	}
+
 	return client.stop();
 }

@@ -12,10 +12,13 @@ export default class Provider
 	static scheme = "references";
 
 	private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
+
 	private _documents = new Map<string, ReferencesDocument>();
+
 	private _editorDecoration = vscode.window.createTextEditorDecorationType({
 		textDecoration: "underline",
 	});
+
 	private _subscriptions: vscode.Disposable;
 
 	constructor() {
@@ -28,8 +31,11 @@ export default class Provider
 
 	dispose() {
 		this._subscriptions.dispose();
+
 		this._documents.clear();
+
 		this._editorDecoration.dispose();
+
 		this._onDidChange.dispose();
 	}
 
@@ -65,6 +71,7 @@ export default class Provider
 
 				// sort by locations and shuffle to begin from target resource
 				let idx = 0;
+
 				locations
 					.sort(Provider._compareLocations)
 					.find(
@@ -73,6 +80,7 @@ export default class Provider
 							!!(idx = i) &&
 							true,
 					);
+
 				locations.push(...locations.splice(0, idx));
 
 				// create document and return its early state
@@ -81,6 +89,7 @@ export default class Provider
 					locations,
 					this._onDidChange,
 				);
+
 				this._documents.set(uri.toString(), document);
 
 				return document.value;

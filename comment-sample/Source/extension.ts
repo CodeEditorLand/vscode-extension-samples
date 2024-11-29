@@ -4,7 +4,9 @@ let commentId = 1;
 
 class NoteComment implements vscode.Comment {
 	id: number;
+
 	label: string | undefined;
+
 	savedBody: string | vscode.MarkdownString; // for the Cancel button
 	constructor(
 		public body: string | vscode.MarkdownString,
@@ -14,6 +16,7 @@ class NoteComment implements vscode.Comment {
 		public contextValue?: string,
 	) {
 		this.id = ++commentId;
+
 		this.savedBody = this.body;
 	}
 }
@@ -24,6 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 		"comment-sample",
 		"Comment API Sample",
 	);
+
 	context.subscriptions.push(commentController);
 
 	// A `CommentingRangeProvider` controls where gutter decorations that allow adding comments are shown
@@ -61,6 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
 			"mywiki.startDraft",
 			(reply: vscode.CommentReply) => {
 				const thread = reply.thread;
+
 				thread.contextValue = "draft";
 
 				const newComment = new NoteComment(
@@ -69,7 +74,9 @@ export function activate(context: vscode.ExtensionContext) {
 					{ name: "vscode" },
 					thread,
 				);
+
 				newComment.label = "pending";
+
 				thread.comments = [...thread.comments, newComment];
 			},
 		),
@@ -86,6 +93,7 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 
 				thread.contextValue = undefined;
+
 				thread.collapsibleState =
 					vscode.CommentThreadCollapsibleState.Collapsed;
 
@@ -96,6 +104,7 @@ export function activate(context: vscode.ExtensionContext) {
 						{ name: "vscode" },
 						thread,
 					);
+
 					thread.comments = [...thread.comments, newComment].map(
 						(comment) => {
 							comment.label = undefined;
@@ -149,6 +158,7 @@ export function activate(context: vscode.ExtensionContext) {
 				comment.parent.comments = comment.parent.comments.map((cmt) => {
 					if ((cmt as NoteComment).id === comment.id) {
 						cmt.body = (cmt as NoteComment).savedBody;
+
 						cmt.mode = vscode.CommentMode.Preview;
 					}
 
@@ -169,6 +179,7 @@ export function activate(context: vscode.ExtensionContext) {
 				comment.parent.comments = comment.parent.comments.map((cmt) => {
 					if ((cmt as NoteComment).id === comment.id) {
 						(cmt as NoteComment).savedBody = cmt.body;
+
 						cmt.mode = vscode.CommentMode.Preview;
 					}
 

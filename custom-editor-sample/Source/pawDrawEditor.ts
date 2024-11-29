@@ -8,6 +8,7 @@ import { getNonce } from "./util";
  */
 interface PawDrawEdit {
 	readonly color: string;
+
 	readonly stroke: ReadonlyArray<[number, number]>;
 }
 
@@ -37,13 +38,16 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 		if (uri.scheme === "untitled") {
 			return new Uint8Array();
 		}
+
 		return new Uint8Array(await vscode.workspace.fs.readFile(uri));
 	}
 
 	private readonly _uri: vscode.Uri;
 
 	private _documentData: Uint8Array;
+
 	private _edits: PawDrawEdit[] = [];
+
 	private _savedEdits: PawDrawEdit[] = [];
 
 	private readonly _delegate: PawDrawDocumentDelegate;
@@ -54,8 +58,11 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 		delegate: PawDrawDocumentDelegate,
 	) {
 		super();
+
 		this._uri = uri;
+
 		this._documentData = initialContent;
+
 		this._delegate = delegate;
 	}
 
@@ -78,6 +85,7 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 	private readonly _onDidChangeDocument = this._register(
 		new vscode.EventEmitter<{
 			readonly content?: Uint8Array;
+
 			readonly edits: readonly PawDrawEdit[];
 		}>(),
 	);
@@ -89,7 +97,9 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 	private readonly _onDidChange = this._register(
 		new vscode.EventEmitter<{
 			readonly label: string;
+
 			undo(): void;
+
 			redo(): void;
 		}>(),
 	);
@@ -123,12 +133,14 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 			label: "Stroke",
 			undo: async () => {
 				this._edits.pop();
+
 				this._onDidChangeDocument.fire({
 					edits: this._edits,
 				});
 			},
 			redo: async () => {
 				this._edits.push(edit);
+
 				this._onDidChangeDocument.fire({
 					edits: this._edits,
 				});
@@ -141,6 +153,7 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 	 */
 	async save(cancellation: vscode.CancellationToken): Promise<void> {
 		await this.saveAs(this.uri, cancellation);
+
 		this._savedEdits = Array.from(this._edits);
 	}
 
@@ -156,6 +169,7 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 		if (cancellation.isCancellationRequested) {
 			return;
 		}
+
 		await vscode.workspace.fs.writeFile(targetResource, fileData);
 	}
 
@@ -164,8 +178,11 @@ class PawDrawDocument extends Disposable implements vscode.CustomDocument {
 	 */
 	async revert(_cancellation: vscode.CancellationToken): Promise<void> {
 		const diskContent = await PawDrawDocument.readFile(this.uri);
+
 		this._documentData = diskContent;
+
 		this._edits = this._savedEdits;
+
 		this._onDidChangeDocument.fire({
 			content: diskContent,
 			edits: this._edits,
@@ -285,6 +302,7 @@ export class PawDrawEditorProvider
 					if (!webviewsForDocument.length) {
 						throw new Error("Could not find webview to save for");
 					}
+
 					const panel = webviewsForDocument[0];
 
 					const response = await this.postMessageWithResponse<
@@ -337,6 +355,7 @@ export class PawDrawEditorProvider
 		webviewPanel.webview.options = {
 			enableScripts: true,
 		};
+
 		webviewPanel.webview.html = this.getHtmlForWebview(
 			webviewPanel.webview,
 		);
@@ -370,6 +389,7 @@ export class PawDrawEditorProvider
 	private readonly _onDidChangeCustomDocument = new vscode.EventEmitter<
 		vscode.CustomDocumentEditEvent<PawDrawDocument>
 	>();
+
 	public readonly onDidChangeCustomDocument =
 		this._onDidChangeCustomDocument.event;
 
@@ -482,6 +502,7 @@ export class PawDrawEditorProvider
 	}
 
 	private _requestId = 1;
+
 	private readonly _callbacks = new Map<number, (response: any) => void>();
 
 	private postMessageWithResponse<R = unknown>(
@@ -494,6 +515,7 @@ export class PawDrawEditorProvider
 		const p = new Promise<R>((resolve) =>
 			this._callbacks.set(requestId, resolve),
 		);
+
 		panel.webview.postMessage({ type, requestId, body });
 
 		return p;
@@ -516,6 +538,7 @@ export class PawDrawEditorProvider
 
 			case "response": {
 				const callback = this._callbacks.get(message.requestId);
+
 				callback?.(message.body);
 
 				return;
@@ -530,6 +553,7 @@ export class PawDrawEditorProvider
 class WebviewCollection {
 	private readonly _webviews = new Set<{
 		readonly resource: string;
+
 		readonly webviewPanel: vscode.WebviewPanel;
 	}>();
 
@@ -551,6 +575,7 @@ class WebviewCollection {
 	 */
 	public add(uri: vscode.Uri, webviewPanel: vscode.WebviewPanel) {
 		const entry = { resource: uri.toString(), webviewPanel };
+
 		this._webviews.add(entry);
 
 		webviewPanel.onDidDispose(() => {

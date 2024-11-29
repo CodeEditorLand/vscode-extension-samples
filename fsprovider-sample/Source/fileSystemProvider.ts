@@ -8,37 +8,54 @@ import * as vscode from "vscode";
 
 export class File implements vscode.FileStat {
 	type: vscode.FileType;
+
 	ctime: number;
+
 	mtime: number;
+
 	size: number;
 
 	name: string;
+
 	data?: Uint8Array;
 
 	constructor(name: string) {
 		this.type = vscode.FileType.File;
+
 		this.ctime = Date.now();
+
 		this.mtime = Date.now();
+
 		this.size = 0;
+
 		this.name = name;
 	}
 }
 
 export class Directory implements vscode.FileStat {
 	type: vscode.FileType;
+
 	ctime: number;
+
 	mtime: number;
+
 	size: number;
 
 	name: string;
+
 	entries: Map<string, File | Directory>;
 
 	constructor(name: string) {
 		this.type = vscode.FileType.Directory;
+
 		this.ctime = Date.now();
+
 		this.mtime = Date.now();
+
 		this.size = 0;
+
 		this.name = name;
+
 		this.entries = new Map();
 	}
 }
@@ -62,6 +79,7 @@ export class MemFS implements vscode.FileSystemProvider {
 		for (const [name, child] of entry.entries) {
 			result.push([name, child.type]);
 		}
+
 		return result;
 	}
 
@@ -73,6 +91,7 @@ export class MemFS implements vscode.FileSystemProvider {
 		if (data) {
 			return data;
 		}
+
 		throw vscode.FileSystemError.FileNotFound();
 	}
 
@@ -90,19 +109,27 @@ export class MemFS implements vscode.FileSystemProvider {
 		if (entry instanceof Directory) {
 			throw vscode.FileSystemError.FileIsADirectory(uri);
 		}
+
 		if (!entry && !options.create) {
 			throw vscode.FileSystemError.FileNotFound(uri);
 		}
+
 		if (entry && options.create && !options.overwrite) {
 			throw vscode.FileSystemError.FileExists(uri);
 		}
+
 		if (!entry) {
 			entry = new File(basename);
+
 			parent.entries.set(basename, entry);
+
 			this._fireSoon({ type: vscode.FileChangeType.Created, uri });
 		}
+
 		entry.mtime = Date.now();
+
 		entry.size = content.byteLength;
+
 		entry.data = content;
 
 		this._fireSoon({ type: vscode.FileChangeType.Changed, uri });
@@ -128,7 +155,9 @@ export class MemFS implements vscode.FileSystemProvider {
 		const newName = path.posix.basename(newUri.path);
 
 		oldParent.entries.delete(entry.name);
+
 		entry.name = newName;
+
 		newParent.entries.set(newName, entry);
 
 		this._fireSoon(
@@ -147,9 +176,13 @@ export class MemFS implements vscode.FileSystemProvider {
 		if (!parent.entries.has(basename)) {
 			throw vscode.FileSystemError.FileNotFound(uri);
 		}
+
 		parent.entries.delete(basename);
+
 		parent.mtime = Date.now();
+
 		parent.size -= 1;
+
 		this._fireSoon(
 			{ type: vscode.FileChangeType.Changed, uri: dirname },
 			{ uri, type: vscode.FileChangeType.Deleted },
@@ -164,9 +197,13 @@ export class MemFS implements vscode.FileSystemProvider {
 		const parent = this._lookupAsDirectory(dirname, false);
 
 		const entry = new Directory(basename);
+
 		parent.entries.set(entry.name, entry);
+
 		parent.mtime = Date.now();
+
 		parent.size += 1;
+
 		this._fireSoon(
 			{ type: vscode.FileChangeType.Changed, uri: dirname },
 			{ type: vscode.FileChangeType.Created, uri },
@@ -176,7 +213,9 @@ export class MemFS implements vscode.FileSystemProvider {
 	// --- lookup
 
 	private _lookup(uri: vscode.Uri, silent: false): Entry;
+
 	private _lookup(uri: vscode.Uri, silent: boolean): Entry | undefined;
+
 	private _lookup(uri: vscode.Uri, silent: boolean): Entry | undefined {
 		const parts = uri.path.split("/");
 
@@ -186,11 +225,13 @@ export class MemFS implements vscode.FileSystemProvider {
 			if (!part) {
 				continue;
 			}
+
 			let child: Entry | undefined;
 
 			if (entry instanceof Directory) {
 				child = entry.entries.get(part);
 			}
+
 			if (!child) {
 				if (!silent) {
 					throw vscode.FileSystemError.FileNotFound(uri);
@@ -198,8 +239,10 @@ export class MemFS implements vscode.FileSystemProvider {
 					return undefined;
 				}
 			}
+
 			entry = child;
 		}
+
 		return entry;
 	}
 
@@ -209,6 +252,7 @@ export class MemFS implements vscode.FileSystemProvider {
 		if (entry instanceof Directory) {
 			return entry;
 		}
+
 		throw vscode.FileSystemError.FileNotADirectory(uri);
 	}
 
@@ -218,6 +262,7 @@ export class MemFS implements vscode.FileSystemProvider {
 		if (entry instanceof File) {
 			return entry;
 		}
+
 		throw vscode.FileSystemError.FileIsADirectory(uri);
 	}
 
@@ -230,7 +275,9 @@ export class MemFS implements vscode.FileSystemProvider {
 	// --- manage file events
 
 	private _emitter = new vscode.EventEmitter<vscode.FileChangeEvent[]>();
+
 	private _bufferedEvents: vscode.FileChangeEvent[] = [];
+
 	private _fireSoonHandle?: NodeJS.Timeout;
 
 	readonly onDidChangeFile: vscode.Event<vscode.FileChangeEvent[]> =
@@ -250,6 +297,7 @@ export class MemFS implements vscode.FileSystemProvider {
 
 		this._fireSoonHandle = setTimeout(() => {
 			this._emitter.fire(this._bufferedEvents);
+
 			this._bufferedEvents.length = 0;
 		}, 5);
 	}

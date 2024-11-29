@@ -11,6 +11,7 @@ export class Credentials {
 
 	async initialize(context: vscode.ExtensionContext): Promise<void> {
 		this.registerListeners(context);
+
 		await this.setOctokit();
 	}
 
@@ -64,6 +65,7 @@ export class Credentials {
 			SCOPES,
 			{ createIfNone: true },
 		);
+
 		this.octokit = new Octokit.Octokit({
 			auth: session.accessToken,
 		});

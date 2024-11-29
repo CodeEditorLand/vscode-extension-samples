@@ -49,7 +49,9 @@ export function activate(context: vscode.ExtensionContext) {
 				if (!req.ok) {
 					throw new Error(req.statusText);
 				}
+
 				const res = (await req.json()) as { displayName: string };
+
 				vscode.window.showInformationMessage(
 					`Hello ${res.displayName}`,
 				);
@@ -59,6 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
 						"Failed to get profile. You need to use a PAT that has access to all organizations. Please sign out and try again.",
 					);
 				}
+
 				throw e;
 			}
 		},

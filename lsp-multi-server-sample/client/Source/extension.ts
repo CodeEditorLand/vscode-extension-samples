@@ -33,6 +33,7 @@ function sortedWorkspaceFolders(): string[] {
 						if (result.charAt(result.length - 1) !== "/") {
 							result = result + "/";
 						}
+
 						return result;
 					})
 					.sort((a, b) => {
@@ -40,6 +41,7 @@ function sortedWorkspaceFolders(): string[] {
 					})
 			: [];
 	}
+
 	return _sortedWorkspaceFolders;
 }
 Workspace.onDidChangeWorkspaceFolders(
@@ -55,10 +57,12 @@ function getOuterMostWorkspaceFolder(folder: WorkspaceFolder): WorkspaceFolder {
 		if (uri.charAt(uri.length - 1) !== "/") {
 			uri = uri + "/";
 		}
+
 		if (uri.startsWith(element)) {
 			return Workspace.getWorkspaceFolder(Uri.parse(element))!;
 		}
 	}
+
 	return folder;
 }
 
@@ -108,6 +112,7 @@ export function activate(context: ExtensionContext) {
 
 			return;
 		}
+
 		let folder = Workspace.getWorkspaceFolder(uri);
 		// Files outside a folder can't be handled. This might depend on the language.
 		// Single file languages like JSON might handle files outside the workspace folders.
@@ -142,19 +147,24 @@ export function activate(context: ExtensionContext) {
 				serverOptions,
 				clientOptions,
 			);
+
 			client.start();
+
 			clients.set(folder.uri.toString(), client);
 		}
 	}
 
 	Workspace.onDidOpenTextDocument(didOpenTextDocument);
+
 	Workspace.textDocuments.forEach(didOpenTextDocument);
+
 	Workspace.onDidChangeWorkspaceFolders((event) => {
 		for (const folder of event.removed) {
 			const client = clients.get(folder.uri.toString());
 
 			if (client) {
 				clients.delete(folder.uri.toString());
+
 				client.stop();
 			}
 		}
@@ -167,8 +177,10 @@ export function deactivate(): Thenable<void> {
 	if (defaultClient) {
 		promises.push(defaultClient.stop());
 	}
+
 	for (const client of clients.values()) {
 		promises.push(client.stop());
 	}
+
 	return Promise.all(promises).then(() => undefined);
 }

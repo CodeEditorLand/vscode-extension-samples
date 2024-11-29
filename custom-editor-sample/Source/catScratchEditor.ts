@@ -61,6 +61,7 @@ export class CatScratchEditorProvider
 		webviewPanel.webview.options = {
 			enableScripts: true,
 		};
+
 		webviewPanel.webview.html = this.getHtmlForWebview(
 			webviewPanel.webview,
 		);
@@ -195,6 +196,7 @@ export class CatScratchEditorProvider
 						CatScratchEditorProvider.scratchCharacters.length,
 				)
 			];
+
 		json.scratches = [
 			...(Array.isArray(json.scratches) ? json.scratches : []),
 			{

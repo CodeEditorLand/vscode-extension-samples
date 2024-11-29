@@ -2,10 +2,13 @@ import * as vscode from "vscode";
 
 export class SampleKernel {
 	private readonly _id = "test-notebook-serializer-kernel";
+
 	private readonly _label = "Sample Notebook Kernel";
+
 	private readonly _supportedLanguages = ["json"];
 
 	private _executionOrder = 0;
+
 	private readonly _controller: vscode.NotebookController;
 
 	constructor() {
@@ -16,7 +19,9 @@ export class SampleKernel {
 		);
 
 		this._controller.supportedLanguages = this._supportedLanguages;
+
 		this._controller.supportsExecutionOrder = true;
+
 		this._controller.executeHandler = this._executeAll.bind(this);
 	}
 
@@ -38,6 +43,7 @@ export class SampleKernel {
 		const execution = this._controller.createNotebookCellExecution(cell);
 
 		execution.executionOrder = ++this._executionOrder;
+
 		execution.start(Date.now());
 
 		try {
@@ -56,6 +62,7 @@ export class SampleKernel {
 					vscode.NotebookCellOutputItem.error(err as Error),
 				]),
 			]);
+
 			execution.end(false, Date.now());
 		}
 	}

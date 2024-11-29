@@ -13,12 +13,14 @@ export async function activate(
 ): Promise<void> {
 	// The channel for printing the result.
 	const channel = vscode.window.createOutputChannel("Calculator");
+
 	context.subscriptions.push(channel);
 
 	// The channel for printing the log.
 	const log = vscode.window.createOutputChannel("Calculator - Log", {
 		log: true,
 	});
+
 	context.subscriptions.push(log);
 
 	// The implementation of the log function that is called from WASM
@@ -52,18 +54,23 @@ export async function activate(
 			"vscode-samples.wasm-component-model-async.run",
 			async () => {
 				channel.show();
+
 				channel.appendLine("Running calculator example");
 
 				const add = Types.Operation.Add({ left: 1, right: 2 });
+
 				channel.appendLine(`Add ${await api.calc(add)}`);
 
 				const sub = Types.Operation.Sub({ left: 10, right: 8 });
+
 				channel.appendLine(`Sub ${await api.calc(sub)}`);
 
 				const mul = Types.Operation.Mul({ left: 3, right: 7 });
+
 				channel.appendLine(`Mul ${await api.calc(mul)}`);
 
 				const div = Types.Operation.Div({ left: 10, right: 2 });
+
 				channel.appendLine(`Div ${await api.calc(div)}`);
 			},
 		),

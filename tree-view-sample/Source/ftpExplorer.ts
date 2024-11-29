@@ -4,6 +4,7 @@ import * as vscode from "vscode";
 
 export interface FtpNode {
 	resource: vscode.Uri;
+
 	isDirectory: boolean;
 }
 
@@ -17,6 +18,7 @@ export class FtpModel {
 	public connect(): Thenable<Client> {
 		return new Promise((c, e) => {
 			const client = new Client();
+
 			client.on("ready", () => {
 				c(client);
 			});
@@ -108,15 +110,18 @@ export class FtpModel {
 					}
 
 					let string = "";
+
 					stream.on("data", function (buffer) {
 						if (buffer) {
 							const part = buffer.toString();
+
 							string += part;
 						}
 					});
 
 					stream.on("end", function () {
 						client.end();
+
 						c(string);
 					});
 				});
@@ -132,6 +137,7 @@ export class FtpTreeDataProvider
 {
 	private _onDidChangeTreeData: vscode.EventEmitter<any> =
 		new vscode.EventEmitter<any>();
+
 	readonly onDidChangeTreeData: vscode.Event<any> =
 		this._onDidChangeTreeData.event;
 
@@ -191,6 +197,7 @@ export class FtpExplorer {
 		);
 
 		const treeDataProvider = new FtpTreeDataProvider(ftpModel);
+
 		context.subscriptions.push(
 			vscode.workspace.registerTextDocumentContentProvider(
 				"ftp",
@@ -205,10 +212,12 @@ export class FtpExplorer {
 		vscode.commands.registerCommand("ftpExplorer.refresh", () =>
 			treeDataProvider.refresh(),
 		);
+
 		vscode.commands.registerCommand(
 			"ftpExplorer.openFtpResource",
 			(resource) => this.openResource(resource),
 		);
+
 		vscode.commands.registerCommand("ftpExplorer.revealResource", () =>
 			this.reveal(),
 		);
@@ -235,6 +244,7 @@ export class FtpExplorer {
 				};
 			}
 		}
+
 		return undefined;
 	}
 }

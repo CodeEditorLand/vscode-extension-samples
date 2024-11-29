@@ -8,6 +8,7 @@ import { calculator } from "./calculator";
 
 async function main(): Promise<void> {
 	const connection = await Connection.createWorker(calculator._);
+
 	connection.listen();
 }
 

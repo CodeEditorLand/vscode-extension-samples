@@ -14,6 +14,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	{
 		// emitter and its event
 		onDidChangeEmitter = new vscode.EventEmitter<vscode.Uri>();
+
 		onDidChange = this.onDidChangeEmitter.event;
 
 		provideTextDocumentContent(uri: vscode.Uri): string {
@@ -21,6 +22,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 			return cowsay.say({ text: uri.path });
 		}
 	})();
+
 	subscriptions.push(
 		vscode.workspace.registerTextDocumentContentProvider(
 			myScheme,
@@ -50,6 +52,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 			if (!vscode.window.activeTextEditor) {
 				return; // no editor
 			}
+
 			const { document } = vscode.window.activeTextEditor;
 
 			if (document.uri.scheme !== myScheme) {
@@ -61,6 +64,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 			const newSay = say.split("").reverse().join("");
 
 			const newUri = document.uri.with({ path: newSay });
+
 			await vscode.window.showTextDocument(newUri, { preview: false });
 		}),
 	);

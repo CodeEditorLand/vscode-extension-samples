@@ -8,10 +8,12 @@ export function activate(context: vscode.ExtensionContext) {
 	const logger = vscode.env.createTelemetryLogger({
 		sendErrorData(error, data) {
 			console.error(`Exception: ${error}`);
+
 			console.error(`Data: ${JSON.stringify(data)}`);
 		},
 		sendEventData(eventName, data) {
 			console.log(`Event: ${eventName}`);
+
 			console.log(`Data: ${JSON.stringify(data)}`);
 		},
 	});
@@ -23,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const c1 = vscode.commands.registerCommand("extension.logEvent", () => {
 		vscode.window.showInformationMessage("Logged telemetry event!");
+
 		logger.logUsage("testEvent", { "testProp": "testValue" });
 	});
 
@@ -31,7 +34,9 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("extension.logException", () => {
 			vscode.window.showInformationMessage("Logged telemetry exception!");
+
 			logger.logError(new Error("Test"), { "testProp": "testValue" });
+
 			logger.logError("testerror", { "testProp": "testValue" });
 		}),
 	);

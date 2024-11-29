@@ -19,6 +19,7 @@ interface CustomBuildTaskDefinition extends vscode.TaskDefinition {
 
 export class CustomBuildTaskProvider implements vscode.TaskProvider {
 	static CustomBuildScriptType = "custombuildscript";
+
 	private tasks: vscode.Task[] | undefined;
 
 	// We use a CustomExecution task when state needs to be shared across runs of the task or when
@@ -46,6 +47,7 @@ export class CustomBuildTaskProvider implements vscode.TaskProvider {
 				definition,
 			);
 		}
+
 		return undefined;
 	}
 
@@ -63,6 +65,7 @@ export class CustomBuildTaskProvider implements vscode.TaskProvider {
 		];
 
 		this.tasks = [];
+
 		flavors.forEach((flavor) => {
 			flags.forEach((flagGroup) => {
 				this.tasks!.push(this.getTask(flavor, flagGroup));
@@ -84,6 +87,7 @@ export class CustomBuildTaskProvider implements vscode.TaskProvider {
 				flags,
 			};
 		}
+
 		return new vscode.Task(
 			definition,
 			vscode.TaskScope.Workspace,
@@ -107,8 +111,11 @@ export class CustomBuildTaskProvider implements vscode.TaskProvider {
 
 class CustomBuildTaskTerminal implements vscode.Pseudoterminal {
 	private writeEmitter = new vscode.EventEmitter<string>();
+
 	onDidWrite: vscode.Event<string> = this.writeEmitter.event;
+
 	private closeEmitter = new vscode.EventEmitter<number>();
+
 	onDidClose?: vscode.Event<number> = this.closeEmitter.event;
 
 	private fileWatcher: vscode.FileSystemWatcher | undefined;
@@ -125,12 +132,17 @@ class CustomBuildTaskTerminal implements vscode.Pseudoterminal {
 		// At this point we can start using the terminal.
 		if (this.flags.indexOf("watch") > -1) {
 			const pattern = path.join(this.workspaceRoot, "customBuildFile");
+
 			this.fileWatcher =
 				vscode.workspace.createFileSystemWatcher(pattern);
+
 			this.fileWatcher.onDidChange(() => this.doBuild());
+
 			this.fileWatcher.onDidCreate(() => this.doBuild());
+
 			this.fileWatcher.onDidDelete(() => this.doBuild());
 		}
+
 		this.doBuild();
 	}
 
@@ -156,6 +168,7 @@ class CustomBuildTaskTerminal implements vscode.Pseudoterminal {
 					);
 				} else {
 					isIncremental = false;
+
 					this.writeEmitter.fire(
 						"No result from last build. Doing full build.\r\n",
 					);
@@ -166,13 +179,16 @@ class CustomBuildTaskTerminal implements vscode.Pseudoterminal {
 			setTimeout(
 				() => {
 					const date = new Date();
+
 					this.setSharedState(
 						date.toTimeString() + " " + date.toDateString(),
 					);
+
 					this.writeEmitter.fire("Build complete.\r\n\r\n");
 
 					if (this.flags.indexOf("watch") === -1) {
 						this.closeEmitter.fire(0);
+
 						resolve();
 					}
 				},

@@ -107,12 +107,17 @@ export function activate(context: vscode.ExtensionContext) {
 		"notifications-sample.showAll",
 		() => {
 			vscode.commands.executeCommand("notifications-sample.showInfo");
+
 			vscode.commands.executeCommand("notifications-sample.showWarning");
+
 			vscode.commands.executeCommand(
 				"notifications-sample.showWarningWithActions",
 			);
+
 			vscode.commands.executeCommand("notifications-sample.showError");
+
 			vscode.commands.executeCommand("notifications-sample.showProgress");
+
 			vscode.commands.executeCommand(
 				"notifications-sample.showInfoAsModal",
 			);

@@ -35,5 +35,6 @@ async function showSampleText(context: vscode.ExtensionContext): Promise<void> {
 		language: "plaintext",
 		content: sampleText,
 	});
+
 	vscode.window.showTextDocument(doc);
 }

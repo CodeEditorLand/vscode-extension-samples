@@ -29,6 +29,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		await initializeFromConfigurationFile(context);
 	} catch (err) {
 		console.log("Failed to initialize a Fiddle workspace.");
+
 		vscode.window.showErrorMessage(err);
 	}
 
@@ -38,6 +39,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			tryOpenFiddle(context, fiddleId, workspaceUri);
 		},
 	);
+
 	context.subscriptions.push(openCommand);
 
 	context.subscriptions.push(
@@ -60,6 +62,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			},
 		),
 	);
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
 			"extension.source-control.discard",
@@ -73,6 +76,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			},
 		),
 	);
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
 			"extension.source-control.commit",
@@ -86,6 +90,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			},
 		),
 	);
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
 			"extension.source-control.checkout",
@@ -99,6 +104,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			},
 		),
 	);
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
 			"extension.source-control.browse",
@@ -187,6 +193,7 @@ async function tryOpenFiddle(
 		await openFiddle(context, fiddleId, workspaceUri);
 	} catch (ex) {
 		vscode.window.showErrorMessage(ex);
+
 		console.log(ex);
 	}
 }
@@ -231,6 +238,7 @@ async function openFiddle(
 	);
 
 	registerFiddleSourceControl(fiddleSourceControl, context);
+
 	showFiddleInEditor(fiddleSourceControl);
 }
 
@@ -242,10 +250,12 @@ async function showFiddleInEditor(
 		fiddleSourceControl.getRepository().createLocalResourcePath("html"),
 		vscode.ViewColumn.One,
 	);
+
 	await openDocumentInColumn(
 		fiddleSourceControl.getRepository().createLocalResourcePath("js"),
 		vscode.ViewColumn.Two,
 	);
+
 	await openDocumentInColumn(
 		fiddleSourceControl.getRepository().createLocalResourcePath("css"),
 		vscode.ViewColumn.Three,
@@ -273,6 +283,7 @@ function registerFiddleSourceControl(
 		const previousSourceControl = fiddleSourceControlRegister.get(
 			fiddleSourceControl.getWorkspaceFolder().uri,
 		)!;
+
 		previousSourceControl.dispose();
 	}
 
@@ -288,6 +299,7 @@ function unregisterFiddleSourceControl(folderUri: vscode.Uri): void {
 	if (fiddleSourceControlRegister.has(folderUri)) {
 		const previousSourceControl =
 			fiddleSourceControlRegister.get(folderUri)!;
+
 		previousSourceControl.dispose();
 
 		fiddleSourceControlRegister.delete(folderUri);
@@ -309,6 +321,7 @@ async function initializeFromConfigurationFile(
 		async (folder) =>
 			await initializeFolderFromConfigurationFile(folder, context),
 	);
+
 	await Promise.all(folderPromises);
 }
 
@@ -333,6 +346,7 @@ async function initializeFolderFromConfigurationFile(
 			context,
 			!fiddleConfiguration.downloaded,
 		);
+
 		registerFiddleSourceControl(fiddleSourceControl, context);
 
 		if (!fiddleConfiguration.downloaded) {
@@ -364,6 +378,7 @@ async function selectWorkspaceFolder(
 
 		for (const wf of vscode.workspace.workspaceFolders) {
 			const content = await afs.readdir(wf.uri.fsPath);
+
 			folderPicks.push(new ExistingWorkspaceFolderPick(wf, content));
 		}
 	}
@@ -383,7 +398,9 @@ async function selectWorkspaceFolder(
 
 	if (selectedFolderPick instanceof ExistingWorkspaceFolderPick) {
 		selectedFolder = selectedFolderPick.workspaceFolder;
+
 		workspaceFolderIndex = selectedFolder.index;
+
 		workspaceFolderUri = selectedFolder.uri;
 	}
 

@@ -10,9 +10,11 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// register a command that is invoked when the status bar
 	// item is selected
 	const myCommandId = "sample.showSelectionCount";
+
 	subscriptions.push(
 		vscode.commands.registerCommand(myCommandId, () => {
 			const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
+
 			vscode.window.showInformationMessage(
 				`Yeah, ${n} line(s) selected... Keep going!`,
 			);
@@ -24,7 +26,9 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 		vscode.StatusBarAlignment.Right,
 		100,
 	);
+
 	myStatusBarItem.command = myCommandId;
+
 	subscriptions.push(myStatusBarItem);
 
 	// register some listener that make sure the status bar
@@ -32,6 +36,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	subscriptions.push(
 		vscode.window.onDidChangeActiveTextEditor(updateStatusBarItem),
 	);
+
 	subscriptions.push(
 		vscode.window.onDidChangeTextEditorSelection(updateStatusBarItem),
 	);
@@ -45,6 +50,7 @@ function updateStatusBarItem(): void {
 
 	if (n > 0) {
 		myStatusBarItem.text = `$(megaphone) ${n} line(s) selected`;
+
 		myStatusBarItem.show();
 	} else {
 		myStatusBarItem.hide();
@@ -62,5 +68,6 @@ function getNumberOfSelectedLines(
 			0,
 		);
 	}
+
 	return lines;
 }

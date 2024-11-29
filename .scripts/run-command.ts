@@ -16,6 +16,7 @@ async function tryRunCommand(command: string, sample: Sample) {
 
 			if (packageJson['devDependencies'] || packageJson['dependencies']) {
 				console.log(`=== Running ${command} on ${path.basename(sample.path)} ===`);
+
 				child_process.execSync(command, {
 					cwd: sample.path,
 					stdio: 'inherit'

@@ -21,10 +21,13 @@ function setVersion(
 
 	if (packageJson.dependencies?.[dependencyName]) {
 		packageJson.dependencies[dependencyName] = version;
+
 		changed = true;
 	}
+
 	if (packageJson.devDependencies?.[dependencyName]) {
 		packageJson.devDependencies[dependencyName] = version;
+
 		changed = true;
 	}
 
@@ -35,10 +38,12 @@ function setVersion(
 	console.log(`Updated ${dependencyName} in ${packageJson.name}`);
 
 	const space = packageJsonContents.includes('\t') ? '\t' : '  ';
+
 	fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, undefined, space) + '\n');
 
 	if (fs.existsSync(path.join(sample.path, 'package-lock.json'))) {
 		console.log(`  npm install in ${packageJson.name}`);
+
 		child_process.execSync(`npm install`, {
 			cwd: sample.path,
 			stdio: 'inherit'

@@ -27,14 +27,19 @@ export const activate: ActivationFunction = (context) => {
 				shadow = element.attachShadow({ mode: "open" });
 
 				const root = document.createElement("div");
+
 				root.id = "root";
+
 				shadow.append(root);
 			}
+
 			const root = shadow.querySelector<HTMLElement>("#root")!;
+
 			errorOverlay.wrap(root, () => {
 				root.innerHTML = "";
 
 				const node = document.createElement("div");
+
 				root.appendChild(node);
 
 				render({

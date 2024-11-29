@@ -14,6 +14,7 @@ export const parseMarkdown = (
 			b: number,
 			expected: number,
 		): void;
+
 		onHeading(range: vscode.Range, name: string, depth: number): void;
 	},
 ) => {
@@ -31,6 +32,7 @@ export const parseMarkdown = (
 				new vscode.Position(lineNo, 0),
 				new vscode.Position(lineNo, test[0].length),
 			);
+
 			events.onTest(
 				range,
 				Number(a),
@@ -51,6 +53,7 @@ export const parseMarkdown = (
 				new vscode.Position(lineNo, 0),
 				new vscode.Position(lineNo, line.length),
 			);
+
 			events.onHeading(range, name, pounds.length);
 		}
 	}

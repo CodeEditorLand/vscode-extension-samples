@@ -11,6 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
 			"Terminal opened. Total count: " + vscode.window.terminals.length,
 		);
 	});
+
 	vscode.window.onDidOpenTerminal((terminal: vscode.Terminal) => {
 		vscode.window.showInformationMessage(
 			`onDidOpenTerminal, name: ${terminal.name}`,
@@ -28,9 +29,11 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("terminalTest.createTerminal", () => {
 			vscode.window.createTerminal(`Ext Terminal #${NEXT_TERM_ID++}`);
+
 			vscode.window.showInformationMessage("Hello World 2!");
 		}),
 	);
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
 			"terminalTest.createTerminalHideFromUser",
@@ -42,14 +45,17 @@ export function activate(context: vscode.ExtensionContext) {
 			},
 		),
 	);
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand("terminalTest.createAndSend", () => {
 			const terminal = vscode.window.createTerminal(
 				`Ext Terminal #${NEXT_TERM_ID++}`,
 			);
+
 			terminal.sendText("echo 'Sent text immediately after creating'");
 		}),
 	);
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
 			"terminalTest.createZshLoginShell",
@@ -88,6 +94,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		}),
 	);
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
 			"terminalTest.showPreserveFocus",
@@ -115,6 +122,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		}),
 	);
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
 			"terminalTest.sendTextNoNewLine",
@@ -150,6 +158,7 @@ export function activate(context: vscode.ExtensionContext) {
 				if (!terminal) {
 					return;
 				}
+
 				terminal.processId.then((processId) => {
 					if (processId) {
 						vscode.window.showInformationMessage(
@@ -185,7 +194,9 @@ export function activate(context: vscode.ExtensionContext) {
 			"terminalTest.updateEnvironment",
 			() => {
 				const collection = context.environmentVariableCollection;
+
 				collection.replace("FOO", "BAR");
+
 				collection.append("PATH", "/test/path");
 			},
 		),
@@ -208,6 +219,7 @@ export function activate(context: vscode.ExtensionContext) {
 					vscode.window.showInformationMessage(
 						`onDidWriteTerminalData listener attached, check the devtools console to see events`,
 					);
+
 					console.log("onDidWriteData", e);
 				});
 			},
@@ -222,6 +234,7 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.window.showInformationMessage(
 					`Listening to onDidChangeTerminalDimensions, check the devtools console to see events`,
 				);
+
 				vscode.window.onDidChangeTerminalDimensions((event) => {
 					console.log(
 						`onDidChangeTerminalDimensions: terminal:${event.terminal.name}, columns=${event.dimensions.columns}, rows=${event.dimensions.rows}`,
@@ -246,6 +259,7 @@ export function activate(context: vscode.ExtensionContext) {
 						if (startIndex === -1) {
 							return [];
 						}
+
 						return [
 							{
 								startIndex,
@@ -290,6 +304,7 @@ function selectTerminal(): Thenable<vscode.Terminal | undefined> {
 	interface TerminalQuickPickItem extends vscode.QuickPickItem {
 		terminal: vscode.Terminal;
 	}
+
 	const terminals = vscode.window.terminals;
 
 	const items: TerminalQuickPickItem[] = terminals.map((t) => {
@@ -310,5 +325,6 @@ function ensureTerminalExists(): boolean {
 
 		return false;
 	}
+
 	return true;
 }

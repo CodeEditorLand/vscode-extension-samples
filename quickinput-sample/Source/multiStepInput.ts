@@ -46,15 +46,21 @@ export async function multiStepInput(context: ExtensionContext) {
 
 	interface State {
 		title: string;
+
 		step: number;
+
 		totalSteps: number;
+
 		resourceGroup: QuickPickItem | string;
+
 		name: string;
+
 		runtime: QuickPickItem;
 	}
 
 	async function collectInputs() {
 		const state = {} as Partial<State>;
+
 		await MultiStepInput.run((input) => pickResourceGroup(input, state));
 
 		return state as State;
@@ -84,6 +90,7 @@ export async function multiStepInput(context: ExtensionContext) {
 			return (input: MultiStepInput) =>
 				inputResourceGroupName(input, state);
 		}
+
 		state.resourceGroup = pick;
 
 		return (input: MultiStepInput) => inputName(input, state);
@@ -171,6 +178,7 @@ export async function multiStepInput(context: ExtensionContext) {
 	}
 
 	const state = await collectInputs();
+
 	window.showInformationMessage(
 		`Creating Application Service '${state.name}'`,
 	);
@@ -182,7 +190,9 @@ export async function multiStepInput(context: ExtensionContext) {
 
 class InputFlowAction {
 	static back = new InputFlowAction();
+
 	static cancel = new InputFlowAction();
+
 	static resume = new InputFlowAction();
 }
 
@@ -190,26 +200,43 @@ type InputStep = (input: MultiStepInput) => Thenable<InputStep | void>;
 
 interface QuickPickParameters<T extends QuickPickItem> {
 	title: string;
+
 	step: number;
+
 	totalSteps: number;
+
 	items: T[];
+
 	activeItem?: T;
+
 	ignoreFocusOut?: boolean;
+
 	placeholder: string;
+
 	buttons?: QuickInputButton[];
+
 	shouldResume: () => Thenable<boolean>;
 }
 
 interface InputBoxParameters {
 	title: string;
+
 	step: number;
+
 	totalSteps: number;
+
 	value: string;
+
 	prompt: string;
+
 	validate: (value: string) => Promise<string | undefined>;
+
 	buttons?: QuickInputButton[];
+
 	ignoreFocusOut?: boolean;
+
 	placeholder?: string;
+
 	shouldResume: () => Thenable<boolean>;
 }
 
@@ -221,6 +248,7 @@ class MultiStepInput {
 	}
 
 	private current?: QuickInput;
+
 	private steps: InputStep[] = [];
 
 	private async stepThrough(start: InputStep) {
@@ -231,13 +259,16 @@ class MultiStepInput {
 
 			if (this.current) {
 				this.current.enabled = false;
+
 				this.current.busy = true;
 			}
+
 			try {
 				step = await step(this);
 			} catch (err) {
 				if (err === InputFlowAction.back) {
 					this.steps.pop();
+
 					step = this.steps.pop();
 				} else if (err === InputFlowAction.resume) {
 					step = this.steps.pop();
@@ -248,6 +279,7 @@ class MultiStepInput {
 				}
 			}
 		}
+
 		if (this.current) {
 			this.current.dispose();
 		}
@@ -274,20 +306,28 @@ class MultiStepInput {
 				T | (P extends { buttons: (infer I)[] } ? I : never)
 			>((resolve, reject) => {
 				const input = window.createQuickPick<T>();
+
 				input.title = title;
+
 				input.step = step;
+
 				input.totalSteps = totalSteps;
+
 				input.ignoreFocusOut = ignoreFocusOut ?? false;
+
 				input.placeholder = placeholder;
+
 				input.items = items;
 
 				if (activeItem) {
 					input.activeItems = [activeItem];
 				}
+
 				input.buttons = [
 					...(this.steps.length > 1 ? [QuickInputButtons.Back] : []),
 					...(buttons || []),
 				];
+
 				disposables.push(
 					input.onDidTriggerButton((item) => {
 						if (item === QuickInputButtons.Back) {
@@ -312,7 +352,9 @@ class MultiStepInput {
 				if (this.current) {
 					this.current.dispose();
 				}
+
 				this.current = input;
+
 				this.current.show();
 			});
 		} finally {
@@ -339,19 +381,28 @@ class MultiStepInput {
 				string | (P extends { buttons: (infer I)[] } ? I : never)
 			>((resolve, reject) => {
 				const input = window.createInputBox();
+
 				input.title = title;
+
 				input.step = step;
+
 				input.totalSteps = totalSteps;
+
 				input.value = value || "";
+
 				input.prompt = prompt;
+
 				input.ignoreFocusOut = ignoreFocusOut ?? false;
+
 				input.placeholder = placeholder;
+
 				input.buttons = [
 					...(this.steps.length > 1 ? [QuickInputButtons.Back] : []),
 					...(buttons || []),
 				];
 
 				let validating = validate("");
+
 				disposables.push(
 					input.onDidTriggerButton((item) => {
 						if (item === QuickInputButtons.Back) {
@@ -363,17 +414,22 @@ class MultiStepInput {
 					}),
 					input.onDidAccept(async () => {
 						const value = input.value;
+
 						input.enabled = false;
+
 						input.busy = true;
 
 						if (!(await validate(value))) {
 							resolve(value);
 						}
+
 						input.enabled = true;
+
 						input.busy = false;
 					}),
 					input.onDidChangeValue(async (text) => {
 						const current = validate(text);
+
 						validating = current;
 
 						const validationMessage = await current;
@@ -396,7 +452,9 @@ class MultiStepInput {
 				if (this.current) {
 					this.current.dispose();
 				}
+
 				this.current = input;
+
 				this.current.show();
 			});
 		} finally {

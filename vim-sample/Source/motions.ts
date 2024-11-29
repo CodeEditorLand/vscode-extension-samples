@@ -10,12 +10,16 @@ import { WordCharacters, Words } from "./words";
 
 export class MotionState {
 	public anchor: Position | null;
+
 	public cursorDesiredCharacter: number;
+
 	public wordCharacterClass: WordCharacters | null;
 
 	constructor() {
 		this.cursorDesiredCharacter = -1;
+
 		this.wordCharacterClass = null;
+
 		this.anchor = null;
 	}
 }
@@ -31,17 +35,21 @@ export abstract class Motion {
 		if (!hasRepeatCount) {
 			return this;
 		}
+
 		return new RepeatingMotion(this, count);
 	}
 }
 
 class RepeatingMotion extends Motion {
 	private _actual: Motion;
+
 	private _repeatCount: number;
 
 	constructor(actual: Motion, repeatCount: number) {
 		super();
+
 		this._actual = actual;
+
 		this._repeatCount = repeatCount;
 	}
 
@@ -49,6 +57,7 @@ class RepeatingMotion extends Motion {
 		for (let cnt = 0; cnt < this._repeatCount; cnt++) {
 			pos = this._actual.run(doc, pos, state);
 		}
+
 		return pos;
 	}
 }
@@ -254,6 +263,7 @@ class GoToLineUndefinedMotion extends Motion {
 		if (!hasRepeatCount) {
 			return Motions.GoToLastLine;
 		}
+
 		return new GoToLineDefinedMotion(count);
 	}
 }
@@ -270,8 +280,10 @@ abstract class GoToLineMotion extends Motion {
 			if (ch !== " " && ch !== "\t") {
 				break;
 			}
+
 			character++;
 		}
+
 		return character;
 	}
 }
@@ -306,6 +318,7 @@ class GoToLineDefinedMotion extends GoToLineMotion {
 
 	constructor(lineNumber: number) {
 		super();
+
 		this._lineNumber = lineNumber;
 	}
 

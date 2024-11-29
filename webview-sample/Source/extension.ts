@@ -33,6 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
 				webviewPanel.webview.options = getWebviewOptions(
 					context.extensionUri,
 				);
+
 				CatCodingPanel.revive(webviewPanel, context.extensionUri);
 			},
 		});
@@ -61,7 +62,9 @@ class CatCodingPanel {
 	public static readonly viewType = "catCoding";
 
 	private readonly _panel: vscode.WebviewPanel;
+
 	private readonly _extensionUri: vscode.Uri;
+
 	private _disposables: vscode.Disposable[] = [];
 
 	public static createOrShow(extensionUri: vscode.Uri) {
@@ -93,6 +96,7 @@ class CatCodingPanel {
 
 	private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
 		this._panel = panel;
+
 		this._extensionUri = extensionUri;
 
 		// Set the webview's initial html content
@@ -174,6 +178,7 @@ class CatCodingPanel {
 
 	private _updateForCat(webview: vscode.Webview, catName: keyof typeof cats) {
 		this._panel.title = catName;
+
 		this._panel.webview.html = this._getHtmlForWebview(
 			webview,
 			cats[catName],
@@ -249,5 +254,6 @@ function getNonce() {
 	for (let i = 0; i < 32; i++) {
 		text += possible.charAt(Math.floor(Math.random() * possible.length));
 	}
+
 	return text;
 }

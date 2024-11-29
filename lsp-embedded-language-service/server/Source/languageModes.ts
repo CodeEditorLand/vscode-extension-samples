@@ -29,7 +29,9 @@ export interface LanguageMode {
 	doValidation?: (document: TextDocument) => Diagnostic[];
 
 	doComplete?: (document: TextDocument, position: Position) => CompletionList;
+
 	onDocumentRemoved(document: TextDocument): void;
+
 	dispose(): void;
 }
 
@@ -46,12 +48,15 @@ export interface LanguageModes {
 	getAllModesInDocument(document: TextDocument): LanguageMode[];
 
 	getMode(languageId: string): LanguageMode | undefined;
+
 	onDocumentRemoved(document: TextDocument): void;
+
 	dispose(): void;
 }
 
 export interface LanguageModeRange extends Range {
 	mode: LanguageMode | undefined;
+
 	attributeValue?: boolean;
 }
 
@@ -67,10 +72,13 @@ export function getLanguageModes(): LanguageModes {
 	);
 
 	let modelCaches: LanguageModelCache<unknown>[] = [];
+
 	modelCaches.push(documentRegions);
 
 	let modes = Object.create(null);
+
 	modes["html"] = getHTMLMode(htmlLanguageService);
+
 	modes["css"] = getCSSMode(cssLanguageService, documentRegions);
 
 	return {
@@ -85,6 +93,7 @@ export function getLanguageModes(): LanguageModes {
 			if (languageId) {
 				return modes[languageId];
 			}
+
 			return undefined;
 		},
 		getModesInRange(
@@ -115,6 +124,7 @@ export function getLanguageModes(): LanguageModes {
 					result.push(mode);
 				}
 			}
+
 			return result;
 		},
 		getAllModes(): LanguageMode[] {
@@ -127,6 +137,7 @@ export function getLanguageModes(): LanguageModes {
 					result.push(mode);
 				}
 			}
+
 			return result;
 		},
 		getMode(languageId: string): LanguageMode {
@@ -141,11 +152,13 @@ export function getLanguageModes(): LanguageModes {
 		},
 		dispose(): void {
 			modelCaches.forEach((mc) => mc.dispose());
+
 			modelCaches = [];
 
 			for (const mode in modes) {
 				modes[mode].dispose();
 			}
+
 			modes = {};
 		},
 	};

@@ -6,6 +6,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 	private _onDidChangeTreeData: vscode.EventEmitter<
 		Dependency | undefined | void
 	> = new vscode.EventEmitter<Dependency | undefined | void>();
+
 	readonly onDidChangeTreeData: vscode.Event<Dependency | undefined | void> =
 		this._onDidChangeTreeData.event;
 
@@ -134,6 +135,7 @@ export class Dependency extends vscode.TreeItem {
 		super(label, collapsibleState);
 
 		this.tooltip = `${this.label}-${this.version}`;
+
 		this.description = this.version;
 	}
 

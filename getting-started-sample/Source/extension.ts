@@ -10,6 +10,7 @@ export function activate(context: vscode.ExtensionContext): void {
 			"getting-started-sample.runCommand",
 			async () => {
 				await new Promise((resolve) => setTimeout(resolve, 1000));
+
 				vscode.commands.executeCommand(
 					"getting-started-sample.sayHello",
 					vscode.Uri.joinPath(context.extensionUri, "sample-folder"),
@@ -23,6 +24,7 @@ export function activate(context: vscode.ExtensionContext): void {
 			"getting-started-sample.changeSetting",
 			async () => {
 				await new Promise((resolve) => setTimeout(resolve, 1000));
+
 				vscode.workspace
 					.getConfiguration("getting-started-sample")
 					.update("sampleSetting", true);
@@ -35,6 +37,7 @@ export function activate(context: vscode.ExtensionContext): void {
 			"getting-started-sample.setContext",
 			async () => {
 				await new Promise((resolve) => setTimeout(resolve, 1000));
+
 				vscode.commands.executeCommand(
 					"setContext",
 					"gettingStartedContextKey",

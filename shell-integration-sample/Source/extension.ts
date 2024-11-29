@@ -31,6 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 			if (e.uri.scheme !== "file") {
 				return;
 			}
+
 			const targetUri = vscode.Uri.file(dirname(e.fileName));
 
 			for (const terminal of trackedTerminals) {

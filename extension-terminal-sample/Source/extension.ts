@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
 	const writeEmitter = new vscode.EventEmitter<string>();
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
 			"extensionTerminalSample.create",
@@ -23,15 +24,18 @@ export function activate(context: vscode.ExtensionContext) {
 							writeEmitter.fire(
 								`\r\necho: "${colorText(line)}"\r\n\n`,
 							);
+
 							line = "";
 
 							return;
 						}
+
 						if (data === "\x7f") {
 							// Backspace
 							if (line.length === 0) {
 								return;
 							}
+
 							line = line.substr(0, line.length - 1);
 							// Move cursor backward
 							writeEmitter.fire("\x1b[D");
@@ -40,7 +44,9 @@ export function activate(context: vscode.ExtensionContext) {
 
 							return;
 						}
+
 						line += data;
+
 						writeEmitter.fire(data);
 					},
 				};
@@ -49,6 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
 					name: `My Extension REPL`,
 					pty,
 				});
+
 				terminal.show();
 			},
 		),
@@ -79,5 +86,6 @@ function colorText(text: string): string {
 			}
 		}
 	}
+
 	return output;
 }

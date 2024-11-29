@@ -32,6 +32,7 @@ export function activate(_context: vscode.ExtensionContext) {
 
 		try {
 			await vscode.workspace.fs.stat(jsUri);
+
 			vscode.window.showTextDocument(jsUri, {
 				viewColumn: vscode.ViewColumn.Beside,
 			});
@@ -63,10 +64,13 @@ export function activate(_context: vscode.ExtensionContext) {
 					const stat = await vscode.workspace.fs.stat(
 						folder.with({ path: filePath }),
 					);
+
 					total += stat.size;
+
 					count += 1;
 				}
 			}
+
 			return { total, count };
 		}
 
@@ -85,6 +89,7 @@ export function activate(_context: vscode.ExtensionContext) {
 		const doc = await vscode.workspace.openTextDocument({
 			content: `${info.count} files in ${folderUri.toString(true)} with a total of ${info.total} bytes`,
 		});
+
 		vscode.window.showTextDocument(doc, {
 			viewColumn: vscode.ViewColumn.Beside,
 		});
@@ -117,6 +122,7 @@ export function activate(_context: vscode.ExtensionContext) {
 		const readStr = Buffer.from(readData).toString("utf8");
 
 		vscode.window.showInformationMessage(readStr);
+
 		vscode.window.showTextDocument(fileUri);
 	});
 }

@@ -5,29 +5,37 @@ import * as vscode from "vscode";
 export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 	private _onDidChangeTreeData: vscode.EventEmitter<number | undefined> =
 		new vscode.EventEmitter<number | undefined>();
+
 	readonly onDidChangeTreeData: vscode.Event<number | undefined> =
 		this._onDidChangeTreeData.event;
 
 	private tree: json.Node | undefined;
+
 	private text = "";
+
 	private editor: vscode.TextEditor | undefined;
+
 	private autoRefresh = true;
 
 	constructor(private context: vscode.ExtensionContext) {
 		vscode.window.onDidChangeActiveTextEditor(() =>
 			this.onActiveEditorChanged(),
 		);
+
 		vscode.workspace.onDidChangeTextDocument((e) =>
 			this.onDocumentChanged(e),
 		);
+
 		this.autoRefresh = vscode.workspace
 			.getConfiguration("jsonOutline")
 			.get("autorefresh", false);
+
 		vscode.workspace.onDidChangeConfiguration(() => {
 			this.autoRefresh = vscode.workspace
 				.getConfiguration("jsonOutline")
 				.get("autorefresh", false);
 		});
+
 		this.onActiveEditorChanged();
 	}
 
@@ -61,6 +69,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 								? propertyNode.parent.children[0]
 								: undefined;
 						}
+
 						if (propertyNode) {
 							const range = new vscode.Range(
 								editor.document.positionAt(propertyNode.offset),
@@ -68,10 +77,12 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 									propertyNode.offset + propertyNode.length,
 								),
 							);
+
 							editBuilder.replace(range, `"${value}"`);
 
 							setTimeout(() => {
 								this.parseTree();
+
 								this.refresh(offset);
 							}, 100);
 						}
@@ -88,6 +99,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 						"json" ||
 					vscode.window.activeTextEditor.document.languageId ===
 						"jsonc";
+
 				vscode.commands.executeCommand(
 					"setContext",
 					"jsonOutlineEnabled",
@@ -121,12 +133,15 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 					this.text,
 					this.editor.document.offsetAt(change.range.start),
 				).path;
+
 				path.pop();
 
 				const node = path.length
 					? json.findNodeAtLocation(this.tree, path)
 					: void 0;
+
 				this.parseTree();
+
 				this._onDidChangeTreeData.fire(node ? node.offset : void 0);
 			}
 		}
@@ -134,11 +149,14 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 
 	private parseTree(): void {
 		this.text = "";
+
 		this.tree = undefined;
+
 		this.editor = vscode.window.activeTextEditor;
 
 		if (this.editor && this.editor.document) {
 			this.text = this.editor.document.getText();
+
 			this.tree = json.parseTree(this.text);
 		}
 	}
@@ -174,6 +192,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 				}
 			}
 		}
+
 		return offsets;
 	}
 
@@ -181,6 +200,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 		if (!this.tree) {
 			throw new Error("Invalid tree");
 		}
+
 		if (!this.editor) {
 			throw new Error("Invalid editor");
 		}
@@ -201,6 +221,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 						: vscode.TreeItemCollapsibleState.Collapsed
 					: vscode.TreeItemCollapsibleState.None,
 			);
+
 			treeItem.command = {
 				command: "extension.openJsonSelection",
 				title: "",
@@ -213,11 +234,14 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 					),
 				],
 			};
+
 			treeItem.iconPath = this.getIcon(valueNode);
+
 			treeItem.contextValue = valueNode.type;
 
 			return treeItem;
 		}
+
 		throw new Error(`Could not find json node at ${path}`);
 	}
 
@@ -243,6 +267,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 				),
 			};
 		}
+
 		if (nodeType === "string") {
 			return {
 				light: this.context.asAbsolutePath(
@@ -253,6 +278,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 				),
 			};
 		}
+
 		if (nodeType === "number") {
 			return {
 				light: this.context.asAbsolutePath(
@@ -263,6 +289,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 				),
 			};
 		}
+
 		return null;
 	}
 
@@ -273,9 +300,11 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 			if (node.type === "object") {
 				return prefix + ":{ }";
 			}
+
 			if (node.type === "array") {
 				return prefix + ":[ ]";
 			}
+
 			return prefix + ":" + node.value.toString();
 		} else {
 			const property = node.parent?.children
@@ -286,10 +315,12 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 				if (node.type === "object") {
 					return "{ } " + property;
 				}
+
 				if (node.type === "array") {
 					return "[ ] " + property;
 				}
 			}
+
 			const value = this.editor?.document.getText(
 				new vscode.Range(
 					this.editor.document.positionAt(node.offset),

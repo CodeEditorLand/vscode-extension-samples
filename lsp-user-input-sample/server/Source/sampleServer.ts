@@ -66,6 +66,7 @@ connection.onCodeAction((params) => {
 	if (textDocument === undefined) {
 		return undefined;
 	}
+
 	const title = "With User Input";
 
 	return [
@@ -87,10 +88,12 @@ connection.onExecuteCommand(async (params) => {
 	if (textDocument === undefined) {
 		return;
 	}
+
 	const newText =
 		typeof params.arguments[1] === "string"
 			? params.arguments[1]
 			: "Eclipse";
+
 	connection.workspace.applyEdit({
 		documentChanges: [
 			TextDocumentEdit.create(

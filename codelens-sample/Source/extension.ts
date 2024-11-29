@@ -48,5 +48,6 @@ export function deactivate() {
 	if (disposables) {
 		disposables.forEach((item) => item.dispose());
 	}
+
 	disposables = [];
 }

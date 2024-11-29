@@ -26,37 +26,48 @@ import { Words } from "./words";
 
 export interface ITypeResult {
 	hasConsumedInput: boolean;
+
 	executeEditorCommand: Command;
 }
 
 export class Controller implements IController {
 	private _currentMode: Mode;
+
 	private _currentInput: string;
+
 	private _motionState: MotionState;
+
 	private _isVisual: boolean;
 
 	public get motionState(): MotionState {
 		return this._motionState;
 	}
+
 	public findMotion(input: string): Motion {
 		return Mappings.findMotion(input);
 	}
+
 	public isMotionPrefix(input: string): boolean {
 		return Mappings.isMotionPrefix(input);
 	}
 
 	private _deleteRegister: DeleteRegister;
+
 	public setDeleteRegister(register: DeleteRegister): void {
 		this._deleteRegister = register;
 	}
+
 	public getDeleteRegister(): DeleteRegister {
 		return this._deleteRegister;
 	}
 
 	constructor() {
 		this._motionState = new MotionState();
+
 		this._deleteRegister = null;
+
 		this.setVisual(false);
+
 		this.setMode(Mode.NORMAL);
 	}
 
@@ -69,9 +80,11 @@ export class Controller implements IController {
 		if (this._currentMode !== Mode.NORMAL) {
 			return;
 		}
+
 		if (this._isVisual) {
 			return;
 		}
+
 		const sel = editor.selection;
 
 		const pos = sel.active;
@@ -83,6 +96,7 @@ export class Controller implements IController {
 		if (lineContent.length === 0) {
 			return;
 		}
+
 		const maxCharacter = lineContent.length - 1;
 
 		if (pos.character > maxCharacter) {
@@ -105,6 +119,7 @@ export class Controller implements IController {
 	public setMode(newMode: Mode): void {
 		if (newMode !== this._currentMode) {
 			this._currentMode = newMode;
+
 			this._motionState.cursorDesiredCharacter = -1; // uninitialized
 			this._currentInput = "";
 		}
@@ -125,11 +140,14 @@ export class Controller implements IController {
 			if (/^([1-9]\d*)?(r|c)/.test(this._currentInput)) {
 				return TextEditorCursorStyle.Underline;
 			}
+
 			return TextEditorCursorStyle.Block;
 		}
+
 		if (this._currentMode === Mode.REPLACE) {
 			return TextEditorCursorStyle.Underline;
 		}
+
 		return TextEditorCursorStyle.Line;
 	}
 
@@ -138,6 +156,7 @@ export class Controller implements IController {
 			if (this._isVisual) {
 				return "-- VISUAL --";
 			}
+
 			return "-- NORMAL --";
 		}
 
@@ -145,12 +164,14 @@ export class Controller implements IController {
 			if (this._isVisual) {
 				return "-- (replace) VISUAL --";
 			}
+
 			return "-- REPLACE --";
 		}
 
 		if (this._isVisual) {
 			return "-- (insert) VISUAL --";
 		}
+
 		return "-- INSERT --";
 	}
 
@@ -164,10 +185,12 @@ export class Controller implements IController {
 	}
 
 	private _isInComposition = false;
+
 	private _composingText = "";
 
 	public compositionStart(_editor: TextEditor): void {
 		this._isInComposition = true;
+
 		this._composingText = "";
 	}
 
@@ -175,6 +198,7 @@ export class Controller implements IController {
 		this._isInComposition = false;
 
 		const text = this._composingText;
+
 		this._composingText = "";
 
 		if (text.length === 0) {
@@ -213,6 +237,7 @@ export class Controller implements IController {
 
 		if (this._currentMode === Mode.REPLACE) {
 			const pos = editor.selection.active;
+
 			editor
 				.edit((builder) => {
 					builder.replace(
@@ -234,6 +259,7 @@ export class Controller implements IController {
 				executeEditorCommand: null,
 			});
 		}
+
 		this._currentInput += text;
 
 		return this._interpretNormalModeInput(editor, modifierKeys);
@@ -263,6 +289,7 @@ export class Controller implements IController {
 
 		if (this._currentMode === Mode.REPLACE) {
 			const pos = editor.selection.active;
+
 			editor.edit((builder) => {
 				builder.replace(
 					new Range(
@@ -290,6 +317,7 @@ export class Controller implements IController {
 				return this._findMapping(value || "", editor, modifierKeys);
 			});
 		}
+
 		const result = this._findMapping(
 			this._currentInput,
 			editor,
@@ -328,6 +356,7 @@ export class Controller implements IController {
 					this._currentInput = "";
 				}
 			}
+
 			return {
 				hasConsumedInput: true,
 				executeEditorCommand: null,
@@ -369,6 +398,7 @@ export class Controller implements IController {
 				// Mode.NORMAL
 				setPositionAndReveal(editor, newPos.line, newPos.character);
 			}
+
 			this._currentInput = "";
 
 			return {
@@ -402,6 +432,7 @@ function setSelectionAndReveal(
 	char: number,
 ): void {
 	editor.selection = new Selection(anchor, new Position(line, char));
+
 	revealPosition(editor, line, char);
 }
 
@@ -414,6 +445,7 @@ function setPositionAndReveal(
 		new Position(line, char),
 		new Position(line, char),
 	);
+
 	revealPosition(editor, line, char);
 }
 

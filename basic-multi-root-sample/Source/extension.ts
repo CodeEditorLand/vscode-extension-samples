@@ -14,6 +14,7 @@ import {
 export function activate(context: ExtensionContext) {
 	// Create a status bar item
 	const status = window.createStatusBarItem(StatusBarAlignment.Left, 1000000);
+
 	context.subscriptions.push(status);
 
 	// Update status bar item based on events for multi root folder changes
@@ -30,12 +31,15 @@ export function activate(context: ExtensionContext) {
 	context.subscriptions.push(
 		window.onDidChangeActiveTextEditor(() => updateStatus(status)),
 	);
+
 	context.subscriptions.push(
 		window.onDidChangeTextEditorViewColumn(() => updateStatus(status)),
 	);
+
 	context.subscriptions.push(
 		workspace.onDidOpenTextDocument(() => updateStatus(status)),
 	);
+
 	context.subscriptions.push(
 		workspace.onDidCloseTextDocument(() => updateStatus(status)),
 	);
@@ -45,8 +49,11 @@ export function activate(context: ExtensionContext) {
 
 function updateStatus(status: StatusBarItem): void {
 	const info = getEditorInfo();
+
 	status.text = info ? info.text || "" : "";
+
 	status.tooltip = info ? info.tooltip : undefined;
+
 	status.color = info ? info.color : undefined;
 
 	if (info) {
@@ -58,7 +65,9 @@ function updateStatus(status: StatusBarItem): void {
 
 function getEditorInfo(): {
 	text?: string;
+
 	tooltip?: string;
+
 	color?: string;
 } | null {
 	const editor = window.activeTextEditor;
@@ -90,12 +99,14 @@ function getEditorInfo(): {
 			text = `$(alert) <outside workspace> → ${basename(resource.fsPath)}`;
 		} else {
 			text = `$(file-submodule) ${basename(folder.uri.fsPath)} (${folder.index + 1} of ${workspace.workspaceFolders.length}) → $(file-code) ${basename(resource.fsPath)}`;
+
 			tooltip = resource.fsPath;
 
 			const multiRootConfigForResource = workspace.getConfiguration(
 				"multiRootSample",
 				resource,
 			);
+
 			color = multiRootConfigForResource.get("statusColor");
 		}
 	}

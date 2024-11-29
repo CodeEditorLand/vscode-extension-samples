@@ -37,6 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!activeEditor) {
 			return;
 		}
+
 		const regEx = /\d+/g;
 
 		const text = activeEditor.document.getText();
@@ -65,15 +66,19 @@ export function activate(context: vscode.ExtensionContext) {
 				largeNumbers.push(decoration);
 			}
 		}
+
 		activeEditor.setDecorations(smallNumberDecorationType, smallNumbers);
+
 		activeEditor.setDecorations(largeNumberDecorationType, largeNumbers);
 	}
 
 	function triggerUpdateDecorations(throttle = false) {
 		if (timeout) {
 			clearTimeout(timeout);
+
 			timeout = undefined;
 		}
+
 		if (throttle) {
 			timeout = setTimeout(updateDecorations, 500);
 		} else {

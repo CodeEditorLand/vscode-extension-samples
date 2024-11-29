@@ -19,6 +19,7 @@ export class JSFiddleDocumentContentProvider
 	implements TextDocumentContentProvider, Disposable
 {
 	private _onDidChange = new EventEmitter<Uri>();
+
 	private fiddles = new Map<string, Fiddle>(); // this assumes each fiddle is only open once per workspace
 
 	get onDidChange(): Event<Uri> {
@@ -36,9 +37,11 @@ export class JSFiddleDocumentContentProvider
 		this._onDidChange.fire(
 			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.html`),
 		);
+
 		this._onDidChange.fire(
 			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.css`),
 		);
+
 		this._onDidChange.fire(
 			Uri.parse(`${JSFIDDLE_SCHEME}:${newFiddle.slug}.js`),
 		);

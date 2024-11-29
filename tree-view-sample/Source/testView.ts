@@ -6,7 +6,9 @@ export class TestView {
 			treeDataProvider: aNodeWithIdTreeDataProvider(),
 			showCollapseAll: true,
 		});
+
 		context.subscriptions.push(view);
+
 		vscode.commands.registerCommand("testView.reveal", async () => {
 			const key = await vscode.window.showInputBox({
 				placeHolder: "Type the label of the item to reveal",
@@ -19,6 +21,7 @@ export class TestView {
 				);
 			}
 		});
+
 		vscode.commands.registerCommand("testView.changeTitle", async () => {
 			const title = await vscode.window.showInputBox({
 				prompt: "Type the new title for the Test View",
@@ -64,6 +67,7 @@ function aNodeWithIdTreeDataProvider(): vscode.TreeDataProvider<{
 		},
 		getTreeItem: (element: { key: string }): vscode.TreeItem => {
 			const treeItem = getTreeItem(element.key);
+
 			treeItem.id = element.key;
 
 			return treeItem;
@@ -80,11 +84,13 @@ function getChildren(key: string | undefined): string[] {
 	if (!key) {
 		return Object.keys(tree);
 	}
+
 	const treeElement = getTreeElement(key);
 
 	if (treeElement) {
 		return Object.keys(treeElement);
 	}
+
 	return [];
 }
 
@@ -120,6 +126,7 @@ function getTreeElement(element: string): any {
 			return null;
 		}
 	}
+
 	return parent;
 }
 
@@ -127,6 +134,7 @@ function getNode(key: string): { key: string } {
 	if (!nodes[key]) {
 		nodes[key] = new Key(key);
 	}
+
 	return nodes[key];
 }
 

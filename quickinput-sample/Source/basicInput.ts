@@ -16,6 +16,7 @@ export async function showQuickPick() {
 		onDidSelectItem: (item) =>
 			window.showInformationMessage(`Focus ${++i}: ${item}`),
 	});
+
 	window.showInformationMessage(`Got: ${result}`);
 }
 
@@ -33,5 +34,6 @@ export async function showInputBox() {
 			return text === "123" ? "Not 123!" : null;
 		},
 	});
+
 	window.showInformationMessage(`Got: ${result}`);
 }

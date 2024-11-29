@@ -28,6 +28,7 @@ export class FoodPyramidHierarchyProvider
 		const document = await vscode.workspace.openTextDocument(item.uri);
 
 		const parser = new FoodPyramidParser();
+
 		parser.parse(document);
 
 		const model = parser.getModel();
@@ -57,6 +58,7 @@ export class FoodPyramidHierarchyProvider
 					verbItem,
 					[outgoingCallRange],
 				);
+
 				outgoingCallItems.push(outgoingCallItem);
 			});
 		} else if (model.isNoun(item.name)) {
@@ -81,6 +83,7 @@ export class FoodPyramidHierarchyProvider
 					verbItem,
 					outgoingCallRanges,
 				);
+
 				outgoingCallItems.push(outgoingCallItem);
 			});
 		}
@@ -95,6 +98,7 @@ export class FoodPyramidHierarchyProvider
 		const document = await vscode.workspace.openTextDocument(item.uri);
 
 		const parser = new FoodPyramidParser();
+
 		parser.parse(document);
 
 		const model = parser.getModel();
@@ -124,6 +128,7 @@ export class FoodPyramidHierarchyProvider
 					verbItem,
 					[outgoingCallRange],
 				);
+
 				outgoingCallItems.push(outgoingCallItem);
 			});
 		} else if (model.isNoun(item.name)) {
@@ -148,6 +153,7 @@ export class FoodPyramidHierarchyProvider
 					verbItem,
 					outgoingCallRanges,
 				);
+
 				outgoingCallItems.push(outgoingCallItem);
 			});
 		}
@@ -194,6 +200,7 @@ class FoodPyramidParser {
 				startPosition,
 				startPosition.translate({ characterDelta: match[0].length }),
 			);
+
 			this._model.addRelation(
 				new FoodRelation(match[1], match[2], match[3], match[0], range),
 			);
@@ -208,11 +215,14 @@ class FoodPyramidParser {
  */
 function groupBy<K, V>(array: V[], keyGetter: (value: V) => K): Map<K, V[]> {
 	const map = new Map();
+
 	array.forEach((item) => {
 		const key = keyGetter(item);
 
 		const groupForKey = map.get(key) || [];
+
 		groupForKey.push(item);
+
 		map.set(key, groupForKey);
 	});
 

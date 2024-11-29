@@ -70,6 +70,7 @@ class CopyCountPasteEditProvider implements vscode.DocumentPasteEditProvider {
 
 		// Build a snippet to insert
 		const snippet = new vscode.SnippetString();
+
 		snippet.appendText(`(copy #${count}) ${text}`);
 
 		return [

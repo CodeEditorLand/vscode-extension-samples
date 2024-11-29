@@ -56,6 +56,7 @@ function createDiagnostic(
 		"When you say 'emoji', do you want to find out more?",
 		vscode.DiagnosticSeverity.Information,
 	);
+
 	diagnostic.code = EMOJI_MENTION;
 
 	return diagnostic;
@@ -71,6 +72,7 @@ export function subscribeToDocumentChanges(
 			emojiDiagnostics,
 		);
 	}
+
 	context.subscriptions.push(
 		vscode.window.onDidChangeActiveTextEditor((editor) => {
 			if (editor) {
