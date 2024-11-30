@@ -12,6 +12,7 @@ pub mod exports {
         #[doc(hidden)]
         #[cfg(target_arch = "wasm32")]
         static __FORCE_SECTION_REF: fn() = super::super::super::super::__link_custom_section_describing_imports;
+
         use super::super::super::super::_rt;
         #[repr(u8)]
         #[derive(Clone, Copy, Eq, PartialEq)]
@@ -21,6 +22,7 @@ pub mod exports {
           Mul,
           Div,
         }
+
         impl ::core::fmt::Debug for Operation {
           fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
             match self {
@@ -74,9 +76,12 @@ pub mod exports {
           /// create a handle. The owned handle is then returned as `Engine`.
           pub fn new<T: GuestEngine>(val: T) -> Self {
             Self::type_guard::<T>();
+
             let val: _EngineRep<T> = Some(val);
+
             let ptr: *mut _EngineRep<T> =
             _rt::Box::into_raw(_rt::Box::new(val));
+
             unsafe {
               Self::from_handle(T::_resource_new(ptr.cast()))
             }
@@ -85,6 +90,7 @@ pub mod exports {
           /// Gets access to the underlying `T` which represents this resource.
           pub fn get<T: GuestEngine>(&self) -> &T {
             let ptr = unsafe { &*self.as_ptr::<T>() };
+
             ptr.as_ref().unwrap()
           }
 
@@ -92,12 +98,14 @@ pub mod exports {
           /// resource.
           pub fn get_mut<T: GuestEngine>(&mut self) -> &mut T {
             let ptr = unsafe { &mut *self.as_ptr::<T>() };
+
             ptr.as_mut().unwrap()
           }
 
           /// Consumes this resource and returns the underlying `T`.
           pub fn into_inner<T: GuestEngine>(self) -> T {
             let ptr = unsafe { &mut *self.as_ptr::<T>() };
+
             ptr.take().unwrap()
           }
 
@@ -123,7 +131,9 @@ pub mod exports {
           #[doc(hidden)]
           fn type_guard<T: 'static>() {
             use core::any::TypeId;
+
             static mut LAST_TYPE: Option<TypeId> = None;
+
             unsafe {
               assert!(!cfg!(target_feature = "threads"));
               let id = TypeId::of::<T>();
@@ -137,11 +147,13 @@ pub mod exports {
           #[doc(hidden)]
           pub unsafe fn dtor<T: 'static>(handle: *mut u8) {
             Self::type_guard::<T>();
+
             let _ = _rt::Box::from_raw(handle as *mut _EngineRep<T>);
           }
 
           fn as_ptr<T: GuestEngine>(&self) -> *mut _EngineRep<T> {
             Engine::type_guard::<T>();
+
             T::_resource_rep(self.handle()).cast()
           }
         }
@@ -167,6 +179,7 @@ pub mod exports {
           /// Gets access to the underlying `T` in this resource.
           pub fn get<T: GuestEngine>(&self) -> &T {
             let ptr = unsafe { &mut *self.as_ptr::<T>() };
+
             ptr.as_ref().unwrap()
           }
 
@@ -175,6 +188,7 @@ pub mod exports {
 
           fn as_ptr<T: 'static>(&self) -> *mut _EngineRep<T> {
             Engine::type_guard::<T>();
+
             self.rep.cast()
           }
         }

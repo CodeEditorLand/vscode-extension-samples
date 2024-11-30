@@ -33,12 +33,16 @@ fn main() -> Result<(), Box<dyn Error + Sync + Send>> {
         ..Default::default()
     })
     .unwrap();
+
     let initialization_params = connection.initialize(server_capabilities)?;
+
     main_loop(connection, initialization_params)?;
+
     io_threads.join()?;
 
     // Shut down gracefully.
     eprintln!("Shutting down server");
+
     Ok(())
 }
 
@@ -51,56 +55,80 @@ pub struct CountFilesParams {
 pub enum CountFilesRequest {}
 impl Request for CountFilesRequest {
     type Params = CountFilesParams;
+
     type Result = u32;
+
     const METHOD: &'static str = "wasm-language-server/countFiles";
 }
 
 fn main_loop(connection: Connection, params: serde_json::Value) -> Result<(), Box<dyn Error + Sync + Send>> {
     let _params: InitializeParams = serde_json::from_value(params).unwrap();
+
     for msg in &connection.receiver {
         match msg {
             Message::Request(req) => {
                 if connection.handle_shutdown(&req)? {
                     return Ok(());
                 }
+
                 match cast::<GotoDefinition>(req.clone()) {
                     Ok((id, params)) => {
                         let uri = params.text_document_position_params.text_document.uri;
+
                         eprintln!("Received gotoDefinition request #{} {}", id, uri.to_string());
+
                         let loc = Location::new(
                             uri,
                             lsp_types::Range::new(lsp_types::Position::new(0, 0), lsp_types::Position::new(0, 0))
                         );
+
                         let mut vec = Vec::new();
+
                         vec.push(loc);
+
                         let result = Some(GotoDefinitionResponse::Array(vec));
+
                         let result = serde_json::to_value(&result).unwrap();
+
                         let resp = Response { id, result: Some(result), error: None };
+
                         connection.sender.send(Message::Response(resp))?;
+
                         continue;
                     }
+
                     Err(err @ ExtractError::JsonError { .. }) => panic!("{err:?}"),
                     Err(ExtractError::MethodMismatch(req)) => req,
                 };
+
                 match cast::<CountFilesRequest>(req.clone()) {
                     Ok((id, params)) => {
                         eprintln!("Received countFiles request #{} {}", id, params.folder);
+
                 		let result = count_files_in_directory(&params.folder.path());
+
                 		let json = serde_json::to_value(&result).unwrap();
+
         		        let resp = Response { id, result: Some(json), error: None };
+
         		        connection.sender.send(Message::Response(resp))?;
+
                         continue;
                     }
+
                     Err(err @ ExtractError::JsonError { .. }) => panic!("{err:?}"),
                     Err(ExtractError::MethodMismatch(req)) => req,
                 };
             }
+
             Message::Response(_resp) => {
             }
+
             Message::Notification(_not) => {
             }
         }
     }
+
     Ok(())
 }
 

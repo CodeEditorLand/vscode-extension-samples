@@ -30,7 +30,9 @@ impl EngineImpl {
 
 	fn push_operation(&mut self, operation: Operation) {
         let left = self.left.unwrap();
+
         let right = self.right.unwrap();
+
         self.left = Some(match operation {
 			Operation::Add => left + right,
 			Operation::Sub => left - right,
@@ -75,3 +77,4 @@ impl Guest for Implementation {
 }
 
 calculator::export!(Implementation with_types_in calculator);
+
