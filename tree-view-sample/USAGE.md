@@ -1,9 +1,9 @@
 # Contributing a View Container & View
 
-- Contribute a view container using the [`viewsContainers`](HTTPS://code.visualstudio.com/api/references/contribution-points#contributes.viewsContainers) extension point.
-- Contribute a view using the [`views`](HTTPS://code.visualstudio.com/api/references/contribution-points#contributes.views) extension point.
-- Register a data provider for the view using the [`TreeDataProvider`](HTTPS://code.visualstudio.com/api/references/vscode-api#_TreeDataProvider) API.
-- Contribute actions to the view using `view/title` and `view/item/context` locations in [`menus`](HTTPS://code.visualstudio.com/api/references/contribution-points#contributesmenus) extension point.
+- Contribute a view container using the [`viewsContainers`](https://code.visualstudio.com/api/references/contribution-points#contributes.viewsContainers) extension point.
+- Contribute a view using the [`views`](https://code.visualstudio.com/api/references/contribution-points#contributes.views) extension point.
+- Register a data provider for the view using the [`TreeDataProvider`](https://code.visualstudio.com/api/references/vscode-api#_TreeDataProvider) API.
+- Contribute actions to the view using `view/title` and `view/item/context` locations in [`menus`](https://code.visualstudio.com/api/references/contribution-points#contributesmenus) extension point.
 
 ## contributes.viewsContainers extension point
 
@@ -104,7 +104,7 @@ Examples:
 
 ## TreeDataProvider
 
-Extension writers should register a [`provider`](HTTPS://code.visualstudio.com/api/references/vscode-api#TreeDataProvider) programmatically to populate data in the view.
+Extension writers should register a [`provider`](https://code.visualstudio.com/api/references/vscode-api#TreeDataProvider) programmatically to populate data in the view.
 
 ```typescript
 vscode.window.registerTreeDataProvider('nodeDependencies', new DepNodeProvider());
