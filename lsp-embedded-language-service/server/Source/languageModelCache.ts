@@ -25,8 +25,7 @@ export function getLanguageModelCache<T>(
 
 	let nModels = 0;
 
-	let cleanupInterval: NodeJS.Timer | undefined = undefined;
-
+	let cleanupInterval: NodeJS.Timeout | undefined = undefined;
 	if (cleanupIntervalTimeInSec > 0) {
 		cleanupInterval = setInterval(() => {
 			const cutoffTime = Date.now() - cleanupIntervalTimeInSec * 1000;
