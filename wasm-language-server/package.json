@@ -12,14 +12,10 @@
 		]
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
 		"@types/node": "^20",
 		"esbuild": "^0.21.3",
-		"eslint": "^9.13.0",
-		"serve": "^14.2.3",
-		"typescript": "^5.7.2",
-		"typescript-eslint": "^8.16.0"
+		"serve": "^14.2.3"
 	},
 	"extensionDependencies": [
 		"ms-vscode.wasm-wasi-core"

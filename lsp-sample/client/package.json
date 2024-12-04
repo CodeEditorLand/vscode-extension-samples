@@ -1,23 +1,7 @@
 {
-	"dependencies": {},
-	"description": "VSCode part of a language server",
-	"author": "Microsoft Corporation",
-	"license": "MIT",
-	"version": "0.0.1",
-	"publisher": "vscode",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"engines": {
-		"vscode": "^1.75.0"
-	},
 	"dependencies": {
-		"glob": "^11.0.0",
-		"vscode-languageclient": "^9.0.1"
+		"glob": "^11.0.0"
 	},
-	"devDependencies": {
-		"@types/vscode": "^1.75.1",
-		"@vscode/test-electron": "^2.3.9"
-	}
+	"description": "VSCode part of a language server",
+	"devDependencies": {}
 }

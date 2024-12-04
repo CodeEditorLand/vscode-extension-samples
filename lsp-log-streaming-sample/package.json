@@ -56,8 +56,8 @@
 	},
 	"description": "A language server example demonstrating log streaming",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "2.11.0",
-		"@types/node": "22"
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/node": "^20"
 	},
 	"main": "./client/out/extension",
 	"name": "lsp-log-streaming-sample",
@@ -66,20 +66,6 @@
 		"compile:client": "tsc -p ./client/tsconfig.json",
 		"compile:server": "tsc -p ./server/tsconfig.json",
 		"watch:client": "tsc -w -p ./client/tsconfig.json",
-		"watch:server": "tsc -w -p ./server/tsconfig.json",
-		"compile": "npm run compile:client && npm run compile:server",
-		"lint": "eslint",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"test": "sh ./scripts/e2e.sh"
-	},
-	"devDependencies": {
-		"@eslint/js": "^9.13.0",
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/mocha": "^10.0.1",
-		"@types/node": "^20",
-		"eslint": "^9.13.0",
-		"mocha": "^10.2.0",
-		"typescript": "^5.7.2",
-		"typescript-eslint": "^8.16.0"
+		"watch:server": "tsc -w -p ./server/tsconfig.json"
 	}
 }

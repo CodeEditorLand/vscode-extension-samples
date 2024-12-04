@@ -1,60 +1,38 @@
 {
-  "name": "codelens-sample",
-  "displayName": "CodeLens Sample",
-  "description": "Samples for VS Code's CodeLens API",
-  "version": "0.0.1",
-  "publisher": "ms-vscode",
-  "private": true,
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Microsoft/vscode-extension-samples"
-  },
-  "engines": {
-    "vscode": "^1.73.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "*"
-  ],
-  "main": "./out/extension",
-  "contributes": {
-    "commands": [
-      {
-        "title": "Enable CodeLens",
-        "command": "codelens-sample.enableCodeLens",
-        "category": "CodeLens Sample"
-      },
-      {
-        "title": "Disable Codelens",
-        "command": "codelens-sample.disableCodeLens",
-        "category": "CodeLens Sample"
-      }
-    ],
-    "configuration": {
-      "properties": {
-        "codelens-sample.enableCodeLens": {
-          "type": "boolean",
-          "default": true
-        }
-      }
-    }
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "lint": "eslint",
-    "watch": "tsc -watch -p ./"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.13.0",
-    "@stylistic/eslint-plugin": "^2.9.0",
-    "@types/node": "^20",
-    "@types/vscode": "^1.73.0",
-    "eslint": "^9.13.0",
-    "typescript": "^5.7.2",
-    "typescript-eslint": "^8.16.0"
-  }
+	"activationEvents": [
+		"*"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"category": "CodeLens Sample",
+				"command": "codelens-sample.enableCodeLens",
+				"title": "Enable CodeLens"
+			},
+			{
+				"category": "CodeLens Sample",
+				"command": "codelens-sample.disableCodeLens",
+				"title": "Disable Codelens"
+			}
+		],
+		"configuration": {
+			"properties": {
+				"codelens-sample.enableCodeLens": {
+					"default": true,
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"description": "Samples for VS Code's CodeLens API",
+	"devDependencies": {
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/node": "^20"
+	},
+	"displayName": "CodeLens Sample",
+	"main": "./out/extension",
+	"name": "codelens-sample",
+	"scripts": {
+		"compile": "tsc -p ./"
+	}
 }
