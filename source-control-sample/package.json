@@ -74,7 +74,7 @@
 	},
 	"description": "Source control VS Code extension sample",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20"
+		"@stylistic/eslint-plugin": "^2.11.0",
+		"@types/node": "^22"
 	}
 }

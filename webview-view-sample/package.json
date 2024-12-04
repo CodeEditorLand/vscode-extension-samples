@@ -35,6 +35,6 @@
 	},
 	"description": "Calico Colors - A Webview View API Sample",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0"
+		"@stylistic/eslint-plugin": "^2.11.0"
 	}
 }

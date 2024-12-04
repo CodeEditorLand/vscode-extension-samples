@@ -12,10 +12,10 @@
 	"dependencies": {},
 	"description": "An example implementing a calculator using a resource.",
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20",
-		"esbuild": "^0.20.2",
-		"serve": "^14.2.1"
+		"@stylistic/eslint-plugin": "^2.11.0",
+		"@types/node": "^22",
+		"esbuild": "^0.24.0",
+		"serve": "^14.2.4"
 	},
 	"main": "./out/extension",
 	"name": "wasm-component-model-resource",
