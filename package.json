@@ -1,16 +1,23 @@
 {
-	"devDependencies": {
-		"@types/node": "^22.10.1",
-		"glob": "^11.0.0",
-		"tsx": "^4.19.2"
-	},
 	"name": "vsc-extension-samples",
+	"version": "0.0.1",
+	"private": true,
+	"license": "MIT",
+	"publisher": "Microsoft",
 	"scripts": {
 		"auditFix": "tsx .scripts/run-command.ts npm audit fix",
 		"compile": "tsx .scripts/run-script.ts compile",
 		"install": "tsx .scripts/run-command.ts npm install",
+		"lint": "tsx .scripts/run-script.ts lint",
 		"update-lsif": "tsx .scripts/update-lsif.ts",
 		"update-readme": "tsx .scripts/update-readme.ts",
 		"validate": "tsx .scripts/validate.ts"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@types/node": "^22.8.2",
+		"glob": "^11.0.0",
+		"tsx": "^4.19.2",
+		"typescript": "^5.7.2"
 	}
 }

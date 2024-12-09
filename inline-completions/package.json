@@ -1,7 +1,22 @@
 {
-	"activationEvents": [
-		"*"
+	"name": "inline-completion-sample",
+	"displayName": "Inline Completion Sample",
+	"version": "0.0.1",
+	"description": "Sample showing how to implement an inline completion provider",
+	"categories": [
+		"Other"
 	],
+	"repository": "https://github.com/Microsoft/vscode-extension-samples",
+	"publisher": "vscode-samples",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"download-api": "dts dev",
+		"postinstall": "npm run download-api",
+		"lint": "eslint",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -17,8 +32,24 @@
 			]
 		}
 	},
+	"activationEvents": [
+		"*"
+	],
+	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.11.0",
-		"@types/node": "^22"
-	}
+		"@codeeditorland/dts": "^0.4.0",
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/node": "^20",
+		"@types/vscode": "^1.74.0",
+		"eslint": "^9.13.0",
+		"typescript": "^5.7.2",
+		"typescript-eslint": "^8.16.0"
+	},
+	"engines": {
+		"vscode": "^1.67.0"
+	},
+	"enabledApiProposals": [
+		"inlineCompletionsAdditions"
+	]
 }

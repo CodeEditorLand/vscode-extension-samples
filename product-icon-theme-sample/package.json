@@ -1,4 +1,11 @@
 {
+	"name": "product-icon-theme-sample",
+	"version": "0.1.0",
+	"publisher": "vscode-samples",
+	"scripts": {
+		"showFont": "open ./theme/vscode-10.html",
+		"updateFont": "node ./build/updateFont.js"
+	},
 	"contributes": {
 		"productIconThemes": [
 			{
@@ -8,14 +15,16 @@
 			}
 		]
 	},
+	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.11.0",
-		"open": "^10.1.0",
-		"webfont": "^11.2.26"
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"eslint": "^9.13.0",
+		"open": "^7.0.3",
+		"typescript-eslint": "^8.16.0",
+		"webfont": "^11.2.4"
 	},
-	"name": "product-icon-theme-sample",
-	"scripts": {
-		"showFont": "open ./theme/vscode-10.html",
-		"updateFont": "node ./build/updateFont.js"
+	"engines": {
+		"vscode": "*"
 	}
 }

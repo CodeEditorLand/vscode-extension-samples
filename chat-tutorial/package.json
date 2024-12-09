@@ -1,5 +1,21 @@
 {
-	"activationEvents": [],
+	"name": "code-tutor",
+	"displayName": "Code Tutor",
+	"version": "0.0.1",
+	"description": "",
+	"categories": [
+		"AI",
+		"Chat"
+	],
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"chatParticipants": [
 			{
@@ -17,16 +33,22 @@
 			}
 		]
 	},
-	"description": "",
+	"activationEvents": [],
+	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.11.0",
-		"@types/node": "22.x",
-		"glob": "^11.0.0"
+		"@codeeditorland/test-electron": "^2.3.6",
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/mocha": "^10.0.3",
+		"@types/node": "18.x",
+		"@types/vscode": "^1.94.0",
+		"eslint": "^9.13.0",
+		"glob": "^10.3.10",
+		"mocha": "^10.2.0",
+		"typescript": "^5.2.2",
+		"typescript-eslint": "^8.16.0"
 	},
-	"displayName": "Code Tutor",
-	"main": "./out/extension.js",
-	"name": "code-tutor",
-	"scripts": {
-		"compile": "tsc -p ./"
+	"engines": {
+		"vscode": "^1.93.0"
 	}
 }

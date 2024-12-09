@@ -1,7 +1,24 @@
 {
-	"activationEvents": [
-		"onCommand:workbench.action.tasks.runTask"
+	"name": "task-provider-samples",
+	"displayName": "Task Provider Samples",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Samples for VSCode's view API",
+	"categories": [
+		"Other"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"license": "MIT",
+	"publisher": "vscode-samples",
+	"main": "./out/extension",
+	"scripts": {
+		"compile": "tsc -b",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -b -w"
+	},
 	"contributes": {
 		"taskDefinitions": [
 			{
@@ -38,9 +55,20 @@
 			}
 		]
 	},
-	"description": "Samples for VSCode's view API",
+	"activationEvents": [
+		"onCommand:workbench.action.tasks.runTask"
+	],
+	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.11.0",
-		"@types/node": "^22"
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/node": "^20",
+		"@types/vscode": "^1.73.0",
+		"eslint": "^9.13.0",
+		"typescript": "^5.7.2",
+		"typescript-eslint": "^8.16.0"
+	},
+	"engines": {
+		"vscode": "^1.73.0"
 	}
 }

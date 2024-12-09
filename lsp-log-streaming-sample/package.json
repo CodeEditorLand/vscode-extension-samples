@@ -1,7 +1,30 @@
 {
-	"activationEvents": [
-		"onLanguage:plaintext"
+	"name": "lsp-log-streaming-sample",
+	"version": "1.0.0",
+	"description": "A language server example demonstrating log streaming",
+	"categories": [],
+	"keywords": [
+		"multi-root ready"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"license": "MIT",
+	"author": "Microsoft Corporation",
+	"publisher": "vscode-samples",
+	"main": "./client/out/extension",
+	"scripts": {
+		"compile": "npm run compile:client && npm run compile:server",
+		"compile:client": "tsc -p ./client/tsconfig.json",
+		"compile:server": "tsc -p ./server/tsconfig.json",
+		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+		"lint": "eslint",
+		"test": "sh ./scripts/e2e.sh",
+		"vscode:prepublish": "cd client && npm run update-vscode && cd .. && npm run compile",
+		"watch:client": "tsc -w -p ./client/tsconfig.json",
+		"watch:server": "tsc -w -p ./server/tsconfig.json"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -54,18 +77,21 @@
 			"type": "object"
 		}
 	},
-	"description": "A language server example demonstrating log streaming",
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.11.0",
-		"@types/node": "^22"
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "^20",
+		"eslint": "^9.13.0",
+		"mocha": "^10.2.0",
+		"typescript": "^5.7.2",
+		"typescript-eslint": "^8.16.0"
 	},
-	"main": "./client/out/extension",
-	"name": "lsp-log-streaming-sample",
-	"scripts": {
-		"compile": "npm run compile:client && npm run compile:server",
-		"compile:client": "tsc -p ./client/tsconfig.json",
-		"compile:server": "tsc -p ./server/tsconfig.json",
-		"watch:client": "tsc -w -p ./client/tsconfig.json",
-		"watch:server": "tsc -w -p ./server/tsconfig.json"
+	"engines": {
+		"vscode": "^1.26.0"
 	}
 }

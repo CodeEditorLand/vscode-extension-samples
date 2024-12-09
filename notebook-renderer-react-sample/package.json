@@ -1,4 +1,25 @@
 {
+	"name": "notebook-renderer-react-sample",
+	"displayName": "notebook-renderer-react-sample",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook built with React.",
+	"categories": [
+		"Other"
+	],
+	"license": "MIT",
+	"scripts": {
+		"compile": "npm run compile:extension && npm run compile:client",
+		"compile:client": "webpack --mode production",
+		"compile:extension": "tsc -b",
+		"dev": "concurrently -r npm:watch:extension npm:watch:client",
+		"lint": "eslint",
+		"pretest": "npm run compile && npm run lint",
+		"vscode:prepublish": "npm run compile && node out/test/checkNoTestProvider.js",
+		"watch": "concurrently -r \"npm:watch:*\"",
+		"watch:client": "webpack --mode development --watch",
+		"watch:extension": "tsc -b --watch"
+	},
 	"contributes": {
 		"notebookRenderer": [
 			{
@@ -11,25 +32,32 @@
 			}
 		]
 	},
-	"description": "Example of a Notebook renderer (visualizer) for GitHub Issues Notebook built with React.",
+	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.11.0",
-		"@types/glob": "^8.1.0",
-		"@types/node": "^22",
-		"concurrently": "^9.1.0",
-		"css-loader": "^7.1.2",
-		"glob": "^11.0.0",
-		"style-loader": "^4.0.0",
-		"ts-loader": "^9.5.1"
+		"@codeeditorland/notebook-error-overlay": "^1.0.1",
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/land-notebook-renderer": "^1.57.8",
+		"@types/glob": "^7.1.3",
+		"@types/node": "^20",
+		"@types/react": "^17.0.15",
+		"@types/react-dom": "^17.0.9",
+		"@types/vscode": "^1.58.0",
+		"@types/webpack-env": "^1.16.0",
+		"concurrently": "^5.3.0",
+		"css-loader": "^4.2.0",
+		"eslint": "^9.13.0",
+		"glob": "^7.1.7",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"style-loader": "^1.2.1",
+		"ts-loader": "^9.4.2",
+		"typescript": "^5.7.2",
+		"typescript-eslint": "^8.16.0",
+		"webpack": "^5.38.1",
+		"webpack-cli": "^4.7.0"
 	},
-	"displayName": "notebook-renderer-react-sample",
-	"name": "notebook-renderer-react-sample",
-	"scripts": {
-		"compile": "npm run compile:extension && npm run compile:client",
-		"compile:client": "webpack --mode production",
-		"compile:extension": "tsc -b",
-		"dev": "concurrently -r npm:watch:extension npm:watch:client",
-		"watch:client": "webpack --mode development --watch",
-		"watch:extension": "tsc -b --watch"
+	"engines": {
+		"vscode": "^1.58.0"
 	}
 }

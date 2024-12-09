@@ -1,5 +1,21 @@
 {
-	"activationEvents": [],
+	"name": "helloworld-sample",
+	"displayName": "helloworld-sample",
+	"version": "0.0.1",
+	"description": "HelloWorld example for VS Code",
+	"categories": [
+		"Other"
+	],
+	"repository": "https://github.com/Microsoft/vscode-extension-samples/helloworld-sample",
+	"publisher": "vscode-samples",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"pretest": "npm run compile",
+		"test": "vscode-test",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -8,9 +24,22 @@
 			}
 		]
 	},
-	"description": "HelloWorld example for VS Code",
+	"activationEvents": [],
+	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.11.0",
-		"@types/node": "^22"
+		"@codeeditorland/test-cli": "^0.0.8",
+		"@codeeditorland/test-electron": "^2.3.9",
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "^20",
+		"@types/vscode": "^1.73.0",
+		"eslint": "^9.13.0",
+		"mocha": "^10.2.0",
+		"typescript": "^5.7.2",
+		"typescript-eslint": "^8.16.0"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
 	}
 }

@@ -1,7 +1,11 @@
 {
-	"activationEvents": [
-		"onTerminalProfile:terminalTest.terminal-profile"
-	],
+	"name": "@codeeditorland/terminal-api-example",
+	"displayName": "vscode-terminal-api-example",
+	"description": "abc",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"download-api": "dts dev"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -87,20 +91,16 @@
 			]
 		}
 	},
+	"activationEvents": [
+		"onTerminalProfile:terminalTest.terminal-profile"
+	],
 	"dependencies": {},
-	"description": "abc",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "^2.11.0",
 		"@types/node": "^22"
 	},
-	"displayName": "vscode-terminal-api-example",
 	"enabledApiProposals": [
 		"terminalDataWriteEvent",
 		"terminalDimensions"
-	],
-	"name": "vscode-terminal-api-example",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"download-api": "dts dev"
-	}
+	]
 }

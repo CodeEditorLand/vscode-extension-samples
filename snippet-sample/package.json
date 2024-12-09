@@ -1,4 +1,12 @@
 {
+	"name": "snippet-sample",
+	"displayName": "Snippet Sample",
+	"version": "0.0.1",
+	"description": "Snippet Sample",
+	"categories": [
+		"Snippets"
+	],
+	"publisher": "vscode-samples",
 	"contributes": {
 		"snippets": [
 			{
@@ -7,7 +15,9 @@
 			}
 		]
 	},
-	"description": "Snippet Sample",
-	"displayName": "Snippet Sample",
-	"name": "snippet-sample"
+	"dependencies": {},
+	"devDependencies": {},
+	"engines": {
+		"vscode": "^1.28.0"
+	}
 }

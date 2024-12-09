@@ -1,7 +1,25 @@
 {
-	"activationEvents": [
-		"*"
+	"name": "vim",
+	"displayName": "vim",
+	"version": "0.0.1",
+	"private": true,
+	"description": "vim sample extension",
+	"categories": [
+		"Other"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"license": "MIT",
+	"publisher": "vscode-samples",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"lint": "eslint",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"keybindings": [
 			{
@@ -52,8 +70,20 @@
 			}
 		]
 	},
+	"activationEvents": [
+		"*"
+	],
+	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.11.0",
-		"@types/node": "^22"
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/node": "^20",
+		"@types/vscode": "^1.73.0",
+		"eslint": "^9.13.0",
+		"typescript": "^5.7.2",
+		"typescript-eslint": "^8.16.0"
+	},
+	"engines": {
+		"vscode": "^1.73.0"
 	}
 }
