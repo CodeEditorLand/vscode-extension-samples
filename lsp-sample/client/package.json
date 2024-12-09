@@ -10,11 +10,11 @@
 	"author": "Microsoft Corporation",
 	"publisher": "vscode",
 	"dependencies": {
-		"@codeeditorland/languageclient": "^9.0.1",
+		"@codeeditorland/languageclient": "0.0.1",
 		"glob": "^11.0.0"
 	},
 	"devDependencies": {
-		"@codeeditorland/test-electron": "^2.3.9",
+		"@codeeditorland/test-electron": "0.0.1",
 		"@types/vscode": "^1.75.1"
 	},
 	"engines": {

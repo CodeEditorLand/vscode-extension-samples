@@ -26,7 +26,7 @@
 	],
 	"dependencies": {},
 	"devDependencies": {
-		"@codeeditorland/test-electron": "^2.3.0",
+		"@codeeditorland/test-electron": "0.0.1",
 		"@types/glob": "^8.1.0",
 		"@types/mocha": "^10.0.1",
 		"@types/node": "^20",

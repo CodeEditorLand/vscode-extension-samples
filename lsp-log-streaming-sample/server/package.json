@@ -10,8 +10,8 @@
 	"author": "Microsoft Corporation",
 	"scripts": {},
 	"dependencies": {
-		"@codeeditorland/languageserver": "8.1.0-next.6",
-		"@codeeditorland/languageserver-textdocument": "1.0.8"
+		"@codeeditorland/languageserver": "0.0.1",
+		"@codeeditorland/languageserver-textdocument": "0.0.1"
 	},
 	"devDependencies": {},
 	"engines": {

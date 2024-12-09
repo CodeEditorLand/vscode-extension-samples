@@ -27,8 +27,8 @@
 	"activationEvents": [],
 	"dependencies": {},
 	"devDependencies": {
-		"@codeeditorland/test-cli": "^0.0.8",
-		"@codeeditorland/test-electron": "^2.3.9",
+		"@codeeditorland/test-cli": "0.0.1",
+		"@codeeditorland/test-electron": "0.0.1",
 		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
 		"@types/mocha": "^10.0.1",

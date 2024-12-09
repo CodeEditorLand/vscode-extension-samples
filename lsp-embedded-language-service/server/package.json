@@ -10,10 +10,10 @@
 	"author": "Microsoft Corporation",
 	"scripts": {},
 	"dependencies": {
-		"@codeeditorland/css-languageservice": "^4.1.1",
-		"@codeeditorland/html-languageservice": "^3.0.3",
-		"@codeeditorland/languageserver": "^6.1.1",
-		"@codeeditorland/languageserver-textdocument": "^1.0.1"
+		"@codeeditorland/css-languageservice": "0.0.1",
+		"@codeeditorland/html-languageservice": "0.0.1",
+		"@codeeditorland/languageserver": "0.0.1",
+		"@codeeditorland/languageserver-textdocument": "0.0.1"
 	},
 	"devDependencies": {},
 	"engines": {

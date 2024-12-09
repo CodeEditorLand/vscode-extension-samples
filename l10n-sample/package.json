@@ -34,11 +34,11 @@
 	},
 	"activationEvents": [],
 	"dependencies": {
-		"@codeeditorland/l10n": "^0.0.10"
+		"@codeeditorland/l10n": "0.0.1"
 	},
 	"devDependencies": {
-		"@codeeditorland/l10n-dev": "^0.0.18",
-		"@codeeditorland/test-electron": "^2.3.9",
+		"@codeeditorland/l10n-dev": "0.0.1",
+		"@codeeditorland/test-electron": "0.0.1",
 		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
 		"@types/glob": "^7.2.0",

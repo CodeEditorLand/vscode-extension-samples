@@ -33,7 +33,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@codeeditorland/notebook-error-overlay": "^1.0.1",
+		"@codeeditorland/notebook-error-overlay": "0.0.1",
 		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
 		"@types/land-notebook-renderer": "^1.57.8",

@@ -12,9 +12,9 @@
 	"license": "MIT",
 	"author": "Microsoft Corporation",
 	"dependencies": {
-		"@codeeditorland/languageserver": "^9.0.1",
-		"@codeeditorland/languageserver-textdocument": "^1.0.11",
-		"@codeeditorland/uri": "^3.0.8"
+		"@codeeditorland/languageserver": "0.0.1",
+		"@codeeditorland/languageserver-textdocument": "0.0.1",
+		"@codeeditorland/uri": "0.0.1"
 	},
 	"devDependencies": {},
 	"engines": {
