@@ -16,10 +16,10 @@
 	],
 	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20",
-		"merge-options": "^3.0.4",
-		"rimraf": "^5.0.5",
-		"ts-loader": "^9.5.1"
+		"@stylistic/eslint-plugin": "2.9.0",
+		"@types/node": "20",
+		"merge-options": "3.0.4",
+		"rimraf": "5.0.5",
+		"ts-loader": "9.5.1"
 	}
 }

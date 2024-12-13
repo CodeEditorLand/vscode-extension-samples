@@ -96,8 +96,8 @@
 	],
 	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.11.0",
-		"@types/node": "^22"
+		"@stylistic/eslint-plugin": "2.11.0",
+		"@types/node": "22"
 	},
 	"enabledApiProposals": [
 		"terminalDataWriteEvent",

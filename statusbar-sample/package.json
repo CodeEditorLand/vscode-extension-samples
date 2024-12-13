@@ -11,6 +11,6 @@
 	],
 	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0"
+		"@stylistic/eslint-plugin": "2.9.0"
 	}
 }

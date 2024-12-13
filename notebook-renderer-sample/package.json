@@ -22,10 +22,10 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@codeeditorland/notebook-error-overlay": "0.0.1",
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/land-notebook-renderer": "^1.57.8",
-		"css-loader": "^4.2.0",
-		"style-loader": "^1.2.1",
-		"ts-loader": "^9.2.2"
+		"@stylistic/eslint-plugin": "2.9.0",
+		"@types/land-notebook-renderer": "1.57.8",
+		"css-loader": "4.2.0",
+		"style-loader": "1.2.1",
+		"ts-loader": "9.2.2"
 	}
 }

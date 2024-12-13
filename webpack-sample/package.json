@@ -19,8 +19,8 @@
 	"activationEvents": [],
 	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20",
-		"ts-loader": "^7.0.5"
+		"@stylistic/eslint-plugin": "2.9.0",
+		"@types/node": "20",
+		"ts-loader": "7.0.5"
 	}
 }

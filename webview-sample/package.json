@@ -24,8 +24,8 @@
 	],
 	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/land-webview": "^1.57.0",
-		"@types/node": "^20"
+		"@stylistic/eslint-plugin": "2.9.0",
+		"@types/land-webview": "1.57.0",
+		"@types/node": "20"
 	}
 }

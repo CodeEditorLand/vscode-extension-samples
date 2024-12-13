@@ -21,10 +21,10 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/land-notebook-renderer": "^1.57.8",
-		"@types/markdown-it": "^12.2.3",
-		"markdown-it-emoji": "^2.0.2",
-		"ts-loader": "^9.2.2"
+		"@stylistic/eslint-plugin": "2.9.0",
+		"@types/land-notebook-renderer": "1.57.8",
+		"@types/markdown-it": "12.2.3",
+		"markdown-it-emoji": "2.0.2",
+		"ts-loader": "9.2.2"
 	}
 }

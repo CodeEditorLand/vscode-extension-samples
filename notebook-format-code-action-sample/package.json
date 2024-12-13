@@ -11,8 +11,8 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@codeeditorland/test-electron": "0.0.1",
-		"@types/glob": "^8.1.0",
-		"@types/node": "^20",
-		"glob": "^8.1.0"
+		"@types/glob": "8.1.0",
+		"@types/node": "20",
+		"glob": "8.1.0"
 	}
 }
