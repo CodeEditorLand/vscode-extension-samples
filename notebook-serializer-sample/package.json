@@ -1,18 +1,10 @@
 {
 	"name": "notebook-serializer-sample",
 	"displayName": "notebook-serializer-sample",
-	"version": "0.0.1",
 	"description": "Notebook using Serializer API sample",
-	"categories": [
-		"Other"
-	],
-	"publisher": "vscode-samples",
 	"main": "./out/extension.js",
 	"scripts": {
-		"compile": "tsc -b",
-		"lint": "eslint",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -b --watch"
+		"compile": "tsc -b"
 	},
 	"contributes": {
 		"commands": [
@@ -39,17 +31,7 @@
 	],
 	"dependencies": {},
 	"devDependencies": {
-		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/mocha": "^8.2.2",
-		"@types/node": "^20",
-		"@types/vscode": "^1.74.0",
-		"eslint": "^9.13.0",
-		"mocha": "^10.2.0",
-		"typescript": "^5.7.2",
-		"typescript-eslint": "^8.16.0"
-	},
-	"engines": {
-		"vscode": "^1.74.0"
+		"@types/node": "^20"
 	}
 }

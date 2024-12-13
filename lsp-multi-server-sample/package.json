@@ -1,25 +1,9 @@
 {
 	"name": "lsp-sample-multi-server",
-	"version": "1.0.0",
 	"description": "A multi server LSP example",
-	"categories": [],
-	"keywords": [
-		"multi-root ready"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"license": "MIT",
-	"author": "Microsoft Corporation",
-	"publisher": "vscode-samples",
 	"main": "./client/out/extension",
 	"scripts": {
-		"compile": "tsc -b",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"lint": "eslint",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -b -w"
+		"compile": "tsc -b"
 	},
 	"contributes": {
 		"configuration": {
@@ -57,15 +41,7 @@
 	],
 	"dependencies": {},
 	"devDependencies": {
-		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/mocha": "^5.2.0",
-		"@types/node": "^20",
-		"eslint": "^9.13.0",
-		"typescript": "^5.7.2",
-		"typescript-eslint": "^8.16.0"
-	},
-	"engines": {
-		"vscode": "^1.52.0"
+		"@types/node": "^20"
 	}
 }

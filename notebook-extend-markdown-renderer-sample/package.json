@@ -1,17 +1,9 @@
 {
 	"name": "notebook-extend-markdown-renderer-sample",
 	"displayName": "notebook-extend-markdown-renderer-sample",
-	"version": "0.0.1",
-	"private": true,
 	"description": "Example of a Notebook renderer that extends VS Code's built-in notebook markdown rendering with :emoji: support.",
-	"categories": [
-		"Other"
-	],
-	"license": "MIT",
 	"scripts": {
-		"lint": "eslint",
 		"test-compile": "tsc -p ./",
-		"vscode:prepublish": "webpack --mode production",
 		"webpack": "webpack --mode development",
 		"webpack-dev": "webpack --mode development --watch"
 	},
@@ -29,20 +21,10 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
 		"@types/land-notebook-renderer": "^1.57.8",
 		"@types/markdown-it": "^12.2.3",
-		"@types/webpack-env": "^1.17.0",
-		"eslint": "^9.13.0",
 		"markdown-it-emoji": "^2.0.2",
-		"ts-loader": "^9.2.2",
-		"typescript": "^5.7.2",
-		"typescript-eslint": "^8.16.0",
-		"webpack": "^5.38.1",
-		"webpack-cli": "^4.7.0"
-	},
-	"engines": {
-		"vscode": "^1.69.0"
+		"ts-loader": "^9.2.2"
 	}
 }

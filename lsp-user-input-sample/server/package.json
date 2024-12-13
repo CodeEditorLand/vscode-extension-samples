@@ -1,23 +1,9 @@
 {
 	"name": "server",
-	"version": "1.0.0",
-	"private": true,
-	"bugs": {
-		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples.git"
-	},
-	"license": "MIT",
-	"author": "Microsoft Corporation",
 	"dependencies": {
 		"@codeeditorland/languageserver": "0.0.1",
 		"@codeeditorland/languageserver-textdocument": "0.0.1",
 		"@codeeditorland/uri": "0.0.1"
 	},
-	"devDependencies": {},
-	"engines": {
-		"node": "*"
-	}
+	"devDependencies": {}
 }

@@ -1,12 +1,7 @@
 {
 	"name": "language-configuration-sample",
 	"displayName": "Language Configuration Sample",
-	"version": "0.0.1",
 	"description": "Language Configuration Sample",
-	"categories": [
-		"Programming Languages"
-	],
-	"publisher": "vscode-samples",
 	"contributes": {
 		"languages": [
 			{
@@ -23,8 +18,5 @@
 		]
 	},
 	"dependencies": {},
-	"devDependencies": {},
-	"engines": {
-		"vscode": "^1.28.0"
-	}
+	"devDependencies": {}
 }

@@ -1,23 +1,10 @@
 {
 	"name": "chat-sample",
 	"displayName": "Copilot Chat Sample",
-	"version": "0.1.0",
 	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
-	"categories": [
-		"AI",
-		"Chat"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"publisher": "vscode-samples",
 	"main": "./out/extension.js",
 	"scripts": {
-		"compile": "tsc -p ./",
-		"lint": "eslint",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
+		"compile": "tsc -p ./"
 	},
 	"contributes": {
 		"chatParticipants": [
@@ -169,15 +156,7 @@
 		"@codeeditorland/prompt-tsx": "0.0.1"
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^20",
-		"@types/vscode": "^1.95.0",
-		"eslint": "^9.13.0",
-		"typescript": "^5.7.2",
-		"typescript-eslint": "^8.16.0"
-	},
-	"engines": {
-		"vscode": "^1.95.0"
+		"@types/node": "^20"
 	}
 }

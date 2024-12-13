@@ -1,37 +1,16 @@
 {
 	"name": "client",
-	"version": "0.1.0",
 	"description": "The language client",
-	"categories": [],
-	"keywords": [
-		"WASM",
-		"Component Model",
-		"LSP",
-		"Language Server"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"license": "MIT",
-	"author": "Microsoft Corporation",
-	"publisher": "vscode-samples",
 	"main": "./out/extension",
 	"browser": "./dist/web/extension",
 	"scripts": {
 		"compile": "tsc -b",
-		"esbuild": "node ./bin/esbuild",
-		"lint": "eslint",
-		"watch": "tsc -b -w"
+		"esbuild": "node ./bin/esbuild"
 	},
 	"dependencies": {
 		"@codeeditorland/wasm-wasi-lsp": "0.0.1"
 	},
 	"devDependencies": {
-		"@types/node": "^20",
-		"@types/vscode": "1.89.0"
-	},
-	"engines": {
-		"vscode": "^1.89.0"
+		"@types/node": "^20"
 	}
 }

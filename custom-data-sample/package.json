@@ -1,9 +1,6 @@
 {
 	"name": "custom-data-sample",
-	"version": "0.0.1",
 	"description": "Custom Data sample extension for VS Code",
-	"repository": "https://github.com/Microsoft/vscode-extension-samples",
-	"publisher": "vscode-samples",
 	"contributes": {
 		"css": {
 			"customData": [
@@ -17,8 +14,5 @@
 		}
 	},
 	"dependencies": {},
-	"devDependencies": {},
-	"engines": {
-		"vscode": "^1.38.0"
-	}
+	"devDependencies": {}
 }

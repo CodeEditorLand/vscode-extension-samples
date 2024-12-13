@@ -1,25 +1,9 @@
 {
 	"name": "notebook-format-code-action-sample",
 	"displayName": "Notebook Format Code Action Provider Sample",
-	"version": "0.0.1",
-	"private": true,
-	"categories": [
-		"Other"
-	],
-	"bugs": {
-		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"publisher": "vscode-samples",
 	"main": "./out/extension.js",
 	"scripts": {
-		"compile": "tsc -p ./",
-		"lint": "eslint",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
+		"compile": "tsc -p ./"
 	},
 	"activationEvents": [
 		"onStartupFinished"
@@ -28,15 +12,7 @@
 	"devDependencies": {
 		"@codeeditorland/test-electron": "0.0.1",
 		"@types/glob": "^8.1.0",
-		"@types/mocha": "^10.0.1",
 		"@types/node": "^20",
-		"@types/vscode": "^1.73.0",
-		"eslint": "^8.36.0",
-		"glob": "^8.1.0",
-		"mocha": "^10.2.0",
-		"typescript": "^5.7.2"
-	},
-	"engines": {
-		"vscode": "^1.73.0"
+		"glob": "^8.1.0"
 	}
 }

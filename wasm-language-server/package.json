@@ -1,30 +1,12 @@
 {
 	"name": "wasm-language-server",
-	"version": "1.0.0",
 	"description": "An example demonstrating how to implement a language server as a WebAssembly module.",
-	"categories": [],
-	"keywords": [
-		"WASM",
-		"Component Model",
-		"LSP",
-		"Language Server"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
-	"license": "MIT",
-	"author": "Microsoft Corporation",
-	"publisher": "vscode-samples",
 	"main": "./client/out/extension",
 	"browser": "./client/dist/web/extension",
 	"scripts": {
 		"build": "cd client && npm run compile && cd ../server && npm run build && cd ..",
 		"esbuild": "node ./bin/esbuild.js",
-		"postinstall": "cd client && npm install && cd ..",
-		"lint": "cd client && npm run lint && cd ..",
-		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem",
-		"vscode:prepublish": "npm run build"
+		"serve": "serve --cors -l 5000 --ssl-cert $HOME/certs/localhost.pem --ssl-key $HOME/certs/localhost-key.pem"
 	},
 	"contributes": {
 		"commands": [
@@ -40,19 +22,12 @@
 	],
 	"dependencies": {},
 	"devDependencies": {
-		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
 		"@types/node": "^20",
 		"esbuild": "^0.21.3",
-		"eslint": "^9.13.0",
-		"serve": "^14.2.3",
-		"typescript": "^5.7.2",
-		"typescript-eslint": "^8.16.0"
+		"serve": "^14.2.3"
 	},
 	"extensionDependencies": [
 		"ms-vscode.wasm-wasi-core"
-	],
-	"engines": {
-		"vscode": "^1.88.0"
-	}
+	]
 }

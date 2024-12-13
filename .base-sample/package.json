@@ -1,5 +1,11 @@
 {
-	"activationEvents": [],
+	"name": "base-sample",
+	"displayName": "base-sample",
+	"description": "Base sample for other samples at Microsoft/vscode-extension-samples",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -8,16 +14,10 @@
 			}
 		]
 	},
+	"activationEvents": [],
 	"dependencies": {},
-	"description": "Base sample for other samples at Microsoft/vscode-extension-samples",
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "^2.9.0",
 		"@types/node": "^20"
-	},
-	"displayName": "base-sample",
-	"main": "./out/extension.js",
-	"name": "base-sample",
-	"scripts": {
-		"compile": "tsc -p ./"
 	}
 }
