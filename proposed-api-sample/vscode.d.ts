@@ -954,16 +954,19 @@ declare module "vscode" {
 	 * Represents an icon in the UI. This is either an uri, separate uris for the light- and dark-themes,
 	 * or a {@link ThemeIcon theme icon}.
 	 */
-	export type IconPath = Uri | {
-		/**
-		 * The icon path for the light theme.
-		 */
-		light: Uri;
-		/**
-		 * The icon path for the dark theme.
-		 */
-		dark: Uri;
-	} | ThemeIcon;
+	export type IconPath =
+		| Uri
+		| {
+				/**
+				 * The icon path for the light theme.
+				 */
+				light: Uri;
+				/**
+				 * The icon path for the dark theme.
+				 */
+				dark: Uri;
+		  }
+		| ThemeIcon;
 
 	/**
 	 * Represents theme specific rendering styles for a {@link TextEditorDecorationType text editor decoration}.
@@ -2735,7 +2738,12 @@ declare module "vscode" {
 		 * We also support returning `Command` for legacy reasons, however all new extensions should return
 		 * `CodeAction` object instead.
 		 */
-		provideCodeActions(document: TextDocument, range: Range | Selection, context: CodeActionContext, token: CancellationToken): ProviderResult<Array<Command | T>>;
+		provideCodeActions(
+			document: TextDocument,
+			range: Range | Selection,
+			context: CodeActionContext,
+			token: CancellationToken,
+		): ProviderResult<Array<Command | T>>;
 
 		/**
 		 * Given a code action fill in its {@linkcode CodeAction.edit edit}-property. Changes to
@@ -8972,7 +8980,11 @@ declare module "vscode" {
 		 * @param args The command arguments.
 		 * @param options Optional options for the started the shell.
 		 */
-		constructor(command: string | ShellQuotedString, args: Array<string | ShellQuotedString>, options?: ShellExecutionOptions);
+		constructor(
+			command: string | ShellQuotedString,
+			args: Array<string | ShellQuotedString>,
+			options?: ShellExecutionOptions,
+		);
 
 		/**
 		 * The shell command line. Is `undefined` if created with a command and arguments.
@@ -18575,7 +18587,12 @@ declare module "vscode" {
 		 * @param fromTestItem The test item to request coverage information for.
 		 * @param token A cancellation token that indicates the operation should be cancelled.
 		 */
-		loadDetailedCoverageForTest?: (testRun: TestRun, fileCoverage: FileCoverage, fromTestItem: TestItem, token: CancellationToken) => Thenable<FileCoverageDetail[]>;
+		loadDetailedCoverageForTest?: (
+			testRun: TestRun,
+			fileCoverage: FileCoverage,
+			fromTestItem: TestItem,
+			token: CancellationToken,
+		) => Thenable<FileCoverageDetail[]>;
 
 		/**
 		 * Deletes the run profile.
@@ -20408,7 +20425,12 @@ declare module "vscode" {
 		 * @param content The content of the message.
 		 * @param name The optional name of a user for the message.
 		 */
-		static User(content: string | Array<LanguageModelTextPart | LanguageModelToolResultPart>, name?: string): LanguageModelChatMessage;
+		static User(
+			content:
+				| string
+				| Array<LanguageModelTextPart | LanguageModelToolResultPart>,
+			name?: string,
+		): LanguageModelChatMessage;
 
 		/**
 		 * Utility to create a new assistant message.
@@ -20416,7 +20438,12 @@ declare module "vscode" {
 		 * @param content The content of the message.
 		 * @param name The optional name of a user for the message.
 		 */
-		static Assistant(content: string | Array<LanguageModelTextPart | LanguageModelToolCallPart>, name?: string): LanguageModelChatMessage;
+		static Assistant(
+			content:
+				| string
+				| Array<LanguageModelTextPart | LanguageModelToolCallPart>,
+			name?: string,
+		): LanguageModelChatMessage;
 
 		/**
 		 * The role of this message.
@@ -20427,7 +20454,11 @@ declare module "vscode" {
 		 * A string or heterogeneous array of things that a message can contain as content. Some parts may be message-type
 		 * specific for some models.
 		 */
-		content: Array<LanguageModelTextPart | LanguageModelToolResultPart | LanguageModelToolCallPart>;
+		content: Array<
+			| LanguageModelTextPart
+			| LanguageModelToolResultPart
+			| LanguageModelToolCallPart
+		>;
 
 		/**
 		 * The optional name of a user for this message.
@@ -20441,7 +20472,17 @@ declare module "vscode" {
 		 * @param content The content of the message.
 		 * @param name The optional name of a user for the message.
 		 */
-		constructor(role: LanguageModelChatMessageRole, content: string | Array<LanguageModelTextPart | LanguageModelToolResultPart | LanguageModelToolCallPart>, name?: string);
+		constructor(
+			role: LanguageModelChatMessageRole,
+			content:
+				| string
+				| Array<
+						| LanguageModelTextPart
+						| LanguageModelToolResultPart
+						| LanguageModelToolCallPart
+				  >,
+			name?: string,
+		);
 	}
 
 	/**
@@ -20869,13 +20910,20 @@ declare module "vscode" {
 		/**
 		 * The value of the tool result.
 		 */
-		content: Array<LanguageModelTextPart | LanguageModelPromptTsxPart | unknown>;
+		content: Array<
+			LanguageModelTextPart | LanguageModelPromptTsxPart | unknown
+		>;
 
 		/**
 		 * @param callId The ID of the tool call.
 		 * @param content The content of the tool result.
 		 */
-		constructor(callId: string, content: Array<LanguageModelTextPart | LanguageModelPromptTsxPart | unknown>);
+		constructor(
+			callId: string,
+			content: Array<
+				LanguageModelTextPart | LanguageModelPromptTsxPart | unknown
+			>,
+		);
 	}
 
 	/**
@@ -20920,13 +20968,17 @@ declare module "vscode" {
 		 * the future.
 		 * @see {@link lm.invokeTool}.
 		 */
-		content: Array<LanguageModelTextPart | LanguageModelPromptTsxPart | unknown>;
+		content: Array<
+			LanguageModelTextPart | LanguageModelPromptTsxPart | unknown
+		>;
 
 		/**
 		 * Create a LanguageModelToolResult
 		 * @param content A list of tool result content parts
 		 */
-		constructor(content: Array<LanguageModelTextPart | LanguageModelPromptTsxPart>);
+		constructor(
+			content: Array<LanguageModelTextPart | LanguageModelPromptTsxPart>,
+		);
 	}
 
 	/**
