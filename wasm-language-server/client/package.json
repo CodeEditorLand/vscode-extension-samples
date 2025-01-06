@@ -11,6 +11,6 @@
 		"@codeeditorland/wasm-wasi-lsp": "0.0.1"
 	},
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "22"
 	}
 }

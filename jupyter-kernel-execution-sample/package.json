@@ -30,8 +30,8 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@codeeditorland/jupyter-extension": "0.0.1",
-		"@stylistic/eslint-plugin": "2.9.0",
-		"@types/node": "20"
+		"@stylistic/eslint-plugin": "2.12.1",
+		"@types/node": "22"
 	},
 	"extensionDependencies": [
 		"ms-toolsai.jupyter"

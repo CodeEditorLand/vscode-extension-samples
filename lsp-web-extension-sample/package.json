@@ -34,7 +34,7 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@codeeditorland/test-web": "0.0.1",
-		"@stylistic/eslint-plugin": "2.9.0",
+		"@stylistic/eslint-plugin": "2.12.1",
 		"path-browserify": "1.0.1",
 		"ts-loader": "9.5.1"
 	}

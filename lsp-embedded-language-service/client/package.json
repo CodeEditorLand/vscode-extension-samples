@@ -5,6 +5,6 @@
 		"@codeeditorland/languageclient": "0.0.1"
 	},
 	"devDependencies": {
-		"@types/node": "20"
+		"@types/node": "22"
 	}
 }
