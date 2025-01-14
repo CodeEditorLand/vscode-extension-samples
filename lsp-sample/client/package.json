@@ -3,7 +3,7 @@
 	"description": "VSCode part of a language server",
 	"dependencies": {
 		"@codeeditorland/languageclient": "0.0.1",
-		"glob": "11.0.0"
+		"glob": "11.0.1"
 	},
 	"devDependencies": {
 		"@codeeditorland/test-electron": "0.0.1"

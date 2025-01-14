@@ -25,10 +25,10 @@
 	"devDependencies": {
 		"@codeeditorland/l10n-dev": "0.0.1",
 		"@codeeditorland/test-electron": "0.0.1",
-		"@stylistic/eslint-plugin": "2.12.1",
+		"@stylistic/eslint-plugin": "2.13.0",
 		"@types/glob": "8.1.0",
 		"@types/node": "22",
-		"glob": "11.0.0"
+		"glob": "11.0.1"
 	},
 	"l10n": "./l10n"
 }

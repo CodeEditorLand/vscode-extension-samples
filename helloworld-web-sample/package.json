@@ -20,9 +20,9 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@codeeditorland/test-web": "0.0.1",
-		"@stylistic/eslint-plugin": "2.12.1",
+		"@stylistic/eslint-plugin": "2.13.0",
 		"assert": "2.1.0",
 		"process": "0.11.10",
-		"ts-loader": "9.5.1"
+		"ts-loader": "9.5.2"
 	}
 }

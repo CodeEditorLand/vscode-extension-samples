@@ -9,6 +9,6 @@
 	"devDependencies": {
 		"@codeeditorland/test-electron": "0.0.1",
 		"@types/ws": "8.5.13",
-		"glob": "11.0.0"
+		"glob": "11.0.1"
 	}
 }

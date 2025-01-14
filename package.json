@@ -10,8 +10,8 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@types/node": "22.10.5",
-		"glob": "11.0.0",
+		"@types/node": "22.10.6",
+		"glob": "11.0.1",
 		"tsx": "4.19.2"
 	}
 }
