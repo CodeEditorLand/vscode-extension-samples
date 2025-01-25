@@ -28,7 +28,7 @@
 	"activationEvents": [],
 	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "2.13.0",
+		"@stylistic/eslint-plugin": "3.0.0",
 		"@types/node": "22"
 	}
 }
