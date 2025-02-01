@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"@codeeditorland/test-cli": "0.0.1",
 		"@codeeditorland/test-electron": "0.0.1",
-		"@stylistic/eslint-plugin": "3.0.0",
+		"@stylistic/eslint-plugin": "3.0.1",
 		"@types/node": "22"
 	}
 }

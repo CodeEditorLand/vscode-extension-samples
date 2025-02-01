@@ -23,7 +23,7 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@codeeditorland/dts": "0.0.1",
-		"@stylistic/eslint-plugin": "3.0.0",
+		"@stylistic/eslint-plugin": "3.0.1",
 		"@types/node": "22"
 	}
 }

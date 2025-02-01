@@ -156,7 +156,7 @@
 		"@codeeditorland/prompt-tsx": "0.0.1"
 	},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "3.0.0",
+		"@stylistic/eslint-plugin": "3.0.1",
 		"@types/node": "22"
 	}
 }
