@@ -21,7 +21,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "3.0.1",
+		"@stylistic/eslint-plugin": "3.1.0",
 		"@types/land-notebook-renderer": "1.57.8",
 		"@types/markdown-it": "14.1.2",
 		"markdown-it-emoji": "3.0.0",

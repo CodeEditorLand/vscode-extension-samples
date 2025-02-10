@@ -204,7 +204,7 @@
 		"rimraf": "6.0.1"
 	},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "3.0.1",
+		"@stylistic/eslint-plugin": "3.1.0",
 		"@types/ftp": "0.3.36",
 		"@types/mkdirp": "2.0.0",
 		"@types/node": "22",
